@@ -125,7 +125,7 @@ python scripts/generate_qr.py \
 Rules:
 
 - Use `Label=URL` when a readable label is known.
-- Let the script auto-select saved icons for OpenReview, ICML, ICLR, and NeurIPS URLs.
+- Let the script auto-select saved logos for OpenReview, ICML, ICLR, and NeurIPS URLs.
 - Keep generated QR codes in `figures/qr/`; the script also writes `figures/qr/qr-snippet.tex`.
 - Place QR codes in the right-column `Scan` area or another low-priority corner, never over the center hero claim or hero figure.
 - If multiple URLs are provided, show multiple QR codes in a compact grid.

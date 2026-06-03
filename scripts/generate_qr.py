@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Generate poster QR codes with site icons and a LaTeX include snippet.
+"""Generate poster QR codes with site logos and a LaTeX include snippet.
 
 The script uses local LaTeX `qrcode` as the QR encoder so it does not require a
-Python QR package. It then uses Pillow to paste a centered icon tile.
+Python QR package. It rasterizes SVG logos only at generation time, then uses
+Pillow to paste a centered logo tile.
 """
 
 from __future__ import annotations
@@ -30,11 +31,11 @@ PROXY_ENV_KEYS = (
     "ALL_PROXY",
 )
 
-SITE_ICONS = {
+SITE_LOGOS = {
     "openreview": "openreview.png",
-    "icml": "icml.png",
-    "iclr": "iclr.png",
-    "neurips": "neurips.png",
+    "icml": "icml.svg",
+    "iclr": "iclr.svg",
+    "neurips": "neurips.svg",
 }
 
 
@@ -126,7 +127,7 @@ def parse_item(raw: str, explicit_icon: str | None) -> QRItem:
         label = label.strip()
         url = url.strip()
     icon_key = explicit_icon if explicit_icon != "auto" else detect_icon_key(url, label)
-    if icon_key and icon_key not in SITE_ICONS:
+    if icon_key and icon_key not in SITE_LOGOS:
         icon_key = None
     return QRItem(label=label or default_label(url, icon_key), url=url, icon_key=icon_key)
 
@@ -202,9 +203,44 @@ def crop_white(image: Image.Image) -> Image.Image:
     return image.crop((left, top, right, bottom))
 
 
-def paste_icon(qr_path: Path, icon_path: Path, icon_scale: float) -> None:
+def load_logo_image(logo_path: Path, env: dict[str, str]) -> Image.Image:
+    logo_path = logo_path.resolve()
+    if logo_path.suffix.lower() == ".svg":
+        convert = shutil.which("convert")
+        if not convert:
+            raise RuntimeError(f"ImageMagick convert is required to rasterize SVG logos: {logo_path}")
+        with tempfile.TemporaryDirectory(prefix="better-poster-logo-") as tmp:
+            out_png = Path(tmp) / "logo.png"
+            result = run(
+                [
+                    convert,
+                    "-background",
+                    "none",
+                    "-density",
+                    "600",
+                    str(logo_path),
+                    "-trim",
+                    "+repage",
+                    "-resize",
+                    "430x430",
+                    "-gravity",
+                    "center",
+                    "-extent",
+                    "512x512",
+                    f"PNG32:{out_png}",
+                ],
+                logo_path.parent,
+                env,
+            )
+            if result.returncode != 0:
+                raise RuntimeError(f"Failed to rasterize SVG logo {logo_path}:\n{result.stdout[-2000:]}")
+            return Image.open(out_png).convert("RGBA")
+    return Image.open(logo_path).convert("RGBA")
+
+
+def paste_logo(qr_path: Path, logo_image: Image.Image, icon_scale: float) -> None:
     qr = Image.open(qr_path).convert("RGBA")
-    icon = Image.open(icon_path).convert("RGBA")
+    icon = logo_image.convert("RGBA")
     qr_size = qr.size[0]
     tile_size = int(qr_size * icon_scale)
     padding = max(8, int(tile_size * 0.08))
@@ -248,7 +284,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", action="append", required=True, help="URL or Label=URL. Repeat for multiple QR codes.")
     parser.add_argument("--out-dir", default="figures/qr", help="Output directory for PNGs and qr-snippet.tex.")
-    parser.add_argument("--icons-dir", default="assets/icons", help="Directory containing OpenReview/ICML/ICLR/NeurIPS icons.")
+    parser.add_argument("--logos-dir", default="assets/logos", help="Directory containing OpenReview PNG plus ICML/ICLR/NeurIPS SVG logos.")
     parser.add_argument("--icon", default="auto", help="auto, none, or one of: openreview, icml, iclr, neurips.")
     parser.add_argument("--size", type=int, default=1200, help="Output QR image size in pixels.")
     parser.add_argument("--icon-scale", type=float, default=0.18, help="Center icon size as fraction of QR width.")
@@ -258,13 +294,13 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    if args.icon not in {"auto", "none", *SITE_ICONS.keys()}:
+    if args.icon not in {"auto", "none", *SITE_LOGOS.keys()}:
         print(f"Unsupported --icon value: {args.icon}", file=sys.stderr)
         return 2
 
     env = clean_env()
     out_dir = Path(args.out_dir)
-    icons_dir = Path(args.icons_dir)
+    logos_dir = Path(args.logos_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     items: list[tuple[QRItem, Path]] = []
 
@@ -275,11 +311,11 @@ def main() -> int:
             qr_path = out_dir / filename
             render_base_qr(item.url, qr_path, args.size, env)
             if item.icon_key:
-                icon_path = icons_dir / SITE_ICONS[item.icon_key]
-                if icon_path.exists():
-                    paste_icon(qr_path, icon_path, args.icon_scale)
+                logo_path = logos_dir / SITE_LOGOS[item.icon_key]
+                if logo_path.exists():
+                    paste_logo(qr_path, load_logo_image(logo_path, env), args.icon_scale)
                 else:
-                    print(f"Warning: icon not found, QR generated without logo: {icon_path}", file=sys.stderr)
+                    print(f"Warning: logo not found, QR generated without logo: {logo_path}", file=sys.stderr)
             items.append((item, qr_path))
         write_snippet(items, out_dir / "qr-snippet.tex", args.tex_prefix)
     except Exception as exc:

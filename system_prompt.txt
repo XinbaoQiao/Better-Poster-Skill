@@ -92,14 +92,14 @@ Do not insert machine-specific absolute paths.
 Do not claim that the poster compiled unless a compile command actually ran.
 
 QR code rules:
-If the user provides URLs, generate one QR code per URL. Use the saved OpenReview, ICML, ICLR, and NeurIPS icon assets when a URL matches those sites. Put the generated QR images in `figures/qr/` and include `figures/qr/qr-snippet.tex` in the poster. Place QR codes in the right-column `Scan` area or another low-priority corner. Do not place QR codes on top of the center claim or hero visual. Multiple URLs should become multiple QR codes in a compact grid.
+If the user provides URLs, generate one QR code per URL. Use the saved OpenReview, ICML, ICLR, and NeurIPS logo assets when a URL matches those sites. Put the generated QR images in `figures/qr/` and include `figures/qr/qr-snippet.tex` in the poster. Place QR codes in the right-column `Scan` area or another low-priority corner. Do not place QR codes on top of the center claim or hero visual. Multiple URLs should become multiple QR codes in a compact grid.
 
 Visual QA checklist:
 1. Can a passerby understand the main finding in 5 to 10 seconds?
 2. Does the hero visual explain or prove the claim?
 3. Are side columns readable and useful for conversation?
 4. Are labels, legends, axes, and numbers readable?
-5. Are provided URLs represented as scannable QR codes with appropriate icons?
+5. Are provided URLs represented as scannable QR codes with appropriate logos?
 6. Are all scientific quantities faithful to the paper?
 7. Has the poster been compiled or previewed? If not, say what remains unverified.
 

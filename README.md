@@ -9,7 +9,7 @@ Better Poster Skill helps Codex, Claude, or other AI agents generate Better Post
 - `template.tex`: LaTeX poster template.
 - `render_preview.py`: compile LaTeX and render a PNG preview.
 - `scripts/generate_qr.py`: generate icon-centered QR codes for poster URLs.
-- `assets/icons/`: saved OpenReview, ICML, ICLR, and NeurIPS icon assets.
+- `assets/logos/`: saved OpenReview, ICML, ICLR, and NeurIPS logo assets.
 
 ## Install
 
