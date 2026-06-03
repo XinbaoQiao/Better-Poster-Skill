@@ -36,8 +36,7 @@
 \newcommand{\HeroSubclaim}{One sentence explains why this result matters and what changes because of it.}
 \newcommand{\HeroFigure}{figures/hero-teaser.pdf}
 \newcommand{\HeroCaption}{A short interpretive caption: what the reader should notice in the hero figure.}
-\newcommand{\PaperURL}{https://example.com/paper}
-\newcommand{\CodeURL}{https://example.com/code}
+\newcommand{\OpenReviewURL}{https://openreview.net/forum?id=example}
 \newcommand{\ContactEmail}{author@example.com}
 
 \newcommand{\sectiontitle}[1]{%
@@ -187,17 +186,14 @@
   \IfFileExists{figures/qr/qr-snippet.tex}{%
     \input{figures/qr/qr-snippet.tex}
   }{%
-    \begin{minipage}[t]{0.38\linewidth}
+    \begin{center}
+    \begin{minipage}[t]{0.56\linewidth}
       \centering
-      \qrcode[height=1.55in,level=H]{\PaperURL}
-      {\fontsize{17}{20}\selectfont Paper}
+      \qrcode[height=1.85in,level=H]{\OpenReviewURL}
+      \par\vspace{0.05in}
+      {\fontsize{17}{20}\selectfont OpenReview}
     \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.38\linewidth}
-      \centering
-      \qrcode[height=1.55in,level=H]{\CodeURL}
-      {\fontsize{17}{20}\selectfont Code}
-    \end{minipage}
+    \end{center}
   }
 
   \vspace{0.25in}
