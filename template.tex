@@ -184,17 +184,21 @@
   \end{posterbullets}
 
   \sectiontitle{Scan}
-  \begin{minipage}[t]{0.38\linewidth}
-    \centering
-    \qrcode[height=1.55in]{\PaperURL}
-    {\fontsize{17}{20}\selectfont Paper}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.38\linewidth}
-    \centering
-    \qrcode[height=1.55in]{\CodeURL}
-    {\fontsize{17}{20}\selectfont Code}
-  \end{minipage}
+  \IfFileExists{figures/qr/qr-snippet.tex}{%
+    \input{figures/qr/qr-snippet.tex}
+  }{%
+    \begin{minipage}[t]{0.38\linewidth}
+      \centering
+      \qrcode[height=1.55in,level=H]{\PaperURL}
+      {\fontsize{17}{20}\selectfont Paper}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.38\linewidth}
+      \centering
+      \qrcode[height=1.55in,level=H]{\CodeURL}
+      {\fontsize{17}{20}\selectfont Code}
+    \end{minipage}
+  }
 
   \vspace{0.25in}
   {\fontsize{21}{26}\selectfont\bfseries Contact:} {\fontsize{21}{26}\selectfont \ContactEmail}

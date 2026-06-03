@@ -1,0 +1,296 @@
+#!/usr/bin/env python3
+"""Generate poster QR codes with site icons and a LaTeX include snippet.
+
+The script uses local LaTeX `qrcode` as the QR encoder so it does not require a
+Python QR package. It then uses Pillow to paste a centered icon tile.
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+from dataclasses import dataclass
+from pathlib import Path
+from urllib.parse import urlparse
+
+from PIL import Image
+
+
+PROXY_ENV_KEYS = (
+    "http_proxy",
+    "https_proxy",
+    "HTTP_PROXY",
+    "HTTPS_PROXY",
+    "all_proxy",
+    "ALL_PROXY",
+)
+
+SITE_ICONS = {
+    "openreview": "openreview.png",
+    "icml": "icml.png",
+    "iclr": "iclr.png",
+    "neurips": "neurips.png",
+}
+
+
+@dataclass(frozen=True)
+class QRItem:
+    label: str
+    url: str
+    icon_key: str | None
+
+
+def clean_env() -> dict[str, str]:
+    env = os.environ.copy()
+    for key in PROXY_ENV_KEYS:
+        env.pop(key, None)
+    return env
+
+
+def run(cmd: list[str], cwd: Path, env: dict[str, str]) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        cmd,
+        cwd=str(cwd),
+        env=env,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+
+
+def latex_escape(text: str) -> str:
+    replacements = {
+        "\\": r"\textbackslash{}",
+        "&": r"\&",
+        "%": r"\%",
+        "$": r"\$",
+        "#": r"\#",
+        "_": r"\_",
+        "{": r"\{",
+        "}": r"\}",
+        "~": r"\textasciitilde{}",
+        "^": r"\textasciicircum{}",
+    }
+    return "".join(replacements.get(ch, ch) for ch in text)
+
+
+def qr_latex_arg(text: str) -> str:
+    if any(ch in text for ch in "{}\n\r"):
+        raise ValueError("URLs containing braces or newlines are not supported by the LaTeX QR backend.")
+    return text
+
+
+def slugify(text: str) -> str:
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-")
+    return slug or "qr"
+
+
+def detect_icon_key(url: str, label: str = "") -> str | None:
+    parsed = urlparse(url)
+    haystack = " ".join([parsed.netloc.lower(), parsed.path.lower(), label.lower()])
+    if "openreview" in haystack:
+        return "openreview"
+    if "iclr" in haystack:
+        return "iclr"
+    if "neurips" in haystack or "nips.cc" in haystack:
+        return "neurips"
+    if "icml" in haystack or "mlr.press" in haystack:
+        return "icml"
+    return None
+
+
+def default_label(url: str, icon_key: str | None) -> str:
+    if icon_key == "openreview":
+        return "OpenReview"
+    if icon_key == "icml":
+        return "ICML"
+    if icon_key == "iclr":
+        return "ICLR"
+    if icon_key == "neurips":
+        return "NeurIPS"
+    host = urlparse(url).netloc.removeprefix("www.")
+    return host or "Link"
+
+
+def parse_item(raw: str, explicit_icon: str | None) -> QRItem:
+    label = ""
+    url = raw.strip()
+    if "=" in raw and not raw.lstrip().startswith(("http://", "https://")):
+        label, url = raw.split("=", 1)
+        label = label.strip()
+        url = url.strip()
+    icon_key = explicit_icon if explicit_icon != "auto" else detect_icon_key(url, label)
+    if icon_key and icon_key not in SITE_ICONS:
+        icon_key = None
+    return QRItem(label=label or default_label(url, icon_key), url=url, icon_key=icon_key)
+
+
+def render_base_qr(url: str, out_png: Path, size_px: int, env: dict[str, str]) -> None:
+    pdflatex = shutil.which("pdflatex")
+    pdftoppm = shutil.which("pdftoppm")
+    if not pdflatex:
+        raise RuntimeError("pdflatex is required for QR generation.")
+    if not pdftoppm:
+        raise RuntimeError("pdftoppm is required to render QR PNGs.")
+
+    with tempfile.TemporaryDirectory(prefix="better-poster-qr-") as tmp:
+        work = Path(tmp)
+        tex = work / "qr.tex"
+        tex.write_text(
+            "\n".join(
+                [
+                    r"\documentclass{article}",
+                    r"\usepackage[paperwidth=2.4in,paperheight=2.4in,margin=0in]{geometry}",
+                    r"\usepackage{qrcode}",
+                    r"\pagestyle{empty}",
+                    r"\begin{document}",
+                    r"\noindent\centering\qrcode[height=2.4in,level=H]{"
+                    + qr_latex_arg(url)
+                    + "}",
+                    r"\end{document}",
+                    "",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        for _ in range(2):
+            result = run(
+                [pdflatex, "-interaction=nonstopmode", "-halt-on-error", "qr.tex"],
+                work,
+                env,
+            )
+            if result.returncode != 0:
+                raise RuntimeError("pdflatex failed while generating QR:\n" + result.stdout[-4000:])
+        result = run(
+            [pdftoppm, "-png", "-singlefile", "-r", "600", str(work / "qr.pdf"), str(work / "qr")],
+            work,
+            env,
+        )
+        if result.returncode != 0:
+            raise RuntimeError("pdftoppm failed while rendering QR:\n" + result.stdout[-2000:])
+
+        base = Image.open(work / "qr.png").convert("RGBA")
+        cropped = crop_white(base)
+        resized = cropped.resize((size_px, size_px), Image.Resampling.NEAREST)
+        resized.save(out_png)
+
+
+def crop_white(image: Image.Image) -> Image.Image:
+    rgb = image.convert("RGB")
+    pixels = rgb.load()
+    width, height = rgb.size
+    xs: list[int] = []
+    ys: list[int] = []
+    for y in range(height):
+        for x in range(width):
+            if pixels[x, y] != (255, 255, 255):
+                xs.append(x)
+                ys.append(y)
+    if not xs:
+        return image
+    pad = max(8, min(width, height) // 40)
+    left = max(0, min(xs) - pad)
+    top = max(0, min(ys) - pad)
+    right = min(width, max(xs) + pad)
+    bottom = min(height, max(ys) + pad)
+    return image.crop((left, top, right, bottom))
+
+
+def paste_icon(qr_path: Path, icon_path: Path, icon_scale: float) -> None:
+    qr = Image.open(qr_path).convert("RGBA")
+    icon = Image.open(icon_path).convert("RGBA")
+    qr_size = qr.size[0]
+    tile_size = int(qr_size * icon_scale)
+    padding = max(8, int(tile_size * 0.08))
+    card_size = tile_size + 2 * padding
+
+    icon = icon.resize((tile_size, tile_size), Image.Resampling.LANCZOS)
+    card = Image.new("RGBA", (card_size, card_size), (255, 255, 255, 255))
+    card.alpha_composite(icon, (padding, padding))
+    x = (qr.size[0] - card_size) // 2
+    y = (qr.size[1] - card_size) // 2
+    qr.alpha_composite(card, (x, y))
+    qr.save(qr_path)
+
+
+def write_snippet(items: list[tuple[QRItem, Path]], snippet_path: Path, tex_prefix: str) -> None:
+    lines = [
+        r"% Generated by scripts/generate_qr.py. Edit URLs and regenerate instead of editing manually.",
+        r"\begin{center}",
+    ]
+    for idx, (item, path) in enumerate(items):
+        if idx and idx % 2 == 0:
+            lines.extend([r"\par\vspace{0.18in}"])
+        rel_path = f"{tex_prefix.rstrip('/')}/{path.name}"
+        lines.extend(
+            [
+                r"\begin{minipage}[t]{0.42\linewidth}",
+                r"\centering",
+                rf"\includegraphics[width=0.88\linewidth]{{{rel_path}}}",
+                r"\par\vspace{0.05in}",
+                rf"{{\fontsize{{17}}{{20}}\selectfont {latex_escape(item.label)}}}",
+                r"\end{minipage}",
+            ]
+        )
+        if idx % 2 == 0 and idx != len(items) - 1:
+            lines.append(r"\hfill")
+    lines.extend([r"\end{center}", ""])
+    snippet_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--url", action="append", required=True, help="URL or Label=URL. Repeat for multiple QR codes.")
+    parser.add_argument("--out-dir", default="figures/qr", help="Output directory for PNGs and qr-snippet.tex.")
+    parser.add_argument("--icons-dir", default="assets/icons", help="Directory containing OpenReview/ICML/ICLR/NeurIPS icons.")
+    parser.add_argument("--icon", default="auto", help="auto, none, or one of: openreview, icml, iclr, neurips.")
+    parser.add_argument("--size", type=int, default=1200, help="Output QR image size in pixels.")
+    parser.add_argument("--icon-scale", type=float, default=0.18, help="Center icon size as fraction of QR width.")
+    parser.add_argument("--tex-prefix", default="figures/qr", help="Path prefix used inside generated LaTeX snippet.")
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    if args.icon not in {"auto", "none", *SITE_ICONS.keys()}:
+        print(f"Unsupported --icon value: {args.icon}", file=sys.stderr)
+        return 2
+
+    env = clean_env()
+    out_dir = Path(args.out_dir)
+    icons_dir = Path(args.icons_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    items: list[tuple[QRItem, Path]] = []
+
+    try:
+        for index, raw in enumerate(args.url, start=1):
+            item = parse_item(raw, explicit_icon=None if args.icon == "none" else args.icon)
+            filename = f"{index:02d}-{slugify(item.label)}.png"
+            qr_path = out_dir / filename
+            render_base_qr(item.url, qr_path, args.size, env)
+            if item.icon_key:
+                icon_path = icons_dir / SITE_ICONS[item.icon_key]
+                if icon_path.exists():
+                    paste_icon(qr_path, icon_path, args.icon_scale)
+                else:
+                    print(f"Warning: icon not found, QR generated without logo: {icon_path}", file=sys.stderr)
+            items.append((item, qr_path))
+        write_snippet(items, out_dir / "qr-snippet.tex", args.tex_prefix)
+    except Exception as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+    for _, path in items:
+        print(path)
+    print(out_dir / "qr-snippet.tex")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

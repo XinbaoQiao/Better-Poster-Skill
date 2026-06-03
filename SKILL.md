@@ -13,6 +13,7 @@ Produce an end-to-end poster package:
 
 - Distilled main claim in plain language.
 - Center hero visual plan or generated teaser figure instructions.
+- Branded QR codes for paper/code/project URLs when URLs are provided.
 - Filled LaTeX poster based on `template.tex` or the user's local template.
 - Preview image when local tools are available.
 - Short visual QA notes and next edits.
@@ -50,7 +51,8 @@ For technical papers, use the MIT-style refinement: do not reduce the poster to 
 3. Parse title, authors, abstract, section headings, figure captions, included graphics, and bibliography.
 4. Prefer reusing existing figures from the source tree.
 5. Build a new poster from `template.tex`; avoid mutating the paper source unless asked.
-6. Use `render_preview.py` to compile and render a preview when possible.
+6. Generate QR codes with `scripts/generate_qr.py` when URLs are available.
+7. Use `render_preview.py` to compile and render a preview when possible.
 
 ## Poster Distillation
 
@@ -109,6 +111,26 @@ Use `template.tex` as the default asset. Fill these content areas:
 
 Keep paragraphs short. Convert paper prose into bullets. Use figure captions as interpretive labels, not full paper captions.
 
+## QR Codes
+
+When the user provides one or more paper/code/project URLs, generate one QR code per URL:
+
+```bash
+python scripts/generate_qr.py \
+  --url OpenReview=https://openreview.net/forum?id=... \
+  --url Code=https://github.com/user/repo \
+  --out-dir figures/qr
+```
+
+Rules:
+
+- Use `Label=URL` when a readable label is known.
+- Let the script auto-select saved icons for OpenReview, ICML, ICLR, and NeurIPS URLs.
+- Keep generated QR codes in `figures/qr/`; the script also writes `figures/qr/qr-snippet.tex`.
+- Place QR codes in the right-column `Scan` area or another low-priority corner, never over the center hero claim or hero figure.
+- If multiple URLs are provided, show multiple QR codes in a compact grid.
+- Keep the QR visually subordinate to the main claim, but large enough to scan from poster-session distance.
+
 When adapting a user's existing LaTeX:
 
 - Keep relative paths.
@@ -141,6 +163,7 @@ Before finalizing, evaluate:
 - Thumbnail test: the hierarchy is visible when zoomed out.
 - Evidence test: at least one visible graphic or number supports the claim.
 - Conversation test: side columns give enough detail for follow-up questions.
+- QR test: provided URLs are represented as scannable QR codes in a low-priority scan area.
 - Integrity test: no invented metrics, false visual emphasis, or misleading crops.
 - Compile test: LaTeX builds and preview renders when tools are available.
 

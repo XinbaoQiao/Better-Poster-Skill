@@ -8,6 +8,8 @@ Better Poster Skill helps Codex, Claude, or other AI agents generate Better Post
 - `system_prompt.txt`: prompt for Claude or other multimodal agents.
 - `template.tex`: LaTeX poster template.
 - `render_preview.py`: compile LaTeX and render a PNG preview.
+- `scripts/generate_qr.py`: generate icon-centered QR codes for poster URLs.
+- `assets/icons/`: saved OpenReview, ICML, ICLR, and NeurIPS icon assets.
 
 ## Install
 
@@ -26,6 +28,12 @@ To preview the template:
 
 ```bash
 python render_preview.py template.tex --out-dir build
+```
+
+To generate QR codes:
+
+```bash
+python scripts/generate_qr.py --url OpenReview=https://openreview.net/forum?id=... --out-dir figures/qr
 ```
 
 ## References
