@@ -1,0 +1,203 @@
+\documentclass[final]{article}
+
+% Better Poster Skill template.
+% Compile with pdflatex. Replace placeholder text and set \HeroFigure to a real figure path.
+
+\usepackage[paperwidth=46.8in,paperheight=33.1in,margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{qrcode}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+
+\definecolor{PosterInk}{HTML}{20242A}
+\definecolor{PosterMuted}{HTML}{5D6673}
+\definecolor{PosterRule}{HTML}{D8DEE8}
+\definecolor{PosterAccent}{HTML}{006E7F}
+\definecolor{PosterAccentSoft}{HTML}{E8F4F5}
+\definecolor{PosterWarm}{HTML}{F4B942}
+\definecolor{PosterPanel}{HTML}{F7F9FB}
+
+\newcommand{\PosterTitle}{A Better Poster Title That States the Research Object}
+\newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
+\newcommand{\PosterAffiliations}{Department or Lab, University or Institute}
+\newcommand{\PosterVenue}{Conference Name 2026}
+\newcommand{\HeroClaim}{Main finding goes here in plain language, with the most important words emphasized.}
+\newcommand{\HeroSubclaim}{One sentence explains why this result matters and what changes because of it.}
+\newcommand{\HeroFigure}{figures/hero-teaser.pdf}
+\newcommand{\HeroCaption}{A short interpretive caption: what the reader should notice in the hero figure.}
+\newcommand{\PaperURL}{https://example.com/paper}
+\newcommand{\CodeURL}{https://example.com/code}
+\newcommand{\ContactEmail}{author@example.com}
+
+\newcommand{\sectiontitle}[1]{%
+  \vspace{0.35em}%
+  {\color{PosterAccent}\fontsize{34}{38}\selectfont\bfseries #1}\par
+  \vspace{0.15em}{\color{PosterRule}\rule{\linewidth}{1.2pt}}\vspace{0.25em}
+}
+
+\newcommand{\smallsectiontitle}[1]{%
+  {\color{PosterAccent}\fontsize{27}{31}\selectfont\bfseries #1}\par
+  \vspace{0.08em}{\color{PosterRule}\rule{\linewidth}{0.8pt}}\vspace{0.15em}
+}
+
+\newcommand{\metric}[2]{%
+  \begin{minipage}[t]{0.48\linewidth}
+  \centering
+  {\fontsize{42}{46}\selectfont\bfseries\color{PosterAccent} #1}\par
+  {\fontsize{20}{24}\selectfont\color{PosterMuted} #2}
+  \end{minipage}
+}
+
+\newcommand{\figureplaceholder}{%
+  \begin{tikzpicture}
+    \fill[PosterAccentSoft] (0,0) rectangle (24,10.5);
+    \draw[PosterAccent,line width=2pt] (0.5,0.5) rectangle (23.5,10);
+    \draw[PosterAccent,line width=2pt,->] (2,2) -- (7,5.25);
+    \draw[PosterAccent,line width=2pt,->] (9,5.25) -- (14,5.25);
+    \draw[PosterAccent,line width=2pt,->] (16,5.25) -- (21,8.2);
+    \node[align=center,text=PosterInk,font=\fontsize{30}{34}\selectfont\bfseries] at (4.5,6.2) {Input};
+    \node[align=center,text=PosterInk,font=\fontsize{30}{34}\selectfont\bfseries] at (12,6.2) {Method};
+    \node[align=center,text=PosterInk,font=\fontsize{30}{34}\selectfont\bfseries] at (19,6.2) {Result};
+    \node[align=center,text=PosterMuted,font=\fontsize{20}{24}\selectfont] at (12,2.0) {Replace this placeholder with the paper's teaser figure or generated visual abstract.};
+  \end{tikzpicture}
+}
+
+\newcommand{\postergraphic}[2]{%
+  \IfFileExists{#1}{%
+    \includegraphics[width=#2\linewidth,height=0.34\paperheight,keepaspectratio]{#1}%
+  }{%
+    \resizebox{#2\linewidth}{!}{\figureplaceholder}%
+  }%
+}
+
+\newenvironment{posterbullets}{%
+  \begin{itemize}[leftmargin=1.1em,itemsep=0.35em,topsep=0.15em]
+  \fontsize{25}{31}\selectfont
+}{%
+  \end{itemize}
+}
+
+\begin{document}
+\color{PosterInk}
+\sffamily
+
+{\fontsize{52}{58}\selectfont\bfseries \PosterTitle}\par
+\vspace{0.12in}
+{\fontsize{26}{31}\selectfont \PosterAuthors}\par
+{\fontsize{22}{27}\selectfont\color{PosterMuted} \PosterAffiliations \hfill \PosterVenue}\par
+
+\vspace{0.35in}
+
+\noindent
+\begin{minipage}[t]{0.205\paperwidth}
+  \RaggedRight
+  \sectiontitle{Why it matters}
+  \begin{posterbullets}
+    \item State the real-world or scientific problem in one line.
+    \item Explain what current methods miss, cost, or fail to measure.
+    \item Name the audience who benefits from the result.
+  \end{posterbullets}
+
+  \sectiontitle{Method}
+  \begin{posterbullets}
+    \item Compress the method into three steps: input, transformation, output.
+    \item Keep equations only if they are central to the contribution.
+    \item Use labels that match the hero visual.
+  \end{posterbullets}
+
+  \sectiontitle{Design choices}
+  \begin{posterbullets}
+    \item Key assumption or model component.
+    \item Dataset, cohort, benchmark, or experimental setup.
+    \item One implementation detail that matters for trust.
+  \end{posterbullets}
+
+  \vfill
+  {\fontsize{20}{24}\selectfont\color{PosterMuted}
+  Replace this column with context needed before the main result. Keep it conversational.}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\paperwidth}
+  \centering
+  \begingroup
+    \setlength{\fboxsep}{0.38in}
+    \colorbox{PosterAccentSoft}{%
+      \begin{minipage}{0.93\linewidth}
+        \centering
+        {\fontsize{82}{91}\selectfont\bfseries\color{PosterInk}\HeroClaim\par}
+        \vspace{0.18in}
+        {\fontsize{30}{36}\selectfont\color{PosterMuted}\HeroSubclaim\par}
+      \end{minipage}
+    }
+  \endgroup
+
+  \vspace{0.38in}
+  \postergraphic{\HeroFigure}{0.96}
+
+  \vspace{0.18in}
+  {\fontsize{24}{29}\selectfont\bfseries\color{PosterInk}\HeroCaption\par}
+
+  \vspace{0.28in}
+  \begin{minipage}{0.44\linewidth}
+    \smallsectiontitle{What to see first}
+    {\fontsize{23}{29}\selectfont
+    One sentence tells the reader exactly how the figure supports the main claim.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.44\linewidth}
+    \smallsectiontitle{Why it is credible}
+    {\fontsize{23}{29}\selectfont
+    Point to the strongest experiment, dataset, or validation evidence.}
+  \end{minipage}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.205\paperwidth}
+  \RaggedRight
+  \sectiontitle{Top evidence}
+  \metric{+12\%}{primary improvement}
+  \hfill
+  \metric{3x}{lower cost}
+
+  \vspace{0.35in}
+  \begin{posterbullets}
+    \item Evidence bullet 1: include dataset, metric, and comparison target.
+    \item Evidence bullet 2: explain one qualitative or ablation result.
+    \item Evidence bullet 3: state robustness, uncertainty, or generalization.
+  \end{posterbullets}
+
+  \sectiontitle{Limitations}
+  \begin{posterbullets}
+    \item State the most important boundary honestly.
+    \item Name one setting where the result may not transfer.
+    \item Tell the reader what the next experiment should test.
+  \end{posterbullets}
+
+  \sectiontitle{Scan}
+  \begin{minipage}[t]{0.38\linewidth}
+    \centering
+    \qrcode[height=1.55in]{\PaperURL}
+    {\fontsize{17}{20}\selectfont Paper}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.38\linewidth}
+    \centering
+    \qrcode[height=1.55in]{\CodeURL}
+    {\fontsize{17}{20}\selectfont Code}
+  \end{minipage}
+
+  \vspace{0.25in}
+  {\fontsize{21}{26}\selectfont\bfseries Contact:} {\fontsize{21}{26}\selectfont \ContactEmail}
+\end{minipage}
+
+\end{document}
