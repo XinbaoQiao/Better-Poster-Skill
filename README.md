@@ -18,26 +18,64 @@ Use this when the user asks for a Rafael-style Better Poster, billboard poster, 
 
 Use this when the paper needs a hero visual, visible central evidence, or a stronger technical conversation layer.
 
-## Supported inputs
+## Quick configuration
 
-- Paper PDF.
-- LaTeX source archive or project directory.
-- Extracted paper text, Markdown, or pasted abstract/method/results.
-- Figure screenshots, result panels, method diagrams, or visual abstracts.
-- Paper/code/project URLs, including OpenReview, arXiv, GitHub, project pages, or slides.
-- Institution or affiliation text for logo/name resolution.
+### Inputs
 
-## Supported outputs
+| Status | Input | Accepted formats / parameters | If omitted |
+|---|---|---|---|
+| 🔴 **REQUIRED** | Paper content | `paper.pdf`, LaTeX source zip/project, Markdown/text, or pasted paper sections | The agent has no scientific source and should not generate a factual poster. |
+| 🔴 **REQUIRED** | Output format choice | `latex`, `html`, or `both` | Defaults to `both` so the poster is editable and printable. |
+| 🔴 **REQUIRED** | Layout mode | `classic`, `evenbetter`, or `auto` | Defaults to `auto`: `classic` for a Rafael-style billboard poster, `evenbetter` when central evidence/hero visual is needed. |
+| 🟡 **OPTIONAL** | Paper / code / project URLs | `Paper=...`, `Code=...`, `Project=...`, `Slides=...` | QR area remains as a placeholder or uses only provided links. |
+| 🟡 **OPTIONAL** | Institution / affiliation | Institution name, affiliation text, or source file containing affiliation | Institution brand area stays blank unless a configured CSRankings top-100 logo is cached/resolved. |
+| 🟡 **OPTIONAL** | Figures / screenshots | Existing method figure, result figure, hero visual, or qualitative examples | Agent uses text-only evidence blocks or figure placeholders. |
+| 🟡 **OPTIONAL** | Palette | `imperial`, `empirical`, `theory`, `methods`, `plum`, `amber` | Agent chooses a high-contrast palette based on paper style. |
+| 🟡 **OPTIONAL** | Contact line | Email, website, lab page | Contact line is omitted or left as a placeholder. |
 
-All poster entry templates live under `templates/`.
+### Output formats
 
-- **Classic LaTeX**: `templates/classic.tex` using `templates/betterposter.cls` and the familiar `\betterposter{main}{left}{right}` structure.
-- **Classic HTML**: `templates/classic.html`, standalone and printable as A0 landscape.
-- **EvenBetter LaTeX**: `templates/evenbetter.tex`, a MIT-informed variant with central claim, hero visual, evidence cards, and QR.
-- **EvenBetter HTML**: `templates/evenbetter.html`, the same enhanced layout in standalone HTML.
-- **Preview artifacts**: PDF and PNG previews through `render_preview.py` when local dependencies are available.
-- **QR codes**: generated into `figures/qr/`.
-- **Institution brand**: `assets/institutions/current-logo.png` plus institution name, placed at the bottom of the left column only when a configured CSRankings top-100 logo is cached or resolved.
+| Select | Output | Files produced |
+|---|---|---|
+| 🔵 `latex` | LaTeX poster only | `templates/classic.tex` or `templates/evenbetter.tex`, plus `templates/betterposter.cls` |
+| 🔵 `html` | Standalone HTML poster only | `templates/classic.html` or `templates/evenbetter.html` |
+| 🔵 `both` | LaTeX + HTML poster | Matching LaTeX and HTML versions with the same scientific content |
+| 🟢 preview artifacts | Optional compiled/rendered previews | `build/.../*.pdf` and `build/.../*.png` when dependencies are available |
+| 🟢 QR assets | Optional link assets | `figures/qr/*.png` generated from provided URLs |
+| 🟢 institution cache | Optional brand assets | `assets/institutions/current-logo.png` only when a supported logo is cached/resolved |
+
+## Sample user prompt
+
+Copy this prompt into an agent that has the `better-poster` skill installed. Replace the bracketed fields.
+
+```text
+Use $better-poster to generate an academic conference poster from the following paper materials.
+
+Paper source:
+- [Attach paper.pdf OR provide LaTeX source zip OR paste abstract/method/results]
+
+Required choices:
+- Layout mode: [auto | classic | evenbetter]
+- Output formats: [both | latex | html]
+
+Optional inputs:
+- Paper URL: [Paper=https://...]
+- Code URL: [Code=https://...]
+- Project URL: [Project=https://...]
+- Institution / affiliation: [e.g., The Chinese University of Hong Kong]
+- Contact line: [email or project contact]
+- Preferred palette: [auto | imperial | empirical | theory | methods | plum | amber]
+- Key figures to reuse: [figure filenames, screenshots, or “auto-rank figures”]
+
+Generation requirements:
+1. Extract one plain-language main claim from the paper.
+2. Preserve the Rafael Better Poster visual hierarchy: 20/60/20 columns, central claim, bottom-centered QR block.
+3. If `evenbetter` is selected, place a hero visual and two evidence cards in the center column.
+4. Generate QR codes for provided URLs.
+5. Resolve the institution logo only if it matches the configured CSRankings top-100 list; otherwise leave the institution brand area blank.
+6. Produce the selected output formats and run preview commands if dependencies are available.
+7. Return the poster brief, changed files, preview paths, and any unresolved placeholders.
+```
 
 ## Files
 
@@ -65,22 +103,18 @@ mkdir -p ~/.codex/skills
 cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
-## Use
-
-```text
-Use $better-poster to turn this paper PDF into both a LaTeX and HTML Better Poster.
-```
+## Basic usage
 
 For the strict Rafael-style layout:
 
 ```text
-Use $better-poster classic mode and keep it close to Rafael Bailo's example.png.
+Use $better-poster classic mode and output both LaTeX and HTML. Keep it close to Rafael Bailo's example.png.
 ```
 
 For the MIT-informed variant:
 
 ```text
-Use $better-poster evenbetter mode with a hero visual and central evidence cards.
+Use $better-poster evenbetter mode and output both LaTeX and HTML. Include a hero visual and central evidence cards.
 ```
 
 ## Preview commands
