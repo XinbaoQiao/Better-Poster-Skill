@@ -1,47 +1,114 @@
 # Better Poster Skill
 
-Better Poster Skill helps Codex, Claude, or other AI agents generate Better Poster-style academic posters from a paper PDF, screenshots, or a LaTeX source archive.
+Better Poster Skill helps Codex, Claude, or other AI agents turn a paper PDF, figure screenshots, extracted paper text, or a LaTeX source archive into a Better Poster-style academic poster.
+
+The default template now follows the Rafael Bailo / Mike Morrison #betterposter silhouette much more closely: two compact white sidebars, one saturated central billboard, a very large plain-English main finding, and a QR/download block at the bottom of the center column. The MIT Communication Lab article is used as the optional enhanced mode for technical posters that need a central hero visual and stronger visible evidence.
+
+## What this skill outputs
+
+- **Classic LaTeX**: `template.tex` using `betterposter.cls` and the familiar `\betterposter{main}{left}{right}` structure.
+- **Classic HTML**: `template.html`, standalone and printable as A0 landscape.
+- **EvenBetter LaTeX**: `template-evenbetter.tex`, a MIT-informed variant with central claim, hero visual, evidence cards, and QR.
+- **EvenBetter HTML**: `template-evenbetter.html`, the same enhanced layout in standalone HTML.
 
 ## Files
 
 - `SKILL.md`: Codex skill instructions.
 - `system_prompt.txt`: prompt for Claude or other multimodal agents.
-- `template.html`: HTML poster template for fast visual iteration.
-- `template.tex`: LaTeX poster template.
-- `render_preview.py`: compile LaTeX and render a PNG preview.
-- `scripts/generate_qr.py`: generate an icon-centered QR code, usually for OpenReview.
-- `assets/logos/`: saved OpenReview, ICML, ICLR, and NeurIPS logo assets.
+- `betterposter.cls`: lightweight Better Poster class compatible with the public command interface documented by Rafael Bailo's template.
+- `template.tex`: classic Better Poster LaTeX template, intentionally close to the Rafael example layout.
+- `template-evenbetter.tex`: MIT-informed enhanced LaTeX template.
+- `template.html`: classic Better Poster HTML template.
+- `template-evenbetter.html`: MIT-informed enhanced HTML template.
+- `render_preview.py`: compile LaTeX or render HTML/PDF previews.
+- `scripts/generate_qr.py`: generate icon-centered QR codes for poster URLs.
+- `assets/logos/`: optional saved OpenReview, ICML, ICLR, and NeurIPS logo assets when available.
 
 ## Install
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -R Better-Poster-Skill "${CODEX_HOME:-$HOME/.codex}/skills/better-poster"
+mkdir -p ~/.codex/skills
+cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
 ## Use
 
 ```text
-Use $better-poster to turn this paper PDF into a Better Poster.
+Use $better-poster to turn this paper PDF into both a LaTeX and HTML Better Poster.
 ```
 
-To preview the template:
+For the strict Rafael-style layout:
+
+```text
+Use $better-poster classic mode and keep it close to Rafael Bailo's example.png.
+```
+
+For the MIT-informed variant:
+
+```text
+Use $better-poster evenbetter mode with a hero visual and central evidence cards.
+```
+
+## Preview
+
+Classic LaTeX:
 
 ```bash
-python render_preview.py template.tex --out-dir build
+python render_preview.py template.tex --out-dir build/classic-latex
 ```
 
-For HTML output, edit `template.html` or generate a paper-specific HTML file, then open it directly in a browser.
-
-To generate the OpenReview QR code:
+EvenBetter LaTeX:
 
 ```bash
-python scripts/generate_qr.py --url OpenReview=https://openreview.net/forum?id=... --out-dir figures/qr
+python render_preview.py template-evenbetter.tex --out-dir build/evenbetter-latex
 ```
+
+Classic HTML:
+
+```bash
+python render_preview.py template.html --out-dir build/classic-html
+```
+
+EvenBetter HTML:
+
+```bash
+python render_preview.py template-evenbetter.html --out-dir build/evenbetter-html
+```
+
+The preview script copies/compiles the source and renders PNG previews when local dependencies are available. It also warns when obvious placeholder text remains.
+
+## QR codes
+
+Generate the primary paper QR with the label `Paper` so the templates can use `figures/qr/01-paper.png` automatically:
+
+```bash
+python scripts/generate_qr.py \
+  --url Paper=https://example.com/paper \
+  --url Code=https://github.com/user/repo \
+  --out-dir figures/qr
+```
+
+## Color palettes
+
+The templates keep the side columns white and vary the central billboard color. Use one of these palette names/classes:
+
+- `imperial` / `theme-imperial`
+- `empirical` / `theme-empirical`
+- `theory` / `theme-theory`
+- `methods` / `theme-methods`
+- `plum` / `theme-plum`
+- `amber` / `theme-amber`
+
+Use high-contrast central text. Amber uses dark text; the other palettes use white text.
 
 ## References
 
 - Rafael Bailo, Better Poster LaTeX template: https://github.com/rafaelbailo/betterposter-latex-template
+- Rafael Bailo, example layout: https://github.com/rafaelbailo/betterposter-latex-template/blob/master/example.png
 - MIT Communication Lab, Toward an Even Better Poster: https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/
+
+## License
+
+This repository remains MIT licensed. The included `betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
 
 Suggestions, issues, and improvements are welcome.
