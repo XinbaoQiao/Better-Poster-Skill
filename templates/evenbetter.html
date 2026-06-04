@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Even Better Poster HTML Template</title>
+<style>
+@page { size: A0 landscape; margin: 0; }
+:root { --ink:#111827; --muted:#6b7280; --line:#d1d5db; --main:#004d40; --main-fg:#fff; --accent:#004d40; --card:#f8fafc; }
+.theme-empirical { --main:#004d40; --main-fg:#fff; --accent:#004d40; }
+.theme-imperial { --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+.theme-plum { --main:#581c87; --main-fg:#fff; --accent:#581c87; }
+.theme-amber { --main:#f4b400; --main-fg:#111827; --accent:#946200; }
+* { box-sizing:border-box; }
+html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
+.poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
+.side { padding:27mm 24mm; font-size:10.3mm; line-height:1.24; }
+.main { padding:48mm 55mm 42mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
+h1 { margin:0 0 7mm; font-size:23mm; line-height:1.08; font-weight:900; }
+.authors, .affiliation, .contact { color:var(--muted); font-size:9.5mm; line-height:1.24; }
+h2 { margin:17mm 0 5mm; color:var(--accent); font-size:14mm; line-height:1.08; font-weight:900; }
+p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
+.claim-title { margin:0; font-size:31mm; line-height:1.08; font-weight:900; letter-spacing:-0.035em; }
+.subclaim { margin:10mm 0 20mm; font-size:13mm; line-height:1.25; }
+.hero { height:270mm; background:#fff; color:var(--ink); border:1.2mm solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:18mm; font-size:16mm; font-weight:900; }
+.hero-caption { margin:10mm 0 16mm; font-size:11.5mm; line-height:1.2; font-weight:800; }
+.evidence-row { display:grid; grid-template-columns:1fr 1fr; gap:22mm; color:var(--ink); }
+.card { min-height:70mm; padding:12mm; background:#fff; }
+.card h3 { margin:0 0 5mm; font-size:13mm; color:var(--accent); }
+.card p { color:var(--muted); font-size:9.5mm; line-height:1.25; }
+.scan { display:grid; grid-template-columns:88mm 1fr; gap:18mm; align-items:center; margin-top:auto; }
+.qr { width:88mm; height:88mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:14mm; font-weight:900; }
+.scan-caption { font-size:11.5mm; line-height:1.2; font-weight:800; }
+.figure { height:92mm; margin-top:7mm; border:1.2mm solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
+@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
+</style>
+</head>
+<body>
+<main class="poster theme-empirical" aria-label="Even Better Poster">
+  <aside class="side">
+    <h1>A claim-first title states exactly what changed</h1>
+    <p class="authors">First Author, Second Author, Senior Author</p>
+    <p class="affiliation">Lab or Department, University or Institute</p>
+
+    <h2>Why it matters</h2>
+    <ul>
+      <li>The real problem in one line.</li>
+      <li>What current methods miss or cost.</li>
+      <li>Who should care about the result.</li>
+    </ul>
+
+    <h2>Method in 3 steps</h2>
+    <ol>
+      <li>Input or experimental setup.</li>
+      <li>Core transformation or intervention.</li>
+      <li>Output, measurement, or decision.</li>
+    </ol>
+
+    <h2>Design choices</h2>
+    <p>Keep only details needed to trust the central claim.</p>
+
+    <p class="contact">Contact: author@example.com</p>
+  </aside>
+
+  <section class="main">
+    <h1 class="claim-title">A claim-first title states exactly what changed</h1>
+    <p class="subclaim">One sentence tells the audience why the result matters and what to inspect first.</p>
+    <div class="hero">Hero figure placeholder: schematic, result panel, or composite teaser.</div>
+    <p class="hero-caption">The hero figure explains the mechanism and shows the strongest result.</p>
+    <div class="evidence-row">
+      <article class="card"><h3>What to see first</h3><p>Point to the visual pattern, comparison, or mechanism.</p></article>
+      <article class="card"><h3>Why it is credible</h3><p>Name the strongest validation, uncertainty check, or ablation.</p></article>
+    </div>
+    <div class="scan"><div class="qr">QR</div><div class="scan-caption">Scan for paper, code, and supplemental figures.</div></div>
+  </section>
+
+  <aside class="side">
+    <h2>Top evidence</h2>
+    <ul>
+      <li>Evidence bullet with dataset, metric, and baseline.</li>
+      <li>Qualitative example or ablation result.</li>
+      <li>Robustness, uncertainty, or transfer test.</li>
+    </ul>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>State the most important boundary honestly.</li>
+      <li>Name where transfer is unknown.</li>
+      <li>Point to the next critical experiment.</li>
+    </ul>
+
+    <h2>Extra figure</h2>
+    <div class="figure">Replace with a readable extra figure.</div>
+
+    <h2>Scan</h2>
+    <p>The QR code links to details that should not be forced into the poster.</p>
+  </aside>
+</main>
+</body>
+</html>
