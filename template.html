@@ -1,331 +1,93 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Better Poster HTML Template</title>
-  <style>
-    @page { size: 46.8in 33.1in; margin: 0; }
-    :root {
-      --paper: #f7f6f1;
-      --rail: #d9dcd8;
-      --ink: #20262b;
-      --muted: #666f76;
-      --rule: #d9ded9;
-      --accent: #006d77;
-      --accent-soft: #e2f1ef;
-      --warning: #bd3b2f;
-      --gold: #c8922f;
-      --blue: #356a9a;
-    }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      background: #ececea;
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    body { display: grid; place-items: center; }
-    .poster {
-      width: 1404px;
-      height: 993px;
-      display: grid;
-      grid-template-columns: 334px 1fr;
-      background: var(--paper);
-      overflow: hidden;
-      box-shadow: 0 20px 70px rgba(31, 35, 38, 0.18);
-    }
-    .rail {
-      display: grid;
-      grid-template-rows: auto 1fr auto auto;
-      gap: 18px;
-      padding: 28px 30px;
-      background: linear-gradient(180deg, #dee1de 0%, var(--rail) 100%);
-      border-right: 1px solid #c7cbc6;
-    }
-    .kicker {
-      margin: 0 0 12px;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    h1 {
-      margin: 0;
-      max-width: 290px;
-      font-size: 31px;
-      line-height: 1.08;
-      letter-spacing: 0;
-    }
-    .authors, .venue, .body-copy {
-      color: #41494f;
-      font-size: 14px;
-      line-height: 1.42;
-    }
-    .authors { margin-top: 14px; }
-    .venue { margin-top: 10px; color: var(--muted); }
-    .rail-section {
-      padding-top: 18px;
-      border-top: 2px solid rgba(0, 109, 119, 0.25);
-    }
-    .rail-section h2, .card h3 {
-      margin: 0;
-      color: var(--accent);
-      font-size: 18px;
-      line-height: 1.1;
-      letter-spacing: 0;
-    }
-    .rail-section p { margin: 9px 0 0; }
-    .graphical img {
-      display: block;
-      width: 100%;
-      height: 206px;
-      object-fit: contain;
-      margin-top: 12px;
-      background: rgba(255, 255, 255, 0.54);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-    .qr-tile {
-      text-align: center;
-      font-size: 12px;
-      color: #40474d;
-      font-weight: 700;
-    }
-    .qr-tile img {
-      display: block;
-      width: 156px;
-      height: 156px;
-      margin: 0 auto 4px;
-      background: #fff;
-    }
-    .main {
-      display: grid;
-      grid-template-rows: 220px 1fr 64px;
-      gap: 20px;
-      padding: 30px 34px 24px;
-    }
-    .claim-band {
-      display: grid;
-      grid-template-columns: 1fr 318px;
-      min-height: 0;
-      border-bottom: 1px solid var(--rule);
-      background:
-        linear-gradient(90deg, var(--accent-soft), rgba(255, 255, 255, 0) 67%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.28));
-    }
-    .claim-copy {
-      display: grid;
-      align-content: center;
-      padding: 22px 32px 22px 10px;
-    }
-    .claim-label {
-      color: var(--warning);
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .claim {
-      margin: 10px 0 0;
-      max-width: 760px;
-      font-size: 48px;
-      line-height: 1.04;
-      font-weight: 900;
-      letter-spacing: 0;
-    }
-    .claim-sub {
-      margin: 12px 0 0;
-      max-width: 820px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.33;
-    }
-    .highlights {
-      display: grid;
-      align-content: center;
-      gap: 12px;
-      padding: 22px 0 22px 28px;
-      border-left: 1px solid #d4d9d4;
-    }
-    .highlight {
-      display: grid;
-      grid-template-columns: 74px 1fr;
-      gap: 12px;
-      align-items: center;
-    }
-    .number {
-      color: var(--accent);
-      font-size: 36px;
-      line-height: 1;
-      font-weight: 900;
-      text-align: right;
-    }
-    .highlight p {
-      margin: 0;
-      color: #343b40;
-      font-size: 14px;
-      line-height: 1.25;
-      font-weight: 700;
-    }
-    .evidence-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1.05fr 0.95fr;
-      gap: 18px;
-      min-height: 0;
-    }
-    .card {
-      position: relative;
-      min-height: 0;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 8px;
-      padding: 18px 20px 14px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid #d9ded9;
-      border-radius: 7px;
-      overflow: hidden;
-    }
-    .card::before {
-      content: attr(data-index);
-      position: absolute;
-      top: 6px;
-      right: 16px;
-      color: rgba(0, 109, 119, 0.10);
-      font-size: 72px;
-      line-height: 1;
-      font-weight: 900;
-      pointer-events: none;
-    }
-    .card h3 {
-      color: var(--ink);
-      font-size: 22px;
-      max-width: 420px;
-    }
-    .tag {
-      width: max-content;
-      margin-bottom: 5px;
-      padding: 4px 8px;
-      color: #fff;
-      background: var(--accent);
-      border-radius: 3px;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .tag.warning { background: var(--warning); }
-    .tag.method { background: var(--blue); }
-    .tag.cost { background: var(--gold); }
-    .visual {
-      min-height: 0;
-      display: grid;
-      place-items: center;
-      background: #fff;
-    }
-    .visual img {
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-    .caption {
-      margin: 0;
-      color: #4a535b;
-      font-size: 14px;
-      line-height: 1.34;
-    }
-    .footer {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      color: var(--muted);
-      border-top: 1px solid var(--rule);
-      padding-top: 12px;
-      font-size: 13px;
-      line-height: 1.25;
-    }
-    .footer strong { color: var(--ink); }
-    @media print {
-      body { display: block; background: white; }
-      .poster { width: 46.8in; height: 33.1in; box-shadow: none; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Better Poster HTML Template</title>
+<style>
+@page { size: A0 landscape; margin: 0; }
+:root { --ink:#111827; --muted:#6b7280; --line:#d1d5db; --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+.theme-imperial { --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+.theme-empirical { --main:#004d40; --main-fg:#fff; --accent:#004d40; }
+.theme-theory { --main:#1a237e; --main-fg:#fff; --accent:#1a237e; }
+.theme-methods { --main:#7f1d1d; --main-fg:#fff; --accent:#7f1d1d; }
+.theme-plum { --main:#581c87; --main-fg:#fff; --accent:#581c87; }
+.theme-amber { --main:#f4b400; --main-fg:#111827; --accent:#946200; }
+* { box-sizing: border-box; }
+html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
+.poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
+.side { padding:27mm 24mm; font-size:10.8mm; line-height:1.24; }
+.main { padding:70mm 64mm 55mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
+h1 { margin:0 0 7mm; font-size:25mm; line-height:1.08; font-weight:900; }
+.authors, .affiliation, .contact { color:var(--muted); font-size:10mm; line-height:1.24; }
+h2 { margin:18mm 0 5mm; color:var(--accent); font-size:15mm; line-height:1.08; font-weight:900; }
+p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
+.figure { height:90mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
+.claim { margin:auto 0; font-size:49mm; line-height:1.18; font-weight:900; letter-spacing:-0.035em; }
+.scan { display:grid; grid-template-columns:130mm 48mm 1fr; gap:20mm; align-items:center; margin-top:auto; }
+.qr { width:130mm; height:130mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
+.phone { font-size:28mm; font-weight:900; text-align:center; }
+.scan-caption { font-size:13mm; line-height:1.15; font-weight:800; }
+.metric { display:inline-block; width:46%; vertical-align:top; margin:8mm 2% 0 0; }
+.metric strong { display:block; color:var(--accent); font-size:18mm; line-height:1; }
+@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
+</style>
 </head>
 <body>
-  <main class="poster" aria-label="Better Poster">
-    <aside class="rail">
-      <section>
-        <p class="kicker">Conference poster</p>
-        <h1>Original paper title goes here</h1>
-        <p class="authors">Authors go here</p>
-        <p class="venue">Venue and affiliation. Keep the original paper title here when the main claim is rewritten as the take-home message.</p>
-      </section>
+<main class="poster theme-imperial" aria-label="Better Poster">
+  <aside class="side">
+    <h1>Paper title or short research object</h1>
+    <p class="authors">First Author, Second Author, Senior Author</p>
+    <p class="affiliation">Department, University or Institute</p>
 
-      <section class="rail-section graphical">
-        <h2>Graphical Abstract</h2>
-        <p class="body-copy">One compact sentence explains the mechanism or study design.</p>
-        <img src="figures/graphical-abstract.png" alt="Graphical abstract">
-      </section>
+    <h2>Introduction</h2>
+    <ul>
+      <li>State the problem in one sentence.</li>
+      <li>Name the gap or failure mode.</li>
+      <li>Say who should care about the result.</li>
+    </ul>
 
-      <section class="rail-section">
-        <h2>Why This Matters</h2>
-        <p class="body-copy">Keep this under about 45 words. State the problem, audience, and why the claim changes what they should believe or do.</p>
-      </section>
+    <h2>A Diagram</h2>
+    <div class="figure">Replace with a clean method or study-design diagram.</div>
 
-      <section class="rail-section">
-        <h2>Scan</h2>
-        <div class="qr-tile">
-          <img src="figures/qr/01-openreview.png" alt="QR code for OpenReview paper page">
-          OpenReview
-        </div>
-      </section>
-    </aside>
+    <h2>Method</h2>
+    <p>Compress the method into an input → transformation → output story. Keep equations only when essential.</p>
 
-    <section class="main">
-      <header class="claim-band">
-        <div class="claim-copy">
-          <div class="claim-label">Take-home message</div>
-          <p class="claim">Write the main finding as one plain-language sentence.</p>
-          <p class="claim-sub">Use this sentence to explain when the finding holds and what detail matters most.</p>
-        </div>
-        <div class="highlights">
-          <div class="highlight"><div class="number">A</div><p>First exact metric or qualitative highlight.</p></div>
-          <div class="highlight"><div class="number">B</div><p>Second exact metric or key comparison.</p></div>
-          <div class="highlight"><div class="number">C</div><p>Constraint, cost, or boundary condition.</p></div>
-        </div>
-      </header>
+    <h2>Conclusion</h2>
+    <p>One sentence connects the method back to the central claim.</p>
 
-      <section class="evidence-grid">
-        <article class="card" data-index="1">
-          <div><div class="tag warning">Failure signal</div><h3>Main message of figure 1.</h3></div>
-          <div class="visual"><img src="figures/evidence-1.png" alt="Evidence figure 1"></div>
-          <p class="caption">Interpretive caption, not the full paper caption.</p>
-        </article>
-        <article class="card" data-index="2">
-          <div><div class="tag">Main result</div><h3>Main message of figure 2.</h3></div>
-          <div class="visual"><img src="figures/evidence-2.png" alt="Evidence figure 2"></div>
-          <p class="caption">Point to the comparison, trend, or visual result.</p>
-        </article>
-        <article class="card" data-index="3">
-          <div><div class="tag method">Mechanism</div><h3>Main message of figure 3.</h3></div>
-          <div class="visual"><img src="figures/evidence-3.png" alt="Evidence figure 3"></div>
-          <p class="caption">Use when the audience needs method structure.</p>
-        </article>
-        <article class="card" data-index="4">
-          <div><div class="tag cost">Boundary</div><h3>Main message of figure 4.</h3></div>
-          <div class="visual"><img src="figures/evidence-4.png" alt="Evidence figure 4"></div>
-          <p class="caption">Use for limitation, cost, robustness, or an ablation.</p>
-        </article>
-      </section>
+    <p class="contact">Contact: author@example.com</p>
+  </aside>
 
-      <footer class="footer">
-        <div><strong>Poster path:</strong> claim first, evidence second, full details through OpenReview.</div>
-        <div><strong>Contact:</strong> author@example.com</div>
-      </footer>
-    </section>
-  </main>
+  <section class="main">
+    <div class="claim"><strong>Main finding</strong> goes here,<br>translated into <strong>plain English</strong>.<br><strong>Emphasize</strong> the important words.</div>
+    <div class="scan">
+      <div class="qr">QR</div>
+      <div class="phone">▯</div>
+      <div class="scan-caption"><strong>Take a picture</strong><br>to download the full paper, code, or project page.</div>
+    </div>
+  </section>
+
+  <aside class="side">
+    <h2>Evidence</h2>
+    <ul>
+      <li>Strongest result, with dataset and comparison.</li>
+      <li>One robustness, ablation, or qualitative signal.</li>
+      <li>One limitation or boundary condition.</li>
+    </ul>
+
+    <div class="metric"><strong>+12%</strong>primary improvement</div>
+    <div class="metric"><strong>3x</strong>lower compute or annotation cost</div>
+
+    <h2>Result Figure</h2>
+    <div class="figure">Replace with the single result panel that best supports the claim.</div>
+
+    <h2>What to Notice</h2>
+    <p>Use interpretive captions rather than paper-style captions. Point the reader to the trend, comparison, or failure mode.</p>
+
+    <h2>More Detail</h2>
+    <p>Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.</p>
+  </aside>
+</main>
 </body>
 </html>
