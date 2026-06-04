@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Better Poster HTML Template</title>
+<style>
+@page { size: A0 landscape; margin: 0; }
+:root { --ink:#111827; --muted:#6b7280; --line:#d1d5db; --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+.theme-imperial { --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+.theme-empirical { --main:#004d40; --main-fg:#fff; --accent:#004d40; }
+.theme-theory { --main:#1a237e; --main-fg:#fff; --accent:#1a237e; }
+.theme-methods { --main:#7f1d1d; --main-fg:#fff; --accent:#7f1d1d; }
+.theme-plum { --main:#581c87; --main-fg:#fff; --accent:#581c87; }
+.theme-amber { --main:#f4b400; --main-fg:#111827; --accent:#946200; }
+* { box-sizing: border-box; }
+html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
+.poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
+.side { padding:27mm 24mm; font-size:10.8mm; line-height:1.24; }
+.main { padding:70mm 64mm 55mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
+h1 { margin:0 0 7mm; font-size:25mm; line-height:1.08; font-weight:900; }
+.authors, .affiliation, .contact { color:var(--muted); font-size:10mm; line-height:1.24; }
+h2 { margin:18mm 0 5mm; color:var(--accent); font-size:15mm; line-height:1.08; font-weight:900; }
+p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
+.figure { height:90mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
+.claim { margin:auto 0; font-size:49mm; line-height:1.18; font-weight:900; letter-spacing:-0.035em; }
+.scan { display:grid; grid-template-columns:130mm 48mm 1fr; gap:20mm; align-items:center; margin-top:auto; }
+.qr { width:130mm; height:130mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
+.phone { font-size:28mm; font-weight:900; text-align:center; }
+.scan-caption { font-size:13mm; line-height:1.15; font-weight:800; }
+.metric { display:inline-block; width:46%; vertical-align:top; margin:8mm 2% 0 0; }
+.metric strong { display:block; color:var(--accent); font-size:18mm; line-height:1; }
+@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
+</style>
+</head>
+<body>
+<main class="poster theme-imperial" aria-label="Better Poster">
+  <aside class="side">
+    <h1>Paper title or short research object</h1>
+    <p class="authors">First Author, Second Author, Senior Author</p>
+    <p class="affiliation">Department, University or Institute</p>
+
+    <h2>Introduction</h2>
+    <ul>
+      <li>State the problem in one sentence.</li>
+      <li>Name the gap or failure mode.</li>
+      <li>Say who should care about the result.</li>
+    </ul>
+
+    <h2>A Diagram</h2>
+    <div class="figure">Replace with a clean method or study-design diagram.</div>
+
+    <h2>Method</h2>
+    <p>Compress the method into an input → transformation → output story. Keep equations only when essential.</p>
+
+    <h2>Conclusion</h2>
+    <p>One sentence connects the method back to the central claim.</p>
+
+    <p class="contact">Contact: author@example.com</p>
+  </aside>
+
+  <section class="main">
+    <div class="claim"><strong>Main finding</strong> goes here,<br>translated into <strong>plain English</strong>.<br><strong>Emphasize</strong> the important words.</div>
+    <div class="scan">
+      <div class="qr">QR</div>
+      <div class="phone">▯</div>
+      <div class="scan-caption"><strong>Take a picture</strong><br>to download the full paper, code, or project page.</div>
+    </div>
+  </section>
+
+  <aside class="side">
+    <h2>Evidence</h2>
+    <ul>
+      <li>Strongest result, with dataset and comparison.</li>
+      <li>One robustness, ablation, or qualitative signal.</li>
+      <li>One limitation or boundary condition.</li>
+    </ul>
+
+    <div class="metric"><strong>+12%</strong>primary improvement</div>
+    <div class="metric"><strong>3x</strong>lower compute or annotation cost</div>
+
+    <h2>Result Figure</h2>
+    <div class="figure">Replace with the single result panel that best supports the claim.</div>
+
+    <h2>What to Notice</h2>
+    <p>Use interpretive captions rather than paper-style captions. Point the reader to the trend, comparison, or failure mode.</p>
+
+    <h2>More Detail</h2>
+    <p>Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.</p>
+  </aside>
+</main>
+</body>
+</html>
