@@ -4,41 +4,41 @@
   <rect x="238" y="0" width="713" height="841" fill="#003e74"/>
   <rect x="951" y="0" width="238" height="841" fill="#ffffff"/>
   <g font-family="Inter, Arial, sans-serif" fill="#111827">
-    <text x="42" y="78" font-size="35" font-weight="800">Paper title</text>
-    <text x="42" y="113" font-size="17" fill="#6b7280">Authors and affiliation</text>
-    <text x="42" y="185" font-size="24" font-weight="800" fill="#003e74">Problem</text>
-    <rect x="42" y="203" width="140" height="10" rx="5" fill="#d1d5db"/>
-    <rect x="42" y="225" width="110" height="10" rx="5" fill="#d1d5db"/>
-    <text x="42" y="295" font-size="24" font-weight="800" fill="#003e74">Approach</text>
-    <rect x="42" y="320" width="154" height="78" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
-    <text x="75" y="366" font-size="16" fill="#6b7280">Method figure</text>
-    <g transform="translate(49 676)">
-      <rect x="0" y="0" width="72" height="72" rx="12" fill="#f8fafc" stroke="#9ca3af" stroke-width="3"/>
-      <circle cx="36" cy="36" r="20" fill="none" stroke="#003e74" stroke-width="5"/>
-      <text x="91" y="30" font-size="18" font-weight="800">University</text>
-      <text x="91" y="55" font-size="15" fill="#6b7280">Institution logo + name</text>
+    <text x="38" y="70" font-size="28" font-weight="800">Title</text>
+    <text x="38" y="102" font-size="15" fill="#6b7280">Authors</text>
+    <text x="38" y="170" font-size="21" font-weight="800" fill="#003e74">Problem</text>
+    <rect x="38" y="194" width="150" height="10" rx="5" fill="#d1d5db"/>
+    <rect x="38" y="216" width="118" height="10" rx="5" fill="#d1d5db"/>
+    <text x="38" y="285" font-size="21" font-weight="800" fill="#003e74">Approach</text>
+    <rect x="38" y="312" width="162" height="86" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+    <text x="72" y="362" font-size="15" fill="#6b7280">Figure</text>
+    <g transform="translate(42 686)">
+      <rect x="0" y="0" width="70" height="70" rx="12" fill="#f8fafc" stroke="#9ca3af" stroke-width="3"/>
+      <circle cx="35" cy="35" r="19" fill="none" stroke="#003e74" stroke-width="5"/>
+      <text x="88" y="30" font-size="17" font-weight="800">Institution</text>
+      <text x="88" y="55" font-size="14" fill="#6b7280">Brand</text>
     </g>
   </g>
   <g font-family="Inter, Arial, sans-serif" fill="#ffffff">
-    <text x="300" y="304" font-size="68" font-weight="900">Main finding goes here,</text>
-    <text x="300" y="386" font-size="68" font-weight="900">translated into plain</text>
-    <text x="300" y="468" font-size="68" font-weight="900">English.</text>
-    <g transform="translate(322 642)">
-      <rect x="0" y="0" width="122" height="122" fill="#ffffff"/>
-      <rect x="18" y="18" width="25" height="25" fill="#111827"/>
-      <rect x="78" y="18" width="25" height="25" fill="#111827"/>
-      <rect x="18" y="78" width="25" height="25" fill="#111827"/>
-      <rect x="57" y="57" width="17" height="17" fill="#111827"/>
-      <text x="156" y="50" font-size="28" font-weight="900">Scan for paper</text>
-      <text x="156" y="88" font-size="23" font-weight="700">Bottom-aligned QR CTA</text>
+    <text x="300" y="318" font-size="58" font-weight="900">Main claim</text>
+    <rect x="300" y="350" width="420" height="22" rx="11" fill="#ffffff" opacity="0.65"/>
+    <rect x="300" y="390" width="340" height="22" rx="11" fill="#ffffff" opacity="0.45"/>
+    <g transform="translate(335 642)">
+      <rect x="0" y="0" width="118" height="118" fill="#ffffff"/>
+      <rect x="18" y="18" width="24" height="24" fill="#111827"/>
+      <rect x="76" y="18" width="24" height="24" fill="#111827"/>
+      <rect x="18" y="76" width="24" height="24" fill="#111827"/>
+      <rect x="56" y="56" width="16" height="16" fill="#111827"/>
+      <text x="152" y="49" font-size="27" font-weight="900">Scan</text>
+      <text x="152" y="83" font-size="21" font-weight="700">Paper / code</text>
     </g>
   </g>
   <g font-family="Inter, Arial, sans-serif" fill="#111827">
-    <text x="993" y="92" font-size="24" font-weight="800" fill="#003e74">Evidence</text>
-    <rect x="993" y="116" width="130" height="10" rx="5" fill="#d1d5db"/>
-    <rect x="993" y="138" width="103" height="10" rx="5" fill="#d1d5db"/>
-    <text x="993" y="220" font-size="24" font-weight="800" fill="#003e74">Result</text>
-    <rect x="993" y="244" width="150" height="120" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
-    <text x="1028" y="308" font-size="16" fill="#6b7280">Result panel</text>
+    <text x="990" y="88" font-size="21" font-weight="800" fill="#003e74">Evidence</text>
+    <rect x="990" y="112" width="135" height="10" rx="5" fill="#d1d5db"/>
+    <rect x="990" y="134" width="110" height="10" rx="5" fill="#d1d5db"/>
+    <text x="990" y="216" font-size="21" font-weight="800" fill="#003e74">Result</text>
+    <rect x="990" y="242" width="158" height="120" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+    <text x="1032" y="308" font-size="15" fill="#6b7280">Panel</text>
   </g>
 </svg>
