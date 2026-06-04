@@ -162,7 +162,8 @@
 }
 \newcommand{\inlineqrcode}[2]{%
   \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill%
-  \begin{minipage}[c]{0.66\linewidth}#2\end{minipage}%
+  \begin{minipage}[c]{0.10\linewidth}\centering\phoneiconline\end{minipage}\hfill%
+  \begin{minipage}[c]{0.58\linewidth}#2\end{minipage}%
 }
 \newcommand{\postergraphic}[3][]{%
   \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
