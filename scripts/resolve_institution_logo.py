@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
-"""Resolve and cache an institution logo for Better Poster templates.
+"""Resolve and cache a CSRankings top-100 institution logo for poster templates.
 
-The resolver can infer an institution from paper text / LaTeX source, match it
-against the public CSRankings institutions list, then fetch a logo-like image via
-Wikipedia/Wikidata/Commons and save it as assets/institutions/current-logo.png.
+Workflow:
+1. Infer or accept an institution name.
+2. Match only against data/csrankings_top100_institutions.json.
+3. Check assets/institutions/cache/<institution-slug>.png.
+4. If cached, copy it to assets/institutions/current-logo.png.
+5. If not cached and --download is enabled, try network logo sources, cache the result,
+   then copy it to current-logo.png.
+6. If no top-100 institution is identified or no logo can be resolved, remove current-logo
+   so the poster institution-brand area remains blank.
 
-The script deliberately downloads logos on demand instead of vendoring many
-third-party logo files into this repository.
+Logo files are generated artifacts because university marks are commonly protected by
+copyright/trademark terms. Review each logo before redistribution.
 """
 
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import re
+import shutil
 import sys
 import time
 import urllib.parse
@@ -23,80 +29,20 @@ from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
-
-CS_RANKINGS_INSTITUTIONS_URL = (
-    "https://raw.githubusercontent.com/emeryberger/CSrankings/gh-pages/institutions.csv"
-)
-
 USER_AGENT = "Better-Poster-Skill/1.0 (+https://github.com/XinbaoQiao/Better-Poster-Skill)"
-
-# CSRankings is query-dependent, so there is no single canonical all-time top 100.
-# This seed list covers common high-visibility CSRankings institutions and is used
-# only when --cache-top100 is requested or when network access to institutions.csv
-# is unavailable.
-COMMON_TOP_CS_INSTITUTIONS = [
-    "Carnegie Mellon University", "Massachusetts Institute of Technology", "Stanford University",
-    "University of California - Berkeley", "University of Illinois at Urbana-Champaign", "Cornell University",
-    "University of Washington", "Georgia Institute of Technology", "Princeton University",
-    "University of Texas at Austin", "University of Michigan", "University of California - San Diego",
-    "Columbia University", "Harvard University", "University of California - Los Angeles",
-    "University of Maryland - College Park", "University of Wisconsin - Madison", "Purdue University",
-    "University of Pennsylvania", "New York University", "Duke University", "Brown University",
-    "Rice University", "University of Southern California", "University of Chicago", "Yale University",
-    "Northwestern University", "Johns Hopkins University", "University of Massachusetts Amherst",
-    "University of North Carolina at Chapel Hill", "University of Virginia", "Pennsylvania State University",
-    "Ohio State University", "University of Minnesota", "University of California - Irvine",
-    "University of California - Santa Barbara", "University of California - Davis", "University of Colorado Boulder",
-    "University of Utah", "Arizona State University", "Texas A&M University", "Rutgers University",
-    "Stony Brook University", "Northeastern University", "Boston University", "University of Rochester",
-    "University of Toronto", "University of British Columbia", "University of Waterloo", "McGill University",
-    "University of Montreal", "ETH Zurich", "EPFL", "University of Oxford", "University of Cambridge",
-    "Imperial College London", "University of Edinburgh", "University College London", "King's College London",
-    "Technical University of Munich", "Max Planck Society", "Saarland University", "INRIA",
-    "Tsinghua University", "Peking University", "Shanghai Jiao Tong University", "Zhejiang University",
-    "Nanjing University", "Fudan University", "Chinese University of Hong Kong", "HKUST",
-    "University of Hong Kong", "City University of Hong Kong", "National University of Singapore",
-    "Nanyang Technological University", "KAIST", "Seoul National University", "POSTECH",
-    "Korea University", "Yonsei University", "University of Tokyo", "Kyoto University",
-    "Osaka University", "Institute of Science Tokyo", "National Taiwan University", "Technion",
-    "Hebrew University of Jerusalem", "Tel Aviv University", "Weizmann Institute", "Australian National University",
-    "University of Melbourne", "University of Sydney", "University of New South Wales", "Monash University",
-    "Aalto University", "KTH Royal Institute of Technology", "KU Leuven", "University of Amsterdam",
-    "Delft University of Technology", "University of Copenhagen", "Aarhus University", "University of Helsinki",
-]
-
-ALIASES = {
-    "MIT": "Massachusetts Institute of Technology",
-    "CMU": "Carnegie Mellon University",
-    "UC Berkeley": "University of California - Berkeley",
-    "Berkeley": "University of California - Berkeley",
-    "UIUC": "University of Illinois at Urbana-Champaign",
-    "UW": "University of Washington",
-    "UT Austin": "University of Texas at Austin",
-    "UCLA": "University of California - Los Angeles",
-    "UCSD": "University of California - San Diego",
-    "UMD": "University of Maryland - College Park",
-    "NUS": "National University of Singapore",
-    "NTU": "Nanyang Technological University",
-    "CUHK": "Chinese University of Hong Kong",
-    "HKUST": "HKUST",
-    "ETH": "ETH Zurich",
-    "TUM": "Technical University of Munich",
-    "Tokyo Tech": "Institute of Science Tokyo",
-}
+DEFAULT_TOP100_PATH = Path("data/csrankings_top100_institutions.json")
+DEFAULT_OUT_DIR = Path("assets/institutions")
 
 
-@dataclass
+@dataclass(frozen=True)
 class Institution:
     name: str
-    region: str = ""
-    country: str = ""
-    homepage: str = ""
+    aliases: tuple[str, ...]
+    domains: tuple[str, ...]
 
 
 def slugify(text: str) -> str:
-    slug = re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-")
-    return slug or "institution"
+    return re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-") or "institution"
 
 
 def request_json(url: str, timeout: int = 20) -> dict:
@@ -111,26 +57,18 @@ def request_bytes(url: str, timeout: int = 30) -> tuple[bytes, str]:
         return response.read(), response.headers.get("Content-Type", "")
 
 
-def load_csrankings_institutions(local_csv: Path | None = None) -> list[Institution]:
-    if local_csv and local_csv.exists():
-        text = local_csv.read_text(encoding="utf-8", errors="ignore")
-    else:
-        req = urllib.request.Request(CS_RANKINGS_INSTITUTIONS_URL, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=30) as response:
-            text = response.read().decode("utf-8")
-    rows = csv.DictReader(text.splitlines())
-    institutions: list[Institution] = []
-    for row in rows:
-        name = (row.get("institution") or "").strip()
-        if name:
-            institutions.append(
-                Institution(
-                    name=name,
-                    region=(row.get("region") or "").strip(),
-                    country=(row.get("countryabbrv") or "").strip(),
-                    homepage=(row.get("homepage") or "").strip(),
-                )
-            )
+def load_top100(path: Path) -> list[Institution]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    institutions = []
+    for item in data.get("institutions", []):
+        name = str(item.get("name", "")).strip()
+        if not name:
+            continue
+        aliases = tuple(str(alias).strip() for alias in item.get("aliases", []) if str(alias).strip())
+        domains = tuple(str(domain).strip() for domain in item.get("domains", []) if str(domain).strip())
+        institutions.append(Institution(name=name, aliases=aliases, domains=domains))
+    if not institutions:
+        raise ValueError(f"No institutions found in {path}")
     return institutions
 
 
@@ -138,7 +76,9 @@ def collect_source_text(paths: list[Path]) -> str:
     chunks: list[str] = []
     for path in paths:
         if path.is_dir():
-            files = list(path.rglob("*.tex")) + list(path.rglob("*.md")) + list(path.rglob("*.txt")) + list(path.rglob("*.html"))
+            files = []
+            for suffix in ("*.tex", "*.md", "*.txt", "*.html", "*.bbl"):
+                files.extend(path.rglob(suffix))
         else:
             files = [path]
         for file in files:
@@ -149,26 +89,32 @@ def collect_source_text(paths: list[Path]) -> str:
     return "\n".join(chunks)
 
 
-def infer_institution(text: str, institutions: list[Institution]) -> str | None:
-    low = text.lower()
-    for alias, canonical in sorted(ALIASES.items(), key=lambda item: -len(item[0])):
-        if re.search(r"\b" + re.escape(alias.lower()) + r"\b", low):
-            return canonical
-    ranked = sorted(institutions, key=lambda item: -len(item.name))
-    for inst in ranked:
-        name = inst.name.lower()
-        if len(name) >= 5 and name in low:
-            return inst.name
-    return None
+def match_institution(name_or_text: str, institutions: list[Institution]) -> Institution | None:
+    low = name_or_text.lower()
+    candidates: list[tuple[int, Institution]] = []
+    for inst in institutions:
+        names = (inst.name, *inst.aliases)
+        for candidate in names:
+            cand_low = candidate.lower()
+            if not cand_low:
+                continue
+            if cand_low == low.strip():
+                return inst
+            if re.search(r"\b" + re.escape(cand_low) + r"\b", low):
+                candidates.append((len(cand_low), inst))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    return candidates[0][1]
 
 
-def wikipedia_thumbnail_url(title: str) -> str | None:
+def wikipedia_thumbnail_url(query: str) -> str | None:
     params = urllib.parse.urlencode(
         {
             "action": "query",
             "format": "json",
             "redirects": "1",
-            "titles": title,
+            "titles": query,
             "prop": "pageimages",
             "piprop": "thumbnail|original",
             "pithumbsize": "1200",
@@ -208,13 +154,7 @@ def commons_thumb_for_file(filename: str) -> str | None:
 
 def wikidata_logo_url(name: str) -> str | None:
     search_params = urllib.parse.urlencode(
-        {
-            "action": "wbsearchentities",
-            "format": "json",
-            "language": "en",
-            "limit": "4",
-            "search": name,
-        }
+        {"action": "wbsearchentities", "format": "json", "language": "en", "limit": "4", "search": name}
     )
     search = request_json(f"https://www.wikidata.org/w/api.php?{search_params}")
     for hit in search.get("search", []):
@@ -222,12 +162,7 @@ def wikidata_logo_url(name: str) -> str | None:
         if not qid:
             continue
         entity_params = urllib.parse.urlencode(
-            {
-                "action": "wbgetentities",
-                "format": "json",
-                "ids": qid,
-                "props": "claims",
-            }
+            {"action": "wbgetentities", "format": "json", "ids": qid, "props": "claims"}
         )
         entity = request_json(f"https://www.wikidata.org/w/api.php?{entity_params}")
         claims = entity.get("entities", {}).get(qid, {}).get("claims", {})
@@ -241,19 +176,30 @@ def wikidata_logo_url(name: str) -> str | None:
     return None
 
 
-def find_logo_url(name: str) -> str | None:
-    queries = [name, f"{name} logo", f"{name} seal"]
-    for query in queries:
+def candidate_logo_urls(inst: Institution) -> list[tuple[str, str]]:
+    candidates: list[tuple[str, str]] = []
+
+    # Stable structured sources first.
+    try:
+        url = wikidata_logo_url(inst.name)
+        if url:
+            candidates.append(("wikidata_commons", url))
+    except Exception:
+        pass
+    for query in (inst.name, f"{inst.name} logo", f"{inst.name} seal"):
         try:
             url = wikipedia_thumbnail_url(query)
             if url:
-                return url
+                candidates.append(("wikipedia_pageimages", url))
         except Exception:
-            continue
-    try:
-        return wikidata_logo_url(name)
-    except Exception:
-        return None
+            pass
+
+    # Fast domain-based fallbacks. They are useful for speed but must still be reviewed.
+    for domain in inst.domains:
+        candidates.append(("clearbit_logo", f"https://logo.clearbit.com/{domain}"))
+        candidates.append(("google_s2_favicon", f"https://www.google.com/s2/favicons?domain={domain}&sz=256"))
+        candidates.append(("duckduckgo_ip3", f"https://icons.duckduckgo.com/ip3/{domain}.ico"))
+    return candidates
 
 
 def write_png(data: bytes, content_type: str, out_path: Path) -> None:
@@ -271,77 +217,108 @@ def write_png(data: bytes, content_type: str, out_path: Path) -> None:
             if "png" in content_type.lower():
                 out_path.write_bytes(data)
             else:
-                raise RuntimeError(
-                    "Downloaded logo is not PNG and Pillow could not convert it. Install Pillow or use a PNG logo."
-                )
+                raise RuntimeError("Downloaded logo is not PNG and Pillow could not convert it.")
     finally:
         tmp_path.unlink(missing_ok=True)
 
 
-def resolve_one(name: str, out_dir: Path, filename: str = "current-logo.png") -> Path:
-    canonical = ALIASES.get(name, name)
-    logo_url = find_logo_url(canonical)
-    if not logo_url:
-        raise RuntimeError(f"Could not find a logo URL for institution: {canonical}")
-    data, content_type = request_bytes(logo_url)
-    out_path = out_dir / filename
-    write_png(data, content_type, out_path)
+def clear_current(out_dir: Path) -> None:
+    for name in ("current-logo.png", "current-logo.json", "current-institution.txt"):
+        try:
+            (out_dir / name).unlink()
+        except FileNotFoundError:
+            pass
+
+
+def activate_cached_logo(inst: Institution, cache_path: Path, out_dir: Path, source: str = "cache") -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    current = out_dir / "current-logo.png"
+    shutil.copy2(cache_path, current)
     metadata = {
-        "institution": canonical,
-        "logo_url": logo_url,
-        "content_type": content_type,
+        "institution": inst.name,
+        "cache_path": str(cache_path),
+        "source": source,
         "generated_at_unix": int(time.time()),
-        "note": "Review logo licensing/trademark restrictions before public redistribution.",
+        "note": "Review logo copyright/trademark requirements before public redistribution.",
     }
-    (out_dir / f"{Path(filename).stem}.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
-    return out_path
+    (out_dir / "current-logo.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    (out_dir / "current-institution.txt").write_text(inst.name + "\n", encoding="utf-8")
+    return current
+
+
+def resolve_logo(inst: Institution, out_dir: Path, download: bool) -> Path | None:
+    cache_dir = out_dir / "cache"
+    slug = slugify(inst.name)
+    cache_path = cache_dir / f"{slug}.png"
+    if cache_path.exists():
+        return activate_cached_logo(inst, cache_path, out_dir, source="cache")
+    if not download:
+        clear_current(out_dir)
+        return None
+
+    for source_name, url in candidate_logo_urls(inst):
+        try:
+            data, content_type = request_bytes(url)
+            if not data:
+                continue
+            write_png(data, content_type, cache_path)
+            return activate_cached_logo(inst, cache_path, out_dir, source=source_name)
+        except Exception as exc:
+            print(f"Warning: {source_name} failed for {inst.name}: {exc}", file=sys.stderr)
+            continue
+    clear_current(out_dir)
+    return None
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--institution", help="Institution name to resolve. Overrides source inference.")
+    parser.add_argument("--institution", help="Institution name. Must match the configured CSRankings top-100 list.")
     parser.add_argument("--source", action="append", default=[], help="Text/LaTeX/HTML file or directory used for institution inference.")
-    parser.add_argument("--out-dir", default="assets/institutions", help="Logo cache output directory.")
-    parser.add_argument("--institutions-csv", help="Optional local CSRankings institutions.csv path.")
-    parser.add_argument("--cache-top100", action="store_true", help="Also cache common high-visibility CSRankings institutions under cache/.")
-    parser.add_argument("--limit", type=int, default=100, help="Maximum number of seed institutions to cache with --cache-top100.")
+    parser.add_argument("--top100", default=str(DEFAULT_TOP100_PATH), help="Path to csrankings_top100_institutions.json.")
+    parser.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR), help="Logo cache output directory.")
+    parser.add_argument("--download", action="store_true", help="Download logo on cache miss. Without this, cache miss leaves the logo area blank.")
+    parser.add_argument("--cache-top100", action="store_true", help="Download/cache all configured top-100 institutions. Use with care.")
+    parser.add_argument("--limit", type=int, default=100, help="Maximum institutions for --cache-top100.")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    top100_path = Path(args.top100)
     out_dir = Path(args.out_dir)
-    csv_path = Path(args.institutions_csv) if args.institutions_csv else None
-
-    try:
-        institutions = load_csrankings_institutions(csv_path)
-    except Exception as exc:
-        print(f"Warning: could not load CSRankings institutions list: {exc}", file=sys.stderr)
-        institutions = [Institution(name=name) for name in COMMON_TOP_CS_INSTITUTIONS]
-
-    name = args.institution
-    if not name and args.source:
-        source_text = collect_source_text([Path(path) for path in args.source])
-        name = infer_institution(source_text, institutions)
-    if not name:
-        print("Error: no institution provided or inferred. Use --institution or --source.", file=sys.stderr)
-        return 2
-
-    try:
-        current = resolve_one(name, out_dir, "current-logo.png")
-        print(f"Current institution logo: {current}")
-    except Exception as exc:
-        print(f"Error: {exc}", file=sys.stderr)
-        return 1
+    institutions = load_top100(top100_path)
 
     if args.cache_top100:
-        cache_dir = out_dir / "cache"
-        for seed in COMMON_TOP_CS_INSTITUTIONS[: max(0, args.limit)]:
-            try:
-                cached = resolve_one(seed, cache_dir, f"{slugify(seed)}.png")
-                print(f"Cached: {seed} -> {cached}")
-            except Exception as exc:
-                print(f"Warning: failed to cache {seed}: {exc}", file=sys.stderr)
+        failures = 0
+        for inst in institutions[: max(0, args.limit)]:
+            result = resolve_logo(inst, out_dir, download=True)
+            if result:
+                print(f"Cached: {inst.name} -> {result}")
+            else:
+                failures += 1
+                print(f"Warning: no logo cached for {inst.name}", file=sys.stderr)
+        return 0 if failures == 0 else 1
+
+    query = args.institution or ""
+    if not query and args.source:
+        query = collect_source_text([Path(path) for path in args.source])
+    if not query:
+        clear_current(out_dir)
+        print("No institution provided or inferred; institution area will remain blank.")
+        return 0
+
+    inst = match_institution(query, institutions)
+    if not inst:
+        clear_current(out_dir)
+        print("No configured CSRankings top-100 institution matched; institution area will remain blank.")
+        return 0
+
+    result = resolve_logo(inst, out_dir, download=args.download)
+    if result:
+        print(f"Current institution logo: {result}")
+        print(f"Institution: {inst.name}")
+    else:
+        print(f"Matched {inst.name}, but no cached logo was available; institution area will remain blank.")
     return 0
 
 
