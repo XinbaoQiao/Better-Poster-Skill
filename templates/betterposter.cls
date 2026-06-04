@@ -29,8 +29,8 @@
 \definecolor{imperialblue}{RGB}{0,62,116}
 \definecolor{empirical}{RGB}{0,77,64}
 \definecolor{theory}{RGB}{26,35,126}
-\definecolor{methods}{RGB}{127,29,29}
-\definecolor{intervention}{RGB}{244,180,0}
+\definecolor{methods}{RGB}{140,22,22}
+\definecolor{intervention}{RGB}{255,213,79}
 \definecolor{plum}{RGB}{88,28,135}
 \definecolor{aurora}{RGB}{4,78,99}
 \definecolor{sidebarcool}{RGB}{247,249,252}
@@ -54,41 +54,41 @@
 
 \setlength{\leftbarwidth}{0.20\paperwidth}
 \setlength{\rightbarwidth}{0.20\paperwidth}
-\setlength{\columnmarginvertical}{0.032\paperheight}
-\setlength{\columnmarginhorizontal}{0.026\paperheight}
+\setlength{\columnmarginvertical}{0.025\paperheight}
+\setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
-\setlength{\maincolumnmarginhorizontal}{0.060\paperheight}
-\setlength{\postercontentheight}{\dimexpr\paperheight-24pt\relax}
+\setlength{\maincolumnmarginhorizontal}{0.070\paperheight}
+\setlength{\postercontentheight}{\textheight}
 
-\newcommand{\fontsizestandard}{\fontsize{32}{45}\selectfont}
-\newcommand{\fontsizemain}{\fontsize{112}{132}\selectfont}
-\newcommand{\fontsizetitle}{\fontsize{72}{86}\selectfont}
-\newcommand{\fontsizeauthor}{\fontsize{40}{50}\selectfont}
-\newcommand{\fontsizesection}{\fontsize{46}{58}\selectfont}
-\newcommand{\fontsizecaption}{\fontsize{24}{31}\selectfont}
-\newcommand{\fontsizesmall}{\fontsize{22}{30}\selectfont}
+\newcommand{\fontsizestandard}{\fontsize{32.00}{50.50}\selectfont}
+\newcommand{\fontsizemain}{\fontsize{116.00}{220.00}\selectfont}
+\newcommand{\fontsizetitle}{\fontsize{80.00}{120.00}\selectfont}
+\newcommand{\fontsizeauthor}{\fontsize{48.00}{68.00}\selectfont}
+\newcommand{\fontsizesection}{\fontsize{48.00}{68.00}\selectfont}
+\newcommand{\fontsizecaption}{\fontsize{24.00}{31.00}\selectfont}
+\newcommand{\fontsizesmall}{\fontsize{22.00}{30.00}\selectfont}
 
-\DeclareOption{a0paper}{}
-\DeclareOption{a1paper}{%
-  \geometry{a1paper,landscape,margin=0in}%
-  \renewcommand{\fontsizestandard}{\fontsize{22}{31}\selectfont}%
-  \renewcommand{\fontsizemain}{\fontsize{78}{94}\selectfont}%
-  \renewcommand{\fontsizetitle}{\fontsize{52}{62}\selectfont}%
-  \renewcommand{\fontsizeauthor}{\fontsize{30}{38}\selectfont}%
-  \renewcommand{\fontsizesection}{\fontsize{34}{43}\selectfont}%
-  \renewcommand{\fontsizecaption}{\fontsize{18}{24}\selectfont}%
-  \renewcommand{\fontsizesmall}{\fontsize{16}{22}\selectfont}%
-}
 \DeclareOption{a2paper}{%
   \geometry{a2paper,landscape,margin=0in}%
-  \renewcommand{\fontsizestandard}{\fontsize{16}{23}\selectfont}%
-  \renewcommand{\fontsizemain}{\fontsize{54}{66}\selectfont}%
-  \renewcommand{\fontsizetitle}{\fontsize{38}{47}\selectfont}%
-  \renewcommand{\fontsizeauthor}{\fontsize{22}{29}\selectfont}%
-  \renewcommand{\fontsizesection}{\fontsize{24}{32}\selectfont}%
-  \renewcommand{\fontsizecaption}{\fontsize{13}{18}\selectfont}%
-  \renewcommand{\fontsizesmall}{\fontsize{12}{17}\selectfont}%
+  \renewcommand{\fontsizestandard}{\fontsize{16.00}{25.00}\selectfont}%
+  \renewcommand{\fontsizemain}{\fontsize{58.00}{110.00}\selectfont}%
+  \renewcommand{\fontsizetitle}{\fontsize{40.00}{50.00}\selectfont}%
+  \renewcommand{\fontsizeauthor}{\fontsize{24.00}{34.00}\selectfont}%
+  \renewcommand{\fontsizesection}{\fontsize{24.00}{34.00}\selectfont}%
+  \renewcommand{\fontsizecaption}{\fontsize{12.00}{16.00}\selectfont}%
+  \renewcommand{\fontsizesmall}{\fontsize{11.00}{15.00}\selectfont}%
 }
+\DeclareOption{a1paper}{%
+  \geometry{a1paper,landscape,margin=0in}%
+  \renewcommand{\fontsizestandard}{\fontsize{22.63}{35.36}\selectfont}%
+  \renewcommand{\fontsizemain}{\fontsize{82.02}{155.56}\selectfont}%
+  \renewcommand{\fontsizetitle}{\fontsize{56.57}{70.71}\selectfont}%
+  \renewcommand{\fontsizeauthor}{\fontsize{33.94}{48.08}\selectfont}%
+  \renewcommand{\fontsizesection}{\fontsize{33.94}{48.08}\selectfont}%
+  \renewcommand{\fontsizecaption}{\fontsize{16.97}{24.04}\selectfont}%
+  \renewcommand{\fontsizesmall}{\fontsize{15.56}{21.21}\selectfont}%
+}
+\DeclareOption{a0paper}{\geometry{a0paper,landscape,margin=0in}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
@@ -96,34 +96,36 @@
   \begingroup
   \setlength{\postertempwidth}{#1}%
   \colorbox{#2}{%
-    \begin{minipage}[t][\postercontentheight][t]{\postertempwidth}%
-      \vspace*{#4}%
-      \hspace*{#5}%
-      \begin{minipage}[t][\dimexpr\postercontentheight-2#4\relax][t]{\dimexpr\postertempwidth-2#5\relax}%
-        \color{#3}\raggedright\fontsizestandard #6%
-      \end{minipage}%
+    \begin{minipage}[t][#1][t]{\postertempwidth}%
+      \colorbox{#2}{%
+        \begin{minipage}[t][\postercontentheight][t]{\postertempwidth}%
+          \vspace*{#4}%
+          \hspace*{#5}%
+          \begin{minipage}[t][\dimexpr\postercontentheight-2#4\relax][t]{\dimexpr\postertempwidth-2#5\relax}%
+            \color{#3}\raggedright\fontsizestandard #6%
+          \end{minipage}%
+        \end{minipage}%
+      }%
     \end{minipage}%
   }%
   \endgroup
 }
 
 \newcommand{\betterposter}[3]{%
-  \noindent\makebox[\paperwidth][l]{%
-    \posterpanel{\leftbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#2}%
-    \setlength{\postercenterwidth}{\dimexpr\paperwidth-\leftbarwidth-\rightbarwidth\relax}%
-    \posterpanel{\postercenterwidth}{\maincolumnbackgroundcolor}{\maincolumnfontcolor}{\maincolumnmarginvertical}{\maincolumnmarginhorizontal}{#1}%
-    \posterpanel{\rightbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#3}%
-  }%
+  \noindent%
+  \posterpanel{\textheight}{\leftbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#2}%
+  \setlength{\postercenterwidth}{\dimexpr\textwidth-\leftbarwidth-\rightbarwidth\relax}%
+  \posterpanel{\textheight}{\postercenterwidth}{\maincolumnbackgroundcolor}{\maincolumnfontcolor}{\maincolumnmarginvertical}{\maincolumnmarginhorizontal}{#1}%
+  \posterpanel{\textheight}{\rightbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#3}%
 }
 
 \newcommand{\maincolumn}[2]{%
-  \begin{minipage}[t][\dimexpr\postercontentheight-2\maincolumnmarginvertical\relax][t]{\linewidth}%
-    \vfill
-    {\RaggedRight\fontsizemain\bfseries #1\par}%
-    \vfill
-    \begin{center}%
-      \begin{minipage}[b][0.165\paperheight][b]{0.78\linewidth}#2\end{minipage}%
-    \end{center}%
+  \vfill{%
+    \RaggedRight\fontsizemain\bfseries #1\vspace{1em}%
+  }%
+  \vfill%
+  \begin{minipage}[t][0.25\textheight][b]{\textwidth}%
+    #2%
   \end{minipage}%
 }
 
@@ -143,24 +145,26 @@
   \end{picture}%
   \endgroup
 }
-\newcommand{\phoneicon}[1]{\IfFileExists{#1}{\includegraphics[width=0.82\linewidth]{#1}}{\phoneiconline}}
+\newcommand{\phoneicon}[1]{\IfFileExists{#1}{\includegraphics[height=0.85\linewidth]{#1}}{\phoneiconline}}
 \newcommand{\qrcode}[3]{%
-  \begin{center}%
-    \begin{minipage}[c]{0.30\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
-    \begin{minipage}[c]{0.12\linewidth}\centering\phoneicon{#2}\end{minipage}\hfill
-    \begin{minipage}[c]{0.50\linewidth}#3\end{minipage}%
-  \end{center}%
+  \begin{minipage}[c]{0.30\textwidth}%
+    \includeqr{#1}{\textwidth}%
+  \end{minipage}%
+  \begin{minipage}[c]{0.12\textwidth}%
+    \hfill\phoneicon{#2}%
+  \end{minipage}%
+  \begin{minipage}[c]{0.50\textwidth}%
+    #3%
+  \end{minipage}%
 }
 \newcommand{\compactqrcode}[2]{%
-  \begin{center}%
-    \begin{minipage}[t]{0.34\linewidth}\centering\includeqr{#1}{\linewidth}\par\vspace{0.25em}#2\end{minipage}%
-  \end{center}%
+  \begin{minipage}[t]{0.30\textwidth}%
+    \includeqr{#1}{\textwidth}\par #2%
+  \end{minipage}%
 }
 \newcommand{\inlineqrcode}[2]{%
-  \begin{center}%
-    \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
-    \begin{minipage}[c]{0.66\linewidth}#2\end{minipage}%
-  \end{center}%
+  \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
+  \begin{minipage}[c]{0.66\linewidth}#2\end{minipage}%
 }
 \newcommand{\postergraphic}[3][]{%
   \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
@@ -196,8 +200,8 @@
   \par\vspace{0.025\paperheight}{\fontsize{26}{34}\selectfont\bfseries #2\par}
   \end{center}
 }
-\renewcommand{\section}[1]{\par\vspace{1.05em}{\fontsizesection\bfseries\color{\posteraccentcolor}#1\par}\vspace{0.25em}}
-\renewcommand{\title}[1]{{\fontsize{54}{64}\selectfont\bfseries #1\par}\vspace{0.35em}}
-\renewcommand{\author}[1]{{\fontsizeauthor\color{mutedgray}#1\par}\vspace{-0.2em}}
-\newcommand{\institution}[1]{{\fontsizesmall\color{mutedgray}#1\par}\vspace{0.4em}}
+\renewcommand{\section}[1]{\vspace{2em}{\fontsizesection\bfseries\leavevmode #1}\par\vspace{0.5em}}
+\renewcommand{\title}[1]{{\fontsizetitle\bfseries\leavevmode #1}\par}
+\renewcommand{\author}[1]{{\color{gray}\fontsizeauthor #1}\par\vspace{-1.0em}}
+\newcommand{\institution}[1]{\vspace{-1.0em}{\color{gray}#1}\par\vspace{-1.0em}}
 \newcommand{\posterfootnote}[1]{{\color{mutedgray}\fontsizecaption #1}}
