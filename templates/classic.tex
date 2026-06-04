@@ -22,6 +22,7 @@
 \newcommand{\PosterTitle}{Paper title or short research object}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliation}{Department, University or Institute}
+\newcommand{\InstitutionName}{University or Institute Name}
 \newcommand{\PosterClaim}{\textbf{Main finding} goes here,\\translated into \textbf{plain English}.}
 \newcommand{\PosterClaimDetail}{\textbf{Emphasize} the important words.}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
@@ -31,7 +32,7 @@
 
 \begin{document}
 \betterposter{
-  % MAIN COLUMN: huge billboard claim + bottom-anchored QR action.
+  % MAIN COLUMN: huge billboard claim + centered bottom QR action.
   \maincolumn{
     \PosterClaim\\[0.25em]
     \PosterClaimDetail
@@ -50,26 +51,23 @@
   \author{\PosterAuthors}
   \institution{\PosterAffiliation}
 
-  \section{Introduction}
+  \section{Problem}
   \begin{itemize}
     \item State the problem in one sentence.
     \item Name the gap or failure mode.
     \item Say who should care about the result.
   \end{itemize}
 
-  \section{A Diagram}
+  \section{Approach}
   \begin{center}
     \postergraphic[width=\textwidth]{../figures/method-diagram.pdf}{Replace with a clean method or study-design diagram.}
   \end{center}
 
-  \section{Method}
-  Compress the method into an input $\rightarrow$ transformation $\rightarrow$ output story. Keep equations only when essential.
-
-  \section{Conclusion}
-  One sentence connects the method back to the central claim.
+  \section{Takeaway}
+  One short sentence connects the method back to the central claim.
 
   \vfill
-  \institutionlogo{\InstitutionLogo}{0.62\textwidth}
+  \institutionbrand{\InstitutionLogo}{\InstitutionName}{0.62\textwidth}
   \posterfootnote{Contact: \ContactEmail}
 }{
   % RIGHT COLUMN: supplementary evidence only. Do not rebuild the whole paper.
@@ -86,7 +84,7 @@
   \end{center}
 
   \section{What to Notice}
-  Use interpretive captions rather than paper-style captions. Point the reader to the trend, comparison, or failure mode.
+  Point the reader to the trend, comparison, or failure mode.
 
   \section{More Detail}
   Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.
