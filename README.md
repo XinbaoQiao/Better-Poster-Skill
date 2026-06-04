@@ -2,9 +2,32 @@
 
 Better Poster Skill helps Codex, Claude, or other AI agents turn a paper PDF, figure screenshots, extracted paper text, or a LaTeX source archive into a Better Poster-style academic poster.
 
-The default template now follows the Rafael Bailo / Mike Morrison #betterposter silhouette much more closely: two compact white sidebars, one saturated central billboard, a very large plain-English main finding, and a QR/download block at the bottom of the center column. The MIT Communication Lab article is used as the optional enhanced mode for technical posters that need a central hero visual and stronger visible evidence.
+The default template follows the Rafael Bailo / Mike Morrison #betterposter silhouette: two compact white sidebars, one saturated central billboard, a very large plain-English main finding, a bottom-centered QR/download block in the center column, and institution branding at the bottom of the left column. The MIT Communication Lab article is used as the optional enhanced mode for technical posters that need a central hero visual and stronger visible evidence.
 
-## What this skill outputs
+## Template previews
+
+### Classic Better Poster
+
+![Classic Better Poster preview](docs/previews/classic.svg)
+
+Use this when the user asks for a Rafael-style Better Poster, billboard poster, minimal claim-first poster, or direct template replication.
+
+### MIT-informed EvenBetter Poster
+
+![MIT-informed EvenBetter Poster preview](docs/previews/evenbetter.svg)
+
+Use this when the paper needs a hero visual, visible central evidence, or a stronger technical conversation layer.
+
+## Supported inputs
+
+- Paper PDF.
+- LaTeX source archive or project directory.
+- Extracted paper text, Markdown, or pasted abstract/method/results.
+- Figure screenshots, result panels, method diagrams, or visual abstracts.
+- Paper/code/project URLs, including OpenReview, arXiv, GitHub, project pages, or slides.
+- Institution or affiliation text for logo/name resolution.
+
+## Supported outputs
 
 All poster entry templates live under `templates/`.
 
@@ -12,6 +35,9 @@ All poster entry templates live under `templates/`.
 - **Classic HTML**: `templates/classic.html`, standalone and printable as A0 landscape.
 - **EvenBetter LaTeX**: `templates/evenbetter.tex`, a MIT-informed variant with central claim, hero visual, evidence cards, and QR.
 - **EvenBetter HTML**: `templates/evenbetter.html`, the same enhanced layout in standalone HTML.
+- **Preview artifacts**: PDF and PNG previews through `render_preview.py` when local dependencies are available.
+- **QR codes**: generated into `figures/qr/`.
+- **Institution brand**: `assets/institutions/current-logo.png` plus institution name, placed at the bottom of the left column.
 
 ## Files
 
@@ -23,8 +49,11 @@ All poster entry templates live under `templates/`.
 - `templates/evenbetter.tex`: MIT-informed enhanced LaTeX template.
 - `templates/classic.html`: classic Better Poster HTML template.
 - `templates/evenbetter.html`: MIT-informed enhanced HTML template.
+- `docs/previews/`: static template preview diagrams used in this README.
 - `render_preview.py`: compile LaTeX or render HTML/PDF previews.
 - `scripts/generate_qr.py`: generate icon-centered QR codes for poster URLs.
+- `scripts/resolve_institution_logo.py`: infer/download an institution logo from source text or an explicit institution name.
+- `assets/institutions/`: on-demand institution logo cache.
 - `assets/logos/`: optional saved OpenReview, ICML, ICLR, and NeurIPS logo assets when available.
 
 ## Install
@@ -52,7 +81,7 @@ For the MIT-informed variant:
 Use $better-poster evenbetter mode with a hero visual and central evidence cards.
 ```
 
-## Preview
+## Preview commands
 
 Classic LaTeX:
 
@@ -91,7 +120,24 @@ python scripts/generate_qr.py \
   --out-dir figures/qr
 ```
 
-The templates live one directory below the repository root, so LaTeX figure paths inside `templates/*.tex` use `../figures/...` and `../assets/...`.
+The primary QR block is centered in the bottom band of the center column, matching the classic Better Poster visual path.
+
+## Institution branding
+
+Resolve an institution logo explicitly:
+
+```bash
+python scripts/resolve_institution_logo.py \
+  --institution "Massachusetts Institute of Technology"
+```
+
+Or infer it from a LaTeX/text source:
+
+```bash
+python scripts/resolve_institution_logo.py --source paper.tex
+```
+
+The templates live one directory below the repository root, so LaTeX figure paths inside `templates/*.tex` use `../figures/...` and `../assets/...`. The institution brand area always includes both a logo slot and an institution name; if the logo is unavailable, the template still shows a visible placeholder plus the institution name.
 
 ## Color palettes
 
@@ -115,5 +161,7 @@ Use high-contrast central text. Amber uses dark text; the other palettes use whi
 ## License
 
 This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
+
+Review institution logo copyright, trademark, and attribution requirements before redistributing generated logo files.
 
 Suggestions, issues, and improvements are welcome.
