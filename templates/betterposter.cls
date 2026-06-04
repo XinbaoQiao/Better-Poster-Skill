@@ -150,12 +150,18 @@
         \centering\color{mutedgray}{\fontsize{24}{30}\selectfont #3}
       \end{minipage}}}%
 }
-\newcommand{\institutionlogo}[2]{%
-  \IfFileExists{#1}{%
-    \begin{center}
-      \includegraphics[width=#2,height=0.085\paperheight,keepaspectratio]{#1}
-    \end{center}
-  }{}%
+\newcommand{\institutionbrand}[3]{%
+  \begin{center}
+    \IfFileExists{#1}{%
+      \includegraphics[width=#3,height=0.085\paperheight,keepaspectratio]{#1}%
+    }{%
+      \begingroup\setlength{\fboxsep}{0.5em}\fcolorbox{mutedgray}{white}{%
+        \begin{minipage}[c][0.060\paperheight][c]{0.50\linewidth}%
+          \centering\color{mutedgray}{\fontsizesmall Institution\\Logo}%
+        \end{minipage}}\endgroup%
+    }%
+    \par\vspace{0.35em}{\fontsizesmall\bfseries #2\par}%
+  \end{center}%
 }
 \newcommand{\metric}[2]{%
   \begin{minipage}[t]{0.46\linewidth}
