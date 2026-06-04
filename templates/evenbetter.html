@@ -14,28 +14,29 @@
 * { box-sizing:border-box; }
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
 .poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
-.side { padding:27mm 24mm; font-size:10.3mm; line-height:1.24; display:flex; flex-direction:column; }
-.main { padding:48mm 55mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
-h1 { margin:0 0 7mm; font-size:23mm; line-height:1.08; font-weight:900; }
-.authors, .affiliation, .contact { color:var(--muted); font-size:9.5mm; line-height:1.24; }
-h2 { margin:17mm 0 5mm; color:var(--accent); font-size:14mm; line-height:1.08; font-weight:900; }
-p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
-.claim-title { margin:0; font-size:31mm; line-height:1.08; font-weight:900; letter-spacing:-0.035em; }
-.subclaim { margin:10mm 0 18mm; font-size:13mm; line-height:1.25; }
-.hero { height:252mm; background:#fff; color:var(--ink); border:1.2mm solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:18mm; font-size:16mm; font-weight:900; }
-.hero-caption { margin:9mm 0 14mm; font-size:11.5mm; line-height:1.2; font-weight:800; }
-.evidence-row { display:grid; grid-template-columns:1fr 1fr; gap:22mm; color:var(--ink); }
-.card { min-height:70mm; padding:12mm; background:#fff; }
-.card h3 { margin:0 0 5mm; font-size:13mm; color:var(--accent); }
-.card p { color:var(--muted); font-size:9.5mm; line-height:1.25; }
-.scan { width:70%; margin:auto auto 0; display:grid; grid-template-columns:88mm 1fr; gap:18mm; align-items:center; padding-top:18mm; }
+.side { padding:27mm 24mm; font-size:9.8mm; line-height:1.22; display:flex; flex-direction:column; overflow:hidden; }
+.main { padding:48mm 55mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; overflow:hidden; }
+h1 { margin:0 0 7mm; font-size:clamp(17mm, 1.9vw, 23mm); line-height:1.04; font-weight:900; max-width:100%; }
+.authors, .affiliation, .contact { color:var(--muted); font-size:9mm; line-height:1.22; }
+h2 { margin:15mm 0 5mm; color:var(--accent); font-size:13mm; line-height:1.08; font-weight:900; }
+p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.4mm 0; }
+.claim-title { margin:0; font-size:clamp(24mm, 2.7vw, 31mm); line-height:1.05; font-weight:900; letter-spacing:-0.035em; }
+.subclaim { margin:9mm 0 16mm; font-size:12mm; line-height:1.22; }
+.hero { height:244mm; background:#fff; color:var(--ink); border:1.2mm solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:18mm; font-size:15mm; font-weight:900; }
+.hero-caption { margin:8mm 0 12mm; font-size:10.5mm; line-height:1.2; font-weight:800; }
+.evidence-row { display:grid; grid-template-columns:1fr 1fr; gap:18mm; color:var(--ink); }
+.card { min-height:66mm; padding:11mm; background:#fff; }
+.card h3 { margin:0 0 5mm; font-size:12mm; color:var(--accent); }
+.card p { color:var(--muted); font-size:9mm; line-height:1.22; }
+.scan { width:72%; margin:auto auto 0; display:grid; grid-template-columns:88mm 36mm 1fr; gap:14mm; align-items:center; padding-top:16mm; }
 .qr { width:88mm; height:88mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:14mm; font-weight:900; }
-.scan-caption { font-size:11.5mm; line-height:1.2; font-weight:800; }
-.figure { height:92mm; margin-top:7mm; border:1.2mm solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
-.institution-brand { margin-top:auto; padding-top:14mm; text-align:center; }
-.logo-mark { width:72mm; height:72mm; margin:0 auto 7mm; border:1.4mm solid var(--line); border-radius:9mm; background:#f8fafc; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:12mm; font-weight:900; letter-spacing:.04em; }
-.logo-mark img { display:none; max-width:100%; max-height:100%; object-fit:contain; }
-.institution-name { color:var(--ink); font-size:10.5mm; line-height:1.16; font-weight:900; margin-bottom:5mm; }
+.phone-icon { width:36mm; height:36mm; object-fit:contain; }
+.scan-caption { font-size:10.5mm; line-height:1.2; font-weight:800; }
+.figure { height:88mm; margin-top:7mm; border:1.2mm solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
+.institution-brand { display:none; margin-top:auto; padding-top:14mm; text-align:center; }
+.institution-brand[data-has-logo="true"] { display:block; }
+.institution-brand img { display:block; max-width:62%; max-height:72mm; object-fit:contain; margin:0 auto 7mm; }
+.institution-name { color:var(--ink); font-size:10mm; line-height:1.16; font-weight:900; margin-bottom:5mm; }
 @media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
 </head>
@@ -63,8 +64,8 @@ p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.6mm
     <h2>Design choices</h2>
     <p>Keep only details needed to trust the central claim.</p>
 
-    <div class="institution-brand">
-      <div class="logo-mark"><span>LOGO</span></div>
+    <div class="institution-brand" data-has-logo="false">
+      <img src="../assets/institutions/current-logo.png" alt="Institution logo">
       <div class="institution-name">University or Institute Name</div>
       <p class="contact">Contact: author@example.com</p>
     </div>
@@ -79,7 +80,7 @@ p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.6mm
       <article class="card"><h3>What to see first</h3><p>Point to the visual pattern, comparison, or mechanism.</p></article>
       <article class="card"><h3>Why it is credible</h3><p>Name the strongest validation, uncertainty check, or ablation.</p></article>
     </div>
-    <div class="scan"><div class="qr">QR</div><div class="scan-caption">Scan for paper, code, and supplemental figures.</div></div>
+    <div class="scan"><div class="qr">QR</div><img class="phone-icon" src="../assets/icons/smartphone-white.svg" alt="Smartphone icon"><div class="scan-caption">Scan for paper, code, and supplemental figures.</div></div>
   </section>
 
   <aside class="side">
