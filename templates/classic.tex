@@ -1,0 +1,92 @@
+%%%% Base Better Poster Skill template.
+%%%% Classic Rafael Bailo / Mike Morrison #betterposter silhouette:
+%%%% two compact sidebars, one saturated central claim billboard, bottom QR block.
+
+\documentclass[a0paper,fleqn]{betterposter}
+
+% Palette controls. Change the center colour, not the structure.
+\renewcommand{\maincolumnbackgroundcolor}{imperialblue}
+\renewcommand{\maincolumnfontcolor}{white}
+\renewcommand{\columnbackgroundcolor}{white}
+\renewcommand{\columnfontcolor}{black}
+\renewcommand{\posteraccentcolor}{imperialblue}
+
+% Match the classic Better Poster proportions.
+\setlength{\leftbarwidth}{0.20\paperwidth}
+\setlength{\rightbarwidth}{0.20\paperwidth}
+\setlength{\columnmarginvertical}{0.032\paperheight}
+\setlength{\columnmarginhorizontal}{0.026\paperheight}
+\setlength{\maincolumnmarginvertical}{0.070\paperheight}
+\setlength{\maincolumnmarginhorizontal}{0.060\paperheight}
+
+\newcommand{\PosterTitle}{Paper title or short research object}
+\newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
+\newcommand{\PosterAffiliation}{Department, University or Institute}
+\newcommand{\PosterClaim}{\textbf{Main finding} goes here,\\translated into \textbf{plain English}.}
+\newcommand{\PosterClaimDetail}{\textbf{Emphasize} the important words.}
+\newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
+\newcommand{\PhoneIcon}{../assets/smartphone-white.png}
+\newcommand{\ContactEmail}{author@example.com}
+
+\begin{document}
+\betterposter{
+  % MAIN COLUMN: huge billboard claim + QR action. Keep this extremely sparse.
+  \maincolumn{
+    \PosterClaim\\[0.25em]
+    \PosterClaimDetail
+  }{
+    \IfFileExists{../figures/qr/qr-snippet.tex}{%
+      \input{../figures/qr/qr-snippet.tex}%
+    }{%
+      \qrcode{\PaperQRCode}{\PhoneIcon}{%
+        \textbf{Take a picture} to\\download the full paper, code, or project page.%
+      }%
+    }
+  }
+}{
+  % LEFT COLUMN: context needed before the claim. Keep it concise.
+  \title{\PosterTitle}
+  \author{\PosterAuthors}
+  \institution{\PosterAffiliation}
+
+  \section{Introduction}
+  \begin{itemize}
+    \item State the problem in one sentence.
+    \item Name the gap or failure mode.
+    \item Say who should care about the result.
+  \end{itemize}
+
+  \section{A Diagram}
+  \begin{center}
+    \postergraphic[width=\textwidth]{../figures/method-diagram.pdf}{Replace with a clean method or study-design diagram.}
+  \end{center}
+
+  \section{Method}
+  Compress the method into an input $\rightarrow$ transformation $\rightarrow$ output story. Keep equations only when essential.
+
+  \section{Conclusion}
+  One sentence connects the method back to the central claim.
+
+  \vfill
+  \posterfootnote{Contact: \ContactEmail}
+}{
+  % RIGHT COLUMN: supplementary evidence only. Do not rebuild the whole paper.
+  \section{Evidence}
+  \begin{itemize}
+    \item Strongest result, with dataset and comparison.
+    \item One robustness, ablation, or qualitative signal.
+    \item One limitation or boundary condition.
+  \end{itemize}
+
+  \section{Result Figure}
+  \begin{center}
+    \postergraphic[width=\textwidth]{../figures/result-panel.pdf}{Replace with the single result panel that best supports the claim.}
+  \end{center}
+
+  \section{What to Notice}
+  Use interpretive captions rather than paper-style captions. Point the reader to the trend, comparison, or failure mode.
+
+  \section{More Detail}
+  Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.
+}
+\end{document}
