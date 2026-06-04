@@ -197,7 +197,7 @@
   \end{center}
 }
 \renewcommand{\section}[1]{\par\vspace{1.05em}{\fontsizesection\bfseries\color{\posteraccentcolor}#1\par}\vspace{0.25em}}
-\renewcommand{\title}[1]{{\fontsizetitle\bfseries #1\par}\vspace{0.35em}}
+\renewcommand{\title}[1]{{\fontsize{54}{64}\selectfont\bfseries #1\par}\vspace{0.35em}}
 \renewcommand{\author}[1]{{\fontsizeauthor\color{mutedgray}#1\par}\vspace{-0.2em}}
 \newcommand{\institution}[1]{{\fontsizesmall\color{mutedgray}#1\par}\vspace{0.4em}}
 \newcommand{\posterfootnote}[1]{{\color{mutedgray}\fontsizecaption #1}}
