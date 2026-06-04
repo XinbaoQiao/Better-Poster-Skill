@@ -14,24 +14,26 @@
 * { box-sizing:border-box; }
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
 .poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
-.side { padding:27mm 24mm; font-size:10.3mm; line-height:1.24; }
+.side { padding:27mm 24mm; font-size:10.3mm; line-height:1.24; display:flex; flex-direction:column; }
 .main { padding:48mm 55mm 42mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
 h1 { margin:0 0 7mm; font-size:23mm; line-height:1.08; font-weight:900; }
 .authors, .affiliation, .contact { color:var(--muted); font-size:9.5mm; line-height:1.24; }
 h2 { margin:17mm 0 5mm; color:var(--accent); font-size:14mm; line-height:1.08; font-weight:900; }
 p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
 .claim-title { margin:0; font-size:31mm; line-height:1.08; font-weight:900; letter-spacing:-0.035em; }
-.subclaim { margin:10mm 0 20mm; font-size:13mm; line-height:1.25; }
-.hero { height:270mm; background:#fff; color:var(--ink); border:1.2mm solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:18mm; font-size:16mm; font-weight:900; }
-.hero-caption { margin:10mm 0 16mm; font-size:11.5mm; line-height:1.2; font-weight:800; }
+.subclaim { margin:10mm 0 18mm; font-size:13mm; line-height:1.25; }
+.hero { height:258mm; background:#fff; color:var(--ink); border:1.2mm solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:18mm; font-size:16mm; font-weight:900; }
+.hero-caption { margin:9mm 0 14mm; font-size:11.5mm; line-height:1.2; font-weight:800; }
 .evidence-row { display:grid; grid-template-columns:1fr 1fr; gap:22mm; color:var(--ink); }
 .card { min-height:70mm; padding:12mm; background:#fff; }
 .card h3 { margin:0 0 5mm; font-size:13mm; color:var(--accent); }
 .card p { color:var(--muted); font-size:9.5mm; line-height:1.25; }
-.scan { display:grid; grid-template-columns:88mm 1fr; gap:18mm; align-items:center; margin-top:auto; }
+.scan { display:grid; grid-template-columns:88mm 1fr; gap:18mm; align-items:center; margin-top:auto; padding-top:18mm; }
 .qr { width:88mm; height:88mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:14mm; font-weight:900; }
 .scan-caption { font-size:11.5mm; line-height:1.2; font-weight:800; }
 .figure { height:92mm; margin-top:7mm; border:1.2mm solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
+.logo-slot { margin-top:auto; padding-top:14mm; }
+.logo-slot img { display:block; max-width:62%; max-height:72mm; object-fit:contain; margin:0 auto 7mm; }
 @media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
 </head>
@@ -59,7 +61,10 @@ p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.6mm
     <h2>Design choices</h2>
     <p>Keep only details needed to trust the central claim.</p>
 
-    <p class="contact">Contact: author@example.com</p>
+    <div class="logo-slot">
+      <img src="../assets/institutions/current-logo.png" alt="Institution logo">
+      <p class="contact">Contact: author@example.com</p>
+    </div>
   </aside>
 
   <section class="main">
