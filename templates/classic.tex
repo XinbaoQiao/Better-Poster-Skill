@@ -26,11 +26,12 @@
 \newcommand{\PosterClaimDetail}{\textbf{Emphasize} the important words.}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
 \newcommand{\PhoneIcon}{../assets/smartphone-white.png}
+\newcommand{\InstitutionLogo}{../assets/institutions/current-logo.png}
 \newcommand{\ContactEmail}{author@example.com}
 
 \begin{document}
 \betterposter{
-  % MAIN COLUMN: huge billboard claim + QR action. Keep this extremely sparse.
+  % MAIN COLUMN: huge billboard claim + bottom-anchored QR action.
   \maincolumn{
     \PosterClaim\\[0.25em]
     \PosterClaimDetail
@@ -68,6 +69,7 @@
   One sentence connects the method back to the central claim.
 
   \vfill
+  \institutionlogo{\InstitutionLogo}{0.62\textwidth}
   \posterfootnote{Contact: \ContactEmail}
 }{
   % RIGHT COLUMN: supplementary evidence only. Do not rebuild the whole paper.
