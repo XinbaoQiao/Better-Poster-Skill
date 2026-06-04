@@ -11,6 +11,7 @@
 \newcommand{\PosterClaimTitle}{A claim-first title states exactly what changed}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliations}{Lab or Department, University or Institute}
+\newcommand{\InstitutionName}{University or Institute Name}
 \newcommand{\HeroSubclaim}{One sentence tells the audience why the result matters and what to inspect first.}
 \newcommand{\HeroFigure}{../figures/hero-teaser.pdf}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
@@ -22,18 +23,17 @@
   % CENTER: claim + hero visual + evidence, with QR anchored near the bottom.
   \vfill
   {\RaggedRight\fontsizemain\bfseries \PosterClaimTitle\par}
-  \vspace{0.028\paperheight}
+  \vspace{0.024\paperheight}
   {\fontsize{30}{38}\selectfont \HeroSubclaim\par}
-  \vspace{0.026\paperheight}
+  \vspace{0.022\paperheight}
   \heroimage{\HeroFigure}{The hero figure explains the mechanism and shows the strongest result.}
-  \vspace{0.014\paperheight}
+  \vspace{0.012\paperheight}
   \begin{center}
     \evidencecard{What to see first}{Point to the visual pattern, comparison, or mechanism.}
     \hfill
     \evidencecard{Why it is credible}{Name the strongest validation, uncertainty check, or ablation.}
   \end{center}
   \vfill
-  \vspace{0.020\paperheight}
   \inlineqrcode{\PaperQRCode}{\textbf{Scan for paper, code, and supplemental figures.}}
 }{
   % LEFT: context before the claim.
@@ -48,7 +48,7 @@
     \item Who should care about the result.
   \end{itemize}
 
-  \section{Method in 3 steps}
+  \section{Method}
   \begin{enumerate}
     \item Input or experimental setup.
     \item Core transformation or intervention.
@@ -59,7 +59,7 @@
   Keep only details needed to trust the central claim.
 
   \vfill
-  \institutionlogo{\InstitutionLogo}{0.62\textwidth}
+  \institutionbrand{\InstitutionLogo}{\InstitutionName}{0.62\textwidth}
   \posterfootnote{Contact: \ContactLine}
 }{
   % RIGHT: technical conversation layer.
