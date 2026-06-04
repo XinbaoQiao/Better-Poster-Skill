@@ -121,7 +121,8 @@
     \vfill
     {\RaggedRight\fontsizemain\bfseries #1\par}%
     \vfill
-    \begin{minipage}[b][0.24\paperheight][b]{\linewidth}#2\end{minipage}%
+    \vspace{0.025\paperheight}%
+    \begin{minipage}[b][0.17\paperheight][b]{\linewidth}#2\end{minipage}%
   \end{minipage}%
 }
 
@@ -148,6 +149,13 @@
       \begin{minipage}[c][0.22\paperheight][c]{0.92\linewidth}
         \centering\color{mutedgray}{\fontsize{24}{30}\selectfont #3}
       \end{minipage}}}%
+}
+\newcommand{\institutionlogo}[2]{%
+  \IfFileExists{#1}{%
+    \begin{center}
+      \includegraphics[width=#2,height=0.085\paperheight,keepaspectratio]{#1}
+    \end{center}
+  }{}%
 }
 \newcommand{\metric}[2]{%
   \begin{minipage}[t]{0.46\linewidth}
