@@ -21,16 +21,20 @@
   </g>
   <g font-family="Inter, Arial, sans-serif" fill="#ffffff">
     <text x="300" y="318" font-size="58" font-weight="900">Main claim</text>
-    <rect x="300" y="350" width="420" height="22" rx="11" fill="#ffffff" opacity="0.65"/>
-    <rect x="300" y="390" width="340" height="22" rx="11" fill="#ffffff" opacity="0.45"/>
-    <g transform="translate(335 642)">
+    <rect x="300" y="380" width="420" height="16" rx="8" fill="#ffffff" opacity="0.55"/>
+    <rect x="300" y="412" width="330" height="16" rx="8" fill="#ffffff" opacity="0.38"/>
+    <g transform="translate(325 642)">
       <rect x="0" y="0" width="118" height="118" fill="#ffffff"/>
       <rect x="18" y="18" width="24" height="24" fill="#111827"/>
       <rect x="76" y="18" width="24" height="24" fill="#111827"/>
       <rect x="18" y="76" width="24" height="24" fill="#111827"/>
       <rect x="56" y="56" width="16" height="16" fill="#111827"/>
-      <text x="152" y="49" font-size="27" font-weight="900">Scan</text>
-      <text x="152" y="83" font-size="21" font-weight="700">Paper / code</text>
+      <g transform="translate(148 26)" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="0" y="0" width="38" height="64" rx="7"/>
+        <line x1="14" y1="52" x2="24" y2="52"/>
+      </g>
+      <text x="205" y="49" font-size="27" font-weight="900">Scan</text>
+      <text x="205" y="83" font-size="21" font-weight="700">Paper / code</text>
     </g>
   </g>
   <g font-family="Inter, Arial, sans-serif" fill="#111827">
