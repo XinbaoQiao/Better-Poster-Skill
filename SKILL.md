@@ -1,102 +1,162 @@
 ---
 name: better-poster
-description: Create modern academic Better Posters from paper PDFs, screenshots, or LaTeX source archives. Use when the user asks to design, distill, generate, revise, compile, or preview an academic conference poster using Better Poster, billboard-style poster, MIT Even Better Poster, multimodal paper-to-poster, teaser figure, visual abstract, HTML poster, or LaTeX poster workflows.
+description: Create Rafael Better Poster-style academic posters, with optional MIT Even Better Poster enhancements, from paper PDFs, screenshots, LaTeX source archives, or extracted paper text. Use when the user asks to design, distill, generate, revise, compile, preview, or export an academic conference poster in LaTeX, HTML, Better Poster, billboard-style poster, Even Better Poster, or visual-abstract workflows.
 ---
 
 # Better Poster
 
-Act as an academic poster design and production specialist. Turn a paper, figure screenshots, or LaTeX source archive into a readable Better Poster or MIT-style Even Better Poster with a dominant claim, visible evidence, and a reproducible preview workflow. HTML output is acceptable and often preferred for fast visual iteration; LaTeX remains available for print or venue requirements.
+Act as an academic poster distillation and production specialist. The default output should look like the Rafael Bailo Better Poster example: white side columns, one saturated central billboard, a very large plain-language main finding, a QR/download block at the bottom of the main column, and compact supporting material in the sidebars.
 
-## Objective
+Support two layout modes and two output formats:
 
-Produce an end-to-end poster package:
+- `classic`: closely follows Rafael's Better Poster structure and the `betterposter.cls` public interface.
+- `evenbetter`: MIT-informed enhancement with a claim-first title, a hero visual, and visible evidence in the center column.
+- `latex`: produce `template.tex` or `template-evenbetter.tex` using `betterposter.cls`.
+- `html`: produce `template.html` or `template-evenbetter.html` as a standalone printable A0 landscape poster.
 
-- Distilled main claim in plain language.
-- Center hero visual plan or generated teaser figure instructions.
-- One branded QR code for the primary paper URL when available, preferably OpenReview.
-- Filled HTML poster based on `template.html`, or LaTeX poster based on `template.tex` when requested.
-- Preview image when local tools are available.
-- Short visual QA notes and next edits.
+Unless the user requests only one format, produce both LaTeX and HTML source files so the poster is editable in either workflow.
+
+## Design Priority
+
+1. The central claim must be understandable in 5 to 10 seconds.
+2. The poster is not a paper pasted onto a wall.
+3. The classic template should preserve the Better Poster silhouette: 20 percent left sidebar, 60 percent central colored billboard, 20 percent right sidebar.
+4. The sidebars are support layers, not equal-priority walls of text.
+5. Use a QR/download block for the full paper, code, project page, or supplemental material when URLs are provided.
+6. Never invent metrics, axes, dataset names, rankings, captions, or visual evidence.
 
 ## Layout Selection
 
-Select a layout before writing files. State the selected layout and why in the poster brief.
+Before writing files, choose and state one layout mode:
 
-- Classic Better Poster: Rafael/Morrison-style wide center claim, narrow sidebars, and one QR area. Use when the work has one simple, memorable finding.
-- Even Better Poster technical: MIT-style claim band plus central evidence grid. Use for most CS/ML papers that need figures to justify the claim.
-- Figure-heavy technical poster: claim title plus two or three large evidence panels and a compact method strip. Use when qualitative examples or result matrices are the main contribution.
-- Portrait fallback: use only when the venue requires portrait format.
+```text
+Layout mode:
+Output formats:
+Palette:
+Reason:
+```
 
-For technical papers, prefer the Even Better Poster technical layout: keep the main claim easy to understand from far away, but do not reduce the poster to one oversized sentence. Put the strongest figures in the main visual area, not in tiny sidebars.
+Use `classic` when the user asks for Rafael, Better Poster, template replication, billboard style, or a minimal poster. Use `evenbetter` when the paper needs technical evidence in the center, a hero result figure, microscopy/qualitative panels, or when the user mentions MIT or Even Better Poster.
 
-Density budget:
+## Palette Rules
 
-- Main claim: 12 to 22 words when possible.
-- Hero/evidence caption: 18 words or fewer.
-- Left/context rail: 90 to 120 words total.
-- Evidence cards: no more than four, each with one message, one figure, and one short caption.
-- Each bullet or support sentence: 12 words or fewer when possible.
-- Figures with axes must remain large enough for labels to be readable in preview.
+Each finished poster may use a different attractive palette, but it must remain close to the Better Poster reference:
+
+- Keep side columns white or near-white.
+- Change the central billboard background only.
+- Use high-contrast foreground text.
+- Avoid gradients, decorative textures, and low-contrast pastel centers.
+- Prefer one of: `imperial`, `empirical`, `theory`, `methods`, `plum`, `amber`.
+- For `amber`, use dark central text; for the other palettes, use white central text.
+
+In LaTeX, choose one palette command in `template.tex` or set `\maincolumnbackgroundcolor` and `\maincolumnfontcolor`. In HTML, choose one theme class: `theme-imperial`, `theme-empirical`, `theme-theory`, `theme-methods`, `theme-plum`, or `theme-amber`.
 
 ## Input Routing
 
 ### PDF or Paper Text
 
-1. Extract title, authors, abstract, problem, method, result, limitation, and conclusion.
-2. Identify all figures/tables and rank them by relevance to the main claim.
-3. Choose the hero visual: existing figure, cropped/composite figure, or newly generated schematic.
-4. Rewrite content for poster scanning, not paper reading.
+1. Extract title, authors, abstract, problem, method, main result, limitations, conclusion, URLs, and contact information.
+2. Identify figures/tables and rank them by relevance to the central claim.
+3. Select `classic` or `evenbetter` layout.
+4. Rewrite for scanning, not paper reading.
+5. Keep the main claim plain-language and supported by the paper.
 
 ### Screenshots or Figure Images
 
-1. Inspect visible panels, axes, legends, labels, qualitative examples, and captions.
-2. Decide whether each image is hero, side evidence, or QR-linked supplemental material.
+1. Inspect panels, axes, legends, labels, qualitative examples, and captions.
+2. Decide whether the image belongs in the center hero, left setup, right supplemental column, or QR-linked supplement.
 3. Preserve scientific meaning. Do not invent numbers, rankings, dataset names, labels, or visual evidence.
-4. If the image is too dense, specify a crop, relabel, simplification, or schematic redraw.
+4. If an image is too dense, specify a crop, relabeling plan, simplification, or schematic redraw.
 
 ### LaTeX Zip
 
 1. Extract into a temporary directory.
-2. Detect the root `.tex` by checking `\documentclass`, `\begin{document}`, `\title`, `\author`, bibliography commands, and figure includes.
+2. Detect the root `.tex` by checking `\documentclass`, `\begin{document}`, `\betterposter`, `\title`, `\author`, bibliography commands, and figure includes.
 3. Parse title, authors, abstract, section headings, figure captions, included graphics, and bibliography.
 4. Prefer reusing existing figures from the source tree.
-5. Build a new poster from `template.html` by default, or `template.tex` when LaTeX/PDF is requested; avoid mutating the paper source unless asked.
-6. Generate the OpenReview QR code with `scripts/generate_qr.py` when an OpenReview URL is available.
-7. Use `render_preview.py` to compile and render a preview when possible.
+5. Build a new poster from the skill templates; avoid mutating the paper source unless asked.
+6. Generate QR codes with `scripts/generate_qr.py` when URLs are available.
+7. Use `render_preview.py` to compile/render previews when possible.
 
-## Poster Distillation
+## Poster Brief
 
-Always create a poster brief before writing files:
+Always create a poster brief before writing final source files:
 
 ```text
+Layout mode:
+Output formats:
+Palette:
 Main claim:
 Audience:
-Layout chosen:
-Output format:
 Problem:
 Method in one sentence:
 Most important evidence:
-Hero visual:
-Left column sections:
-Right column sections:
-QR target:
+Hero visual or classic billboard plan:
+Left sidebar sections:
+Right sidebar sections:
+QR targets:
 Potential misunderstanding to avoid:
 ```
 
 Main claim rules:
 
-- One sentence, 12 to 22 words when possible.
+- One sentence or two short lines.
+- 12 to 22 words when possible.
 - Plain language before jargon.
 - Include the concrete outcome if the paper has one.
-- Avoid vague claims like "we propose a novel framework" unless the actual contribution is conceptual.
+- Avoid empty novelty claims such as "we propose a novel framework" unless the contribution is purely conceptual.
+
+## Classic Better Poster Production
+
+Use this mode as the default when the user says to replicate the Rafael template.
+
+LaTeX:
+
+- Use `\documentclass[a0paper,fleqn]{betterposter}`.
+- Use the `\betterposter{main}{left}{right}` command.
+- Use `\maincolumn{claim}{qr-block}` for the center.
+- Keep default sidebars at `0.2\paperwidth` each unless there is a strong reason to change them.
+- Put the title, authors, institution, introduction, one diagram, one key result, conclusion, and contact in the left column.
+- Put supplementary material, extra table/figure, and what-to-notice notes in the right column.
+- Put only the huge plain-language claim and QR/download block in the central column.
+
+HTML:
+
+- Use `template.html`.
+- Preserve the 20/60/20 CSS grid.
+- Use the same visual hierarchy as the LaTeX classic template.
+- Keep HTML standalone: no external CSS, JS, fonts, or network assets.
+
+## MIT-Informed Even Better Poster Production
+
+Use this mode when evidence needs more space or when the user asks for the MIT enhanced version.
+
+LaTeX:
+
+- Use `template-evenbetter.tex`.
+- Still use `betterposter.cls` and the `\betterposter{main}{left}{right}` structure.
+- Put a claim-first title, one-line subclaim, hero visual, and two evidence cards in the central column.
+- Put detailed method/context in the left column and top evidence/limitations in the right column.
+
+HTML:
+
+- Use `template-evenbetter.html`.
+- Preserve the same 20/60/20 structure but allocate the central area to claim + hero visual + evidence cards + QR.
+
+MIT mode rules:
+
+- Do not reduce a technical poster to one oversized sentence.
+- Include a meaningful visual or result panel in the center.
+- Preserve enough visible evidence for technical conversation.
+- Avoid blindly following any template when the paper's evidence needs a different crop or emphasis.
 
 ## Hero Visual Rules
 
 Choose one:
 
 - Existing figure: use when one figure directly proves or explains the main claim.
-- Composite teaser: use when method plus result must be shown together.
-- Generated schematic: use when the paper is method-heavy or existing figures are too dense.
+- Cropped/composite teaser: use when method plus result must be shown together.
+- Generated schematic: use only when the paper lacks a clean visual summary.
 
 For generated or redrawn visuals, produce a spec:
 
@@ -110,90 +170,79 @@ Forbidden changes:
 Output format:
 ```
 
-Prefer clean vector-like scientific diagrams, readable labels, strong whitespace, and exact preservation of scientific quantities. Avoid decorative art.
+Generated/redrawn visuals must be labeled `schematic` unless they are exact redraws. Do not encode quantitative superiority through bar height, arrow thickness, area, or color intensity unless exact values are provided.
 
-## Output Production
+## Density Budget
 
-Use `template.html` when the user wants fast visual iteration, a web-native poster, or a screenshot-style preview. Fill these areas:
+Use these limits unless the user explicitly wants more detail:
 
-- paper title, authors, venue, affiliation
-- take-home message and subclaim
-- graphical abstract or method sketch
-- three exact highlights
-- four evidence cards
-- one OpenReview QR code
-- contact/footer
+- Center claim: maximum 22 words.
+- Classic center: no paragraphs beyond the QR/download caption.
+- EvenBetter center subclaim: maximum 22 words.
+- Left sidebar: maximum 110 words excluding title/authors/contact.
+- Right sidebar: maximum 130 words excluding QR labels.
+- Each bullet: maximum 12 words.
+- Each section: maximum 3 bullets.
+- No side figure should require squinting to read axis labels.
 
-Use `template.tex` when the user asks for LaTeX, Overleaf, PDF-first output, or a venue requires LaTeX/PDF. Fill these content areas:
+## QR Codes
 
-- `PosterTitle`, `PosterAuthors`, `PosterAffiliations`
-- `HeroClaim`, `HeroSubclaim`, `HeroFigure`, `HeroCaption`
-- left column: `Why it matters`, `Method`, `Design choices`
-- right column: `Top evidence`, `What to notice`, `Limitations`, `Scan for paper/code`
-
-Keep paragraphs short. Convert paper prose into bullets or evidence-card captions. Use figure captions as interpretive labels, not full paper captions.
-
-## QR Code
-
-Default to one QR code: the primary paper page, preferably OpenReview. Venue pages such as ICML/ICLR/NeurIPS can be listed as text, but should not become QR codes unless the user explicitly asks for multiple QR targets.
+When URLs are provided, generate one QR code per URL:
 
 ```bash
 python scripts/generate_qr.py \
-  --url OpenReview=https://openreview.net/forum?id=... \
+  --url Paper=https://example.com/paper \
+  --url Code=https://github.com/user/repo \
   --out-dir figures/qr
 ```
 
 Rules:
 
-- Use `OpenReview=URL` when an OpenReview link is available.
-- Let the script auto-select the saved OpenReview logo for OpenReview URLs.
-- Keep the generated QR code in `figures/qr/`; the script also writes `figures/qr/qr-snippet.tex`.
-- Place the QR code in the right-column `Scan` area or another low-priority corner, never over the center hero claim or hero figure.
-- Keep the single QR visually subordinate to the main claim, but large enough to scan from poster-session distance.
-- If the user explicitly requests several QR targets, show them in a compact grid and keep OpenReview first.
-
-When adapting a user's existing LaTeX:
-
-- Keep relative paths.
-- Copy or reference figures into a poster-local `figures/` directory.
-- Prefer PDF/PNG/JPG figures already present.
-- Avoid machine-specific absolute paths.
-- Compile with `pdflatex` unless the document requires another engine.
+- Use `Paper=URL` for the primary paper so `figures/qr/01-paper.png` is produced for the templates.
+- Use readable labels such as `Code`, `Project`, `OpenReview`, or `Slides`.
+- Keep generated QR codes in `figures/qr/`.
+- Place the primary QR in the center-bottom scan area for classic mode.
+- For multiple URLs, put the primary QR in the center and put secondary links in the right column or supplemental HTML/LaTeX block.
+- Keep QR codes visually subordinate to the claim but large enough to scan.
 
 ## Preview Workflow
 
-Use:
+LaTeX preview:
 
 ```bash
-python render_preview.py template.tex --out-dir build
+python render_preview.py template.tex --out-dir build/classic-latex
+python render_preview.py template-evenbetter.tex --out-dir build/evenbetter-latex
 ```
 
-or:
+HTML preview:
 
 ```bash
-python render_preview.py poster_source.zip --root poster.tex --out-dir build
+python render_preview.py template.html --out-dir build/classic-html
+python render_preview.py template-evenbetter.html --out-dir build/evenbetter-html
 ```
 
-If compilation fails, inspect the `.log` file and fix missing packages, missing graphics, undefined commands, or path issues. If preview rendering fails, keep the PDF and report the render dependency problem.
+If compilation or rendering fails, inspect logs and fix missing packages, missing graphics, undefined commands, HTML rendering dependencies, or path issues. Do not claim a poster compiled or rendered unless the command actually ran.
 
 ## Visual QA
 
 Before finalizing, evaluate:
 
+- Reference match: classic mode visibly resembles the Rafael Better Poster example.
 - First-glance test: the main finding is understandable in 5 to 10 seconds.
-- Thumbnail test: the hierarchy is visible when zoomed out.
-- Evidence test: at least one visible graphic or number supports the claim.
-- Conversation test: side columns give enough detail for follow-up questions.
-- QR test: the primary paper URL is represented as a scannable QR code in a low-priority scan area.
-- Integrity test: no invented metrics, false visual emphasis, or misleading crops.
-- Compile test: LaTeX builds and preview renders when tools are available.
+- Thumbnail test: the 20/60/20 hierarchy is obvious when zoomed out.
+- Evidence test: every result or number is directly supported by the source.
+- Readability test: sidebars are concise and not paper-like.
+- QR test: provided URLs are represented and placed in a scan area.
+- Format test: LaTeX and HTML sources both reflect the same scientific content when both are requested.
+- Compile/render test: commands ran, or remaining preview limitations are stated.
 
 ## Output Format
 
 Return:
 
 - Poster brief.
+- Layout mode, output formats, and palette used.
 - Files changed or generated.
-- Preview command and result.
+- Preview commands and results.
 - Visual QA notes.
-- Suggested next edit, if one is clearly useful.
+- Suggested next edit only if one is clearly useful.
