@@ -1,0 +1,26 @@
+# Build outputs
+build/
+dist/
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Generated poster previews
+*_preview.png
+*_preview.pdf
+
+# On-demand third-party institution logo cache
+assets/institutions/*.png
+assets/institutions/*.jpg
+assets/institutions/*.jpeg
+assets/institutions/*.webp
+assets/institutions/*.json
+assets/institutions/cache/
+
+# Python
+__pycache__/
+*.pyc
