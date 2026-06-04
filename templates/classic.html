@@ -17,21 +17,22 @@
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
 .poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
 .side { padding:27mm 24mm; font-size:10.8mm; line-height:1.24; display:flex; flex-direction:column; }
-.main { padding:70mm 64mm 42mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
+.main { padding:70mm 64mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
 h1 { margin:0 0 7mm; font-size:25mm; line-height:1.08; font-weight:900; }
 .authors, .affiliation, .contact { color:var(--muted); font-size:10mm; line-height:1.24; }
 h2 { margin:18mm 0 5mm; color:var(--accent); font-size:15mm; line-height:1.08; font-weight:900; }
 p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
 .figure { height:90mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
 .claim { margin:auto 0; font-size:49mm; line-height:1.18; font-weight:900; letter-spacing:-0.035em; }
-.scan { display:grid; grid-template-columns:130mm 48mm 1fr; gap:20mm; align-items:center; margin-top:auto; padding-top:22mm; }
-.qr { width:130mm; height:130mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
-.phone { font-size:28mm; font-weight:900; text-align:center; }
+.scan { width:70%; margin: auto auto 0; display:grid; grid-template-columns:126mm 1fr; gap:22mm; align-items:center; padding-top:20mm; }
+.qr { width:126mm; height:126mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
 .scan-caption { font-size:13mm; line-height:1.15; font-weight:800; }
 .metric { display:inline-block; width:46%; vertical-align:top; margin:8mm 2% 0 0; }
 .metric strong { display:block; color:var(--accent); font-size:18mm; line-height:1; }
-.logo-slot { margin-top:auto; padding-top:14mm; }
-.logo-slot img { display:block; max-width:62%; max-height:72mm; object-fit:contain; margin:0 auto 7mm; }
+.institution-brand { margin-top:auto; padding-top:14mm; text-align:center; }
+.logo-mark { width:72mm; height:72mm; margin:0 auto 7mm; border:1.4mm solid var(--line); border-radius:9mm; background:#f8fafc; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:12mm; font-weight:900; letter-spacing:.04em; }
+.logo-mark img { display:none; max-width:100%; max-height:100%; object-fit:contain; }
+.institution-name { color:var(--ink); font-size:10.5mm; line-height:1.16; font-weight:900; margin-bottom:5mm; }
 @media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
 </head>
@@ -42,24 +43,22 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; 
     <p class="authors">First Author, Second Author, Senior Author</p>
     <p class="affiliation">Department, University or Institute</p>
 
-    <h2>Introduction</h2>
+    <h2>Problem</h2>
     <ul>
       <li>State the problem in one sentence.</li>
       <li>Name the gap or failure mode.</li>
       <li>Say who should care about the result.</li>
     </ul>
 
-    <h2>A Diagram</h2>
+    <h2>Approach</h2>
     <div class="figure">Replace with a clean method or study-design diagram.</div>
 
-    <h2>Method</h2>
-    <p>Compress the method into an input → transformation → output story. Keep equations only when essential.</p>
+    <h2>Takeaway</h2>
+    <p>One short sentence connects the method back to the central claim.</p>
 
-    <h2>Conclusion</h2>
-    <p>One sentence connects the method back to the central claim.</p>
-
-    <div class="logo-slot">
-      <img src="../assets/institutions/current-logo.png" alt="Institution logo">
+    <div class="institution-brand">
+      <div class="logo-mark"><span>LOGO</span></div>
+      <div class="institution-name">University or Institute Name</div>
       <p class="contact">Contact: author@example.com</p>
     </div>
   </aside>
@@ -68,7 +67,6 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; 
     <div class="claim"><strong>Main finding</strong> goes here,<br>translated into <strong>plain English</strong>.<br><strong>Emphasize</strong> the important words.</div>
     <div class="scan">
       <div class="qr">QR</div>
-      <div class="phone">▯</div>
       <div class="scan-caption"><strong>Take a picture</strong><br>to download the full paper, code, or project page.</div>
     </div>
   </section>
@@ -88,7 +86,7 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; 
     <div class="figure">Replace with the single result panel that best supports the claim.</div>
 
     <h2>What to Notice</h2>
-    <p>Use interpretive captions rather than paper-style captions. Point the reader to the trend, comparison, or failure mode.</p>
+    <p>Point the reader to the trend, comparison, or failure mode.</p>
 
     <h2>More Detail</h2>
     <p>Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.</p>
