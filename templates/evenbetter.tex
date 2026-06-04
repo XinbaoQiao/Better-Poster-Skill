@@ -14,24 +14,26 @@
 \newcommand{\HeroSubclaim}{One sentence tells the audience why the result matters and what to inspect first.}
 \newcommand{\HeroFigure}{../figures/hero-teaser.pdf}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
+\newcommand{\InstitutionLogo}{../assets/institutions/current-logo.png}
 \newcommand{\ContactLine}{author@example.com}
 
 \begin{document}
 \betterposter{
-  % CENTER: claim + hero visual + evidence, not just a giant sentence.
+  % CENTER: claim + hero visual + evidence, with QR anchored near the bottom.
   \vfill
   {\RaggedRight\fontsizemain\bfseries \PosterClaimTitle\par}
-  \vspace{0.035\paperheight}
+  \vspace{0.028\paperheight}
   {\fontsize{30}{38}\selectfont \HeroSubclaim\par}
-  \vspace{0.030\paperheight}
+  \vspace{0.026\paperheight}
   \heroimage{\HeroFigure}{The hero figure explains the mechanism and shows the strongest result.}
-  \vspace{0.018\paperheight}
+  \vspace{0.014\paperheight}
   \begin{center}
     \evidencecard{What to see first}{Point to the visual pattern, comparison, or mechanism.}
     \hfill
     \evidencecard{Why it is credible}{Name the strongest validation, uncertainty check, or ablation.}
   \end{center}
   \vfill
+  \vspace{0.020\paperheight}
   \inlineqrcode{\PaperQRCode}{\textbf{Scan for paper, code, and supplemental figures.}}
 }{
   % LEFT: context before the claim.
@@ -57,6 +59,7 @@
   Keep only details needed to trust the central claim.
 
   \vfill
+  \institutionlogo{\InstitutionLogo}{0.62\textwidth}
   \posterfootnote{Contact: \ContactLine}
 }{
   % RIGHT: technical conversation layer.
