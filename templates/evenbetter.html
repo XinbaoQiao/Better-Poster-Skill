@@ -65,7 +65,7 @@ p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.4mm
     <p>Keep only details needed to trust the central claim.</p>
 
     <div class="institution-brand" data-has-logo="false">
-      <img src="../assets/institutions/current-logo.png" alt="Institution logo">
+      <img src="../assets/institutions/current-logo.png" alt="Institution logo" onload="this.parentElement.dataset.hasLogo='true'" onerror="this.parentElement.dataset.hasLogo='false'">
       <div class="institution-name">University or Institute Name</div>
       <p class="contact">Contact: author@example.com</p>
     </div>
