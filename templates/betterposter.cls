@@ -121,8 +121,9 @@
     \vfill
     {\RaggedRight\fontsizemain\bfseries #1\par}%
     \vfill
-    \vspace{0.025\paperheight}%
-    \begin{minipage}[b][0.17\paperheight][b]{\linewidth}#2\end{minipage}%
+    \begin{center}%
+      \begin{minipage}[b][0.165\paperheight][b]{0.78\linewidth}#2\end{minipage}%
+    \end{center}%
   \end{minipage}%
 }
 
@@ -132,16 +133,22 @@
 }
 \newcommand{\includeqr}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}{\qrplaceholder}}
 \newcommand{\qrcode}[3]{%
-  \begin{minipage}[c]{0.30\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
-  \begin{minipage}[c]{0.12\linewidth}\centering\IfFileExists{#2}{\includegraphics[width=0.82\linewidth]{#2}}{}\end{minipage}\hfill
-  \begin{minipage}[c]{0.50\linewidth}#3\end{minipage}%
+  \begin{center}%
+    \begin{minipage}[c]{0.30\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
+    \begin{minipage}[c]{0.12\linewidth}\centering\IfFileExists{#2}{\includegraphics[width=0.82\linewidth]{#2}}{}\end{minipage}\hfill
+    \begin{minipage}[c]{0.50\linewidth}#3\end{minipage}%
+  \end{center}%
 }
 \newcommand{\compactqrcode}[2]{%
-  \begin{minipage}[t]{0.34\linewidth}\centering\includeqr{#1}{\linewidth}\par\vspace{0.25em}#2\end{minipage}%
+  \begin{center}%
+    \begin{minipage}[t]{0.34\linewidth}\centering\includeqr{#1}{\linewidth}\par\vspace{0.25em}#2\end{minipage}%
+  \end{center}%
 }
 \newcommand{\inlineqrcode}[2]{%
-  \begin{minipage}[c]{0.16\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
-  \begin{minipage}[c]{0.78\linewidth}#2\end{minipage}%
+  \begin{center}%
+    \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
+    \begin{minipage}[c]{0.66\linewidth}#2\end{minipage}%
+  \end{center}%
 }
 \newcommand{\postergraphic}[3][]{%
   \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
