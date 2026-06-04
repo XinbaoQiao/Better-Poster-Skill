@@ -6,20 +6,23 @@ The default template now follows the Rafael Bailo / Mike Morrison #betterposter 
 
 ## What this skill outputs
 
-- **Classic LaTeX**: `template.tex` using `betterposter.cls` and the familiar `\betterposter{main}{left}{right}` structure.
-- **Classic HTML**: `template.html`, standalone and printable as A0 landscape.
-- **EvenBetter LaTeX**: `template-evenbetter.tex`, a MIT-informed variant with central claim, hero visual, evidence cards, and QR.
-- **EvenBetter HTML**: `template-evenbetter.html`, the same enhanced layout in standalone HTML.
+All poster entry templates live under `templates/`.
+
+- **Classic LaTeX**: `templates/classic.tex` using `templates/betterposter.cls` and the familiar `\betterposter{main}{left}{right}` structure.
+- **Classic HTML**: `templates/classic.html`, standalone and printable as A0 landscape.
+- **EvenBetter LaTeX**: `templates/evenbetter.tex`, a MIT-informed variant with central claim, hero visual, evidence cards, and QR.
+- **EvenBetter HTML**: `templates/evenbetter.html`, the same enhanced layout in standalone HTML.
 
 ## Files
 
 - `SKILL.md`: Codex skill instructions.
 - `system_prompt.txt`: prompt for Claude or other multimodal agents.
-- `betterposter.cls`: lightweight Better Poster class compatible with the public command interface documented by Rafael Bailo's template.
-- `template.tex`: classic Better Poster LaTeX template, intentionally close to the Rafael example layout.
-- `template-evenbetter.tex`: MIT-informed enhanced LaTeX template.
-- `template.html`: classic Better Poster HTML template.
-- `template-evenbetter.html`: MIT-informed enhanced HTML template.
+- `templates/`: all poster templates and shared LaTeX class.
+- `templates/betterposter.cls`: lightweight Better Poster class compatible with the public command interface documented by Rafael Bailo's template.
+- `templates/classic.tex`: classic Better Poster LaTeX template, intentionally close to the Rafael example layout.
+- `templates/evenbetter.tex`: MIT-informed enhanced LaTeX template.
+- `templates/classic.html`: classic Better Poster HTML template.
+- `templates/evenbetter.html`: MIT-informed enhanced HTML template.
 - `render_preview.py`: compile LaTeX or render HTML/PDF previews.
 - `scripts/generate_qr.py`: generate icon-centered QR codes for poster URLs.
 - `assets/logos/`: optional saved OpenReview, ICML, ICLR, and NeurIPS logo assets when available.
@@ -54,25 +57,25 @@ Use $better-poster evenbetter mode with a hero visual and central evidence cards
 Classic LaTeX:
 
 ```bash
-python render_preview.py template.tex --out-dir build/classic-latex
+python render_preview.py templates/classic.tex --out-dir build/classic-latex
 ```
 
 EvenBetter LaTeX:
 
 ```bash
-python render_preview.py template-evenbetter.tex --out-dir build/evenbetter-latex
+python render_preview.py templates/evenbetter.tex --out-dir build/evenbetter-latex
 ```
 
 Classic HTML:
 
 ```bash
-python render_preview.py template.html --out-dir build/classic-html
+python render_preview.py templates/classic.html --out-dir build/classic-html
 ```
 
 EvenBetter HTML:
 
 ```bash
-python render_preview.py template-evenbetter.html --out-dir build/evenbetter-html
+python render_preview.py templates/evenbetter.html --out-dir build/evenbetter-html
 ```
 
 The preview script copies/compiles the source and renders PNG previews when local dependencies are available. It also warns when obvious placeholder text remains.
@@ -87,6 +90,8 @@ python scripts/generate_qr.py \
   --url Code=https://github.com/user/repo \
   --out-dir figures/qr
 ```
+
+The templates live one directory below the repository root, so LaTeX figure paths inside `templates/*.tex` use `../figures/...` and `../assets/...`.
 
 ## Color palettes
 
@@ -109,6 +114,6 @@ Use high-contrast central text. Amber uses dark text; the other palettes use whi
 
 ## License
 
-This repository remains MIT licensed. The included `betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
+This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
 
 Suggestions, issues, and improvements are welcome.
