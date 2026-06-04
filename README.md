@@ -2,7 +2,7 @@
 
 Better Poster Skill helps Codex, Claude, or other AI agents turn a paper PDF, figure screenshots, extracted paper text, or a LaTeX source archive into a Better Poster-style academic poster.
 
-The default template follows the Rafael Bailo / Mike Morrison #betterposter silhouette: two compact white sidebars, one saturated central billboard, a very large plain-English main finding, a bottom-centered QR/download block in the center column, and institution branding at the bottom of the left column. The MIT Communication Lab article is used as the optional enhanced mode for technical posters that need a central hero visual and stronger visible evidence.
+The default template follows the Rafael Bailo / Mike Morrison #betterposter silhouette: two compact white sidebars, one saturated central billboard, a very large plain-English main finding, a bottom-centered QR/download block in the center column, and institution branding at the bottom of the left column when a supported logo is available. The MIT Communication Lab article is used as the optional enhanced mode for technical posters that need a central hero visual and stronger visible evidence.
 
 ## Template previews
 
@@ -37,7 +37,7 @@ All poster entry templates live under `templates/`.
 - **EvenBetter HTML**: `templates/evenbetter.html`, the same enhanced layout in standalone HTML.
 - **Preview artifacts**: PDF and PNG previews through `render_preview.py` when local dependencies are available.
 - **QR codes**: generated into `figures/qr/`.
-- **Institution brand**: `assets/institutions/current-logo.png` plus institution name, placed at the bottom of the left column.
+- **Institution brand**: `assets/institutions/current-logo.png` plus institution name, placed at the bottom of the left column only when a configured CSRankings top-100 logo is cached or resolved.
 
 ## Files
 
@@ -50,9 +50,11 @@ All poster entry templates live under `templates/`.
 - `templates/classic.html`: classic Better Poster HTML template.
 - `templates/evenbetter.html`: MIT-informed enhanced HTML template.
 - `docs/previews/`: static template preview diagrams used in this README.
+- `data/csrankings_top100_institutions.json`: configured CSRankings top-100 institution seed list, aliases, and domains.
 - `render_preview.py`: compile LaTeX or render HTML/PDF previews.
 - `scripts/generate_qr.py`: generate icon-centered QR codes for poster URLs.
 - `scripts/resolve_institution_logo.py`: infer/download an institution logo from source text or an explicit institution name.
+- `assets/icons/smartphone-white.svg`: clean line-style smartphone icon used by the HTML templates; LaTeX has a built-in line-art fallback to avoid glyph/emoji corruption.
 - `assets/institutions/`: on-demand institution logo cache.
 - `assets/logos/`: optional saved OpenReview, ICML, ICLR, and NeurIPS logo assets when available.
 
@@ -124,20 +126,30 @@ The primary QR block is centered in the bottom band of the center column, matchi
 
 ## Institution branding
 
-Resolve an institution logo explicitly:
+Resolve a supported CSRankings top-100 institution logo explicitly from cache only:
 
 ```bash
 python scripts/resolve_institution_logo.py \
   --institution "Massachusetts Institute of Technology"
 ```
 
-Or infer it from a LaTeX/text source:
+Allow network fallback on cache miss:
 
 ```bash
-python scripts/resolve_institution_logo.py --source paper.tex
+python scripts/resolve_institution_logo.py \
+  --institution "Massachusetts Institute of Technology" \
+  --download
 ```
 
-The templates live one directory below the repository root, so LaTeX figure paths inside `templates/*.tex` use `../figures/...` and `../assets/...`. The institution brand area always includes both a logo slot and an institution name; if the logo is unavailable, the template still shows a visible placeholder plus the institution name.
+Infer the institution from a LaTeX/text source:
+
+```bash
+python scripts/resolve_institution_logo.py --source paper.tex --download
+```
+
+The resolver only matches `data/csrankings_top100_institutions.json`. If the source institution is outside that list, or if no cached/resolved logo exists, `current-logo.png` is removed and the institution area is left blank. Logo downloads use Wikidata/Commons, Wikipedia page images, Clearbit logo lookup, Google favicon, and DuckDuckGo icon lookup as fallback sources.
+
+The templates live one directory below the repository root, so LaTeX figure paths inside `templates/*.tex` use `../figures/...` and `../assets/...`.
 
 ## Color palettes
 
@@ -157,6 +169,7 @@ Use high-contrast central text. Amber uses dark text; the other palettes use whi
 - Rafael Bailo, Better Poster LaTeX template: https://github.com/rafaelbailo/betterposter-latex-template
 - Rafael Bailo, example layout: https://github.com/rafaelbailo/betterposter-latex-template/blob/master/example.png
 - MIT Communication Lab, Toward an Even Better Poster: https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/
+- Lucide smartphone icon reference and license: https://lucide.dev/icons/smartphone and https://lucide.dev/license
 
 ## License
 
