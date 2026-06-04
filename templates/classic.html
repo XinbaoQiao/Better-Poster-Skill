@@ -16,22 +16,23 @@
 * { box-sizing: border-box; }
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
 .poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
-.side { padding:27mm 24mm; font-size:10.8mm; line-height:1.24; display:flex; flex-direction:column; }
-.main { padding:70mm 64mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; }
-h1 { margin:0 0 7mm; font-size:25mm; line-height:1.08; font-weight:900; }
-.authors, .affiliation, .contact { color:var(--muted); font-size:10mm; line-height:1.24; }
-h2 { margin:18mm 0 5mm; color:var(--accent); font-size:15mm; line-height:1.08; font-weight:900; }
-p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; }
-.figure { height:90mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
-.claim { margin:auto 0; font-size:49mm; line-height:1.18; font-weight:900; letter-spacing:-0.035em; }
-.scan { width:70%; margin: auto auto 0; display:grid; grid-template-columns:126mm 1fr; gap:22mm; align-items:center; padding-top:20mm; }
+.side { padding:27mm 24mm; font-size:10.2mm; line-height:1.24; display:flex; flex-direction:column; overflow:hidden; }
+.main { padding:70mm 64mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; overflow:hidden; }
+h1 { margin:0 0 7mm; font-size:clamp(18mm, 2.1vw, 25mm); line-height:1.04; font-weight:900; max-width:100%; }
+.authors, .affiliation, .contact { color:var(--muted); font-size:9.5mm; line-height:1.24; }
+h2 { margin:16mm 0 5mm; color:var(--accent); font-size:14mm; line-height:1.08; font-weight:900; }
+p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; }
+.figure { height:86mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
+.claim { margin:auto 0; font-size:clamp(38mm, 4.25vw, 49mm); line-height:1.16; font-weight:900; letter-spacing:-0.035em; overflow-wrap:normal; }
+.scan { width:72%; margin:auto auto 0; display:grid; grid-template-columns:126mm 42mm 1fr; gap:16mm; align-items:center; padding-top:20mm; }
 .qr { width:126mm; height:126mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
-.scan-caption { font-size:13mm; line-height:1.15; font-weight:800; }
+.phone-icon { width:42mm; height:42mm; object-fit:contain; }
+.scan-caption { font-size:12mm; line-height:1.15; font-weight:800; }
 .metric { display:inline-block; width:46%; vertical-align:top; margin:8mm 2% 0 0; }
-.metric strong { display:block; color:var(--accent); font-size:18mm; line-height:1; }
-.institution-brand { margin-top:auto; padding-top:14mm; text-align:center; }
-.logo-mark { width:72mm; height:72mm; margin:0 auto 7mm; border:1.4mm solid var(--line); border-radius:9mm; background:#f8fafc; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:12mm; font-weight:900; letter-spacing:.04em; }
-.logo-mark img { display:none; max-width:100%; max-height:100%; object-fit:contain; }
+.metric strong { display:block; color:var(--accent); font-size:17mm; line-height:1; }
+.institution-brand { display:none; margin-top:auto; padding-top:14mm; text-align:center; }
+.institution-brand[data-has-logo="true"] { display:block; }
+.institution-brand img { display:block; max-width:62%; max-height:72mm; object-fit:contain; margin:0 auto 7mm; }
 .institution-name { color:var(--ink); font-size:10.5mm; line-height:1.16; font-weight:900; margin-bottom:5mm; }
 @media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
@@ -56,8 +57,8 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; 
     <h2>Takeaway</h2>
     <p>One short sentence connects the method back to the central claim.</p>
 
-    <div class="institution-brand">
-      <div class="logo-mark"><span>LOGO</span></div>
+    <div class="institution-brand" data-has-logo="false">
+      <img src="../assets/institutions/current-logo.png" alt="Institution logo">
       <div class="institution-name">University or Institute Name</div>
       <p class="contact">Contact: author@example.com</p>
     </div>
@@ -67,6 +68,7 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.6mm 0; 
     <div class="claim"><strong>Main finding</strong> goes here,<br>translated into <strong>plain English</strong>.<br><strong>Emphasize</strong> the important words.</div>
     <div class="scan">
       <div class="qr">QR</div>
+      <img class="phone-icon" src="../assets/icons/smartphone-white.svg" alt="Smartphone icon">
       <div class="scan-caption"><strong>Take a picture</strong><br>to download the full paper, code, or project page.</div>
     </div>
   </section>
