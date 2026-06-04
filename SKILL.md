@@ -7,12 +7,18 @@ description: Create Rafael Better Poster-style academic posters, with optional M
 
 Act as an academic poster distillation and production specialist. The default output should look like the Rafael Bailo Better Poster example: white side columns, one saturated central billboard, a very large plain-language main finding, a QR/download block at the bottom of the main column, and compact supporting material in the sidebars.
 
+All template entry points live in `templates/`:
+
+- `templates/classic.tex` and `templates/classic.html` for the Rafael-style classic Better Poster.
+- `templates/evenbetter.tex` and `templates/evenbetter.html` for the MIT-informed enhanced poster.
+- `templates/betterposter.cls` for shared LaTeX layout commands.
+
 Support two layout modes and two output formats:
 
 - `classic`: closely follows Rafael's Better Poster structure and the `betterposter.cls` public interface.
 - `evenbetter`: MIT-informed enhancement with a claim-first title, a hero visual, and visible evidence in the center column.
-- `latex`: produce `template.tex` or `template-evenbetter.tex` using `betterposter.cls`.
-- `html`: produce `template.html` or `template-evenbetter.html` as a standalone printable A0 landscape poster.
+- `latex`: produce `templates/classic.tex` or `templates/evenbetter.tex` using `templates/betterposter.cls`.
+- `html`: produce `templates/classic.html` or `templates/evenbetter.html` as a standalone printable A0 landscape poster.
 
 Unless the user requests only one format, produce both LaTeX and HTML source files so the poster is editable in either workflow.
 
@@ -49,7 +55,7 @@ Each finished poster may use a different attractive palette, but it must remain 
 - Prefer one of: `imperial`, `empirical`, `theory`, `methods`, `plum`, `amber`.
 - For `amber`, use dark central text; for the other palettes, use white central text.
 
-In LaTeX, choose one palette command in `template.tex` or set `\maincolumnbackgroundcolor` and `\maincolumnfontcolor`. In HTML, choose one theme class: `theme-imperial`, `theme-empirical`, `theme-theory`, `theme-methods`, `theme-plum`, or `theme-amber`.
+In LaTeX, choose one palette command in `templates/*.tex` or set `\maincolumnbackgroundcolor` and `\maincolumnfontcolor`. In HTML, choose one theme class: `theme-imperial`, `theme-empirical`, `theme-theory`, `theme-methods`, `theme-plum`, or `theme-amber`.
 
 ## Input Routing
 
@@ -112,6 +118,7 @@ Use this mode as the default when the user says to replicate the Rafael template
 
 LaTeX:
 
+- Use `templates/classic.tex`.
 - Use `\documentclass[a0paper,fleqn]{betterposter}`.
 - Use the `\betterposter{main}{left}{right}` command.
 - Use `\maincolumn{claim}{qr-block}` for the center.
@@ -122,7 +129,7 @@ LaTeX:
 
 HTML:
 
-- Use `template.html`.
+- Use `templates/classic.html`.
 - Preserve the 20/60/20 CSS grid.
 - Use the same visual hierarchy as the LaTeX classic template.
 - Keep HTML standalone: no external CSS, JS, fonts, or network assets.
@@ -133,14 +140,14 @@ Use this mode when evidence needs more space or when the user asks for the MIT e
 
 LaTeX:
 
-- Use `template-evenbetter.tex`.
-- Still use `betterposter.cls` and the `\betterposter{main}{left}{right}` structure.
+- Use `templates/evenbetter.tex`.
+- Still use `templates/betterposter.cls` and the `\betterposter{main}{left}{right}` structure.
 - Put a claim-first title, one-line subclaim, hero visual, and two evidence cards in the central column.
 - Put detailed method/context in the left column and top evidence/limitations in the right column.
 
 HTML:
 
-- Use `template-evenbetter.html`.
+- Use `templates/evenbetter.html`.
 - Preserve the same 20/60/20 structure but allocate the central area to claim + hero visual + evidence cards + QR.
 
 MIT mode rules:
@@ -201,6 +208,7 @@ Rules:
 - Use `Paper=URL` for the primary paper so `figures/qr/01-paper.png` is produced for the templates.
 - Use readable labels such as `Code`, `Project`, `OpenReview`, or `Slides`.
 - Keep generated QR codes in `figures/qr/`.
+- LaTeX templates live in `templates/`, so their figure paths use `../figures/...` and `../assets/...`.
 - Place the primary QR in the center-bottom scan area for classic mode.
 - For multiple URLs, put the primary QR in the center and put secondary links in the right column or supplemental HTML/LaTeX block.
 - Keep QR codes visually subordinate to the claim but large enough to scan.
@@ -210,15 +218,15 @@ Rules:
 LaTeX preview:
 
 ```bash
-python render_preview.py template.tex --out-dir build/classic-latex
-python render_preview.py template-evenbetter.tex --out-dir build/evenbetter-latex
+python render_preview.py templates/classic.tex --out-dir build/classic-latex
+python render_preview.py templates/evenbetter.tex --out-dir build/evenbetter-latex
 ```
 
 HTML preview:
 
 ```bash
-python render_preview.py template.html --out-dir build/classic-html
-python render_preview.py template-evenbetter.html --out-dir build/evenbetter-html
+python render_preview.py templates/classic.html --out-dir build/classic-html
+python render_preview.py templates/evenbetter.html --out-dir build/evenbetter-html
 ```
 
 If compilation or rendering fails, inspect logs and fix missing packages, missing graphics, undefined commands, HTML rendering dependencies, or path issues. Do not claim a poster compiled or rendered unless the command actually ran.
