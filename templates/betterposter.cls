@@ -132,10 +132,22 @@
   \begin{minipage}[c][0.88\linewidth][c]{0.88\linewidth}\centering\color{black}\bfseries QR\end{minipage}}\endgroup
 }
 \newcommand{\includeqr}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}{\qrplaceholder}}
+\newcommand{\phoneiconline}{%
+  \begingroup
+  \setlength{\unitlength}{1pt}%
+  \begin{picture}(34,56)
+    \linethickness{2pt}%
+    \put(7,3){\line(1,0){20}}\put(7,53){\line(1,0){20}}%
+    \put(7,3){\line(0,1){50}}\put(27,3){\line(0,1){50}}%
+    \put(14,10){\line(1,0){6}}%
+  \end{picture}%
+  \endgroup
+}
+\newcommand{\phoneicon}[1]{\IfFileExists{#1}{\includegraphics[width=0.82\linewidth]{#1}}{\phoneiconline}}
 \newcommand{\qrcode}[3]{%
   \begin{center}%
     \begin{minipage}[c]{0.30\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
-    \begin{minipage}[c]{0.12\linewidth}\centering\IfFileExists{#2}{\includegraphics[width=0.82\linewidth]{#2}}{}\end{minipage}\hfill
+    \begin{minipage}[c]{0.12\linewidth}\centering\phoneicon{#2}\end{minipage}\hfill
     \begin{minipage}[c]{0.50\linewidth}#3\end{minipage}%
   \end{center}%
 }
@@ -158,17 +170,12 @@
       \end{minipage}}}%
 }
 \newcommand{\institutionbrand}[3]{%
-  \begin{center}
-    \IfFileExists{#1}{%
+  \IfFileExists{#1}{%
+    \begin{center}
       \includegraphics[width=#3,height=0.085\paperheight,keepaspectratio]{#1}%
-    }{%
-      \begingroup\setlength{\fboxsep}{0.5em}\fcolorbox{mutedgray}{white}{%
-        \begin{minipage}[c][0.060\paperheight][c]{0.50\linewidth}%
-          \centering\color{mutedgray}{\fontsizesmall Institution\\Logo}%
-        \end{minipage}}\endgroup%
-    }%
-    \par\vspace{0.35em}{\fontsizesmall\bfseries #2\par}%
-  \end{center}%
+      \par\vspace{0.35em}{\fontsizesmall\bfseries #2\par}%
+    \end{center}%
+  }{}%
 }
 \newcommand{\metric}[2]{%
   \begin{minipage}[t]{0.46\linewidth}
