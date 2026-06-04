@@ -48,9 +48,9 @@
 \newlength{\columnmarginhorizontal}
 \newlength{\maincolumnmarginvertical}
 \newlength{\maincolumnmarginhorizontal}
-\newlength{\postercontentheight}
 \newlength{\postercenterwidth}
-\newlength{\postertempwidth}
+\newlength{\posterpanelinnerwidth}
+\newlength{\posterpanelinnerheight}
 
 \setlength{\leftbarwidth}{0.20\paperwidth}
 \setlength{\rightbarwidth}{0.20\paperwidth}
@@ -58,7 +58,6 @@
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.070\paperheight}
-\setlength{\postercontentheight}{\textheight}
 
 \newcommand{\fontsizestandard}{\fontsize{32.00}{50.50}\selectfont}
 \newcommand{\fontsizemain}{\fontsize{116.00}{220.00}\selectfont}
@@ -92,23 +91,22 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
-\newcommand{\posterpanel}[6]{%
-  \begingroup
-  \setlength{\postertempwidth}{#1}%
-  \colorbox{#2}{%
-    \begin{minipage}[t][#1][t]{\postertempwidth}%
-      \colorbox{#2}{%
-        \begin{minipage}[t][\postercontentheight][t]{\postertempwidth}%
-          \vspace*{#4}%
-          \hspace*{#5}%
-          \begin{minipage}[t][\dimexpr\postercontentheight-2#4\relax][t]{\dimexpr\postertempwidth-2#5\relax}%
-            \color{#3}\raggedright\fontsizestandard #6%
-          \end{minipage}%
+\newcommand{\posterpanel}[7]{%
+  \begingroup%
+  \setlength{\posterpanelinnerwidth}{\dimexpr#2-2#6\relax}%
+  \setlength{\posterpanelinnerheight}{\dimexpr#1-2#5\relax}%
+  \begin{minipage}[t][#1][t]{#2}%
+    \noindent\colorbox{#3}{%
+      \begin{minipage}[t][#1][t]{#2}%
+        \vspace*{#5}%
+        \hspace*{#6}%
+        \begin{minipage}[t][\posterpanelinnerheight][t]{\posterpanelinnerwidth}%
+          \color{#4}\raggedright\fontsizestandard #7%
         \end{minipage}%
-      }%
-    \end{minipage}%
-  }%
-  \endgroup
+      \end{minipage}%
+    }%
+  \end{minipage}%
+  \endgroup%
 }
 
 \newcommand{\betterposter}[3]{%
@@ -124,81 +122,81 @@
     \RaggedRight\fontsizemain\bfseries #1\vspace{1em}%
   }%
   \vfill%
-  \begin{minipage}[t][0.25\textheight][b]{\textwidth}%
+  \begin{minipage}[t][0.25\textheight][b]{\linewidth}%
     #2%
   \end{minipage}%
 }
 
 \newcommand{\qrplaceholder}{%
   \begingroup\setlength{\fboxsep}{0.5em}\fcolorbox{black}{white}{%
-  \begin{minipage}[c][0.88\linewidth][c]{0.88\linewidth}\centering\color{black}\bfseries QR\end{minipage}}\endgroup
+  \begin{minipage}[c][0.88\linewidth][c]{0.88\linewidth}\centering\color{black}\bfseries QR\end{minipage}}\endgroup%
 }
 \newcommand{\includeqr}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}{\qrplaceholder}}
 \newcommand{\phoneiconline}{%
-  \begingroup
+  \begingroup%
   \setlength{\unitlength}{1pt}%
-  \begin{picture}(34,56)
+  \begin{picture}(34,56)%
     \linethickness{2pt}%
     \put(7,3){\line(1,0){20}}\put(7,53){\line(1,0){20}}%
     \put(7,3){\line(0,1){50}}\put(27,3){\line(0,1){50}}%
     \put(14,10){\line(1,0){6}}%
   \end{picture}%
-  \endgroup
+  \endgroup%
 }
 \newcommand{\phoneicon}[1]{\IfFileExists{#1}{\includegraphics[height=0.85\linewidth]{#1}}{\phoneiconline}}
 \newcommand{\qrcode}[3]{%
-  \begin{minipage}[c]{0.30\textwidth}%
-    \includeqr{#1}{\textwidth}%
+  \begin{minipage}[c]{0.30\linewidth}%
+    \includeqr{#1}{\linewidth}%
   \end{minipage}%
-  \begin{minipage}[c]{0.12\textwidth}%
+  \begin{minipage}[c]{0.12\linewidth}%
     \hfill\phoneicon{#2}%
   \end{minipage}%
-  \begin{minipage}[c]{0.50\textwidth}%
+  \begin{minipage}[c]{0.50\linewidth}%
     #3%
   \end{minipage}%
 }
 \newcommand{\compactqrcode}[2]{%
-  \begin{minipage}[t]{0.30\textwidth}%
-    \includeqr{#1}{\textwidth}\par #2%
+  \begin{minipage}[t]{0.30\linewidth}%
+    \includeqr{#1}{\linewidth}\par #2%
   \end{minipage}%
 }
 \newcommand{\inlineqrcode}[2]{%
-  \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill
+  \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill%
   \begin{minipage}[c]{0.66\linewidth}#2\end{minipage}%
 }
 \newcommand{\postergraphic}[3][]{%
   \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
     \fcolorbox{mutedgray}{white}{%
-      \begin{minipage}[c][0.22\paperheight][c]{0.92\linewidth}
-        \centering\color{mutedgray}{\fontsize{24}{30}\selectfont #3}
+      \begin{minipage}[c][0.22\paperheight][c]{0.92\linewidth}%
+        \centering\color{mutedgray}{\fontsize{24}{30}\selectfont #3}%
       \end{minipage}}}%
 }
 \newcommand{\institutionbrand}[3]{%
   \IfFileExists{#1}{%
-    \begin{center}
+    \begin{center}%
       \includegraphics[width=#3,height=0.085\paperheight,keepaspectratio]{#1}%
       \par\vspace{0.35em}{\fontsizesmall\bfseries #2\par}%
     \end{center}%
   }{}%
 }
 \newcommand{\metric}[2]{%
-  \begin{minipage}[t]{0.46\linewidth}
-    {\fontsize{46}{54}\selectfont\bfseries\color{\posteraccentcolor}#1\par}
-    {\fontsizesmall #2\par}
-  \end{minipage}
+  \begin{minipage}[t]{0.46\linewidth}%
+    {\fontsize{46}{54}\selectfont\bfseries\color{\posteraccentcolor}#1\par}%
+    {\fontsizesmall #2\par}%
+  \end{minipage}%
 }
 \newcommand{\evidencecard}[2]{%
-  \begingroup\setlength{\fboxsep}{0.45em}
-  \colorbox{sidebarcool}{\begin{minipage}[t]{0.42\linewidth}
-    {\fontsize{34}{42}\selectfont\bfseries\color{black}#1\par}
-    {\fontsizesmall\color{black}#2\par}
-  \end{minipage}}\endgroup
+  \begingroup\setlength{\fboxsep}{0.45em}%
+  \colorbox{sidebarcool}{\begin{minipage}[t]{0.42\linewidth}%
+    {\fontsize{34}{42}\selectfont\bfseries\color{black}#1\par}%
+    {\fontsizesmall\color{black}#2\par}%
+  \end{minipage}}\endgroup%
 }
 \newcommand{\heroimage}[2]{%
-  \begin{center}
-  \IfFileExists{#1}{\includegraphics[width=0.96\linewidth,height=0.34\paperheight,keepaspectratio]{#1}}{\postergraphic[width=0.96\linewidth]{#1}{Hero figure placeholder}}
-  \par\vspace{0.025\paperheight}{\fontsize{26}{34}\selectfont\bfseries #2\par}
-  \end{center}
+  \begin{center}%
+  \IfFileExists{#1}{\includegraphics[width=0.96\linewidth,height=0.34\paperheight,keepaspectratio]{#1}}{\postergraphic[width=0.96\linewidth]{#1}{Hero figure placeholder}}%
+  \par\vspace{0.025\paperheight}{\fontsize{26}{34}\selectfont\bfseries #2\par}%
+  \end{center}%
 }
 \renewcommand{\section}[1]{\vspace{2em}{\fontsizesection\bfseries\leavevmode #1}\par\vspace{0.5em}}
 \renewcommand{\title}[1]{{\fontsizetitle\bfseries\leavevmode #1}\par}
