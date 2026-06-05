@@ -1,48 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1189" height="841" viewBox="0 0 1189 841" role="img" aria-label="Classic Better Poster preview">
-  <rect width="1189" height="841" fill="#ffffff"/>
-  <rect x="0" y="0" width="238" height="841" fill="#ffffff"/>
-  <rect x="238" y="0" width="713" height="841" fill="#003e74"/>
-  <rect x="951" y="0" width="238" height="841" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1682" height="841" viewBox="0 0 1682 841" role="img" aria-label="Style 1 claim billboard poster preview">
+  <rect width="1682" height="841" fill="#ffffff"/>
+  <rect x="0" y="0" width="387" height="841" fill="#ffffff"/>
+  <rect x="387" y="0" width="908" height="841" fill="#003e74"/>
+  <rect x="1295" y="0" width="387" height="841" fill="#ffffff"/>
+
   <g font-family="Inter, Arial, sans-serif" fill="#111827">
-    <text x="38" y="70" font-size="28" font-weight="800">Title</text>
-    <text x="38" y="102" font-size="15" fill="#6b7280">Authors</text>
-    <text x="38" y="170" font-size="21" font-weight="800" fill="#003e74">Problem</text>
-    <rect x="38" y="194" width="150" height="10" rx="5" fill="#d1d5db"/>
-    <rect x="38" y="216" width="118" height="10" rx="5" fill="#d1d5db"/>
-    <text x="38" y="285" font-size="21" font-weight="800" fill="#003e74">Approach</text>
-    <rect x="38" y="312" width="162" height="86" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
-    <text x="72" y="362" font-size="15" fill="#6b7280">Figure</text>
-    <g transform="translate(42 686)">
-      <rect x="0" y="0" width="70" height="70" rx="12" fill="#f8fafc" stroke="#9ca3af" stroke-width="3"/>
-      <circle cx="35" cy="35" r="19" fill="none" stroke="#003e74" stroke-width="5"/>
-      <text x="88" y="30" font-size="17" font-weight="800">Institution</text>
-      <text x="88" y="55" font-size="14" fill="#6b7280">Brand</text>
+    <text x="52" y="70" font-size="30" font-weight="800">Paper title</text>
+    <text x="52" y="102" font-size="16" fill="#6b7280">Authors and affiliation</text>
+    <text x="52" y="176" font-size="23" font-weight="800" fill="#003e74">Theory Claims</text>
+    <rect x="52" y="202" width="284" height="66" fill="#f8fafc"/>
+    <text x="68" y="232" font-size="17" font-weight="800" fill="#111827">Proposition</text>
+    <rect x="68" y="248" width="188" height="8" rx="4" fill="#d1d5db"/>
+    <rect x="52" y="284" width="284" height="74" fill="#f8fafc"/>
+    <text x="68" y="316" font-size="19" font-weight="900" fill="#111827">Theorem</text>
+    <rect x="68" y="334" width="202" height="8" rx="4" fill="#d1d5db"/>
+    <g transform="translate(56 704)">
+      <circle cx="36" cy="36" r="34" fill="none" stroke="#003e74" stroke-width="5"/>
+      <path d="M36 15 L56 28 L49 56 L23 56 L16 28 Z" fill="none" stroke="#003e74" stroke-width="4"/>
+      <circle cx="128" cy="36" r="34" fill="none" stroke="#003e74" stroke-width="5"/>
+      <path d="M128 16 L148 56 L108 56 Z" fill="none" stroke="#003e74" stroke-width="5"/>
     </g>
   </g>
-  <g font-family="Inter, Arial, sans-serif" fill="#ffffff">
-    <text x="300" y="318" font-size="58" font-weight="900">Main claim</text>
-    <rect x="300" y="380" width="420" height="16" rx="8" fill="#ffffff" opacity="0.55"/>
-    <rect x="300" y="412" width="330" height="16" rx="8" fill="#ffffff" opacity="0.38"/>
-    <g transform="translate(325 642)">
-      <rect x="0" y="0" width="118" height="118" fill="#ffffff"/>
-      <rect x="18" y="18" width="24" height="24" fill="#111827"/>
-      <rect x="76" y="18" width="24" height="24" fill="#111827"/>
-      <rect x="18" y="76" width="24" height="24" fill="#111827"/>
-      <rect x="56" y="56" width="16" height="16" fill="#111827"/>
-      <g transform="translate(148 26)" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="0" y="0" width="38" height="64" rx="7"/>
-        <line x1="14" y1="52" x2="24" y2="52"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="442" y="184" font-size="76" font-weight="900" fill="#ffffff">Conclusion first.</text>
+    <text x="442" y="270" font-size="76" font-weight="900" fill="#ffffff">Mechanism visible.</text>
+    <text x="442" y="356" font-size="76" font-weight="900" fill="#b8c0ca">Evidence path clear.</text>
+    <text x="442" y="442" font-size="76" font-weight="900" fill="#747e8c">Details stay scannable.</text>
+    <g transform="translate(442 612)">
+      <rect x="0" y="0" width="122" height="122" fill="#ffffff"/>
+      <rect x="18" y="18" width="25" height="25" fill="#111827"/>
+      <rect x="79" y="18" width="25" height="25" fill="#111827"/>
+      <rect x="18" y="79" width="25" height="25" fill="#111827"/>
+      <rect x="56" y="56" width="17" height="17" fill="#111827"/>
+      <g transform="translate(168 32)" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 22 V0 H22"/>
+        <path d="M62 22 V0 H40"/>
+        <path d="M0 44 V66 H22"/>
+        <path d="M62 44 V66 H40"/>
+        <path d="M24 33 H38"/>
       </g>
-      <text x="205" y="49" font-size="27" font-weight="900">Scan</text>
-      <text x="205" y="83" font-size="21" font-weight="700">Paper / code</text>
+      <text x="258" y="48" font-size="31" font-weight="900" fill="#ffffff">Scan</text>
+      <text x="258" y="86" font-size="22" font-weight="700" fill="#ffffff" opacity="0.80">Paper / code / project</text>
     </g>
   </g>
+
   <g font-family="Inter, Arial, sans-serif" fill="#111827">
-    <text x="990" y="88" font-size="21" font-weight="800" fill="#003e74">Evidence</text>
-    <rect x="990" y="112" width="135" height="10" rx="5" fill="#d1d5db"/>
-    <rect x="990" y="134" width="110" height="10" rx="5" fill="#d1d5db"/>
-    <text x="990" y="216" font-size="21" font-weight="800" fill="#003e74">Result</text>
-    <rect x="990" y="242" width="158" height="120" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
-    <text x="1032" y="308" font-size="15" fill="#6b7280">Panel</text>
+    <text x="1346" y="88" font-size="23" font-weight="800" fill="#003e74">Evidence</text>
+    <rect x="1346" y="116" width="176" height="10" rx="5" fill="#d1d5db"/>
+    <rect x="1346" y="140" width="138" height="10" rx="5" fill="#d1d5db"/>
+    <text x="1346" y="228" font-size="23" font-weight="800" fill="#003e74">Result</text>
+    <rect x="1346" y="256" width="250" height="132" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+    <text x="1434" y="328" font-size="16" fill="#6b7280">Panel</text>
+    <g transform="translate(1346 704)">
+      <circle cx="34" cy="34" r="30" fill="#111827"/>
+      <rect x="80" y="14" width="128" height="15" rx="7" fill="#111827"/>
+      <rect x="80" y="42" width="92" height="11" rx="5" fill="#111827"/>
+      <text x="80" y="74" font-size="15" fill="#6b7280">Venue logo</text>
+    </g>
   </g>
 </svg>

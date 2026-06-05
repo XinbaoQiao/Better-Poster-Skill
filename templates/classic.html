@@ -3,11 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Better Poster HTML Template</title>
+<title>Better Poster Skill Style1 HTML Template</title>
 <style>
-@page { size: A0 landscape; margin: 0; }
-:root { --ink:#111827; --muted:#6b7280; --line:#d1d5db; --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+@page { size: 1682mm 841mm; margin: 0; }
+:root {
+  --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+  --institution-primary:#00529b; --institution-secondary:#ef7c00;
+  --main:var(--institution-primary); --main-fg:#fff; --accent:var(--institution-primary); --title:var(--institution-primary);
+  --claim-1:#ffffff; --claim-2:#b8c0ca; --claim-3:#747e8c;
+}
 .theme-imperial { --main:#003e74; --main-fg:#fff; --accent:#003e74; }
+.theme-institution { --main:var(--institution-primary); --main-fg:#fff; --accent:var(--institution-primary); --title:var(--institution-primary); }
 .theme-empirical { --main:#004d40; --main-fg:#fff; --accent:#004d40; }
 .theme-theory { --main:#1a237e; --main-fg:#fff; --accent:#1a237e; }
 .theme-methods { --main:#7f1d1d; --main-fg:#fff; --accent:#7f1d1d; }
@@ -15,61 +21,87 @@
 .theme-amber { --main:#f4b400; --main-fg:#111827; --accent:#946200; }
 * { box-sizing: border-box; }
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
-.poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
-.side { padding:27mm 24mm; font-size:10.2mm; line-height:1.24; display:flex; flex-direction:column; overflow:hidden; }
-.main { padding:70mm 64mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; overflow:hidden; }
-h1 { margin:0 0 7mm; font-size:clamp(18mm, 2.1vw, 25mm); line-height:1.04; font-weight:900; max-width:100%; }
-.authors, .affiliation, .contact { color:var(--muted); font-size:9.5mm; line-height:1.24; }
-h2 { margin:16mm 0 5mm; color:var(--accent); font-size:14mm; line-height:1.08; font-weight:900; }
+.poster { width:1682mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:23% 54% 23%; overflow:hidden; background:#fff; }
+.side { padding:27mm 23mm; font-size:12.4mm; line-height:1.22; display:flex; flex-direction:column; overflow:hidden; }
+.main { padding:70mm 56mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; overflow:hidden; }
+h1 { margin:0 0 7mm; color:var(--title); font-size:clamp(21mm, 2.4vw, 30mm); line-height:1.04; font-weight:900; max-width:100%; }
+.authors, .affiliation, .contact { color:var(--muted); font-size:11mm; line-height:1.22; }
+h2 { margin:16mm 0 5mm; color:var(--accent); font-size:15.4mm; line-height:1.08; font-weight:900; }
 p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; }
 .figure { height:86mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
-.claim { margin:auto 0; font-size:clamp(38mm, 4.25vw, 49mm); line-height:1.16; font-weight:900; letter-spacing:-0.035em; overflow-wrap:normal; }
-.scan { width:72%; margin:auto auto 0; display:grid; grid-template-columns:126mm 42mm 1fr; gap:16mm; align-items:center; padding-top:20mm; }
+.claim { margin:auto 0; font-family:Inter, Arial, sans-serif; font-size:76mm; line-height:86mm; font-weight:900; letter-spacing:0; overflow-wrap:normal; color:var(--claim-1); }
+.claim-group { display:block; }
+.claim-primary { color:var(--claim-1); }
+.claim-middle { color:var(--claim-2); }
+.claim-lower { color:var(--claim-3); }
+.claim-line { display:block; white-space:nowrap; }
+.scan { width:90%; margin:auto 0 0; padding-top:24mm; }
+.scan-list { display:grid; gap:10mm; }
+.scan-item { display:grid; grid-template-columns:126mm 74mm minmax(150mm,1fr); gap:14mm; align-items:center; }
 .qr { width:126mm; height:126mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
-.phone-icon { width:42mm; height:42mm; object-fit:contain; }
-.scan-caption { font-size:12mm; line-height:1.15; font-weight:800; }
+.scan-icon { width:74mm; height:74mm; display:flex; align-items:center; justify-content:center; }
+.scan-icon img { width:74mm; height:74mm; object-fit:contain; }
+.scan-copy { display:flex; align-items:center; min-height:48mm; }
+.scan-caption { font-size:15mm; line-height:1.18; font-weight:900; }
+.scan-caption strong { font-size:25mm; line-height:1.04; }
 .metric { display:inline-block; width:46%; vertical-align:top; margin:8mm 2% 0 0; }
 .metric strong { display:block; color:var(--accent); font-size:17mm; line-height:1; }
-.institution-brand { display:none; margin-top:auto; padding-top:14mm; text-align:center; }
-.institution-brand[data-has-logo="true"] { display:block; }
-.institution-brand img { display:block; max-width:62%; max-height:72mm; object-fit:contain; margin:0 auto 7mm; }
-.institution-name { color:var(--ink); font-size:10.5mm; line-height:1.16; font-weight:900; margin-bottom:5mm; }
-@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
+.institution-brand, .conference-brand { display:none; margin-top:auto; padding-top:14mm; text-align:left; gap:8mm; align-items:flex-end; flex-wrap:wrap; }
+.institution-brand[data-has-logo="true"], .conference-brand[data-has-logo="true"] { display:flex; }
+.institution-brand img, .conference-brand img { display:none; width:auto; height:74mm; max-width:none; max-height:none; object-fit:contain; margin:0; flex:0 0 auto; }
+.institution-brand img[data-loaded="true"], .conference-brand img[data-loaded="true"] { display:block; }
+.institution-name { display:none; }
+.theory-card { background:#f7f9fc; padding:5mm; margin:0 0 5mm; }
+.theory-card strong { display:block; color:#111827; font-size:13.8mm; line-height:1.12; margin-bottom:2mm; font-weight:900; }
+.theory-card strong::before { content:"\2022"; display:inline-block; width:auto; height:auto; margin-right:.34em; color:var(--muted); background:transparent; vertical-align:.02em; }
+.theory-card.proposition strong { color:#111827; font-size:12.6mm; font-weight:800; }
+.theory-card.proposition strong::before { color:var(--muted); background:transparent; }
+.formula { font-weight:800; color:#111827; }
+@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.24); margin-bottom:-640mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
 </head>
 <body>
-<main class="poster theme-imperial" aria-label="Better Poster">
+<main class="poster theme-institution" aria-label="Better Poster Skill style1">
   <aside class="side">
     <h1>Paper title or short research object</h1>
     <p class="authors">First Author, Second Author, Senior Author</p>
     <p class="affiliation">Department, University or Institute</p>
 
-    <h2>Problem</h2>
-    <ul>
-      <li>State the problem in one sentence.</li>
-      <li>Name the gap or failure mode.</li>
-      <li>Say who should care about the result.</li>
-    </ul>
-
-    <h2>Approach</h2>
-    <div class="figure">Replace with a clean method or study-design diagram.</div>
-
-    <h2>Takeaway</h2>
-    <p>One short sentence connects the method back to the central claim.</p>
+    <h2>Theory Claims</h2>
+    <div class="theory-card proposition"><strong>Proposition: baseline law</strong><span class="formula">Replace with the key equation.</span></div>
+    <div class="theory-card"><strong>Theorem: main guarantee</strong><span class="formula">State the primary bound or convergence result.</span></div>
+    <div class="theory-card proposition"><strong>Proposition: mechanism</strong><span class="formula">Add the supporting proposition or corollary.</span></div>
 
     <div class="institution-brand" data-has-logo="false">
-      <img src="../assets/institutions/current-logo.png" alt="Institution logo" onload="this.parentElement.dataset.hasLogo='true'" onerror="this.parentElement.dataset.hasLogo='false'">
-      <div class="institution-name">University or Institute Name</div>
-      <p class="contact">Contact: author@example.com</p>
+      <img src="../assets/institutions/current-logo.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/institutions/current-logo-2.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/institutions/current-logo-3.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
     </div>
   </aside>
 
   <section class="main">
-    <div class="claim"><strong>Main finding</strong> goes here,<br>translated into <strong>plain English</strong>.<br><strong>Emphasize</strong> the important words.</div>
+    <div class="claim">
+      <span class="claim-group claim-primary">
+        <span class="claim-line">Conclusion first.</span>
+        <span class="claim-line">Mechanism visible.</span>
+      </span>
+      <span class="claim-group claim-middle">
+        <span class="claim-line">Evidence path clear.</span>
+      </span>
+      <span class="claim-group claim-lower">
+        <span class="claim-line">Details stay scannable.</span>
+      </span>
+    </div>
     <div class="scan">
-      <div class="qr">QR</div>
-      <img class="phone-icon" src="../assets/icons/smartphone-white.svg" alt="Smartphone icon">
-      <div class="scan-caption"><strong>Take a picture</strong><br>to download the full paper, code, or project page.</div>
+      <div class="scan-list">
+        <div class="scan-item">
+          <div class="qr">QR</div>
+          <div class="scan-icon"><img src="../assets/icons/scan-qr-code-white.svg" alt="Scan icon"></div>
+          <div class="scan-copy">
+            <div class="scan-caption"><strong>Scan</strong><br>for the full paper, code, or project page.<br><br><span class="contact">Contact: author@example.com</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -92,6 +124,12 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; 
 
     <h2>More Detail</h2>
     <p>Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.</p>
+
+    <div class="conference-brand" data-has-logo="false">
+      <img src="../assets/logos/conference-logo-1.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/logos/conference-logo-2.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/logos/conference-logo-3.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+    </div>
   </aside>
 </main>
 </body>

@@ -5,8 +5,9 @@
 \ProvidesClass{betterposter}[2026/06/03 Better Poster Skill class]
 
 \LoadClass{article}
+\RequirePackage{fix-cm}
 \RequirePackage{geometry}
-\geometry{a0paper,landscape,margin=0in}
+\geometry{paperwidth=1682mm,paperheight=841mm,margin=0in}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{graphicx}
@@ -16,11 +17,21 @@
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{ifthen}
 \RequirePackage[hidelinks]{hyperref}
-\IfFileExists{lato.sty}{\RequirePackage[default]{lato}}{\RequirePackage{lmodern}}
+\IfFileExists{inter.sty}{%
+  \RequirePackage[sfdefault]{inter}%
+}{%
+  \IfFileExists{tgheros.sty}{%
+    \RequirePackage[scale=0.96]{tgheros}%
+  }{%
+    \IfFileExists{lato.sty}{\RequirePackage[default]{lato}}{\RequirePackage{lmodern}}%
+  }%
+}
 
 \renewcommand{\familydefault}{\sfdefault}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\maxdepth}{0pt}
 \setlist[itemize]{nosep,leftmargin=1.1em}
 \setlist[enumerate]{nosep,leftmargin=1.15em}
 \setlength{\fboxsep}{0pt}
@@ -35,12 +46,23 @@
 \definecolor{aurora}{RGB}{4,78,99}
 \definecolor{sidebarcool}{RGB}{247,249,252}
 \definecolor{mutedgray}{RGB}{105,111,119}
+\definecolor{claimtiermiddle}{RGB}{184,192,202}
+\definecolor{claimtierlower}{RGB}{116,126,140}
+\definecolor{institutiondefaultprimary}{RGB}{0,82,155}
+\definecolor{institutiondefaultsecondary}{RGB}{239,124,0}
 
 \newcommand{\columnbackgroundcolor}{white}
 \newcommand{\columnfontcolor}{black}
 \newcommand{\maincolumnbackgroundcolor}{imperialblue}
 \newcommand{\maincolumnfontcolor}{white}
 \newcommand{\posteraccentcolor}{imperialblue}
+\newcommand{\postersecondarycolor}{imperialblue}
+\newcommand{\postertitlecolor}{black}
+\newcommand{\institutionpalette}[2]{%
+  \renewcommand{\posteraccentcolor}{#1}%
+  \renewcommand{\postersecondarycolor}{#2}%
+  \renewcommand{\postertitlecolor}{#1}%
+}
 
 \newlength{\leftbarwidth}
 \newlength{\rightbarwidth}
@@ -51,16 +73,24 @@
 \newlength{\postercenterwidth}
 \newlength{\posterpanelinnerwidth}
 \newlength{\posterpanelinnerheight}
+\newlength{\posterheight}
+\newlength{\institutionlogosize}
+\newlength{\scaniconsize}
+\newlength{\posterclaimleading}
+\newsavebox{\posterclaimbox}
 
-\setlength{\leftbarwidth}{0.20\paperwidth}
-\setlength{\rightbarwidth}{0.20\paperwidth}
+\setlength{\leftbarwidth}{0.23\paperwidth}
+\setlength{\rightbarwidth}{0.23\paperwidth}
 \setlength{\columnmarginvertical}{0.025\paperheight}
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
-\setlength{\maincolumnmarginhorizontal}{0.070\paperheight}
+\setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
+\setlength{\institutionlogosize}{0.088\paperheight}
+\setlength{\scaniconsize}{0.078\paperheight}
+\setlength{\posterclaimleading}{244pt}
 
-\newcommand{\fontsizestandard}{\fontsize{32.00}{50.50}\selectfont}
-\newcommand{\fontsizemain}{\fontsize{116.00}{220.00}\selectfont}
+\newcommand{\fontsizestandard}{\fontsize{36.00}{48.00}\selectfont}
+\newcommand{\fontsizemain}{\fontsize{216.00}{244.00}\selectfont}
 \newcommand{\fontsizetitle}{\fontsize{80.00}{120.00}\selectfont}
 \newcommand{\fontsizeauthor}{\fontsize{48.00}{68.00}\selectfont}
 \newcommand{\fontsizesection}{\fontsize{48.00}{68.00}\selectfont}
@@ -69,8 +99,9 @@
 
 \DeclareOption{a2paper}{%
   \geometry{a2paper,landscape,margin=0in}%
-  \renewcommand{\fontsizestandard}{\fontsize{16.00}{25.00}\selectfont}%
-  \renewcommand{\fontsizemain}{\fontsize{58.00}{110.00}\selectfont}%
+  \renewcommand{\fontsizestandard}{\fontsize{18.00}{24.00}\selectfont}%
+  \renewcommand{\fontsizemain}{\fontsize{108.00}{122.00}\selectfont}%
+  \setlength{\posterclaimleading}{122pt}%
   \renewcommand{\fontsizetitle}{\fontsize{40.00}{50.00}\selectfont}%
   \renewcommand{\fontsizeauthor}{\fontsize{24.00}{34.00}\selectfont}%
   \renewcommand{\fontsizesection}{\fontsize{24.00}{34.00}\selectfont}%
@@ -79,15 +110,16 @@
 }
 \DeclareOption{a1paper}{%
   \geometry{a1paper,landscape,margin=0in}%
-  \renewcommand{\fontsizestandard}{\fontsize{22.63}{35.36}\selectfont}%
-  \renewcommand{\fontsizemain}{\fontsize{82.02}{155.56}\selectfont}%
+  \renewcommand{\fontsizestandard}{\fontsize{25.46}{33.94}\selectfont}%
+  \renewcommand{\fontsizemain}{\fontsize{152.74}{172.53}\selectfont}%
+  \setlength{\posterclaimleading}{172.53pt}%
   \renewcommand{\fontsizetitle}{\fontsize{56.57}{70.71}\selectfont}%
   \renewcommand{\fontsizeauthor}{\fontsize{33.94}{48.08}\selectfont}%
   \renewcommand{\fontsizesection}{\fontsize{33.94}{48.08}\selectfont}%
   \renewcommand{\fontsizecaption}{\fontsize{16.97}{24.04}\selectfont}%
   \renewcommand{\fontsizesmall}{\fontsize{15.56}{21.21}\selectfont}%
 }
-\DeclareOption{a0paper}{\geometry{a0paper,landscape,margin=0in}}
+\DeclareOption{a0paper}{\geometry{paperwidth=1682mm,paperheight=841mm,margin=0in}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
@@ -111,10 +143,11 @@
 
 \newcommand{\betterposter}[3]{%
   \noindent%
-  \posterpanel{\textheight}{\leftbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#2}%
+  \setlength{\posterheight}{\dimexpr\textheight-1pt\relax}%
+  \posterpanel{\posterheight}{\leftbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#2}%
   \setlength{\postercenterwidth}{\dimexpr\textwidth-\leftbarwidth-\rightbarwidth\relax}%
-  \posterpanel{\textheight}{\postercenterwidth}{\maincolumnbackgroundcolor}{\maincolumnfontcolor}{\maincolumnmarginvertical}{\maincolumnmarginhorizontal}{#1}%
-  \posterpanel{\textheight}{\rightbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#3}%
+  \posterpanel{\posterheight}{\postercenterwidth}{\maincolumnbackgroundcolor}{\maincolumnfontcolor}{\maincolumnmarginvertical}{\maincolumnmarginhorizontal}{#1}%
+  \posterpanel{\posterheight}{\rightbarwidth}{\columnbackgroundcolor}{\columnfontcolor}{\columnmarginvertical}{\columnmarginhorizontal}{#3}%
 }
 
 \newcommand{\maincolumn}[2]{%
@@ -122,9 +155,47 @@
     \RaggedRight\fontsizemain\bfseries #1\vspace{1em}%
   }%
   \vfill%
-  \begin{minipage}[t][0.25\textheight][b]{\linewidth}%
+  \begin{minipage}[t][0.30\textheight][c]{\linewidth}%
     #2%
   \end{minipage}%
+}
+\newcommand{\posterclaimline}[2]{%
+  \begingroup%
+  \color{#1}%
+  \sbox{\posterclaimbox}{\mbox{#2}}%
+  \noindent\makebox[\linewidth][l]{%
+    \vbox to \posterclaimleading{%
+      \vfil%
+      \hbox to \linewidth{%
+        \ifdim\wd\posterclaimbox>\linewidth%
+          \resizebox{\linewidth}{!}{\usebox{\posterclaimbox}}%
+        \else%
+          \usebox{\posterclaimbox}%
+        \fi%
+        \hfil%
+      }%
+      \vfil%
+    }%
+  }%
+  \par\nointerlineskip%
+  \endgroup%
+}
+\newcommand{\posterclaim}[3]{%
+  \begingroup%
+  \RaggedRight\fontsizemain\bfseries\offinterlineskip%
+  \posterclaimline{white}{#1}%
+  \posterclaimline{claimtiermiddle}{#2}%
+  \posterclaimline{claimtierlower}{#3}%
+  \endgroup%
+}
+\newcommand{\posterclaimblock}[1]{%
+  \begingroup%
+  \RaggedRight\fontsizemain\bfseries\color{white}%
+  \setlength{\baselineskip}{\posterclaimleading}%
+  \hyphenpenalty=10000%
+  \exhyphenpenalty=10000%
+  #1\par%
+  \endgroup%
 }
 
 \newcommand{\qrplaceholder}{%
@@ -132,38 +203,77 @@
   \begin{minipage}[c][0.88\linewidth][c]{0.88\linewidth}\centering\color{black}\bfseries QR\end{minipage}}\endgroup%
 }
 \newcommand{\includeqr}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}{\qrplaceholder}}
-\newcommand{\phoneiconline}{%
+\newcommand{\scaniconfallback}{%
   \begingroup%
   \setlength{\unitlength}{1pt}%
-  \begin{picture}(34,56)%
-    \linethickness{2pt}%
-    \put(7,3){\line(1,0){20}}\put(7,53){\line(1,0){20}}%
-    \put(7,3){\line(0,1){50}}\put(27,3){\line(0,1){50}}%
-    \put(14,10){\line(1,0){6}}%
+  \begin{picture}(76,76)%
+    \linethickness{5.0pt}%
+    \put(4,52){\line(0,1){20}}\put(4,72){\line(1,0){20}}%
+    \put(52,72){\line(1,0){20}}\put(72,52){\line(0,1){20}}%
+    \put(4,4){\line(0,1){20}}\put(4,4){\line(1,0){20}}%
+    \put(52,4){\line(1,0){20}}\put(72,4){\line(0,1){20}}%
+    \linethickness{3.5pt}%
+    \put(24,38){\line(1,0){28}}%
   \end{picture}%
   \endgroup%
 }
-\newcommand{\phoneicon}[1]{\IfFileExists{#1}{\includegraphics[height=0.85\linewidth]{#1}}{\phoneiconline}}
+\newcommand{\scanicon}[1]{\IfFileExists{#1}{\includegraphics[height=\scaniconsize,keepaspectratio]{#1}}{\scaniconfallback}}
+\newcommand{\scaniconordefault}[1]{%
+  \ifthenelse{\equal{#1}{}}{\scaniconfallback}{\scanicon{#1}}%
+}
+\newcommand{\scaniconinline}[1]{%
+  \IfFileExists{#1}{%
+    \includegraphics[height=0.85\linewidth,keepaspectratio]{#1}%
+  }{%
+    \resizebox{0.85\linewidth}{!}{\scaniconfallback}%
+  }%
+}
+\newcommand{\scantext}[2]{%
+  \ifthenelse{\equal{#1}{}}{%
+    \begin{minipage}[c]{\linewidth}#2\end{minipage}%
+  }{%
+    \begin{minipage}[c]{0.18\linewidth}\centering\scaniconinline{#1}\end{minipage}\hfill%
+    \begin{minipage}[c]{0.76\linewidth}#2\end{minipage}%
+  }%
+}
 \newcommand{\qrcode}[3]{%
-  \begin{minipage}[c]{0.30\linewidth}%
-    \includeqr{#1}{\linewidth}%
-  \end{minipage}%
-  \begin{minipage}[c]{0.12\linewidth}%
-    \hfill\phoneicon{#2}%
-  \end{minipage}%
-  \begin{minipage}[c]{0.50\linewidth}%
-    #3%
+  \noindent%
+  \begin{minipage}[c]{0.94\linewidth}%
+    \begin{minipage}[c]{0.27\linewidth}%
+      \includeqr{#1}{\linewidth}%
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{0.14\linewidth}\centering%
+      \scaniconordefault{#2}%
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{0.51\linewidth}%
+      \scantext{}{#3}%
+    \end{minipage}%
   \end{minipage}%
 }
 \newcommand{\compactqrcode}[2]{%
-  \begin{minipage}[t]{0.30\linewidth}%
-    \includeqr{#1}{\linewidth}\par #2%
+  \noindent%
+  \begin{minipage}[c]{0.94\linewidth}%
+    \begin{minipage}[c]{0.27\linewidth}%
+      \includeqr{#1}{\linewidth}%
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{0.14\linewidth}\centering%
+      \scaniconordefault{}%
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{0.51\linewidth}%
+      #2%
+    \end{minipage}%
   \end{minipage}%
 }
 \newcommand{\inlineqrcode}[2]{%
-  \begin{minipage}[c]{0.20\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill%
-  \begin{minipage}[c]{0.10\linewidth}\centering\phoneiconline\end{minipage}\hfill%
-  \begin{minipage}[c]{0.58\linewidth}#2\end{minipage}%
+  \inlineqrcodewithicon{#1}{}{#2}%
+}
+\newcommand{\inlineqrcodewithicon}[3]{%
+  \noindent%
+  \begin{minipage}[c]{0.66\linewidth}%
+    \begin{minipage}[c]{0.24\linewidth}\centering\includeqr{#1}{\linewidth}\end{minipage}\hfill%
+    \begin{minipage}[c]{0.13\linewidth}\centering\scaniconordefault{#2}\end{minipage}\hfill%
+    \begin{minipage}[c]{0.55\linewidth}#3\end{minipage}%
+  \end{minipage}%
 }
 \newcommand{\postergraphic}[3][]{%
   \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
@@ -174,12 +284,77 @@
 }
 \newcommand{\institutionbrand}[3]{%
   \IfFileExists{#1}{%
-    \begin{center}%
-      \includegraphics[width=#3,height=0.085\paperheight,keepaspectratio]{#1}%
+    \noindent\includegraphics[width=#3,height=0.120\paperheight,keepaspectratio]{#1}%
+    \ifthenelse{\equal{#2}{}}{}{%
       \par\vspace{0.35em}{\fontsizesmall\bfseries #2\par}%
-    \end{center}%
+    }%
   }{}%
 }
+\newcommand{\posterlogospaced}[2]{%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \IfFileExists{#1}{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=\dimexpr#2\relax,keepaspectratio]{#1}}\hspace{0.028\linewidth}\allowbreak}{}%
+  }%
+}
+\newcommand{\posterlogorow}[3]{%
+  \noindent%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \IfFileExists{#1}{\raisebox{0pt}[\dimexpr#3\relax][0pt]{\includegraphics[height=\dimexpr#3\relax,keepaspectratio]{#1}}}{}%
+  }%
+  \ifthenelse{\equal{#2}{}}{}{%
+    \ifthenelse{\equal{#1}{}}{}{\hspace{0.055\linewidth}}%
+    \IfFileExists{#2}{\raisebox{0pt}[\dimexpr#3\relax][0pt]{\includegraphics[height=\dimexpr#3\relax,keepaspectratio]{#2}}}{}%
+  }%
+}
+\newcommand{\posterlogo}[2]{%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \IfFileExists{#1}{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=\dimexpr#2\relax,keepaspectratio]{#1}}\hspace{0.030\linewidth}\allowbreak}{}%
+  }%
+}
+\newcommand{\posterlogoslot}[3]{%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \IfFileExists{#1}{%
+      \makebox[#3][l]{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=\dimexpr#2\relax,keepaspectratio]{#1}}}%
+      \allowbreak%
+    }{}%
+  }%
+}
+\newcommand{\posterboundedlogo}[3]{%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \IfFileExists{#1}{%
+      \makebox[#3][l]{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=#2,width=#3,keepaspectratio]{#1}}}%
+      \allowbreak%
+    }{}%
+  }%
+}
+\newcommand{\posterlogostrip}[1]{%
+  \noindent\RaggedRight #1\par%
+}
+\newcommand{\institutionlogorow}[3]{\posterlogorow{#1}{#2}{#3}}
+\newcommand{\institutionlogo}[2]{\posterlogospaced{#1}{#2}}
+\newcommand{\institutionlogostrip}[1]{\posterlogostrip{#1}}
+\newcommand{\conferencelogo}[2]{\posterlogospaced{#1}{#2}}
+\newcommand{\conferencelogostrip}[1]{\posterlogostrip{#1}}
+\newcommand{\posterstatementcard}[5]{%
+  \begingroup\setlength{\fboxsep}{0.42em}%
+  \colorbox{sidebarcool}{%
+    \begin{minipage}{0.94\linewidth}%
+      {\fontsize{#1}{#2}\selectfont #3
+        \textcolor{mutedgray}{{\fontsize{30}{30}\selectfont\textbullet}}\hspace{0.30em}%
+        \textcolor{black}{#4}\par}%
+      \vspace{0.14em}{\fontsize{35}{45}\selectfont\color{black}#5\par}%
+    \end{minipage}}%
+  \endgroup\par\vspace{0.45em}%
+}
+\newcommand{\propositioncard}[2]{%
+  \posterstatementcard{34}{43}{\bfseries}{#1}{#2}%
+}
+\newcommand{\theoremcard}[2]{%
+  \posterstatementcard{38}{47}{\bfseries}{#1}{#2}%
+}
+\newcommand{\corollarycard}[2]{%
+  \posterstatementcard{36}{45}{\bfseries}{#1}{#2}%
+}
+\newcommand{\theorycard}[2]{\theoremcard{#1}{#2}}
 \newcommand{\metric}[2]{%
   \begin{minipage}[t]{0.46\linewidth}%
     {\fontsize{46}{54}\selectfont\bfseries\color{\posteraccentcolor}#1\par}%
@@ -189,7 +364,9 @@
 \newcommand{\evidencecard}[2]{%
   \begingroup\setlength{\fboxsep}{0.45em}%
   \colorbox{sidebarcool}{\begin{minipage}[t]{0.42\linewidth}%
-    {\fontsize{34}{42}\selectfont\bfseries\color{black}#1\par}%
+      {\fontsize{37}{46}\selectfont\bfseries
+      \textcolor{\postersecondarycolor}{\rule{0.52em}{0.52em}}\hspace{0.28em}%
+      \textcolor{\posteraccentcolor}{#1}\par}%
     {\fontsizesmall\color{black}#2\par}%
   \end{minipage}}\endgroup%
 }
@@ -199,8 +376,8 @@
   \par\vspace{0.025\paperheight}{\fontsize{26}{34}\selectfont\bfseries #2\par}%
   \end{center}%
 }
-\renewcommand{\section}[1]{\vspace{2em}{\fontsizesection\bfseries\leavevmode #1}\par\vspace{0.5em}}
-\renewcommand{\title}[1]{{\fontsizetitle\bfseries\leavevmode #1}\par}
-\renewcommand{\author}[1]{{\color{gray}\fontsizeauthor #1}\par\vspace{-1.0em}}
-\newcommand{\institution}[1]{\vspace{-1.0em}{\color{gray}#1}\par\vspace{-1.0em}}
+\renewcommand{\section}[1]{\vspace{2em}{\color{\posteraccentcolor}\fontsizesection\bfseries\leavevmode #1}\par\vspace{0.5em}}
+\renewcommand{\title}[1]{{\color{\postertitlecolor}\fontsizetitle\bfseries\leavevmode #1}\par\vspace{0.18em}}
+\renewcommand{\author}[1]{{\color{mutedgray}\fontsizeauthor #1}\par\vspace{0.18em}}
+\newcommand{\institution}[1]{{\color{mutedgray}#1}\par\vspace{0.45em}}
 \newcommand{\posterfootnote}[1]{{\color{mutedgray}\fontsizecaption #1}}

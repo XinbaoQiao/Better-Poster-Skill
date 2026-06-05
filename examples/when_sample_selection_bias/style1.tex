@@ -1,0 +1,153 @@
+\documentclass[a0paper,fleqn]{betterposter}
+
+\definecolor{institutionprimary}{RGB}{0,82,155}
+\definecolor{institutionsecondary}{RGB}{239,124,0}
+\institutionpalette{institutionprimary}{institutionsecondary}
+\renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
+\renewcommand{\maincolumnfontcolor}{white}
+\renewcommand{\columnbackgroundcolor}{white}
+\renewcommand{\columnfontcolor}{black}
+\renewcommand{\fontsizetitle}{\fontsize{68}{76}\selectfont}
+\renewcommand{\fontsizeauthor}{\fontsize{31}{39}\selectfont}
+\renewcommand{\fontsizestandard}{\fontsize{37}{49}\selectfont}
+\renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
+\renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
+\renewcommand{\fontsizecaption}{\fontsize{26}{34}\selectfont}
+
+\setlength{\leftbarwidth}{0.23\paperwidth}
+\setlength{\rightbarwidth}{0.23\paperwidth}
+\setlength{\columnmarginvertical}{0.028\paperheight}
+\setlength{\columnmarginhorizontal}{0.024\paperheight}
+\setlength{\maincolumnmarginvertical}{0.068\paperheight}
+\setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
+\newcommand{\PosterTitle}{When Sample Selection Bias Precipitates Model Collapse}
+\newcommand{\PosterAuthors}{Xinbao Qiao, Xianglong Du, Wei Liu, Jingqi Zhang, Peihua Mai, Meng Zhang, Yan Pang}
+\newcommand{\PosterAffiliation}{NUS (Chongqing) Research Institute; Zhejiang University; CUHK; Changan Automobile; NUS}
+\newcommand{\PaperQRCode}{figures/qr/01-openreview.png}
+\newcommand{\ScanIcon}{../../assets/icons/scan-qr-code-white.png}
+\newcommand{\InstitutionLogoOne}{figures/institutions/02-national-university-of-singapore.png}
+\newcommand{\InstitutionLogoTwo}{figures/institutions/01-zhejiang-university.png}
+\newcommand{\InstitutionLogoThree}{figures/institutions/03-chinese-university-of-hong-kong.png}
+\newcommand{\ConferenceLogoOne}{../../assets/logos/ICML-logo-pdflatex.pdf}
+\newcommand{\ConferenceLogoTwo}{}
+\newcommand{\ConferenceLogoThree}{}
+\newcommand{\InstitutionName}{}
+\newcommand{\ContactEmail}{xinbaoqiao@cuhk.edu.hk}
+
+\begin{document}
+\betterposter{
+  \maincolumn{
+    \posterclaimblock{%
+      {\color{white}Bias prunes tails.\\
+      Silos collapse faster.}\\
+      {\color{claimtiermiddle}Wasserstein proxies\\
+      restore tail coverage.}\\
+      {\color{claimtierlower}No raw data sharing.}%
+    }
+  }{
+    \qrcode{\PaperQRCode}{\ScanIcon}{%
+      {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
+      {\fontsize{46}{58}\selectfont\bfseries OpenReview paper\\and supplement.}\\[0.34em]
+      {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
+    }
+  }
+}{
+  {\fontsize{66}{74}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
+  \vspace{0.22em}
+  {\fontsize{25}{32}\selectfont\color{mutedgray}\PosterAuthors\par}
+  \vspace{0.20em}
+  {\fontsize{24}{31}\selectfont\color{mutedgray}\PosterAffiliation\par}
+
+  \section{Theory Claims}
+  \propositioncard{Proposition 1: Replace paradigm}{%
+    Under the \textit{Replace} paradigm, as $t\to\infty$,
+    \[
+      \boldsymbol{\Sigma}_{t}\xrightarrow{a.s.}\mathbf{0},
+      \qquad
+      \mathbb{E}\!\left[\mathbb{W}_{2}^{2}(\mathcal{N}_{t},\mathcal{N}_{0})\right]\to\infty.
+    \]}
+
+  \propositioncard{Proposition 2: Accumulate paradigm}{%
+    Under unbiased accumulation,
+    \[
+      \mathbb{E}[(\bar{\boldsymbol{\mu}}_{t}-\bar{\boldsymbol{\mu}}_{0})^{2}]
+      \to (1-\alpha_{n})\bar{\boldsymbol{\Sigma}}_{0},
+      \quad
+      \mathbb{E}[\bar{\boldsymbol{\Sigma}}_{t}]
+      \to \alpha_{n}\bar{\boldsymbol{\Sigma}}_{0}.
+    \]
+    Thus $\mathbb{E}[\mathbb{W}_{2}^{2}]
+    \to 2(1-\sqrt{\alpha_{n}})\operatorname{Tr}(\bar{\boldsymbol{\Sigma}}_{0})$.}
+
+  \theoremcard{Theorem 1: Selection bias precipitates collapse}{%
+    With top-$\alpha$ selection toward a local ideal $\mathbf{u}^{*}$,
+    \[
+      \|\bar{\boldsymbol{\mu}}_{t}-\mathbf{u}^{*}\|^{2}\!\to 0,
+      \qquad
+      \bar{\boldsymbol{\Sigma}}_{t}\!\to \mathbf{0}.
+    \]
+    Local fidelity can erase global diversity.}
+
+  \theoremcard{Theorem 2: Collapse has an explicit rate}{%
+    If the trajectory remains in the local basin,
+    \[
+      {\rm Tr}(\bar{\boldsymbol{\Sigma}}_{t})
+      = \mathcal{O}_{a.s.}(t^{-\psi}).
+    \]
+    The tail erosion follows a power-law decay.}
+
+  \theoremcard{Theorem 3: Collapse costs true-manifold risk}{%
+    For filtered distribution $\mathcal{D}_{t}$ and true manifold
+    $\mathcal{D}^{*}$,
+    \[
+      \mathcal{R}_{\mathcal{D}^{*}}(h_{t};g^{*})
+      \le 2\ell\epsilon\,\mathbb{W}_{p}(\mathcal{D}_{t},\mathcal{D}^{*})
+      +\mathcal{R}_{\mathcal{D}_{t}}(h_{t};g_{t})
+      +\mathcal{O}(\ell\delta).
+    \]}
+
+  \section{Proxy Principle}
+  A collaborative Wasserstein barycenter broadens the verifier:
+  \[
+    \mathcal{Q}^{*}=\arg\min_{\mathcal{Q}}
+    \sum_{k=1}^{K}\lambda_{k}\mathbb{W}_{p}^{p}(\mathcal{Q},\mathcal{Q}_{k}).
+  \]
+  Selection is protective only when this proxy covers the modes the loop
+  must preserve.
+
+  \vfill
+  \institutionlogostrip{%
+    \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
+    \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
+    \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
+  }
+}{
+  \section{Experimental Takeaway}
+  \begin{itemize}
+    \item Airplane-only reference homogenizes CIFAR-10.
+    \item Scheme I improves CIFAR-10 FID: 106 to 71.
+    \item Collaborative proxies keep tail modes visible.
+  \end{itemize}
+
+  \section{Collapse Signal}
+  \begin{center}
+    \postergraphic[width=0.76\textwidth]{figures/class_proportions_trend.png}{Class proportion trend from the paper.}
+  \end{center}
+  One-class verification pulls the sample loop toward Airplane while the other
+  classes become tail modes.
+
+  \section{FID Trend}
+  \begin{center}
+    \postergraphic[width=0.80\textwidth]{figures/fid_trends_combined.png}{FID trends from the paper.}
+  \end{center}
+  On non-IID references, collaborative proxy selection lowers FID relative to
+  random selection and common matching baselines.
+
+  \vfill
+  \conferencelogostrip{%
+    \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoThree}{\institutionlogosize}%
+  }
+}
+\end{document}

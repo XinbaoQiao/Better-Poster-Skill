@@ -1,0 +1,30 @@
+{
+  "default": {
+    "primary": [0, 82, 155],
+    "secondary": [239, 124, 0],
+    "note": "High-contrast blue plus orange fallback for institution-themed posters."
+  },
+  "institutions": {
+    "Zhejiang University": {
+      "aliases": ["ZJU"],
+      "primary": [0, 82, 155],
+      "secondary": [0, 82, 155],
+      "mode": "single",
+      "note": "Use full blue treatment for Zhejiang University unless a co-institution supplies a secondary accent."
+    },
+    "National University of Singapore": {
+      "aliases": ["NUS"],
+      "primary": [0, 61, 124],
+      "secondary": [239, 124, 0],
+      "mode": "dual",
+      "note": "NUS-inspired blue plus orange combination."
+    },
+    "Chinese University of Hong Kong": {
+      "aliases": ["CUHK"],
+      "primary": [117, 15, 109],
+      "secondary": [221, 163, 0],
+      "mode": "dual",
+      "note": "CUHK official purple plus gold combination."
+    }
+  }
+}

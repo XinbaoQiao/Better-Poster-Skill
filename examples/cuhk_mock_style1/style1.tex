@@ -1,0 +1,123 @@
+\documentclass[a0paper,fleqn]{betterposter}
+
+\definecolor{institutionprimary}{RGB}{117,15,109}
+\definecolor{institutionsecondary}{RGB}{221,163,0}
+\institutionpalette{institutionprimary}{institutionsecondary}
+
+\renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
+\renewcommand{\maincolumnfontcolor}{white}
+\renewcommand{\columnbackgroundcolor}{white}
+\renewcommand{\columnfontcolor}{black}
+\renewcommand{\fontsizetitle}{\fontsize{72}{80}\selectfont}
+\renewcommand{\fontsizeauthor}{\fontsize{32}{40}\selectfont}
+\renewcommand{\fontsizestandard}{\fontsize{38}{50}\selectfont}
+\renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
+\renewcommand{\fontsizesection}{\fontsize{51}{64}\selectfont}
+\renewcommand{\fontsizecaption}{\fontsize{26}{34}\selectfont}
+
+\setlength{\leftbarwidth}{0.23\paperwidth}
+\setlength{\rightbarwidth}{0.23\paperwidth}
+\setlength{\columnmarginvertical}{0.028\paperheight}
+\setlength{\columnmarginhorizontal}{0.024\paperheight}
+\setlength{\maincolumnmarginvertical}{0.070\paperheight}
+\setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
+
+\newcommand{\PosterTitle}{CUHK Mock Research Poster}
+\newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
+\newcommand{\PosterAffiliation}{The Chinese University of Hong Kong}
+\newcommand{\MockConclusion}{Conclusion: a locally simple selection rule can preserve rare modes when its proxy covers the population before replacement begins.}
+\newcommand{\PaperQRCode}{figures/qr/01-paper.png}
+\newcommand{\ScanIcon}{../../assets/icons/scan-qr-code-white.png}
+\newcommand{\InstitutionLogoOne}{figures/institutions/01-cuhk.png}
+\newcommand{\InstitutionLogoTwo}{}
+\newcommand{\InstitutionLogoThree}{}
+\newcommand{\ConferenceLogoOne}{../../assets/logos/ICML-logo-pdflatex.pdf}
+\newcommand{\ConferenceLogoTwo}{}
+\newcommand{\ConferenceLogoThree}{}
+\newcommand{\ContactEmail}{contact@example.edu}
+
+\begin{document}
+\betterposter{
+  \maincolumn{
+    \posterclaimblock{%
+      {\color{white}Coverage saves tails.\\
+      Selection remains safe.}\\
+      {\color{claimtiermiddle}Global witnesses\\
+      restore missing modes.}\\
+      {\color{claimtierlower}Before replacement.}%
+    }
+  }{
+    \qrcode{\PaperQRCode}{\ScanIcon}{%
+      {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
+      {\fontsize{46}{58}\selectfont\bfseries Paper, code,\\and project notes.}\\[0.34em]
+      {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
+    }
+  }
+}{
+  {\fontsize{70}{78}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
+  \vspace{0.24em}
+  {\fontsize{27}{34}\selectfont\color{mutedgray}\PosterAuthors\par}
+  \vspace{0.20em}
+  {\fontsize{25}{32}\selectfont\color{mutedgray}\PosterAffiliation\par}
+
+  \section{Theory Claims}
+  \propositioncard{Proposition: proxy coverage controls drift}{%
+    If the verifier proxy covers every relevant mode, the accepted sample
+    distribution remains close to the target:
+    \[
+      W_{2}(\widehat{\mathcal{D}}_{t},\mathcal{D}^{*})
+      \le \epsilon_{\rm proxy}+\epsilon_{\rm sample}.
+    \]}
+
+  \theoremcard{Theorem: collapse is avoided under coverage}{%
+    Under bounded replacement and nonzero mode recall,
+    \[
+      \Pr[m\in{\rm supp}(\widehat{\mathcal{D}}_{t})]
+      \ge 1-\delta,\quad t\le T.
+    \]
+    The conclusion drives the center claim.}
+
+  \propositioncard{Proposition: global witnesses are required}{%
+    A local acceptance rule becomes safe only when every tail region has at
+    least one witness in the proxy set.}
+
+  \theoremcard{Theorem: rank evidence before decoration}{%
+    Keep theorem statements, assumptions, and equations visible; move backup
+    derivations behind the QR link.}
+
+  \section{Extraction Rule}
+  \MockConclusion
+
+  \vfill
+  \institutionlogostrip{%
+    \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
+    \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
+    \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
+  }
+}{
+  \section{Mock Evidence}
+  \begin{itemize}
+    \item Coverage audit flags missing tail modes.
+    \item Replacement budget stays below the risk threshold.
+    \item Proxy update recovers the omitted group.
+  \end{itemize}
+
+  \section{Result Slot}
+  \begin{center}
+    \postergraphic[width=0.92\textwidth]{figures/mock-result-panel.pdf}{Mock result panel}
+  \end{center}
+  Use this slot for the single figure that most directly supports the
+  conclusion, not for a dense paper screenshot.
+
+  \section{Decision Notes}
+  The right column explains why the central claim is credible: strongest
+  evidence first, then one robustness check, then one boundary condition.
+
+  \vfill
+  \conferencelogostrip{%
+    \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoThree}{\institutionlogosize}%
+  }
+}
+\end{document}

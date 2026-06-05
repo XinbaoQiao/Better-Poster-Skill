@@ -20,6 +20,7 @@ assets/institutions/*.jpeg
 assets/institutions/*.webp
 assets/institutions/*.json
 assets/institutions/cache/
+assets/institutions/badges/
 
 # Python
 __pycache__/

@@ -1,20 +1,30 @@
-%%%% MIT-informed "Even Better Poster" template.
-%%%% Uses the same Better Poster class but puts a hero visual and evidence cards in the central field.
+%%%% Better Poster Skill style2 template.
+%%%% Uses the same shared class but puts a hero visual and evidence cards in the central field.
 
 \documentclass[a0paper,fleqn]{betterposter}
 
-\renewcommand{\maincolumnbackgroundcolor}{empirical}
+% Institution palette. Replace both colors with the same RGB triplet for
+% single-color institutions, or use a coordinated secondary accent for
+% dual-color institutions such as NUS blue plus orange.
+\definecolor{institutionprimary}{RGB}{0,82,155}
+\definecolor{institutionsecondary}{RGB}{239,124,0}
+\institutionpalette{institutionprimary}{institutionsecondary}
+
+\renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
 \renewcommand{\maincolumnfontcolor}{white}
-\renewcommand{\posteraccentcolor}{empirical}
 \renewcommand{\fontsizemain}{\fontsize{74}{88}\selectfont}
 
 \newcommand{\PosterClaimTitle}{A claim-first title states exactly what changed}
+\newcommand{\PosterClaimLineOne}{The main result is explicit.}
+\newcommand{\PosterClaimLineTwo}{The mechanism is visible.}
+\newcommand{\PosterClaimLineThree}{The evidence is inspectable.}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliations}{Lab or Department, University or Institute}
 \newcommand{\InstitutionName}{University or Institute Name}
 \newcommand{\HeroSubclaim}{One sentence tells the audience why the result matters and what to inspect first.}
 \newcommand{\HeroFigure}{../figures/hero-teaser.pdf}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
+\newcommand{\ScanIcon}{../assets/icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogo}{../assets/institutions/current-logo.png}
 \newcommand{\ContactLine}{author@example.com}
 
@@ -22,7 +32,10 @@
 \betterposter{
   % CENTER: claim + hero visual + evidence, with QR anchored near the bottom.
   \vfill
-  {\RaggedRight\fontsizemain\bfseries \PosterClaimTitle\par}
+  {\RaggedRight\fontsizemain\bfseries
+    {\color{white}\PosterClaimLineOne}\\[0.08em]
+    {\color{white!68!black}\PosterClaimLineTwo}\\[0.08em]
+    {\color{white!50!black}\PosterClaimLineThree}\par}
   \vspace{0.024\paperheight}
   {\fontsize{30}{38}\selectfont \HeroSubclaim\par}
   \vspace{0.022\paperheight}
@@ -34,7 +47,7 @@
     \evidencecard{Why it is credible}{Name the strongest validation, uncertainty check, or ablation.}
   \end{center}
   \vfill
-  \inlineqrcode{\PaperQRCode}{\textbf{Scan for paper, code, and supplemental figures.}}
+  \inlineqrcodewithicon{\PaperQRCode}{\ScanIcon}{\textbf{Scan for paper, code, and supplemental figures.}}
 }{
   % LEFT: context before the claim.
   \title{\PosterClaimTitle}

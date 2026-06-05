@@ -1,74 +1,97 @@
-%%%% Base Better Poster Skill template.
-%%%% Classic Rafael Bailo / Mike Morrison #betterposter silhouette:
-%%%% two compact sidebars, one saturated central claim billboard, bottom QR block.
+%%%% Better Poster Skill style1 template.
+%%%% Wider theory/evidence sidebars, one narrow saturated central claim billboard, bottom QR row.
 
 \documentclass[a0paper,fleqn]{betterposter}
 
+% Institution palette. For a single-color institution, set primary and
+% secondary to the same color. For a dual-color institution, use a strong
+% secondary accent for theorem markers and selected headings.
+\definecolor{institutionprimary}{RGB}{0,82,155}
+\definecolor{institutionsecondary}{RGB}{239,124,0}
+\institutionpalette{institutionprimary}{institutionsecondary}
+
 % Palette controls. Change the center colour, not the structure.
-\renewcommand{\maincolumnbackgroundcolor}{imperialblue}
+\renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
 \renewcommand{\maincolumnfontcolor}{white}
 \renewcommand{\columnbackgroundcolor}{white}
 \renewcommand{\columnfontcolor}{black}
-\renewcommand{\posteraccentcolor}{imperialblue}
+\renewcommand{\fontsizestandard}{\fontsize{37}{49}\selectfont}
+\renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
+\renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
 
-% Match the classic Better Poster proportions.
-\setlength{\leftbarwidth}{0.20\paperwidth}
-\setlength{\rightbarwidth}{0.20\paperwidth}
+% Slightly wider center field while preserving readable technical sidebars.
+\setlength{\leftbarwidth}{0.23\paperwidth}
+\setlength{\rightbarwidth}{0.23\paperwidth}
 \setlength{\columnmarginvertical}{0.032\paperheight}
 \setlength{\columnmarginhorizontal}{0.026\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
-\setlength{\maincolumnmarginhorizontal}{0.060\paperheight}
+\setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
 
 \newcommand{\PosterTitle}{Paper title or short research object}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliation}{Department, University or Institute}
-\newcommand{\InstitutionName}{University or Institute Name}
-\newcommand{\PosterClaim}{\textbf{Main finding} goes here,\\translated into \textbf{plain English}.}
-\newcommand{\PosterClaimDetail}{\textbf{Emphasize} the important words.}
+\newcommand{\InstitutionName}{}
+\newcommand{\PosterClaimBlock}{%
+  {\color{white}Conclusion first.\\
+  Mechanism visible.}\\
+  {\color{claimtiermiddle}Evidence path clear.}\\
+  {\color{claimtierlower}Details stay scannable.}%
+}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
-\newcommand{\PhoneIcon}{../assets/smartphone-white.png}
-\newcommand{\InstitutionLogo}{../assets/institutions/current-logo.png}
+\newcommand{\ScanIcon}{../assets/icons/scan-qr-code-white.png}
+\newcommand{\InstitutionLogoOne}{../assets/institutions/current-logo.png}
+\newcommand{\InstitutionLogoTwo}{}
+\newcommand{\InstitutionLogoThree}{}
+\newcommand{\ConferenceLogoOne}{}
+\newcommand{\ConferenceLogoTwo}{}
+\newcommand{\ConferenceLogoThree}{}
 \newcommand{\ContactEmail}{author@example.com}
 
 \begin{document}
 \betterposter{
   % MAIN COLUMN: huge billboard claim + centered bottom QR action.
   \maincolumn{
-    \PosterClaim\\[0.25em]
-    \PosterClaimDetail
+    \posterclaimblock{\PosterClaimBlock}
   }{
     \IfFileExists{../figures/qr/qr-snippet.tex}{%
       \input{../figures/qr/qr-snippet.tex}%
     }{%
-      \qrcode{\PaperQRCode}{\PhoneIcon}{%
-        \textbf{Take a picture} to\\download the full paper, code, or project page.%
+      \qrcode{\PaperQRCode}{\ScanIcon}{%
+        {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
+        {\fontsize{46}{58}\selectfont\bfseries Full paper, code,\\or project page.}\\[0.34em]
+        {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
       }%
     }
   }
 }{
-  % LEFT COLUMN: context needed before the claim. Keep it concise.
+  % LEFT COLUMN: theory before the claim. Prefer theorem/proposition/corollary cards.
   \title{\PosterTitle}
   \author{\PosterAuthors}
   \institution{\PosterAffiliation}
 
-  \section{Problem}
-  \begin{itemize}
-    \item State the problem in one sentence.
-    \item Name the gap or failure mode.
-    \item Say who should care about the result.
-  \end{itemize}
+  \section{Theory Claims}
+  \propositioncard{Proposition: name the baseline law}{%
+    State the prior result or baseline mechanism:
+    \[
+      \text{replace with the key equation from the paper.}
+    \]}
 
-  \section{Approach}
-  \begin{center}
-    \postergraphic[width=\textwidth]{../figures/method-diagram.pdf}{Replace with a clean method or study-design diagram.}
-  \end{center}
+  \theoremcard{Theorem: name the main guarantee}{%
+    Put the primary theorem, bound, or convergence statement here:
+    \[
+      \text{left sidebar should be theory-first, not figure-first.}
+    \]}
 
-  \section{Takeaway}
-  One short sentence connects the method back to the central claim.
+  \propositioncard{Proposition: name the mechanism}{%
+    Add the supporting proposition, corollary, or assumption that explains why
+    the theorem holds.}
 
   \vfill
-  \institutionbrand{\InstitutionLogo}{\InstitutionName}{0.62\textwidth}
-  \posterfootnote{Contact: \ContactEmail}
+  \institutionlogostrip{%
+    \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
+    \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
+    \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
+  }
 }{
   % RIGHT COLUMN: supplementary evidence only. Do not rebuild the whole paper.
   \section{Evidence}
@@ -88,5 +111,12 @@
 
   \section{More Detail}
   Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.
+
+  \vfill
+  \conferencelogostrip{%
+    \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoThree}{\institutionlogosize}%
+  }
 }
 \end{document}

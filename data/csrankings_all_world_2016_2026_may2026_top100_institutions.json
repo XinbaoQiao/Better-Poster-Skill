@@ -1,0 +1,1654 @@
+{
+  "source": "Computed from official CSRankings gh-pages data using csrankings.js all/world defaults: non-next-tier venues selected, world region, competition ranking, score rounded to 0.1 before sorting.",
+  "ranking_url": "https://csrankings.org/#/index?all&world",
+  "data_snapshot": "Publication data from DBLP (May 2026) as shown on csrankings.org on 2026-06-05.",
+  "fromyear": 2016,
+  "toyear": 2026,
+  "selection": "all&world default; next-tier venues off",
+  "ranking_data_urls": {
+    "csrankings_js": "https://raw.githubusercontent.com/emeryberger/CSrankings/gh-pages/csrankings.js",
+    "generated_author_info_csv": "https://raw.githubusercontent.com/emeryberger/CSrankings/gh-pages/generated-author-info.csv",
+    "institutions_csv": "https://raw.githubusercontent.com/emeryberger/CSrankings/gh-pages/institutions.csv"
+  },
+  "num_areas": 27,
+  "total_ranked_institutions": 673,
+  "institutions": [
+    {
+      "name": "Carnegie Mellon University",
+      "aliases": [
+        "CMU"
+      ],
+      "domains": [
+        "csd.cs.cmu.edu",
+        "cmu.edu"
+      ],
+      "csrankings_rank": 1,
+      "csrankings_count": 20.3,
+      "csrankings_faculty": 183,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.csd.cs.cmu.edu/"
+    },
+    {
+      "name": "Tsinghua University",
+      "aliases": [
+        "Tsinghua"
+      ],
+      "domains": [
+        "cs.tsinghua.edu.cn",
+        "tsinghua.edu.cn"
+      ],
+      "csrankings_rank": 2,
+      "csrankings_count": 18.0,
+      "csrankings_faculty": 190,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://www.cs.tsinghua.edu.cn/csen/"
+    },
+    {
+      "name": "Univ. of Illinois at Urbana-Champaign",
+      "aliases": [
+        "University of Illinois at Urbana-Champaign",
+        "UIUC",
+        "Illinois Urbana-Champaign"
+      ],
+      "domains": [
+        "siebelschool.illinois.edu",
+        "illinois.edu"
+      ],
+      "csrankings_rank": 3,
+      "csrankings_count": 16.3,
+      "csrankings_faculty": 127,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://siebelschool.illinois.edu/"
+    },
+    {
+      "name": "Univ. of California - San Diego",
+      "aliases": [
+        "University of California - San Diego",
+        "UCSD",
+        "UC San Diego"
+      ],
+      "domains": [
+        "cse.ucsd.edu",
+        "ucsd.edu"
+      ],
+      "csrankings_rank": 4,
+      "csrankings_count": 14.6,
+      "csrankings_faculty": 131,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cse.ucsd.edu/"
+    },
+    {
+      "name": "Shanghai Jiao Tong University",
+      "aliases": [
+        "SJTU"
+      ],
+      "domains": [
+        "cs.sjtu.edu.cn",
+        "sjtu.edu.cn"
+      ],
+      "csrankings_rank": 5,
+      "csrankings_count": 14.2,
+      "csrankings_faculty": 201,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://www.cs.sjtu.edu.cn/en/"
+    },
+    {
+      "name": "Georgia Institute of Technology",
+      "aliases": [
+        "Georgia Tech"
+      ],
+      "domains": [
+        "cc.gatech.edu",
+        "gatech.edu"
+      ],
+      "csrankings_rank": 6,
+      "csrankings_count": 13.4,
+      "csrankings_faculty": 147,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cc.gatech.edu/"
+    },
+    {
+      "name": "Peking University",
+      "aliases": [
+        "PKU",
+        "Beida"
+      ],
+      "domains": [
+        "cs.pku.edu.cn",
+        "pku.edu.cn"
+      ],
+      "csrankings_rank": 7,
+      "csrankings_count": 12.8,
+      "csrankings_faculty": 170,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://cs.pku.edu.cn/English/Home.htm"
+    },
+    {
+      "name": "ETH Zurich",
+      "aliases": [
+        "ETH Zürich",
+        "Swiss Federal Institute of Technology Zurich",
+        "ETH"
+      ],
+      "domains": [
+        "inf.ethz.ch",
+        "ethz.ch"
+      ],
+      "csrankings_rank": 8,
+      "csrankings_count": 11.1,
+      "csrankings_faculty": 49,
+      "countryabbrv": "ch",
+      "region": "europe",
+      "homepage": "https://inf.ethz.ch/"
+    },
+    {
+      "name": "Massachusetts Inst. of Technology",
+      "aliases": [
+        "Massachusetts Institute of Technology",
+        "MIT"
+      ],
+      "domains": [
+        "eecs.mit.edu",
+        "mit.edu"
+      ],
+      "csrankings_rank": 9,
+      "csrankings_count": 10.9,
+      "csrankings_faculty": 103,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.eecs.mit.edu/"
+    },
+    {
+      "name": "Univ. of California - Berkeley",
+      "aliases": [
+        "University of California - Berkeley",
+        "UC Berkeley",
+        "Berkeley",
+        "UCB"
+      ],
+      "domains": [
+        "eecs.berkeley.edu",
+        "berkeley.edu"
+      ],
+      "csrankings_rank": 10,
+      "csrankings_count": 10.4,
+      "csrankings_faculty": 85,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://eecs.berkeley.edu/"
+    },
+    {
+      "name": "University of Washington",
+      "aliases": [
+        "UW",
+        "UW Seattle"
+      ],
+      "domains": [
+        "cs.washington.edu",
+        "washington.edu"
+      ],
+      "csrankings_rank": 10,
+      "csrankings_count": 10.4,
+      "csrankings_faculty": 80,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.washington.edu/"
+    },
+    {
+      "name": "Univ. of Maryland - College Park",
+      "aliases": [
+        "University of Maryland - College Park",
+        "UMD",
+        "Maryland"
+      ],
+      "domains": [
+        "cs.umd.edu",
+        "umd.edu"
+      ],
+      "csrankings_rank": 12,
+      "csrankings_count": 10.2,
+      "csrankings_faculty": 97,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.umd.edu/"
+    },
+    {
+      "name": "Cornell University",
+      "aliases": [
+        "Cornell"
+      ],
+      "domains": [
+        "cs.cornell.edu",
+        "cornell.edu"
+      ],
+      "csrankings_rank": 13,
+      "csrankings_count": 10.1,
+      "csrankings_faculty": 104,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.cornell.edu/"
+    },
+    {
+      "name": "Zhejiang University",
+      "aliases": [
+        "ZJU"
+      ],
+      "domains": [
+        "mypage.zju.edu.cn",
+        "zju.edu.cn"
+      ],
+      "csrankings_rank": 13,
+      "csrankings_count": 10.1,
+      "csrankings_faculty": 151,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://mypage.zju.edu.cn"
+    },
+    {
+      "name": "University of Michigan",
+      "aliases": [
+        "Michigan",
+        "UMich"
+      ],
+      "domains": [
+        "cse.engin.umich.edu",
+        "umich.edu"
+      ],
+      "csrankings_rank": 15,
+      "csrankings_count": 9.9,
+      "csrankings_faculty": 103,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cse.engin.umich.edu/"
+    },
+    {
+      "name": "Northeastern University",
+      "aliases": [
+        "Northeastern"
+      ],
+      "domains": [
+        "khoury.northeastern.edu",
+        "northeastern.edu"
+      ],
+      "csrankings_rank": 16,
+      "csrankings_count": 9.5,
+      "csrankings_faculty": 114,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.khoury.northeastern.edu/"
+    },
+    {
+      "name": "Stanford University",
+      "aliases": [
+        "Stanford"
+      ],
+      "domains": [
+        "cs.stanford.edu",
+        "stanford.edu"
+      ],
+      "csrankings_rank": 17,
+      "csrankings_count": 9.4,
+      "csrankings_faculty": 61,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.stanford.edu/"
+    },
+    {
+      "name": "National University of Singapore",
+      "aliases": [
+        "NUS"
+      ],
+      "domains": [
+        "comp.nus.edu.sg",
+        "nus.edu.sg"
+      ],
+      "csrankings_rank": 18,
+      "csrankings_count": 9.3,
+      "csrankings_faculty": 85,
+      "countryabbrv": "sg",
+      "region": "asia",
+      "homepage": "https://www.comp.nus.edu.sg/"
+    },
+    {
+      "name": "KAIST",
+      "aliases": [
+        "Korea Advanced Institute of Science and Technology"
+      ],
+      "domains": [
+        "cs.kaist.ac.kr",
+        "kaist.ac.kr"
+      ],
+      "csrankings_rank": 19,
+      "csrankings_count": 9.1,
+      "csrankings_faculty": 108,
+      "countryabbrv": "kr",
+      "region": "asia",
+      "homepage": "https://cs.kaist.ac.kr/"
+    },
+    {
+      "name": "Nanyang Technological University",
+      "aliases": [
+        "NTU Singapore",
+        "NTU"
+      ],
+      "domains": [
+        "ntu.edu.sg"
+      ],
+      "csrankings_rank": 19,
+      "csrankings_count": 9.1,
+      "csrankings_faculty": 97,
+      "countryabbrv": "sg",
+      "region": "asia",
+      "homepage": "https://www.ntu.edu.sg/computing"
+    },
+    {
+      "name": "HKUST",
+      "aliases": [
+        "Hong Kong University of Science and Technology"
+      ],
+      "domains": [
+        "cse.hkust.edu.hk",
+        "ust.hk",
+        "hkust.edu.hk"
+      ],
+      "csrankings_rank": 21,
+      "csrankings_count": 8.6,
+      "csrankings_faculty": 78,
+      "countryabbrv": "hk",
+      "region": "asia",
+      "homepage": "https://cse.hkust.edu.hk/"
+    },
+    {
+      "name": "University of Toronto",
+      "aliases": [
+        "Toronto",
+        "UofT"
+      ],
+      "domains": [
+        "web.cs.toronto.edu",
+        "utoronto.ca",
+        "toronto.edu"
+      ],
+      "csrankings_rank": 21,
+      "csrankings_count": 8.6,
+      "csrankings_faculty": 104,
+      "countryabbrv": "ca",
+      "region": "northamerica",
+      "homepage": "https://web.cs.toronto.edu/"
+    },
+    {
+      "name": "Purdue University",
+      "aliases": [
+        "Purdue"
+      ],
+      "domains": [
+        "cs.purdue.edu",
+        "purdue.edu"
+      ],
+      "csrankings_rank": 23,
+      "csrankings_count": 8.0,
+      "csrankings_faculty": 74,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.purdue.edu/"
+    },
+    {
+      "name": "Nanjing University",
+      "aliases": [
+        "NJU"
+      ],
+      "domains": [
+        "cs.nju.edu.cn",
+        "nju.edu.cn"
+      ],
+      "csrankings_rank": 24,
+      "csrankings_count": 7.6,
+      "csrankings_faculty": 175,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://cs.nju.edu.cn"
+    },
+    {
+      "name": "New York University",
+      "aliases": [
+        "NYU"
+      ],
+      "domains": [
+        "cs.nyu.edu",
+        "nyu.edu"
+      ],
+      "csrankings_rank": 24,
+      "csrankings_count": 7.6,
+      "csrankings_faculty": 90,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.nyu.edu/"
+    },
+    {
+      "name": "University of Texas at Austin",
+      "aliases": [
+        "UT Austin",
+        "Texas"
+      ],
+      "domains": [
+        "cs.utexas.edu",
+        "utexas.edu"
+      ],
+      "csrankings_rank": 24,
+      "csrankings_count": 7.6,
+      "csrankings_faculty": 60,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.utexas.edu/"
+    },
+    {
+      "name": "University of Wisconsin - Madison",
+      "aliases": [
+        "UW Madison",
+        "Wisconsin"
+      ],
+      "domains": [
+        "cs.wisc.edu",
+        "wisc.edu"
+      ],
+      "csrankings_rank": 27,
+      "csrankings_count": 7.5,
+      "csrankings_faculty": 85,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.wisc.edu/"
+    },
+    {
+      "name": "University of Waterloo",
+      "aliases": [
+        "Waterloo"
+      ],
+      "domains": [
+        "cs.uwaterloo.ca",
+        "uwaterloo.ca"
+      ],
+      "csrankings_rank": 28,
+      "csrankings_count": 7.2,
+      "csrankings_faculty": 106,
+      "countryabbrv": "ca",
+      "region": "northamerica",
+      "homepage": "https://cs.uwaterloo.ca/"
+    },
+    {
+      "name": "Chinese Academy of Sciences",
+      "aliases": [
+        "CAS",
+        "University of Chinese Academy of Sciences"
+      ],
+      "domains": [
+        "english.ict.cas.cn",
+        "cas.cn"
+      ],
+      "csrankings_rank": 29,
+      "csrankings_count": 7.1,
+      "csrankings_faculty": 102,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "http://english.ict.cas.cn/"
+    },
+    {
+      "name": "Princeton University",
+      "aliases": [
+        "Princeton"
+      ],
+      "domains": [
+        "cs.princeton.edu",
+        "princeton.edu"
+      ],
+      "csrankings_rank": 29,
+      "csrankings_count": 7.1,
+      "csrankings_faculty": 66,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.princeton.edu/"
+    },
+    {
+      "name": "Max Planck Society",
+      "aliases": [
+        "Max Planck Institute",
+        "MPI"
+      ],
+      "domains": [
+        "mpi-inf.mpg.de",
+        "mpg.de"
+      ],
+      "csrankings_rank": 31,
+      "csrankings_count": 7.0,
+      "csrankings_faculty": 51,
+      "countryabbrv": "de",
+      "region": "europe",
+      "homepage": "https://www.mpi-inf.mpg.de/"
+    },
+    {
+      "name": "Chinese University of Hong Kong",
+      "aliases": [
+        "CUHK"
+      ],
+      "domains": [
+        "cse.cuhk.edu.hk",
+        "cuhk.edu.hk"
+      ],
+      "csrankings_rank": 32,
+      "csrankings_count": 6.9,
+      "csrankings_faculty": 51,
+      "countryabbrv": "hk",
+      "region": "asia",
+      "homepage": "https://www.cse.cuhk.edu.hk/"
+    },
+    {
+      "name": "Seoul National University",
+      "aliases": [
+        "SNU"
+      ],
+      "domains": [
+        "cse.snu.ac.kr",
+        "snu.ac.kr"
+      ],
+      "csrankings_rank": 32,
+      "csrankings_count": 6.9,
+      "csrankings_faculty": 99,
+      "countryabbrv": "kr",
+      "region": "asia",
+      "homepage": "https://cse.snu.ac.kr/en"
+    },
+    {
+      "name": "EPFL",
+      "aliases": [
+        "École Polytechnique Fédérale de Lausanne",
+        "Swiss Federal Institute of Technology Lausanne"
+      ],
+      "domains": [
+        "epfl.ch"
+      ],
+      "csrankings_rank": 34,
+      "csrankings_count": 6.8,
+      "csrankings_faculty": 74,
+      "countryabbrv": "ch",
+      "region": "europe",
+      "homepage": "https://www.epfl.ch/schools/ic/"
+    },
+    {
+      "name": "University of Pennsylvania",
+      "aliases": [
+        "UPenn",
+        "Penn"
+      ],
+      "domains": [
+        "cis.upenn.edu",
+        "upenn.edu"
+      ],
+      "csrankings_rank": 34,
+      "csrankings_count": 6.8,
+      "csrankings_faculty": 70,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cis.upenn.edu/"
+    },
+    {
+      "name": "Univ. of California - Los Angeles",
+      "aliases": [
+        "University of California - Los Angeles",
+        "UCLA",
+        "UC Los Angeles"
+      ],
+      "domains": [
+        "cs.ucla.edu",
+        "ucla.edu"
+      ],
+      "csrankings_rank": 36,
+      "csrankings_count": 6.6,
+      "csrankings_faculty": 50,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.ucla.edu/"
+    },
+    {
+      "name": "Columbia University",
+      "aliases": [
+        "Columbia"
+      ],
+      "domains": [
+        "cs.columbia.edu",
+        "columbia.edu"
+      ],
+      "csrankings_rank": 37,
+      "csrankings_count": 6.5,
+      "csrankings_faculty": 57,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.columbia.edu/"
+    },
+    {
+      "name": "University of Edinburgh",
+      "aliases": [
+        "Edinburgh"
+      ],
+      "domains": [
+        "informatics.ed.ac.uk",
+        "ed.ac.uk"
+      ],
+      "csrankings_rank": 37,
+      "csrankings_count": 6.5,
+      "csrankings_faculty": 106,
+      "countryabbrv": "gb",
+      "region": "europe",
+      "homepage": "https://informatics.ed.ac.uk/"
+    },
+    {
+      "name": "University of Southern California",
+      "aliases": [
+        "USC"
+      ],
+      "domains": [
+        "cs.usc.edu",
+        "usc.edu"
+      ],
+      "csrankings_rank": 39,
+      "csrankings_count": 6.2,
+      "csrankings_faculty": 65,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.usc.edu/"
+    },
+    {
+      "name": "Technion",
+      "aliases": [
+        "Technion Israel Institute of Technology"
+      ],
+      "domains": [
+        "cs.technion.ac.il",
+        "technion.ac.il"
+      ],
+      "csrankings_rank": 40,
+      "csrankings_count": 6.1,
+      "csrankings_faculty": 94,
+      "countryabbrv": "il",
+      "region": "europe",
+      "homepage": "https://www.cs.technion.ac.il/"
+    },
+    {
+      "name": "TU Munich",
+      "aliases": [
+        "Technical University of Munich",
+        "TUM"
+      ],
+      "domains": [
+        "cs.cit.tum.de",
+        "tum.de"
+      ],
+      "csrankings_rank": 41,
+      "csrankings_count": 5.8,
+      "csrankings_faculty": 75,
+      "countryabbrv": "de",
+      "region": "europe",
+      "homepage": "https://www.cs.cit.tum.de/en/cs/home/"
+    },
+    {
+      "name": "Univ. of California - Irvine",
+      "aliases": [
+        "University of California - Irvine",
+        "UCI",
+        "UC Irvine"
+      ],
+      "domains": [
+        "cs.ics.uci.edu",
+        "uci.edu"
+      ],
+      "csrankings_rank": 42,
+      "csrankings_count": 5.7,
+      "csrankings_faculty": 74,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.ics.uci.edu/"
+    },
+    {
+      "name": "Univ. of Massachusetts Amherst",
+      "aliases": [
+        "University of Massachusetts Amherst",
+        "UMass Amherst",
+        "UMass"
+      ],
+      "domains": [
+        "cics.umass.edu",
+        "umass.edu"
+      ],
+      "csrankings_rank": 42,
+      "csrankings_count": 5.7,
+      "csrankings_faculty": 64,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cics.umass.edu/"
+    },
+    {
+      "name": "Tel Aviv University",
+      "aliases": [
+        "TAU"
+      ],
+      "domains": [
+        "en-exact-sciences.tau.ac.il",
+        "tau.ac.il"
+      ],
+      "csrankings_rank": 44,
+      "csrankings_count": 5.5,
+      "csrankings_faculty": 54,
+      "countryabbrv": "il",
+      "region": "europe",
+      "homepage": "https://en-exact-sciences.tau.ac.il/computer"
+    },
+    {
+      "name": "Stony Brook University",
+      "aliases": [
+        "Stony Brook"
+      ],
+      "domains": [
+        "cs.stonybrook.edu",
+        "stonybrook.edu"
+      ],
+      "csrankings_rank": 45,
+      "csrankings_count": 5.4,
+      "csrankings_faculty": 64,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.stonybrook.edu/"
+    },
+    {
+      "name": "University of Chicago",
+      "aliases": [
+        "UChicago"
+      ],
+      "domains": [
+        "computerscience.uchicago.edu",
+        "uchicago.edu"
+      ],
+      "csrankings_rank": 45,
+      "csrankings_count": 5.4,
+      "csrankings_faculty": 49,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://computerscience.uchicago.edu/"
+    },
+    {
+      "name": "Northwestern University",
+      "aliases": [
+        "Northwestern"
+      ],
+      "domains": [
+        "mccormick.northwestern.edu",
+        "northwestern.edu"
+      ],
+      "csrankings_rank": 47,
+      "csrankings_count": 5.3,
+      "csrankings_faculty": 77,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.mccormick.northwestern.edu/computer-science/"
+    },
+    {
+      "name": "University of Virginia",
+      "aliases": [
+        "UVA",
+        "Virginia"
+      ],
+      "domains": [
+        "engineering.virginia.edu",
+        "virginia.edu"
+      ],
+      "csrankings_rank": 48,
+      "csrankings_count": 5.1,
+      "csrankings_faculty": 66,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://engineering.virginia.edu/department/computer-science"
+    },
+    {
+      "name": "Rutgers University",
+      "aliases": [
+        "Rutgers"
+      ],
+      "domains": [
+        "cs.rutgers.edu",
+        "rutgers.edu"
+      ],
+      "csrankings_rank": 49,
+      "csrankings_count": 5.0,
+      "csrankings_faculty": 58,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.rutgers.edu/"
+    },
+    {
+      "name": "Univ. of California - Riverside",
+      "aliases": [
+        "University of California - Riverside",
+        "University of California, Riverside",
+        "UC Riverside",
+        "UCR"
+      ],
+      "domains": [
+        "cs.ucr.edu",
+        "ucr.edu"
+      ],
+      "csrankings_rank": 49,
+      "csrankings_count": 5.0,
+      "csrankings_faculty": 58,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.ucr.edu"
+    },
+    {
+      "name": "Duke University",
+      "aliases": [
+        "Duke"
+      ],
+      "domains": [
+        "cs.duke.edu",
+        "duke.edu"
+      ],
+      "csrankings_rank": 51,
+      "csrankings_count": 4.9,
+      "csrankings_faculty": 56,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.duke.edu/"
+    },
+    {
+      "name": "University of Utah",
+      "aliases": [
+        "Utah"
+      ],
+      "domains": [
+        "cs.utah.edu",
+        "utah.edu"
+      ],
+      "csrankings_rank": 51,
+      "csrankings_count": 4.9,
+      "csrankings_faculty": 70,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.utah.edu/"
+    },
+    {
+      "name": "USTC",
+      "aliases": [
+        "University of Science and Technology of China"
+      ],
+      "domains": [
+        "en.cs.ustc.edu.cn",
+        "ustc.edu.cn"
+      ],
+      "csrankings_rank": 53,
+      "csrankings_count": 4.8,
+      "csrankings_faculty": 65,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://en.cs.ustc.edu.cn/"
+    },
+    {
+      "name": "George Mason University",
+      "aliases": [
+        "GMU"
+      ],
+      "domains": [
+        "cs.gmu.edu",
+        "gmu.edu"
+      ],
+      "csrankings_rank": 54,
+      "csrankings_count": 4.7,
+      "csrankings_faculty": 54,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.gmu.edu/"
+    },
+    {
+      "name": "Pennsylvania State University",
+      "aliases": [
+        "Penn State"
+      ],
+      "domains": [
+        "eecs.psu.edu",
+        "psu.edu"
+      ],
+      "csrankings_rank": 54,
+      "csrankings_count": 4.7,
+      "csrankings_faculty": 62,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.eecs.psu.edu/"
+    },
+    {
+      "name": "University of British Columbia",
+      "aliases": [
+        "UBC"
+      ],
+      "domains": [
+        "cs.ubc.ca",
+        "ubc.ca"
+      ],
+      "csrankings_rank": 54,
+      "csrankings_count": 4.7,
+      "csrankings_faculty": 66,
+      "countryabbrv": "ca",
+      "region": "northamerica",
+      "homepage": "https://www.cs.ubc.ca/"
+    },
+    {
+      "name": "Fudan University",
+      "aliases": [
+        "Fudan"
+      ],
+      "domains": [
+        "cs.fudan.edu.cn",
+        "fudan.edu.cn"
+      ],
+      "csrankings_rank": 57,
+      "csrankings_count": 4.6,
+      "csrankings_faculty": 88,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://www.cs.fudan.edu.cn"
+    },
+    {
+      "name": "Univ. of California - Santa Barbara",
+      "aliases": [
+        "University of California - Santa Barbara",
+        "UCSB",
+        "UC Santa Barbara"
+      ],
+      "domains": [
+        "cs.ucsb.edu",
+        "ucsb.edu"
+      ],
+      "csrankings_rank": 57,
+      "csrankings_count": 4.6,
+      "csrankings_faculty": 41,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.ucsb.edu/"
+    },
+    {
+      "name": "Boston University",
+      "aliases": [
+        "BU"
+      ],
+      "domains": [
+        "bu.edu"
+      ],
+      "csrankings_rank": 59,
+      "csrankings_count": 4.5,
+      "csrankings_faculty": 58,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.bu.edu/cs/"
+    },
+    {
+      "name": "Texas A&M University",
+      "aliases": [
+        "Texas A&M",
+        "TAMU"
+      ],
+      "domains": [
+        "engineering.tamu.edu",
+        "tamu.edu"
+      ],
+      "csrankings_rank": 59,
+      "csrankings_count": 4.5,
+      "csrankings_faculty": 60,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://engineering.tamu.edu/cse/"
+    },
+    {
+      "name": "Virginia Tech",
+      "aliases": [
+        "Virginia Polytechnic Institute and State University"
+      ],
+      "domains": [
+        "cs.vt.edu",
+        "vt.edu"
+      ],
+      "csrankings_rank": 61,
+      "csrankings_count": 4.4,
+      "csrankings_faculty": 76,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.vt.edu/"
+    },
+    {
+      "name": "Harvard University",
+      "aliases": [
+        "Harvard"
+      ],
+      "domains": [
+        "seas.harvard.edu",
+        "harvard.edu"
+      ],
+      "csrankings_rank": 62,
+      "csrankings_count": 4.3,
+      "csrankings_faculty": 39,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://seas.harvard.edu/computer-science"
+    },
+    {
+      "name": "North Carolina State University",
+      "aliases": [
+        "NC State University",
+        "NCSU"
+      ],
+      "domains": [
+        "csc.ncsu.edu",
+        "ncsu.edu"
+      ],
+      "csrankings_rank": 62,
+      "csrankings_count": 4.3,
+      "csrankings_faculty": 60,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://csc.ncsu.edu/"
+    },
+    {
+      "name": "Univ. of California - Santa Cruz",
+      "aliases": [
+        "University of California - Santa Cruz",
+        "University of California, Santa Cruz",
+        "UC Santa Cruz",
+        "UCSC"
+      ],
+      "domains": [
+        "engineering.ucsc.edu",
+        "ucsc.edu"
+      ],
+      "csrankings_rank": 62,
+      "csrankings_count": 4.3,
+      "csrankings_faculty": 67,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://engineering.ucsc.edu/departments/computer-science-and-engineering/"
+    },
+    {
+      "name": "Arizona State University",
+      "aliases": [
+        "ASU"
+      ],
+      "domains": [
+        "scai.engineering.asu.edu",
+        "asu.edu"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 69,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://scai.engineering.asu.edu/"
+    },
+    {
+      "name": "Johns Hopkins University",
+      "aliases": [
+        "Johns Hopkins",
+        "JHU"
+      ],
+      "domains": [
+        "cs.jhu.edu",
+        "jhu.edu"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 74,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.jhu.edu/"
+    },
+    {
+      "name": "MBZUAI",
+      "aliases": [
+        "Mohamed bin Zayed University of Artificial Intelligence"
+      ],
+      "domains": [
+        "mbzuai.ac.ae"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 71,
+      "countryabbrv": "ae",
+      "region": "asia",
+      "homepage": "https://mbzuai.ac.ae"
+    },
+    {
+      "name": "Simon Fraser University",
+      "aliases": [],
+      "domains": [
+        "sfu.ca"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 53,
+      "countryabbrv": "ca",
+      "region": "northamerica",
+      "homepage": "https://www.sfu.ca/computing.html"
+    },
+    {
+      "name": "TU Delft",
+      "aliases": [
+        "Delft University of Technology"
+      ],
+      "domains": [
+        "tudelft.nl"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 90,
+      "countryabbrv": "nl",
+      "region": "europe",
+      "homepage": "https://www.tudelft.nl/en/eemcs"
+    },
+    {
+      "name": "University of Hong Kong",
+      "aliases": [
+        "HKU"
+      ],
+      "domains": [
+        "cs.hku.hk",
+        "hku.hk"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 47,
+      "countryabbrv": "hk",
+      "region": "asia",
+      "homepage": "https://www.cs.hku.hk/"
+    },
+    {
+      "name": "University of Illinois at Chicago",
+      "aliases": [
+        "UIC",
+        "University of Illinois Chicago"
+      ],
+      "domains": [
+        "cs.uic.edu",
+        "uic.edu"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 56,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.uic.edu"
+    },
+    {
+      "name": "University of Sydney",
+      "aliases": [
+        "Sydney"
+      ],
+      "domains": [
+        "sydney.edu.au"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 47,
+      "countryabbrv": "au",
+      "region": "australasia",
+      "homepage": "https://www.sydney.edu.au/engineering/schools/school-of-computer-science.html"
+    },
+    {
+      "name": "Yale University",
+      "aliases": [
+        "Yale"
+      ],
+      "domains": [
+        "cpsc.yale.edu",
+        "yale.edu"
+      ],
+      "csrankings_rank": 65,
+      "csrankings_count": 4.2,
+      "csrankings_faculty": 42,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cpsc.yale.edu/"
+    },
+    {
+      "name": "Rice University",
+      "aliases": [
+        "Rice"
+      ],
+      "domains": [
+        "cs.rice.edu",
+        "rice.edu"
+      ],
+      "csrankings_rank": 74,
+      "csrankings_count": 4.1,
+      "csrankings_faculty": 39,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.rice.edu/"
+    },
+    {
+      "name": "University of Cambridge",
+      "aliases": [
+        "Cambridge"
+      ],
+      "domains": [
+        "cst.cam.ac.uk",
+        "cam.ac.uk"
+      ],
+      "csrankings_rank": 74,
+      "csrankings_count": 4.1,
+      "csrankings_faculty": 61,
+      "countryabbrv": "gb",
+      "region": "europe",
+      "homepage": "https://www.cst.cam.ac.uk/"
+    },
+    {
+      "name": "University of North Carolina",
+      "aliases": [
+        "University of North Carolina at Chapel Hill",
+        "UNC Chapel Hill",
+        "UNC"
+      ],
+      "domains": [
+        "cs.unc.edu",
+        "unc.edu"
+      ],
+      "csrankings_rank": 74,
+      "csrankings_count": 4.1,
+      "csrankings_faculty": 44,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.unc.edu/"
+    },
+    {
+      "name": "Ohio State University",
+      "aliases": [
+        "OSU",
+        "Ohio State"
+      ],
+      "domains": [
+        "cse.osu.edu",
+        "osu.edu"
+      ],
+      "csrankings_rank": 77,
+      "csrankings_count": 4.0,
+      "csrankings_faculty": 47,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cse.osu.edu/"
+    },
+    {
+      "name": "Renmin University of China",
+      "aliases": [
+        "RUC"
+      ],
+      "domains": [
+        "info.ruc.edu.cn",
+        "ruc.edu.cn"
+      ],
+      "csrankings_rank": 77,
+      "csrankings_count": 4.0,
+      "csrankings_faculty": 67,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://info.ruc.edu.cn"
+    },
+    {
+      "name": "TU Darmstadt",
+      "aliases": [
+        "Technical University of Darmstadt",
+        "Technische Universität Darmstadt"
+      ],
+      "domains": [
+        "informatik.tu-darmstadt.de",
+        "tu-darmstadt.de"
+      ],
+      "csrankings_rank": 77,
+      "csrankings_count": 4.0,
+      "csrankings_faculty": 37,
+      "countryabbrv": "de",
+      "region": "europe",
+      "homepage": "https://www.informatik.tu-darmstadt.de/"
+    },
+    {
+      "name": "University at Buffalo",
+      "aliases": [
+        "University at Buffalo, SUNY",
+        "SUNY Buffalo"
+      ],
+      "domains": [
+        "cse.buffalo.edu",
+        "buffalo.edu"
+      ],
+      "csrankings_rank": 77,
+      "csrankings_count": 4.0,
+      "csrankings_faculty": 44,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cse.buffalo.edu"
+    },
+    {
+      "name": "Imperial College London",
+      "aliases": [
+        "Imperial"
+      ],
+      "domains": [
+        "imperial.ac.uk"
+      ],
+      "csrankings_rank": 81,
+      "csrankings_count": 3.9,
+      "csrankings_faculty": 53,
+      "countryabbrv": "gb",
+      "region": "europe",
+      "homepage": "https://www.imperial.ac.uk/computing/"
+    },
+    {
+      "name": "TU Wien",
+      "aliases": [
+        "Vienna University of Technology",
+        "Technische Universität Wien"
+      ],
+      "domains": [
+        "informatics.tuwien.ac.at",
+        "tuwien.ac.at"
+      ],
+      "csrankings_rank": 81,
+      "csrankings_count": 3.9,
+      "csrankings_faculty": 63,
+      "countryabbrv": "at",
+      "region": "europe",
+      "homepage": "https://informatics.tuwien.ac.at/"
+    },
+    {
+      "name": "Univ. of California - Davis",
+      "aliases": [
+        "University of California - Davis",
+        "UC Davis",
+        "UCD"
+      ],
+      "domains": [
+        "cs.ucdavis.edu",
+        "ucdavis.edu"
+      ],
+      "csrankings_rank": 81,
+      "csrankings_count": 3.9,
+      "csrankings_faculty": 54,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.ucdavis.edu/"
+    },
+    {
+      "name": "University College London",
+      "aliases": [
+        "UCL"
+      ],
+      "domains": [
+        "ucl.ac.uk"
+      ],
+      "csrankings_rank": 81,
+      "csrankings_count": 3.9,
+      "csrankings_faculty": 64,
+      "countryabbrv": "gb",
+      "region": "europe",
+      "homepage": "https://www.ucl.ac.uk/computer-science/"
+    },
+    {
+      "name": "University of Colorado Boulder",
+      "aliases": [
+        "CU Boulder",
+        "Colorado Boulder"
+      ],
+      "domains": [
+        "colorado.edu"
+      ],
+      "csrankings_rank": 81,
+      "csrankings_count": 3.9,
+      "csrankings_faculty": 75,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.colorado.edu/cs/"
+    },
+    {
+      "name": "University of Minnesota",
+      "aliases": [
+        "Minnesota"
+      ],
+      "domains": [
+        "cse.umn.edu",
+        "umn.edu"
+      ],
+      "csrankings_rank": 81,
+      "csrankings_count": 3.9,
+      "csrankings_faculty": 52,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cse.umn.edu/cs"
+    },
+    {
+      "name": "Brown University",
+      "aliases": [
+        "Brown"
+      ],
+      "domains": [
+        "cs.brown.edu",
+        "brown.edu"
+      ],
+      "csrankings_rank": 87,
+      "csrankings_count": 3.8,
+      "csrankings_faculty": 41,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://cs.brown.edu/"
+    },
+    {
+      "name": "City University of Hong Kong",
+      "aliases": [
+        "CityU"
+      ],
+      "domains": [
+        "cs.cityu.edu.hk",
+        "cityu.edu.hk"
+      ],
+      "csrankings_rank": 87,
+      "csrankings_count": 3.8,
+      "csrankings_faculty": 51,
+      "countryabbrv": "hk",
+      "region": "asia",
+      "homepage": "https://www.cs.cityu.edu.hk"
+    },
+    {
+      "name": "Monash University",
+      "aliases": [
+        "Monash"
+      ],
+      "domains": [
+        "monash.edu"
+      ],
+      "csrankings_rank": 87,
+      "csrankings_count": 3.8,
+      "csrankings_faculty": 89,
+      "countryabbrv": "au",
+      "region": "australasia",
+      "homepage": "https://www.monash.edu/it/dsai"
+    },
+    {
+      "name": "Singapore Management University",
+      "aliases": [
+        "SMU"
+      ],
+      "domains": [
+        "scis.smu.edu.sg",
+        "smu.edu.sg"
+      ],
+      "csrankings_rank": 90,
+      "csrankings_count": 3.7,
+      "csrankings_faculty": 49,
+      "countryabbrv": "sg",
+      "region": "asia",
+      "homepage": "https://scis.smu.edu.sg"
+    },
+    {
+      "name": "Beihang University",
+      "aliases": [
+        "BUAA",
+        "Beijing University of Aeronautics and Astronautics"
+      ],
+      "domains": [
+        "scse.buaa.edu.cn",
+        "buaa.edu.cn"
+      ],
+      "csrankings_rank": 91,
+      "csrankings_count": 3.6,
+      "csrankings_faculty": 67,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://scse.buaa.edu.cn"
+    },
+    {
+      "name": "CISPA Helmholtz Center",
+      "aliases": [
+        "CISPA Helmholtz Center for Information Security"
+      ],
+      "domains": [
+        "cispa.saarland"
+      ],
+      "csrankings_rank": 91,
+      "csrankings_count": 3.6,
+      "csrankings_faculty": 47,
+      "countryabbrv": "de",
+      "region": "europe",
+      "homepage": "https://cispa.saarland"
+    },
+    {
+      "name": "University of Central Florida",
+      "aliases": [],
+      "domains": [
+        "cs.ucf.edu",
+        "ucf.edu"
+      ],
+      "csrankings_rank": 91,
+      "csrankings_count": 3.6,
+      "csrankings_faculty": 69,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://www.cs.ucf.edu"
+    },
+    {
+      "name": "University of Oxford",
+      "aliases": [
+        "Oxford"
+      ],
+      "domains": [
+        "cs.ox.ac.uk",
+        "ox.ac.uk"
+      ],
+      "csrankings_rank": 91,
+      "csrankings_count": 3.6,
+      "csrankings_faculty": 50,
+      "countryabbrv": "gb",
+      "region": "europe",
+      "homepage": "https://www.cs.ox.ac.uk/"
+    },
+    {
+      "name": "HUST",
+      "aliases": [
+        "Huazhong University of Science and Technology"
+      ],
+      "domains": [
+        "english.cs.hust.edu.cn",
+        "hust.edu.cn"
+      ],
+      "csrankings_rank": 95,
+      "csrankings_count": 3.5,
+      "csrankings_faculty": 57,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "http://english.cs.hust.edu.cn/"
+    },
+    {
+      "name": "Oregon State University",
+      "aliases": [],
+      "domains": [
+        "eecs.oregonstate.edu",
+        "oregonstate.edu"
+      ],
+      "csrankings_rank": 95,
+      "csrankings_count": 3.5,
+      "csrankings_faculty": 41,
+      "countryabbrv": "us",
+      "region": "northamerica",
+      "homepage": "https://eecs.oregonstate.edu/"
+    },
+    {
+      "name": "Sun Yat-sen University",
+      "aliases": [
+        "SYSU"
+      ],
+      "domains": [
+        "cse.sysu.edu.cn",
+        "sysu.edu.cn"
+      ],
+      "csrankings_rank": 95,
+      "csrankings_count": 3.5,
+      "csrankings_faculty": 59,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://cse.sysu.edu.cn"
+    },
+    {
+      "name": "Harbin Institute of Technology",
+      "aliases": [
+        "HIT"
+      ],
+      "domains": [
+        "encs.hit.edu.cn",
+        "hit.edu.cn"
+      ],
+      "csrankings_rank": 98,
+      "csrankings_count": 3.4,
+      "csrankings_faculty": 106,
+      "countryabbrv": "cn",
+      "region": "asia",
+      "homepage": "https://encs.hit.edu.cn/"
+    },
+    {
+      "name": "Hebrew University of Jerusalem",
+      "aliases": [
+        "Hebrew University"
+      ],
+      "domains": [
+        "cs.huji.ac.il",
+        "huji.ac.il"
+      ],
+      "csrankings_rank": 98,
+      "csrankings_count": 3.4,
+      "csrankings_faculty": 49,
+      "countryabbrv": "il",
+      "region": "europe",
+      "homepage": "https://www.cs.huji.ac.il/"
+    },
+    {
+      "name": "Korea University",
+      "aliases": [
+        "KU Korea"
+      ],
+      "domains": [
+        "cs.korea.edu",
+        "korea.edu"
+      ],
+      "csrankings_rank": 98,
+      "csrankings_count": 3.4,
+      "csrankings_faculty": 70,
+      "countryabbrv": "kr",
+      "region": "asia",
+      "homepage": "https://cs.korea.edu/en_cs/index.do"
+    }
+  ]
+}

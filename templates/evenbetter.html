@@ -3,45 +3,60 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Even Better Poster HTML Template</title>
+<title>Better Poster Skill Style2 HTML Template</title>
 <style>
-@page { size: A0 landscape; margin: 0; }
-:root { --ink:#111827; --muted:#6b7280; --line:#d1d5db; --main:#004d40; --main-fg:#fff; --accent:#004d40; --card:#f8fafc; }
+@page { size: 1682mm 841mm; margin: 0; }
+:root {
+  --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+  --institution-primary:#00529b; --institution-secondary:#ef7c00;
+  --main:var(--institution-primary); --main-fg:#fff; --accent:var(--institution-primary); --title:var(--institution-primary); --card:#f8fafc;
+  --claim-1:#ffffff; --claim-2:#b8c0ca; --claim-3:#747e8c;
+}
 .theme-empirical { --main:#004d40; --main-fg:#fff; --accent:#004d40; }
+.theme-institution { --main:var(--institution-primary); --main-fg:#fff; --accent:var(--institution-primary); --title:var(--institution-primary); }
 .theme-imperial { --main:#003e74; --main-fg:#fff; --accent:#003e74; }
 .theme-plum { --main:#581c87; --main-fg:#fff; --accent:#581c87; }
 .theme-amber { --main:#f4b400; --main-fg:#111827; --accent:#946200; }
 * { box-sizing:border-box; }
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
-.poster { width:1189mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
+.poster { width:1682mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:20% 60% 20%; overflow:hidden; background:#fff; }
 .side { padding:27mm 24mm; font-size:9.8mm; line-height:1.22; display:flex; flex-direction:column; overflow:hidden; }
 .main { padding:48mm 55mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; overflow:hidden; }
-h1 { margin:0 0 7mm; font-size:clamp(17mm, 1.9vw, 23mm); line-height:1.04; font-weight:900; max-width:100%; }
+h1 { margin:0 0 7mm; color:var(--title); font-size:clamp(17mm, 1.9vw, 23mm); line-height:1.04; font-weight:900; max-width:100%; }
 .authors, .affiliation, .contact { color:var(--muted); font-size:9mm; line-height:1.22; }
 h2 { margin:15mm 0 5mm; color:var(--accent); font-size:13mm; line-height:1.08; font-weight:900; }
 p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.4mm 0; }
-.claim-title { margin:0; font-size:clamp(24mm, 2.7vw, 31mm); line-height:1.05; font-weight:900; letter-spacing:-0.035em; }
+.claim-title { margin:0; font-size:clamp(26mm, 3.1vw, 44mm); line-height:1.05; font-weight:900; letter-spacing:0; }
+.claim-line { display:block; }
+.claim-line:nth-child(1) { color:var(--claim-1); }
+.claim-line:nth-child(2) { color:var(--claim-2); }
+.claim-line:nth-child(3) { color:var(--claim-3); }
 .subclaim { margin:9mm 0 16mm; font-size:12mm; line-height:1.22; }
 .hero { height:244mm; background:#fff; color:var(--ink); border:1.2mm solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:18mm; font-size:15mm; font-weight:900; }
 .hero-caption { margin:8mm 0 12mm; font-size:10.5mm; line-height:1.2; font-weight:800; }
 .evidence-row { display:grid; grid-template-columns:1fr 1fr; gap:18mm; color:var(--ink); }
 .card { min-height:66mm; padding:11mm; background:#fff; }
 .card h3 { margin:0 0 5mm; font-size:12mm; color:var(--accent); }
+.card h3::before { content:""; display:inline-block; width:.62em; height:.62em; margin-right:.34em; background:var(--institution-secondary); vertical-align:.02em; }
 .card p { color:var(--muted); font-size:9mm; line-height:1.22; }
-.scan { width:72%; margin:auto auto 0; display:grid; grid-template-columns:88mm 36mm 1fr; gap:14mm; align-items:center; padding-top:16mm; }
+.scan { width:72%; margin:auto 0 0; padding-top:16mm; }
+.scan-list { display:grid; gap:9mm; }
+.scan-item { display:grid; grid-template-columns:88mm 52mm 1fr; gap:12mm; align-items:center; }
 .qr { width:88mm; height:88mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:14mm; font-weight:900; }
-.phone-icon { width:36mm; height:36mm; object-fit:contain; }
+.scan-icon { width:52mm; height:52mm; display:flex; align-items:center; justify-content:center; }
+.scan-icon img { width:52mm; height:52mm; object-fit:contain; }
+.scan-copy { display:flex; align-items:center; min-height:36mm; }
 .scan-caption { font-size:10.5mm; line-height:1.2; font-weight:800; }
 .figure { height:88mm; margin-top:7mm; border:1.2mm solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
 .institution-brand { display:none; margin-top:auto; padding-top:14mm; text-align:center; }
 .institution-brand[data-has-logo="true"] { display:block; }
 .institution-brand img { display:block; max-width:62%; max-height:72mm; object-fit:contain; margin:0 auto 7mm; }
 .institution-name { color:var(--ink); font-size:10mm; line-height:1.16; font-weight:900; margin-bottom:5mm; }
-@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.32); margin-bottom:-560mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
+@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.24); margin-bottom:-640mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
 </head>
 <body>
-<main class="poster theme-empirical" aria-label="Even Better Poster">
+<main class="poster theme-institution" aria-label="Better Poster Skill style2">
   <aside class="side">
     <h1>A claim-first title states exactly what changed</h1>
     <p class="authors">First Author, Second Author, Senior Author</p>
@@ -72,7 +87,11 @@ p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.4mm
   </aside>
 
   <section class="main">
-    <h1 class="claim-title">A claim-first title states exactly what changed</h1>
+    <h1 class="claim-title">
+      <span class="claim-line">The main result is explicit.</span>
+      <span class="claim-line">The mechanism is visible.</span>
+      <span class="claim-line">The evidence is inspectable.</span>
+    </h1>
     <p class="subclaim">One sentence tells the audience why the result matters and what to inspect first.</p>
     <div class="hero">Hero figure placeholder: schematic, result panel, or composite teaser.</div>
     <p class="hero-caption">The hero figure explains the mechanism and shows the strongest result.</p>
@@ -80,7 +99,17 @@ p { margin:0 0 5mm; } ul, ol { margin:0; padding-left:1.1em; } li { margin:1.4mm
       <article class="card"><h3>What to see first</h3><p>Point to the visual pattern, comparison, or mechanism.</p></article>
       <article class="card"><h3>Why it is credible</h3><p>Name the strongest validation, uncertainty check, or ablation.</p></article>
     </div>
-    <div class="scan"><div class="qr">QR</div><img class="phone-icon" src="../assets/icons/smartphone-white.svg" alt="Smartphone icon"><div class="scan-caption">Scan for paper, code, and supplemental figures.</div></div>
+    <div class="scan">
+      <div class="scan-list">
+        <div class="scan-item">
+          <div class="qr">QR</div>
+          <div class="scan-icon"><img src="../assets/icons/scan-qr-code-white.svg" alt="Scan icon"></div>
+          <div class="scan-copy">
+            <div class="scan-caption"><strong>Scan</strong><br>for paper, code, and supplemental figures.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <aside class="side">

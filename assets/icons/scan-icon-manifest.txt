@@ -1,0 +1,7 @@
+scan-qr-code-white
+qr-code-white
+scan-barcode-white
+scan-line-white
+scan-search-white
+scan-white
+barcode-white
