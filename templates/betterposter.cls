@@ -85,7 +85,7 @@
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
-\setlength{\institutionlogosize}{0.088\paperheight}
+\setlength{\institutionlogosize}{0.102\paperheight}
 \setlength{\scaniconsize}{0.078\paperheight}
 \setlength{\posterclaimleading}{244pt}
 
@@ -338,9 +338,7 @@
   \begingroup\setlength{\fboxsep}{0.42em}%
   \colorbox{sidebarcool}{%
     \begin{minipage}{0.94\linewidth}%
-      {\fontsize{#1}{#2}\selectfont #3
-        \textcolor{mutedgray}{{\fontsize{30}{30}\selectfont\textbullet}}\hspace{0.30em}%
-        \textcolor{black}{#4}\par}%
+      {\fontsize{#1}{#2}\selectfont #3\textcolor{black}{#4}\par}%
       \vspace{0.14em}{\fontsize{35}{45}\selectfont\color{black}#5\par}%
     \end{minipage}}%
   \endgroup\par\vspace{0.45em}%
@@ -380,4 +378,4 @@
 \renewcommand{\title}[1]{{\color{\postertitlecolor}\fontsizetitle\bfseries\leavevmode #1}\par\vspace{0.18em}}
 \renewcommand{\author}[1]{{\color{mutedgray}\fontsizeauthor #1}\par\vspace{0.18em}}
 \newcommand{\institution}[1]{{\color{mutedgray}#1}\par\vspace{0.45em}}
-\newcommand{\posterfootnote}[1]{{\color{mutedgray}\fontsizecaption #1}}
+\newcommand{\posterfootnote}[1]{{\RaggedRight\color{mutedgray}\fontsizecaption #1\par}}

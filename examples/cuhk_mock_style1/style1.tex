@@ -22,10 +22,9 @@
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
 
-\newcommand{\PosterTitle}{CUHK Mock Research Poster}
+\newcommand{\PosterTitle}{CUHK Research Poster Template}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliation}{The Chinese University of Hong Kong}
-\newcommand{\MockConclusion}{Conclusion: a locally simple selection rule can preserve rare modes when its proxy covers the population before replacement begins.}
 \newcommand{\PaperQRCode}{figures/qr/01-paper.png}
 \newcommand{\ScanIcon}{../../assets/icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogoOne}{figures/institutions/01-cuhk.png}
@@ -40,11 +39,12 @@
 \betterposter{
   \maincolumn{
     \posterclaimblock{%
-      {\color{white}Coverage saves tails.\\
-      Selection remains safe.}\\
-      {\color{claimtiermiddle}Global witnesses\\
-      restore missing modes.}\\
-      {\color{claimtierlower}Before replacement.}%
+      {\color{white}Primary finding.\\
+      Key mechanism.}\\
+      {\color{claimtiermiddle}Core evidence.\\
+      Main implication.}\\
+      {\color{claimtierlower}Boundary condition.\\
+      Reproducible detail.}%
     }
   }{
     \qrcode{\PaperQRCode}{\ScanIcon}{%
@@ -57,63 +57,59 @@
   {\fontsize{70}{78}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
   \vspace{0.24em}
   {\fontsize{27}{34}\selectfont\color{mutedgray}\PosterAuthors\par}
-  \vspace{0.20em}
-  {\fontsize{25}{32}\selectfont\color{mutedgray}\PosterAffiliation\par}
 
-  \section{Theory Claims}
-  \propositioncard{Proposition: proxy coverage controls drift}{%
-    If the verifier proxy covers every relevant mode, the accepted sample
-    distribution remains close to the target:
+  \section{Introduction}
+  Research problem, motivation, and gap. Contributions, hypotheses, and
+  expected scientific impact.
+
+  \section{Methodology}
+  Problem formulation, data setting, model components, and evaluation protocol.
+
+  \section{Theoretical Analysis}
+  \propositioncard{Proposition: baseline law}{%
+    Prior result or baseline mechanism:
     \[
-      W_{2}(\widehat{\mathcal{D}}_{t},\mathcal{D}^{*})
-      \le \epsilon_{\rm proxy}+\epsilon_{\rm sample}.
+      \mathcal{L}_{0}(\theta)=\mathbb{E}_{(x,y)\sim\mathcal{D}_{0}}
+      [\ell(f_{\theta}(x),y)].
     \]}
 
-  \theoremcard{Theorem: collapse is avoided under coverage}{%
-    Under bounded replacement and nonzero mode recall,
+  \theoremcard{Theorem: main result}{%
+    Primary theorem, bound, or convergence statement:
     \[
-      \Pr[m\in{\rm supp}(\widehat{\mathcal{D}}_{t})]
-      \ge 1-\delta,\quad t\le T.
+      \mathcal{R}(\hat{h})-\mathcal{R}(h^{*})
+      \le C\sqrt{\frac{\log(1/\delta)}{n}}.
     \]
-    The conclusion drives the center claim.}
+    Main assumptions and implication.}
 
-  \propositioncard{Proposition: global witnesses are required}{%
-    A local acceptance rule becomes safe only when every tail region has at
-    least one witness in the proxy set.}
-
-  \theoremcard{Theorem: rank evidence before decoration}{%
-    Keep theorem statements, assumptions, and equations visible; move backup
-    derivations behind the QR link.}
-
-  \section{Extraction Rule}
-  \MockConclusion
+  \corollarycard{Corollary: practical implication}{%
+    Assumptions, limiting cases, and observable consequences.}
 
   \vfill
+  \posterfootnote{\emph{For more methodology and theoretical details, please refer to the full paper.}}\par
+  \vspace{0.75em}
   \institutionlogostrip{%
     \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
   }
 }{
-  \section{Mock Evidence}
-  \begin{itemize}
-    \item Coverage audit flags missing tail modes.
-    \item Replacement budget stays below the risk threshold.
-    \item Proxy update recovers the omitted group.
-  \end{itemize}
+  \section{Results}
+  Main comparison, primary metric, and statistical uncertainty.
 
-  \section{Result Slot}
+  \section{Result Figure}
   \begin{center}
-    \postergraphic[width=0.92\textwidth]{figures/mock-result-panel.pdf}{Mock result panel}
+    \postergraphic[width=0.92\textwidth]{figures/mock-result-panel.pdf}{Result figure.}
   \end{center}
-  Use this slot for the single figure that most directly supports the
-  conclusion, not for a dense paper screenshot.
 
-  \section{Decision Notes}
-  The right column explains why the central claim is credible: strongest
-  evidence first, then one robustness check, then one boundary condition.
+  \section{Ablation Study}
+  Component analysis, robustness check, and sensitivity trend.
+
+  \section{Discussion}
+  Interpretation, limitations, and future work.
 
   \vfill
+  \posterfootnote{\emph{For additional experimental results, please refer to the full paper.}}\par
+  \vspace{0.75em}
   \conferencelogostrip{%
     \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
     \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
