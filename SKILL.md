@@ -173,6 +173,7 @@ Institution logos:
 Conference logos:
 
 - Resolve from `assets/conference-logos/` when possible.
+- Treat `assets/conference-logos/` as the only canonical in-repo conference logo directory; it is refreshed by `.github/workflows/sync-conference-logos.yml` from `CS-Conference-Logo-Maintainer` on the 10th day of each month.
 - In style1, put them at the bottom of the right sidebar.
 - For pdflatex, use renderer-verified PDF/PNG conversions of SVG sources.
 

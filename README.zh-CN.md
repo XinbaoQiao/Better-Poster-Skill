@@ -18,6 +18,7 @@ Better Poster Skill 用于帮助 code agent 将论文材料转换为可编辑的
 - 在本地依赖可用时生成 PDF/PNG 预览图。
 - 根据 paper、code、project、slides 等链接自动生成 QR/download 区域。
 - 在资源可匹配时自动加入机构和会议标识。
+- 会议 Logo 资源库每月 10 号从 `CS-Conference-Logo-Maintainer` 自动更新，减少手动查找和替换成本。
 - 持续扩充的 `examples/` 示例库，帮助 agent 为新论文参考过往成功海报的结构、信息密度和视觉组织方式。
 
 ## 你需要准备什么

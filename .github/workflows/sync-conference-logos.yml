@@ -1,0 +1,46 @@
+name: Sync conference logos
+
+on:
+  schedule:
+    # Run on the 10th day of every month at 03:00 UTC.
+    - cron: "0 3 10 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-conference-logos
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Sync conference logos
+        run: |
+          python scripts/sync_conference_logos.py \
+            --source-repo https://github.com/XinbaoQiao/CS-Conference-Logo-Maintainer.git \
+            --source-subdir assets/logos \
+            --target-dir assets/conference-logos
+
+      - name: Commit logo updates
+        run: |
+          if [ -z "$(git status --porcelain -- assets/conference-logos)" ]; then
+            echo "No conference logo updates."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/conference-logos
+          git commit -m "Update conference logos"
+          git push
