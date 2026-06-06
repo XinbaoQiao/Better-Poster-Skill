@@ -8,8 +8,8 @@ Template entry points:
 2. Style1 HTML: templates/classic.html, standalone and printable as 2:1 wide.
 3. Style2 LaTeX: templates/evenbetter.tex using templates/betterposter.cls.
 4. Style2 HTML: templates/evenbetter.html, standalone and printable as 2:1 wide.
-5. QR/scan icon selector: scripts/select_scan_icon.py using assets/scan-icons/scan-icon-manifest.txt.
-6. Institution logo selector: scripts/select_institution_logos.py using cached institution logo assets.
+5. QR/scan icon selector: scripts/select_scan_icon.py or scripts/select_phone_icon.py using assets/scan-icons/scan-icon-manifest.txt.
+6. Institution logo selector: scripts/select_institution_logos.py using assets/institution-logos/top100-logo-bank.
 7. Institution palette selector: scripts/select_institution_palette.py using assets/institution-data/institution_palettes.json.
 
 Design philosophy:
@@ -140,13 +140,13 @@ Density budget:
 - Each right-column section: max 3 bullets.
 
 LaTeX generation rules:
-Use templates/betterposter.cls and the provided templates unless the user gives another template. Fill title, authors, affiliations, central claim, QR block, side sections, hero visual or evidence cards, and contact. Select a scan icon from assets/scan-icons for the center QR row; use the printed latex PNG path for LaTeX commands and keep it consistent with the HTML SVG path. Keep image paths relative. LaTeX templates live in templates/, so shared repository assets should usually be referenced as ../figures/... and ../assets/.... Prefer existing paper figures. Do not insert machine-specific absolute paths. Do not claim that the poster compiled unless a compile command actually ran.
+Use templates/betterposter.cls and the provided templates unless the user gives another template. Fill title, authors, affiliations, central claim, QR block, side sections, hero visual or evidence cards, and contact. Select a scan icon from assets/scan-icons for the center QR row; use the printed latex PNG path for LaTeX commands and keep it consistent with the HTML SVG path. Keep image paths relative. LaTeX templates live in templates/, so shared repository assets should usually be referenced as ../figures/... and ../assets/.... Institution logos should come from assets/institution-logos/top100-logo-bank when possible; conference logos should come from assets/conference-logos. Prefer existing paper figures. Do not insert machine-specific absolute paths. Do not claim that the poster compiled unless a compile command actually ran.
 
 HTML generation rules:
-Use the provided standalone HTML templates from templates/. Keep CSS inline and avoid external fonts, scripts, or network assets. Use the selected HTML SVG QR/scan icon path from scripts/select_scan_icon.py for the center scan row. Keep the same scientific content as the LaTeX version. Use the chosen theme class to change central color. Keep print CSS for 2:1 wide. Do not claim that the HTML preview rendered unless scripts/render_preview.py actually produced a screenshot.
+Use the provided standalone HTML templates from templates/. Keep CSS inline and avoid external fonts, scripts, or network assets. Use the selected HTML SVG QR/scan icon path from scripts/select_scan_icon.py or scripts/select_phone_icon.py for the center scan row. Keep the same scientific content as the LaTeX version. Use the chosen theme class to change central color. Keep print CSS for 2:1 wide. Do not claim that the HTML preview rendered unless scripts/render_preview.py actually produced a screenshot.
 
 QR code rules:
-If the user provides URLs, generate one QR code per URL. Use Paper=URL for the primary paper so the templates can use figures/qr/01-paper.png. scripts/generate_qr.py adds a scan icon by default; use --scan-icon PATH to force one or --scan-icon none only when explicitly asked to omit it. Place the primary QR in the center-bottom scan area for style1 mode or the lower center area for style2 mode. Put secondary QR codes or links in the right column. Do not place QR codes on top of the main claim or hero visual.
+If the user provides URLs, generate one QR code per URL. Use OpenReview=URL as the primary QR when an OpenReview page exists so templates can use figures/qr/01-openreview.png; otherwise use Paper=URL. scripts/generate_qr.py adds a scan icon by default; use --scan-icon PATH to force one or --scan-icon none only when explicitly asked to omit it. Place the primary QR in the center-bottom scan area for style1 mode or the lower center area for style2 mode. Put secondary QR codes or links in the right column. Do not place QR codes on top of the main claim or hero visual.
 
 Preview commands:
 python scripts/render_preview.py templates/classic.tex --out-dir /tmp/better-poster-preview/classic-latex

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Resolve and cache a CSRankings top-100 institution logo for poster templates.
+"""Resolve a CSRankings top-100 institution logo for poster templates.
 
 Workflow:
 1. Infer or accept an institution name.
 2. Match only against assets/institution-data/csrankings_top100_institutions.json.
-3. Check assets/institution-logos/cache/<institution-slug>.png.
-4. If cached, copy it to assets/institution-logos/current-logo.png.
-5. If not cached and --download is enabled, try network logo sources, cache the result,
+3. Prefer the curated assets/institution-logos/top100-logo-bank logo library.
+4. Copy or rasterize the selected asset to assets/institution-logos/current-logo.png.
+5. Fall back to assets/institution-logos/cache/<institution-slug>.png.
+6. If not cached and --download is enabled, try network logo sources, cache the result,
    then copy it to current-logo.png.
-6. If no top-100 institution is identified or no logo can be resolved, remove current-logo
+7. If no top-100 institution is identified or no logo can be resolved, remove current-logo
    so the poster institution-brand area remains blank.
 
 Logo files are generated artifacts because university marks are commonly protected by
@@ -25,6 +26,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -32,6 +34,11 @@ from tempfile import NamedTemporaryFile
 USER_AGENT = "Better-Poster-Skill/1.0 (+https://github.com/XinbaoQiao/Better-Poster-Skill)"
 DEFAULT_TOP100_PATH = Path("assets/institution-data/csrankings_top100_institutions.json")
 DEFAULT_OUT_DIR = Path("assets/institution-logos")
+DEFAULT_LOGO_BANK_DIR = DEFAULT_OUT_DIR / "top100-logo-bank"
+LOGO_STYLE_DIRS = {
+    "pure": "pure_logo",
+    "with-name": "logo_with_name",
+}
 
 
 @dataclass(frozen=True)
@@ -43,6 +50,10 @@ class Institution:
 
 def slugify(text: str) -> str:
     return re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-") or "institution"
+
+
+def strip_rank_prefix(stem: str) -> str:
+    return re.sub(r"^\d+-", "", stem.lower())
 
 
 def request_json(url: str, timeout: int = 20) -> dict:
@@ -222,8 +233,61 @@ def write_png(data: bytes, content_type: str, out_path: Path) -> None:
         tmp_path.unlink(missing_ok=True)
 
 
+def activate_logo_file(inst: Institution, source_path: Path, out_dir: Path, source: str) -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    current = out_dir / "current-logo.png"
+    suffix = source_path.suffix.lower()
+    if suffix == ".svg":
+        convert = shutil.which("convert")
+        if not convert:
+            raise RuntimeError(f"ImageMagick convert is required to rasterize SVG institution logos: {source_path}")
+        result = subprocess.run(
+            [
+                convert,
+                "-background",
+                "none",
+                "-density",
+                "600",
+                str(source_path),
+                "-trim",
+                "+repage",
+                "-resize",
+                "1400x500",
+                f"PNG32:{current}",
+            ],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        if result.returncode != 0:
+            raise RuntimeError(f"Failed to rasterize institution logo {source_path}:\n{result.stdout[-2000:]}")
+    else:
+        try:
+            from PIL import Image  # type: ignore
+
+            with Image.open(source_path) as image:
+                image.convert("RGBA").save(current)
+        except Exception:
+            if suffix == ".png":
+                shutil.copy2(source_path, current)
+            else:
+                raise
+
+    metadata = {
+        "institution": inst.name,
+        "source_path": str(source_path),
+        "source": source,
+        "generated_at_unix": int(time.time()),
+        "note": "Review logo copyright/trademark requirements before public redistribution.",
+    }
+    (out_dir / "current-logo.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    (out_dir / "current-institution.txt").write_text(inst.name + "\n", encoding="utf-8")
+    return current
+
+
 def clear_current(out_dir: Path) -> None:
-    for name in ("current-logo.png", "current-logo.json", "current-institution.txt"):
+    for name in ("current-logo.png", "current-logo.svg", "current-logo.json", "current-institution.txt"):
         try:
             (out_dir / name).unlink()
         except FileNotFoundError:
@@ -246,7 +310,36 @@ def activate_cached_logo(inst: Institution, cache_path: Path, out_dir: Path, sou
     return current
 
 
-def resolve_logo(inst: Institution, out_dir: Path, download: bool) -> Path | None:
+def bank_style_order(style: str) -> list[str]:
+    if style == "auto":
+        return ["with-name", "pure"]
+    return [style]
+
+
+def find_bank_logo(inst: Institution, logo_bank: Path, style: str) -> tuple[Path, str] | None:
+    slugs = {slugify(inst.name), *(slugify(alias) for alias in inst.aliases)}
+    preferred_suffix = {".png": 0, ".jpg": 1, ".jpeg": 1, ".webp": 2, ".svg": 3}
+    for style_name in bank_style_order(style):
+        style_dir = logo_bank / LOGO_STYLE_DIRS[style_name]
+        if not style_dir.is_dir():
+            continue
+        matches = [
+            path
+            for path in style_dir.iterdir()
+            if path.is_file() and strip_rank_prefix(path.stem) in slugs
+        ]
+        if matches:
+            matches.sort(key=lambda path: preferred_suffix.get(path.suffix.lower(), 9))
+            return matches[0], style_name
+    return None
+
+
+def resolve_logo(inst: Institution, out_dir: Path, logo_bank: Path, logo_style: str, download: bool) -> Path | None:
+    bank_match = find_bank_logo(inst, logo_bank, logo_style)
+    if bank_match:
+        source_path, style_name = bank_match
+        return activate_logo_file(inst, source_path, out_dir, source=f"top100-logo-bank:{style_name}")
+
     cache_dir = out_dir / "cache"
     slug = slugify(inst.name)
     cache_path = cache_dir / f"{slug}.png"
@@ -276,6 +369,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source", action="append", default=[], help="Text/LaTeX/HTML file or directory used for institution inference.")
     parser.add_argument("--top100", default=str(DEFAULT_TOP100_PATH), help="Path to assets/institution-data/csrankings_top100_institutions.json.")
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR), help="Logo cache output directory.")
+    parser.add_argument("--logo-bank", default=str(DEFAULT_LOGO_BANK_DIR), help="Curated logo bank directory.")
+    parser.add_argument("--logo-style", choices=("auto", "pure", "with-name"), default="auto", help="Preferred curated logo style.")
     parser.add_argument("--download", action="store_true", help="Download logo on cache miss. Without this, cache miss leaves the logo area blank.")
     parser.add_argument("--cache-top100", action="store_true", help="Download/cache all configured top-100 institutions. Use with care.")
     parser.add_argument("--limit", type=int, default=100, help="Maximum institutions for --cache-top100.")
@@ -291,7 +386,7 @@ def main() -> int:
     if args.cache_top100:
         failures = 0
         for inst in institutions[: max(0, args.limit)]:
-            result = resolve_logo(inst, out_dir, download=True)
+            result = resolve_logo(inst, out_dir, Path(args.logo_bank), args.logo_style, download=True)
             if result:
                 print(f"Cached: {inst.name} -> {result}")
             else:
@@ -313,7 +408,7 @@ def main() -> int:
         print("No configured CSRankings top-100 institution matched; institution area will remain blank.")
         return 0
 
-    result = resolve_logo(inst, out_dir, download=args.download)
+    result = resolve_logo(inst, out_dir, Path(args.logo_bank), args.logo_style, download=args.download)
     if result:
         print(f"Current institution logo: {result}")
         print(f"Institution: {inst.name}")

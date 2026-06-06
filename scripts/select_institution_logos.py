@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Select cached institution logo assets from affiliation text in source order."""
+"""Select curated institution logo assets from affiliation text in source order."""
 
 from __future__ import annotations
 

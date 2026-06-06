@@ -100,7 +100,7 @@ QR row:
 
 - Sequence is QR code, scan icon, then scan text.
 - Contact belongs inside the scan text, directly below the primary caption.
-- Select paired PNG/SVG scan icons with `scripts/select_scan_icon.py`.
+- Select paired PNG/SVG scan icons with `scripts/select_scan_icon.py` (compatibility wrapper) or `scripts/select_phone_icon.py`; both read from `assets/scan-icons/`.
 - If an OpenReview URL is available, make it the primary QR target and label it `OpenReview=...`; the QR image must include the OpenReview/site icon in the center.
 - Generate QR images with `scripts/generate_qr.py --icon auto`; do not manually replace an OpenReview QR with a plain QR that lacks a center icon.
 - OpenReview center icons come from `assets/site-icons/openreview.png`. If the asset is missing, add or restore that icon before regenerating QR images.
@@ -162,7 +162,7 @@ Potential misunderstanding to avoid:
 Institution logos:
 
 - Normalize sub-units to parent institutions.
-- Prefer cached/configured institution logos.
+- Prefer curated logos from `assets/institution-logos/top100-logo-bank/` over runtime cache files.
 - Order logos by first-author affiliation order when available.
 - If the first author resolves to exactly one institution, prefer a logo-with-name/wordmark asset when available so the bottom strip feels intentionally filled.
 - If multiple institutions resolve, show all resolved pure emblems unless the user asks for a cap.
