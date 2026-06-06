@@ -9,10 +9,10 @@
 \renewcommand{\columnfontcolor}{black}
 \renewcommand{\fontsizetitle}{\fontsize{68}{76}\selectfont}
 \renewcommand{\fontsizeauthor}{\fontsize{31}{39}\selectfont}
-\renewcommand{\fontsizestandard}{\fontsize{37}{49}\selectfont}
-\renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
-\renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
-\renewcommand{\fontsizecaption}{\fontsize{26}{34}\selectfont}
+\renewcommand{\fontsizestandard}{\fontsize{35}{46}\selectfont}
+\renewcommand{\fontsizemain}{\fontsize{196}{218}\selectfont}
+\renewcommand{\fontsizesection}{\fontsize{48}{60}\selectfont}
+\renewcommand{\fontsizecaption}{\fontsize{25}{33}\selectfont}
 
 \setlength{\leftbarwidth}{0.23\paperwidth}
 \setlength{\rightbarwidth}{0.23\paperwidth}
@@ -20,9 +20,20 @@
 \setlength{\columnmarginhorizontal}{0.024\paperheight}
 \setlength{\maincolumnmarginvertical}{0.068\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
+\setlength{\institutionlogosize}{0.108\paperheight}
+
+\renewcommand{\posterstatementcard}[5]{%
+  \begingroup\setlength{\fboxsep}{0.36em}%
+  \colorbox{sidebarcool}{%
+    \begin{minipage}{0.94\linewidth}%
+      {\fontsize{#1}{#2}\selectfont #3\textcolor{black}{#4}\par}%
+      \vspace{0.10em}{\fontsize{31}{40}\selectfont\color{black}#5\par}%
+    \end{minipage}}%
+  \endgroup\par\vspace{0.32em}%
+}
+
 \newcommand{\PosterTitle}{When Sample Selection Bias Precipitates Model Collapse}
 \newcommand{\PosterAuthors}{Xinbao Qiao, Xianglong Du, Wei Liu, Jingqi Zhang, Peihua Mai, Meng Zhang, Yan Pang}
-\newcommand{\PosterAffiliation}{NUS (Chongqing) Research Institute; Zhejiang University; CUHK; Changan Automobile; NUS}
 \newcommand{\PaperQRCode}{figures/qr/01-openreview.png}
 \newcommand{\ScanIcon}{../../assets/icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogoOne}{figures/institutions/02-national-university-of-singapore.png}
@@ -38,11 +49,12 @@
 \betterposter{
   \maincolumn{
     \posterclaimblock{%
-      {\color{white}Bias prunes tails.\\
-      Silos collapse faster.}\\
-      {\color{claimtiermiddle}Wasserstein proxies\\
-      restore tail coverage.}\\
-      {\color{claimtierlower}No raw data sharing.}%
+      {\color{white}Selection bias\\
+      accelerates collapse.}\\
+      {\color{claimtiermiddle}Accumulation slows\\
+      but does not prevent it.}\\
+      {\color{claimtierlower}More samples alone\\
+      do not restore diversity.}%
     }
   }{
     \qrcode{\PaperQRCode}{\ScanIcon}{%
@@ -55,95 +67,44 @@
   {\fontsize{66}{74}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
   \vspace{0.22em}
   {\fontsize{25}{32}\selectfont\color{mutedgray}\PosterAuthors\par}
-  \vspace{0.20em}
-  {\fontsize{24}{31}\selectfont\color{mutedgray}\PosterAffiliation\par}
 
-  \section{Theory Claims}
-  \propositioncard{Proposition 1: Replace paradigm}{%
-    Under the \textit{Replace} paradigm, as $t\to\infty$,
-    \[
-      \boldsymbol{\Sigma}_{t}\xrightarrow{a.s.}\mathbf{0},
-      \qquad
-      \mathbb{E}\!\left[\mathbb{W}_{2}^{2}(\mathcal{N}_{t},\mathcal{N}_{0})\right]\to\infty.
-    \]}
+  \section{Introduction}
+  Recursive synthetic-data training can narrow distributional support when later generations are selected by biased local references. The main question is when accumulation preserves diversity, and when selection bias overrides it.
 
-  \propositioncard{Proposition 2: Accumulate paradigm}{%
-    Under unbiased accumulation,
-    \[
-      \mathbb{E}[(\bar{\boldsymbol{\mu}}_{t}-\bar{\boldsymbol{\mu}}_{0})^{2}]
-      \to (1-\alpha_{n})\bar{\boldsymbol{\Sigma}}_{0},
-      \quad
-      \mathbb{E}[\bar{\boldsymbol{\Sigma}}_{t}]
-      \to \alpha_{n}\bar{\boldsymbol{\Sigma}}_{0}.
-    \]
-    Thus $\mathbb{E}[\mathbb{W}_{2}^{2}]
-    \to 2(1-\sqrt{\alpha_{n}})\operatorname{Tr}(\bar{\boldsymbol{\Sigma}}_{0})$.}
-
-  \theoremcard{Theorem 1: Selection bias precipitates collapse}{%
-    With top-$\alpha$ selection toward a local ideal $\mathbf{u}^{*}$,
-    \[
-      \|\bar{\boldsymbol{\mu}}_{t}-\mathbf{u}^{*}\|^{2}\!\to 0,
-      \qquad
-      \bar{\boldsymbol{\Sigma}}_{t}\!\to \mathbf{0}.
-    \]
-    Local fidelity can erase global diversity.}
-
-  \theoremcard{Theorem 2: Collapse has an explicit rate}{%
-    If the trajectory remains in the local basin,
-    \[
-      {\rm Tr}(\bar{\boldsymbol{\Sigma}}_{t})
-      = \mathcal{O}_{a.s.}(t^{-\psi}).
-    \]
-    The tail erosion follows a power-law decay.}
-
-  \theoremcard{Theorem 3: Collapse costs true-manifold risk}{%
-    For filtered distribution $\mathcal{D}_{t}$ and true manifold
-    $\mathcal{D}^{*}$,
-    \[
-      \mathcal{R}_{\mathcal{D}^{*}}(h_{t};g^{*})
-      \le 2\ell\epsilon\,\mathbb{W}_{p}(\mathcal{D}_{t},\mathcal{D}^{*})
-      +\mathcal{R}_{\mathcal{D}_{t}}(h_{t};g_{t})
-      +\mathcal{O}(\ell\delta).
-    \]}
-
-  \section{Proxy Principle}
-  A collaborative Wasserstein barycenter broadens the verifier:
-  \[
-    \mathcal{Q}^{*}=\arg\min_{\mathcal{Q}}
-    \sum_{k=1}^{K}\lambda_{k}\mathbb{W}_{p}^{p}(\mathcal{Q},\mathcal{Q}_{k}).
-  \]
-  Selection is protective only when this proxy covers the modes the loop
-  must preserve.
+  \section{Theory}
+  \propositioncard{Replace paradigm [R1]}{Replacing data by the latest generated round drives covariance loss and mode narrowing.}
+  \propositioncard{Accumulate paradigm [R2]}{Pooling generations can stabilize unbiased recursion, but biased selection changes the limiting distribution.}
+  \theoremcard{Theorem 1}{Top-rank selection toward a local reference moves the mean toward that reference while covariance contracts.}
+  \theoremcard{Theorem 2}{Within the local basin, the covariance trace follows a power-law decay, giving an explicit collapse rate.}
+  \theoremcard{Theorem 3}{After fitting error is small, target performance is governed by distributional mismatch.}
 
   \vfill
+  \section{References}
+  {\fontsize{20}{27}\selectfont [R1] Replace-paradigm model-collapse analysis. [R2] Accumulate-paradigm recursive training analysis.\par}
+  \vspace{0.58em}
+  \posterfootnote{\emph{For more methodology and theoretical details, please refer to the full paper.}}
+  \vspace{0.65em}
   \institutionlogostrip{%
     \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
   }
 }{
-  \section{Experimental Takeaway}
-  \begin{itemize}
-    \item Airplane-only reference homogenizes CIFAR-10.
-    \item Scheme I improves CIFAR-10 FID: 106 to 71.
-    \item Collaborative proxies keep tail modes visible.
-  \end{itemize}
+  \section{Multivariate Gaussian Modeling}
+  \propositioncard{Gaussian}{Selection contracts covariance under both replacement and accumulation.}
+  \propositioncard{Anisotropic Gaussian}{Directional variance changes the path, but not the loss of dispersion.}
+  \propositioncard{Gaussian mixture}{Biased filtering reduces mode coverage across generations.}
+  \propositioncard{Laplace}{Heavy-tailed initialization still loses dispersion under biased filtering.}
 
   \section{Collapse Signal}
-  \begin{center}
-    \postergraphic[width=0.76\textwidth]{figures/class_proportions_trend.png}{Class proportion trend from the paper.}
-  \end{center}
-  One-class verification pulls the sample loop toward Airplane while the other
-  classes become tail modes.
+  \theoremcard{Trace-ratio diagnostic}{The trace ratio summarizes diversity contraction: replacement changes fastest, while accumulation decays more slowly.}
 
-  \section{FID Trend}
-  \begin{center}
-    \postergraphic[width=0.80\textwidth]{figures/fid_trends_combined.png}{FID trends from the paper.}
-  \end{center}
-  On non-IID references, collaborative proxy selection lowers FID relative to
-  random selection and common matching baselines.
+  \section{Empirical Summary}
+  Across Gaussian and non-Gaussian families, biased selection is the dominant driver of diversity loss and reduced coverage.
 
   \vfill
+  \posterfootnote{\emph{For additional experimental results, please refer to the full paper.}}
+  \vspace{0.70em}
   \conferencelogostrip{%
     \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
     \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
