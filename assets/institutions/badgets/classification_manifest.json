@@ -1,0 +1,160 @@
+{
+  "task": "official institution badge classification fill",
+  "target_root": "assets/institutions/badgets",
+  "generated_at": "2026-06-06",
+  "counts_required_per_folder": 100,
+  "scope": [
+    "pure_logo",
+    "logo_with_name"
+  ],
+  "notes": [
+    "Only target assets/institutions/badgets files were written by this fill step.",
+    "Direct downloads were validated to reject empty files, HTML/challenge pages, and non-SVG SVG files.",
+    "KAIST, Imperial, and Monash had local network/WAF/SSO blockers; entries record the fallback method explicitly."
+  ],
+  "records": [
+    {
+      "label": "snu-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/033-seoul-national-university.png",
+      "source_url": "https://identity.snu.ac.kr/webdata/uploads/identity/image/2021/06/2-1-0-2-1.png",
+      "method": "download",
+      "content_type": "image/png",
+      "bytes": 41650
+    },
+    {
+      "label": "mbzuai-pure",
+      "target": "assets/institutions/badgets/pure_logo/067-mbzuai.jpg",
+      "source_url": "https://staticcdn.mbzuai.ac.ae/mbzuaiwpprd01/2026/01/favicon-fifth.jpg",
+      "method": "download",
+      "content_type": "image/jpeg",
+      "bytes": 15973
+    },
+    {
+      "label": "mbzuai-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/067-mbzuai.svg",
+      "source_url": "https://mbzuai.ac.ae/wp-content/themes/mbzuai/fifth-assets/images/mbzuai-brand-logo.svg",
+      "method": "download",
+      "content_type": "image/svg+xml",
+      "bytes": 37173
+    },
+    {
+      "label": "sfu-pure",
+      "target": "assets/institutions/badgets/pure_logo/068-simon-fraser-university.png",
+      "source_url": "https://www.sfu.ca/content/sfu/communicators-toolkit/brand/guidelines/logos/logo-usage-guidelines/_jcr_content/main_content/image.img.original.low.png/1685743304203.png",
+      "method": "download",
+      "content_type": "image/png",
+      "bytes": 3120
+    },
+    {
+      "label": "sfu-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/068-simon-fraser-university.png",
+      "source_url": "https://www.sfu.ca/content/sfu/communicators-toolkit/brand/guidelines/logos/logo-usage-guidelines/_jcr_content/main_content/image_2010703218.img.original.low.png/1685743346601.png",
+      "method": "download",
+      "content_type": "image/png",
+      "bytes": 6073
+    },
+    {
+      "label": "cispa-pure",
+      "target": "assets/institutions/badgets/pure_logo/092-cispa-helmholtz-center.png",
+      "source_url": "https://cispa.de/medialibrary/logo/download/CISPA_Circle_BLACK_RGB.png",
+      "method": "download",
+      "content_type": "image/png",
+      "bytes": 37602
+    },
+    {
+      "label": "cispa-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/092-cispa-helmholtz-center.png",
+      "source_url": "https://cispa.de/medialibrary/logo/download/CISPA_Main_Logo_BLACK_EN_RGB.png",
+      "method": "download",
+      "content_type": "image/png",
+      "bytes": 22877
+    },
+    {
+      "label": "cityu-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/088-city-university-of-hong-kong.svg",
+      "source_url": "https://template.cityu.edu.hk/template/v2/logo/CityU/CityU_Vertical_Logo_CMYK.svg",
+      "method": "download",
+      "content_type": "image/svg+xml",
+      "bytes": 26008
+    },
+    {
+      "label": "smu-pure",
+      "target": "assets/institutions/badgets/pure_logo/090-singapore-management-university.svg",
+      "source_url": "https://smuseum.smu.edu.sg/templates/smu/assets/img/favicon-smu.svg",
+      "method": "download",
+      "content_type": "image/svg+xml",
+      "bytes": 2031
+    },
+    {
+      "label": "smu-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/090-singapore-management-university.svg",
+      "source_url": "https://www.smu.edu.sg/themes/smubase_5g/svg/logo-d-smu-white.svg",
+      "method": "download",
+      "content_type": "image/svg+xml",
+      "bytes": 39143
+    },
+    {
+      "label": "imperial-pure",
+      "target": "assets/institutions/badgets/pure_logo/081-imperial-college-london.svg",
+      "source_url": "https://www.imperial.ac.uk/assets/website/images/favicon/favicon.svg",
+      "method": "download",
+      "content_type": "image/svg+xml",
+      "bytes": 333
+    },
+    {
+      "label": "nanjing-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/024-nanjing-university.png",
+      "source_url": "https://www.nju.edu.cn/__local/F/7A/1D/91723945F34FAA0A9C67700CF8F_13B47AE2_E3A7.png",
+      "method": "curl-download",
+      "bytes": 58279
+    },
+    {
+      "label": "kaist-pure",
+      "target": "assets/institutions/badgets/pure_logo/019-kaist.svg",
+      "source_url": "https://www.kaist.ac.kr/kr/html/kaist/010401.html",
+      "method": "local-seed-copy-after-official-fetch-blocked",
+      "bytes": 54232,
+      "note": "official KAIST UI page reachable via web evidence; local direct fetch to kaist.ac.kr timed out"
+    },
+    {
+      "label": "kaist-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/019-kaist.svg",
+      "source_url": "https://www.kaist.ac.kr/kr/html/kaist/010401.html",
+      "method": "local-seed-copy-after-official-fetch-blocked",
+      "bytes": 54232,
+      "note": "official KAIST UI page reachable via web evidence; local direct fetch to kaist.ac.kr timed out"
+    },
+    {
+      "label": "nanjing-pure",
+      "target": "assets/institutions/badgets/pure_logo/024-nanjing-university.svg",
+      "source_url": "https://ndbgs.nju.edu.cn/zlxz/bsbz/20231012/i251602.html",
+      "method": "local-seed-copy-after-official-fetch-blocked",
+      "bytes": 42225,
+      "note": "official Nanjing visual identity archive downloadable, but no rar extractor is installed locally; local seed used for pure crest"
+    },
+    {
+      "label": "imperial-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/081-imperial-college-london.png",
+      "source_url": "https://www.imperial.ac.uk/communications/teams-people/brand/",
+      "method": "local-seed-copy-after-official-fetch-blocked",
+      "bytes": 147431,
+      "note": "Imperial public site/brand hub blocks automated local fetch with WAF/SSO; local seed used for main brand logo"
+    },
+    {
+      "label": "monash-logo-with-name",
+      "target": "assets/institutions/badgets/logo_with_name/089-monash-university.svg",
+      "source_url": "https://www.monash.edu/__data/assets/git_bridge/0006/509343/deploy/mysource_files/monash-logo-mono.svg",
+      "method": "local-seed-copy-after-official-fetch-blocked",
+      "bytes": 40385,
+      "note": "official Monash asset URL returns Cloudflare challenge locally; local seed used for main logo"
+    },
+    {
+      "label": "monash-pure",
+      "target": "assets/institutions/badgets/pure_logo/089-monash-university.svg",
+      "source_url": "https://www.monash.edu/__data/assets/pdf_file/0010/1656523/3.-CoreElements_Our-Logo.pdf",
+      "method": "local-seed-svg-crop-after-official-fetch-blocked",
+      "bytes": 40346,
+      "note": "pure shield crop from the Monash logo because official guidelines keep shield and wordmark together except constrained profile use"
+    }
+  ]
+}
