@@ -1,8 +1,8 @@
-# CS Conference Maintainer
+# Better Poster Skill
 
 [仓库首页中文版](https://github.com/XinbaoQiao/Better-Poster-Skill#zh-cn) | [English](https://github.com/XinbaoQiao/Better-Poster-Skill#english)
 
-CS Conference Maintainer 用于帮助 code agent 将论文材料转换为可编辑的 CS conference 学术海报。
+Better Poster Skill 用于帮助 code agent 将论文材料转换为可编辑的 Better Poster 风格学术海报。
 
 当你有论文 PDF、LaTeX 源码压缩包、论文文本摘录、图表、截图、项目链接，或者已有海报草稿需要重新设计时，可以使用这个项目。
 
@@ -38,11 +38,11 @@ CS Conference Maintainer 用于帮助 code agent 将论文材料转换为可编�
 
 ## 怎么使用
 
-先把本仓库安装到 Codex，然后让 code agent 基于论文材料生成或修改海报。
+先把本仓库安装为 Codex skill，然后让 code agent 基于论文材料生成或修改海报。
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R . ~/.codex/skills/better-poster
+cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
 示例请求：
@@ -95,7 +95,7 @@ AI 可以加速海报初稿生成，但最终学术判断仍应由作者完成�
 
 ## License
 
-This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this project and is not a vendored copy of Rafael Bailo's GPL-licensed class.
+This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
 
 重新分发生成的 logo 文件前，请检查机构 logo 的版权、商标和署名要求。
 

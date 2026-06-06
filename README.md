@@ -1,8 +1,8 @@
 <div align="center">
 
-# CS Conference Maintainer
+# Better Poster Skill
 
-Turn paper materials into editable CS conference poster drafts with a code agent.
+Turn paper materials into editable Better Poster-style academic posters with a code agent.
 
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
@@ -32,7 +32,7 @@ Turn paper materials into editable CS conference poster drafts with a code agent
 
 ## English
 
-CS Conference Maintainer helps a code agent transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished academic poster drafts.
+Better Poster Skill helps a code agent transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished academic poster drafts.
 
 It is designed for researchers who want a fast, editable poster starting point instead of a blank canvas.
 
@@ -69,11 +69,11 @@ It is designed for researchers who want a fast, editable poster starting point i
 
 ### Quick Start
 
-Install this repository for Codex:
+Install this repository as a Codex skill:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R . ~/.codex/skills/better-poster
+cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
 Then ask the code agent to generate or revise a poster:
@@ -126,11 +126,11 @@ Before submission, presentation, or distribution, manually verify:
 
 ### License
 
-This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this project and is not a vendored copy of Rafael Bailo's GPL-licensed class.
+This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
 
 Review institution logo copyright, trademark, and attribution requirements before redistributing generated logo files.
 
-<p align="right"><a href="#cs-conference-maintainer">Back to top</a> · <a href="#zh-cn">中文</a></p>
+<p align="right"><a href="#better-poster-skill">Back to top</a> · <a href="#zh-cn">中文</a></p>
 
 ---
 
@@ -138,7 +138,7 @@ Review institution logo copyright, trademark, and attribution requirements befor
 
 ## 中文
 
-CS Conference Maintainer 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
+Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
 
 它适合希望快速得到高质量海报起点的研究者，而不是从空白页面开始排版。
 
@@ -173,11 +173,11 @@ CS Conference Maintainer 用于帮助 code agent 将论文 PDF、LaTeX 源码、
 
 ### 快速开始
 
-先把本仓库安装到 Codex：
+先把本仓库安装为 Codex skill：
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R . ~/.codex/skills/better-poster
+cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
 然后让 code agent 基于论文材料生成或修改海报：
@@ -230,8 +230,8 @@ agent 会阅读论文材料，选择合适的海报结构，整合可用资源�
 
 ### License
 
-This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this project and is not a vendored copy of Rafael Bailo's GPL-licensed class.
+This repository remains MIT licensed. The included `templates/betterposter.cls` is a lightweight compatible implementation for this skill and is not a vendored copy of Rafael Bailo's GPL-licensed class.
 
 重新分发生成的 logo 文件前，请检查机构 logo 的版权、商标和署名要求。
 
-<p align="right"><a href="#cs-conference-maintainer">Back to top</a> · <a href="#english">English</a></p>
+<p align="right"><a href="#better-poster-skill">Back to top</a> · <a href="#english">English</a></p>
