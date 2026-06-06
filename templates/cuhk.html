@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CUHK Academic Poster Template</title>
+<style>
+@page { size: 1682mm 841mm; margin: 0; }
+:root { --ink:#111827; --muted:#6b7280; --institution-primary:#750f6d; --institution-secondary:#dda300; --main:var(--institution-primary); --claim-1:#fff; --claim-2:#d7c9dc; --claim-3:#b7a3be; }
+* { box-sizing:border-box; }
+html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family:Inter, Avenir, Helvetica, Arial, sans-serif; }
+.poster { width:1682mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:23% 54% 23%; overflow:hidden; background:#fff; }
+.side { padding:27mm 23mm; font-size:12.4mm; line-height:1.22; display:flex; flex-direction:column; overflow:hidden; }
+.main { padding:70mm 56mm 38mm; background:var(--main); color:#fff; display:flex; flex-direction:column; overflow:hidden; }
+h1 { margin:0 0 7mm; color:var(--institution-primary); font-size:28mm; line-height:1.04; font-weight:900; }
+.authors, .contact, .sidebar-note { color:var(--muted); font-size:10mm; line-height:1.22; }
+h2 { margin:16mm 0 5mm; color:var(--institution-primary); font-size:15.4mm; line-height:1.08; font-weight:900; }
+p { margin:0 0 5mm; }
+.claim { margin:auto 0; font-size:76mm; line-height:86mm; font-weight:900; }
+.claim-line { display:block; white-space:nowrap; }
+.claim-primary { color:var(--claim-1); } .claim-middle { color:var(--claim-2); } .claim-lower { color:var(--claim-3); }
+.scan { width:90%; margin:auto 0 0; padding-top:24mm; }
+.scan-item { display:grid; grid-template-columns:126mm 74mm minmax(150mm,1fr); gap:14mm; align-items:center; }
+.qr { width:126mm; height:126mm; padding:9mm; background:#fff; color:#111827; display:flex; align-items:center; justify-content:center; font-size:16mm; font-weight:900; }
+.scan-icon { width:74mm; height:74mm; display:flex; align-items:center; justify-content:center; border:2mm solid #fff; }
+.scan-caption { font-size:15mm; line-height:1.18; font-weight:900; }
+.scan-caption strong { font-size:25mm; line-height:1.04; }
+.sidebar-note { margin-top:auto; padding-top:10mm; font-style:italic; }
+.logo-row { min-height:90mm; padding-top:12mm; font-weight:900; color:var(--institution-primary); }
+.theory-card { background:#f7f9fc; padding:5mm; margin:0 0 5mm; }
+.theory-card strong { display:block; color:#111827; font-size:13.8mm; line-height:1.12; margin-bottom:2mm; font-weight:900; }
+@media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.24); margin-bottom:-640mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
+</style>
+</head>
+<body>
+<main class="poster" aria-label="CUHK academic poster template">
+  <aside class="side">
+    <h1>Title of the Study</h1>
+    <p class="authors">First Author, Second Author, Senior Author</p>
+    <h2>Introduction</h2>
+    <p>Background, research gap, and objective.</p>
+    <h2>Methodology</h2>
+    <p>Problem formulation, model, and analytical framework.</p>
+    <h2>Theory</h2>
+    <div class="theory-card"><strong>Theorem</strong><p>Formal statement, assumptions, and implication.</p></div>
+    <div class="theory-card"><strong>Proposition</strong><p>Auxiliary result, mechanism, or boundary condition.</p></div>
+    <p class="sidebar-note">For more methodology and theoretical details, please refer to the full paper.</p>
+    <div class="logo-row">CUHK</div>
+  </aside>
+  <section class="main">
+    <div class="claim">
+      <span class="claim-line claim-primary">Primary conclusion.</span>
+      <span class="claim-line claim-primary">Key mechanism.</span>
+      <span class="claim-line claim-middle">Central evidence.</span>
+      <span class="claim-line claim-middle">Robustness signal.</span>
+      <span class="claim-line claim-lower">General implication.</span>
+      <span class="claim-line claim-lower">Open direction.</span>
+    </div>
+    <div class="scan"><div class="scan-item"><div class="qr">QR</div><div class="scan-icon">Scan icon</div><div class="scan-caption"><strong>Scan</strong><br>for the full paper, code, or project page.<br><br><span class="contact">Contact: author@example.com</span></div></div></div>
+  </section>
+  <aside class="side">
+    <h2>Results</h2>
+    <p>Main empirical finding, benchmark, and comparison.</p>
+    <h2>Analysis</h2>
+    <p>Ablation, robustness, and failure mode.</p>
+    <h2>Conclusion</h2>
+    <p>Contribution, implication, and limitation.</p>
+    <p class="sidebar-note">For additional experimental results, please refer to the full paper.</p>
+    <div class="logo-row">Conference</div>
+  </aside>
+</main>
+</body>
+</html>
