@@ -1,160 +1,2019 @@
 {
-  "task": "official institution badge classification fill",
-  "target_root": "assets/institution-logos/top100-logo-bank",
-  "generated_at": "2026-06-06",
-  "counts_required_per_folder": 100,
-  "scope": [
-    "pure_logo",
-    "logo_with_name"
+  "generated_at": "2026-06-07T02:13:25+08:00",
+  "task": "top100 official institution logo_with_name repair",
+  "official_only": true,
+  "required_count_per_folder": 100,
+  "category": "logo_with_name",
+  "scope": {
+    "updated": [
+      "logo_with_name",
+      "classification_manifest.json"
+    ],
+    "unchanged": [
+      "pure_logo",
+      "csrankings_all_world_2016_2026_may2026_top100",
+      "original root badge/logo files outside these subfolders"
+    ]
+  },
+  "selection_policy": [
+    "Use official institution websites, official brand/identity pages, official PDFs, or existing official cache copies only.",
+    "Reject campus photos, search/social icons, favicon-only assets, department/college/program lockups, spacing-guide artwork, and banner/background images.",
+    "For SVGs, perform only standalone compatibility normalization such as viewBox case, currentColor resolution, and path-token spacing without changing logo geometry."
   ],
-  "notes": [
-    "Only target assets/institution-logos/top100-logo-bank files were written by this fill step.",
-    "Direct downloads were validated to reject empty files, HTML/challenge pages, and non-SVG SVG files.",
-    "KAIST, Imperial, and Monash had local network/WAF/SSO blockers; entries record the fallback method explicitly."
-  ],
+  "summary": {
+    "logo_with_name_count": 100,
+    "records": 100,
+    "render_validation_errors": 0,
+    "blank_rendered_files": 0
+  },
   "records": [
     {
-      "label": "snu-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/033-seoul-national-university.png",
-      "source_url": "https://identity.snu.ac.kr/webdata/uploads/identity/image/2021/06/2-1-0-2-1.png",
-      "method": "download",
-      "content_type": "image/png",
-      "bytes": 41650
+      "index": 1,
+      "institution": "Carnegie Mellon University",
+      "category": "logo_with_name",
+      "file": "001-carnegie-mellon-university.svg",
+      "source_url": "https://www.cmu.edu/#inline-svg-0",
+      "source_page": "https://www.cmu.edu/",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 5788,
+      "sha256": "6fab0e537462c75b8d31999082393b784871abe831e4151379736eb3ad40257a",
+      "kind": "svg",
+      "dimensions": [
+        144.68,
+        12.81
+      ],
+      "local_file": "logo_with_name/001-carnegie-mellon-university.svg"
     },
     {
-      "label": "mbzuai-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/067-mbzuai.jpg",
-      "source_url": "https://staticcdn.mbzuai.ac.ae/mbzuaiwpprd01/2026/01/favicon-fifth.jpg",
-      "method": "download",
-      "content_type": "image/jpeg",
-      "bytes": 15973
+      "index": 2,
+      "institution": "Tsinghua University",
+      "category": "logo_with_name",
+      "file": "002-tsinghua-university.png",
+      "source_url": "https://www.tsinghua.edu.cn/image/logo180.png",
+      "source_page": "https://www.tsinghua.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 7875,
+      "sha256": "dd43e6bb8c1bb332cc38d255e2cbf60eb5240d902deb7ea76904a2cea9aef987",
+      "kind": "raster",
+      "dimensions": [
+        180,
+        58
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/002-tsinghua-university.png"
     },
     {
-      "label": "mbzuai-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/067-mbzuai.svg",
-      "source_url": "https://mbzuai.ac.ae/wp-content/themes/mbzuai/fifth-assets/images/mbzuai-brand-logo.svg",
-      "method": "download",
-      "content_type": "image/svg+xml",
-      "bytes": 37173
+      "index": 3,
+      "institution": "University of Illinois Urbana-Champaign",
+      "category": "logo_with_name",
+      "file": "003-univ-of-illinois-at-urbana-champaign.png",
+      "source_url": "https://brand.illinois.edu/wp-content/uploads/2024/02/Illinois_formal_wordmark_fullcolor_rgb-1-1.png",
+      "source_page": "https://brand.illinois.edu/visual-identity/wordmarks",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 17561,
+      "sha256": "182c89fd7b1bb209bdf4cc827226fab70c73a94dfbf2e3ed8cd7a6f2c5033183",
+      "kind": "raster",
+      "dimensions": [
+        559,
+        145
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/003-univ-of-illinois-at-urbana-champaign.png"
     },
     {
-      "label": "sfu-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/068-simon-fraser-university.png",
-      "source_url": "https://www.sfu.ca/content/sfu/communicators-toolkit/brand/guidelines/logos/logo-usage-guidelines/_jcr_content/main_content/image.img.original.low.png/1685743304203.png",
-      "method": "download",
-      "content_type": "image/png",
-      "bytes": 3120
+      "index": 4,
+      "institution": "University of California San Diego",
+      "category": "logo_with_name",
+      "file": "004-univ-of-california-san-diego.png",
+      "source_url": "https://www.ucsd.edu/_resources/img/logo_UCSD.png",
+      "source_page": "https://www.ucsd.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 11861,
+      "sha256": "d3c87d86175908761937f6d6dd177e939d5bf65c3961f3d1ac825fe636197d40",
+      "kind": "raster",
+      "dimensions": [
+        510,
+        102
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/004-univ-of-california-san-diego.png"
     },
     {
-      "label": "sfu-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/068-simon-fraser-university.png",
-      "source_url": "https://www.sfu.ca/content/sfu/communicators-toolkit/brand/guidelines/logos/logo-usage-guidelines/_jcr_content/main_content/image_2010703218.img.original.low.png/1685743346601.png",
-      "method": "download",
-      "content_type": "image/png",
-      "bytes": 6073
+      "index": 5,
+      "institution": "Shanghai Jiao Tong University",
+      "category": "logo_with_name",
+      "file": "005-shanghai-jiao-tong-university.png",
+      "source_url": "https://vi.sjtu.edu.cn/index.php/articles/bulletin/13",
+      "source_page": "https://vi.sjtu.edu.cn/index.php/articles/bulletin/13",
+      "source_kind": "official_cached_existing_asset_crop",
+      "note": "Cropped to the university-level SJTU lockup; removed the Computer Science school portion.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 56276,
+      "sha256": "2416c16f79e989b73d6d1ff1a8ed194fc7ca3e2b8fdf662f8d75dd09e6e13c84",
+      "kind": "raster",
+      "dimensions": [
+        866,
+        251
+      ],
+      "mode": "RGBA",
+      "local_file": "logo_with_name/005-shanghai-jiao-tong-university.png"
     },
     {
-      "label": "cispa-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/092-cispa-helmholtz-center.png",
-      "source_url": "https://cispa.de/medialibrary/logo/download/CISPA_Circle_BLACK_RGB.png",
-      "method": "download",
-      "content_type": "image/png",
-      "bytes": 37602
+      "index": 6,
+      "institution": "Georgia Institute of Technology",
+      "category": "logo_with_name",
+      "file": "006-georgia-institute-of-technology.png",
+      "source_url": "https://www.gatech.edu/themes/custom/gatech/images/gatech-color_logo.png",
+      "source_page": "https://www.gatech.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 5244,
+      "sha256": "83b1c80b03c1777708ff0047496bb2f687edac4e310422d78ab436b9a1137f7b",
+      "kind": "raster",
+      "dimensions": [
+        348,
+        60
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/006-georgia-institute-of-technology.png"
     },
     {
-      "label": "cispa-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/092-cispa-helmholtz-center.png",
-      "source_url": "https://cispa.de/medialibrary/logo/download/CISPA_Main_Logo_BLACK_EN_RGB.png",
-      "method": "download",
-      "content_type": "image/png",
-      "bytes": 22877
+      "index": 7,
+      "institution": "Peking University",
+      "category": "logo_with_name",
+      "file": "007-peking-university.png",
+      "source_url": "https://www.pku.edu.cn/Uploads/Picture/2019/12/26/s5e04176fbbfa3.png",
+      "source_page": "https://www.pku.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 51388,
+      "sha256": "c6d6f12d827fcc3371095d7f4a40e5dddd96d951425ee7fc8015ff6a5b568eba",
+      "kind": "raster",
+      "dimensions": [
+        852,
+        240
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/007-peking-university.png"
     },
     {
-      "label": "cityu-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/088-city-university-of-hong-kong.svg",
-      "source_url": "https://template.cityu.edu.hk/template/v2/logo/CityU/CityU_Vertical_Logo_CMYK.svg",
-      "method": "download",
-      "content_type": "image/svg+xml",
-      "bytes": 26008
+      "index": 8,
+      "institution": "ETH Zurich",
+      "category": "logo_with_name",
+      "file": "008-eth-zurich.svg",
+      "source_url": "https://ethz.ch/de.html#inline-svg-0",
+      "source_page": "https://ethz.ch/de.html",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 3780,
+      "sha256": "11e09fcd0bb4b4a3a94f0c52528ac1437a73bfbbdf726f21533454be2cc7d960",
+      "kind": "svg",
+      "dimensions": [
+        120.0,
+        20.0
+      ],
+      "local_file": "logo_with_name/008-eth-zurich.svg"
     },
     {
-      "label": "smu-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/090-singapore-management-university.svg",
-      "source_url": "https://smuseum.smu.edu.sg/templates/smu/assets/img/favicon-smu.svg",
-      "method": "download",
-      "content_type": "image/svg+xml",
-      "bytes": 2031
+      "index": 9,
+      "institution": "Massachusetts Institute of Technology",
+      "category": "logo_with_name",
+      "file": "009-massachusetts-inst-of-technology.svg",
+      "source_url": "https://www.mit.edu/#inline-svg-0",
+      "source_page": "https://www.mit.edu/",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 12740,
+      "sha256": "eb2f8f201bf9f9a416e2cf4ae7f92bacca397325ad9095adaaafd19142274824",
+      "kind": "svg",
+      "dimensions": [
+        867.217,
+        200.0
+      ],
+      "local_file": "logo_with_name/009-massachusetts-inst-of-technology.svg"
     },
     {
-      "label": "smu-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/090-singapore-management-university.svg",
-      "source_url": "https://www.smu.edu.sg/themes/smubase_5g/svg/logo-d-smu-white.svg",
-      "method": "download",
-      "content_type": "image/svg+xml",
-      "bytes": 39143
+      "index": 10,
+      "institution": "University of California Berkeley",
+      "category": "logo_with_name",
+      "file": "010-univ-of-california-berkeley.svg",
+      "source_url": "https://www.berkeley.edu/wp-content/themes/berkeleygateway/img/logo-berkeley.svg?v=3",
+      "source_page": "https://www.berkeley.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 6565,
+      "sha256": "688fed10eecea7a792ca2cd8df78b2e31f281333d2356587c62f369c2b3bf9c0",
+      "kind": "svg",
+      "dimensions": [
+        225.0,
+        42.0
+      ],
+      "local_file": "logo_with_name/010-univ-of-california-berkeley.svg"
     },
     {
-      "label": "imperial-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/081-imperial-college-london.svg",
-      "source_url": "https://www.imperial.ac.uk/assets/website/images/favicon/favicon.svg",
-      "method": "download",
-      "content_type": "image/svg+xml",
-      "bytes": 333
+      "index": 11,
+      "institution": "University of Washington",
+      "category": "logo_with_name",
+      "file": "011-university-of-washington.png",
+      "source_url": "https://uw-s3-cdn.s3.us-west-2.amazonaws.com/wp-content/uploads/sites/230/2023/11/02134828/Signature_Left_Purple_Hex.png",
+      "source_page": "https://www.washington.edu/brand/brand-elements/logos/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 11100,
+      "sha256": "19f4d03687bebd97fafae3896535bccd638f12df751d8e9a3a9b12a9fec5fecb",
+      "kind": "raster",
+      "dimensions": [
+        1196,
+        94
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/011-university-of-washington.png"
     },
     {
-      "label": "nanjing-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/024-nanjing-university.png",
-      "source_url": "https://www.nju.edu.cn/__local/F/7A/1D/91723945F34FAA0A9C67700CF8F_13B47AE2_E3A7.png",
-      "method": "curl-download",
-      "bytes": 58279
+      "index": 12,
+      "institution": "University of Maryland College Park",
+      "category": "logo_with_name",
+      "file": "012-univ-of-maryland-college-park.svg",
+      "source_url": "https://umd-main.files.svdcdn.com/production/umd/logos/default/primary-logo-dark.svg?dm=1722455539",
+      "source_page": "https://umd.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 12736,
+      "sha256": "337568f42c69b55962f60fa3368d6646b6a64cd607f03b0decf019b3ba35743b",
+      "kind": "svg",
+      "dimensions": [
+        314.0,
+        50.0
+      ],
+      "local_file": "logo_with_name/012-univ-of-maryland-college-park.svg"
     },
     {
-      "label": "kaist-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/019-kaist.svg",
-      "source_url": "https://www.kaist.ac.kr/kr/html/kaist/010401.html",
-      "method": "local-seed-copy-after-official-fetch-blocked",
+      "index": 13,
+      "institution": "Cornell University",
+      "category": "logo_with_name",
+      "file": "013-cornell-university.svg",
+      "source_url": "https://brand.cornell.edu/assets/images/downloads/logos/cornell_logo_simple/cornell_logo_simple_black.svg",
+      "source_page": "https://brand.cornell.edu/logos/academic/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 26824,
+      "sha256": "c65bc4b0098b0bd08e7aa87f8b84dc8a897fe3bec2d1c67551a6e0cfab63c75d",
+      "kind": "svg",
+      "dimensions": [
+        539.1,
+        137.2
+      ],
+      "local_file": "logo_with_name/013-cornell-university.svg"
+    },
+    {
+      "index": 14,
+      "institution": "Zhejiang University",
+      "category": "logo_with_name",
+      "file": "014-zhejiang-university.svg",
+      "source_url": "https://www.zju.edu.cn/_upload/tpl/0b/bf/3007/template3007/static/media/mlogo.66388675484ae2a807b2ad65b1d31ca9.svg",
+      "source_page": "https://www.zju.edu.cn/",
+      "source_kind": "official_homepage_static_asset_cache",
+      "note": "White official logo; visible on dark backgrounds.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 29314,
+      "sha256": "4c722bfe1d62dc73e8c3304b4fd9ae36bbb334d6623ea97222dcd21dfa27a6e0",
+      "kind": "svg",
+      "dimensions": [
+        294.239,
+        81.306
+      ],
+      "local_file": "logo_with_name/014-zhejiang-university.svg"
+    },
+    {
+      "index": 15,
+      "institution": "University of Michigan",
+      "category": "logo_with_name",
+      "file": "015-university-of-michigan.png",
+      "source_url": "https://brand.umich.edu/design-resources/logos/",
+      "source_page": "https://brand.umich.edu/design-resources/logos/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 16390,
+      "sha256": "99511d8263a7652a0b479493184470ce504728d1617d64f2b67438323bdf3e1c",
+      "kind": "raster",
+      "dimensions": [
+        1541,
+        161
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/015-university-of-michigan.png"
+    },
+    {
+      "index": 16,
+      "institution": "Northeastern University",
+      "category": "logo_with_name",
+      "file": "016-northeastern-university.svg",
+      "source_url": "https://nustbrand.wpengine.com/wp-content/uploads/2022/06/ac-grid-5-red.svg",
+      "source_page": "https://brand.northeastern.edu/logos/primary-logos/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 7186,
+      "sha256": "2f012f0ba8fc9c6267871dc19a978c0790358542fb9f6ee8c6baabc35a548b26",
+      "kind": "svg",
+      "dimensions": [
+        410.31,
+        128.62
+      ],
+      "local_file": "logo_with_name/016-northeastern-university.svg"
+    },
+    {
+      "index": 17,
+      "institution": "Stanford University",
+      "category": "logo_with_name",
+      "file": "017-stanford-university.png",
+      "source_url": "https://identity.stanford.edu/wp-content/uploads/sites/3/2020/06/wordmark-full-nospace-red.png",
+      "source_page": "https://identity.stanford.edu/visual-identity/stanford-logos/wordmarks/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 6144,
+      "sha256": "68260f9689ca957bcc3aa82287cacca09a9818eb12abf626ab3e49840634bf78",
+      "kind": "raster",
+      "dimensions": [
+        566,
+        70
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/017-stanford-university.png"
+    },
+    {
+      "index": 18,
+      "institution": "National University of Singapore",
+      "category": "logo_with_name",
+      "file": "018-national-university-of-singapore.jpg",
+      "source_url": "https://nus.edu.sg/images/default-source/identity-images/fullcolorlogo.jpg",
+      "source_page": "https://nus.edu.sg/identity/guidelines/logo-guideline",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 20373,
+      "sha256": "6d9906f546e906a60d037d5b81c28301ed36988491a244a2edddd1774bda540e",
+      "kind": "raster",
+      "dimensions": [
+        242,
+        118
+      ],
+      "mode": "RGB",
+      "local_file": "logo_with_name/018-national-university-of-singapore.jpg"
+    },
+    {
+      "index": 19,
+      "institution": "KAIST",
+      "category": "logo_with_name",
+      "file": "019-kaist.svg",
+      "source_url": "https://www.kaist.ac.kr/en/html/kaist/011901.html",
+      "source_page": "https://www.kaist.ac.kr/en/html/kaist/011901.html",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Official KAIST signature cached from current repair probe; direct KAIST host timed out.",
+      "quality": "official_school_level_logo_with_name",
       "bytes": 54232,
-      "note": "official KAIST UI page reachable via web evidence; local direct fetch to kaist.ac.kr timed out"
+      "sha256": "eafc4d308e950cf015915e2378011c555bf7030c582672d8dd581cc85b53617b",
+      "kind": "svg",
+      "dimensions": [
+        233.63998,
+        233.64398
+      ],
+      "local_file": "logo_with_name/019-kaist.svg"
     },
     {
-      "label": "kaist-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/019-kaist.svg",
-      "source_url": "https://www.kaist.ac.kr/kr/html/kaist/010401.html",
-      "method": "local-seed-copy-after-official-fetch-blocked",
-      "bytes": 54232,
-      "note": "official KAIST UI page reachable via web evidence; local direct fetch to kaist.ac.kr timed out"
+      "index": 20,
+      "institution": "Nanyang Technological University",
+      "category": "logo_with_name",
+      "file": "020-nanyang-technological-university.png",
+      "source_url": "https://www.ntu.edu.sg/ResourcePackages/NTU/assets/images/NTU_Logo.png",
+      "source_page": "https://www.ntu.edu.sg/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 186528,
+      "sha256": "82cd473e1e663ae554c78d6020eb55bbba201985fcc2f8f9f90b09158740b7b0",
+      "kind": "raster",
+      "dimensions": [
+        3006,
+        1079
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/020-nanyang-technological-university.png"
     },
     {
-      "label": "nanjing-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/024-nanjing-university.svg",
+      "index": 21,
+      "institution": "HKUST",
+      "category": "logo_with_name",
+      "file": "021-hkust.png",
+      "source_url": "https://hkust.edu.hk/sites/default/files/2026-01/Standard%2035A%20Logo%20-%20FC%20%28B%29%20English.png",
+      "source_page": "https://hkust.edu.hk/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 158299,
+      "sha256": "a604a400b3a44e4d43dc5198a8e4bf26d30c321792190970ed863637f6264ea5",
+      "kind": "raster",
+      "dimensions": [
+        2811,
+        531
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/021-hkust.png"
+    },
+    {
+      "index": 22,
+      "institution": "University of Toronto",
+      "category": "logo_with_name",
+      "file": "022-university-of-toronto.svg",
+      "source_url": "https://www.utoronto.ca/themes/custom/bootstrap_uoft/logo.svg",
+      "source_page": "https://www.utoronto.ca/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 119511,
+      "sha256": "f0d288b6c5b6daabf0b1fe7f5c370d87fce674b2c51bc4a7bda3dc8ca283875e",
+      "kind": "svg",
+      "dimensions": [
+        428.5,
+        159.0
+      ],
+      "local_file": "logo_with_name/022-university-of-toronto.svg"
+    },
+    {
+      "index": 23,
+      "institution": "Purdue University",
+      "category": "logo_with_name",
+      "file": "023-purdue-university.svg",
+      "source_url": "https://www.purdue.edu/brand/logos/",
+      "source_page": "https://www.purdue.edu/brand/logos/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Official Purdue university lockup; current asset was valid, automatic candidate was a social icon.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 6630,
+      "sha256": "5443d07a2f553b5ece70395262d6f485e4b531297cafa4d906dbedb1dff548fd",
+      "kind": "svg",
+      "dimensions": [
+        248.0,
+        45.0
+      ],
+      "local_file": "logo_with_name/023-purdue-university.svg"
+    },
+    {
+      "index": 24,
+      "institution": "Nanjing University",
+      "category": "logo_with_name",
+      "file": "024-nanjing-university.png",
       "source_url": "https://ndbgs.nju.edu.cn/zlxz/bsbz/20231012/i251602.html",
-      "method": "local-seed-copy-after-official-fetch-blocked",
-      "bytes": 42225,
-      "note": "official Nanjing visual identity archive downloadable, but no rar extractor is installed locally; local seed used for pure crest"
+      "source_page": "https://ndbgs.nju.edu.cn/zlxz/bsbz/20231012/i251602.html",
+      "source_kind": "official_cached_existing_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 58279,
+      "sha256": "e01b00f30bdb3ec7881fd3f9e8fb48bce217b6dc86d7d65533f884f48b67e2b3",
+      "kind": "raster",
+      "dimensions": [
+        439,
+        135
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/024-nanjing-university.png"
     },
     {
-      "label": "imperial-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/081-imperial-college-london.png",
-      "source_url": "https://www.imperial.ac.uk/communications/teams-people/brand/",
-      "method": "local-seed-copy-after-official-fetch-blocked",
+      "index": 25,
+      "institution": "New York University",
+      "category": "logo_with_name",
+      "file": "025-new-york-university.svg",
+      "source_url": "https://www.nyu.edu/#official-inline-logo-composite",
+      "source_page": "https://www.nyu.edu/",
+      "source_kind": "official_homepage_inline_svg_composite",
+      "note": "Combined torch mark and NYU wordmark from official homepage inline SVGs.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 3088,
+      "sha256": "2eb468be2ef3b7246e594155f221b287e6a5c5c866484182fb3e30e6be9633e8",
+      "kind": "svg",
+      "dimensions": [
+        170.0,
+        58.0
+      ],
+      "local_file": "logo_with_name/025-new-york-university.svg"
+    },
+    {
+      "index": 26,
+      "institution": "University of Texas at Austin",
+      "category": "logo_with_name",
+      "file": "026-university-of-texas-at-austin.png",
+      "source_url": "https://umac.utexas.edu/wp-content/uploads/2025/06/RGB_university_primary.png",
+      "source_page": "https://umac.utexas.edu/brand-center/university-csu-wordmarks/",
+      "source_kind": "official_site_asset",
+      "note": "Official UT primary university wordmark PNG; replaced department mark and ImageMagick-incompatible SVG.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 19930,
+      "sha256": "dcc51bc519754dae1c33f635e65bf2a45ea1df66107879b6f6fa3ca3fbd8658c",
+      "kind": "raster",
+      "dimensions": [
+        1468,
+        715
+      ],
+      "mode": "P",
+      "local_file": "logo_with_name/026-university-of-texas-at-austin.png"
+    },
+    {
+      "index": 27,
+      "institution": "University of Wisconsin Madison",
+      "category": "logo_with_name",
+      "file": "027-university-of-wisconsin-madison.svg",
+      "source_url": "https://www.wisc.edu/#uw-crest-wordmark",
+      "source_page": "https://www.wisc.edu/",
+      "source_kind": "official_homepage_inline_svg",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 17181,
+      "sha256": "bb0758812334420877ad25e2cec7d51e4359dffc10c806657eac3b9f99892709",
+      "kind": "svg",
+      "dimensions": [
+        568.86,
+        155.0
+      ],
+      "local_file": "logo_with_name/027-university-of-wisconsin-madison.svg"
+    },
+    {
+      "index": 28,
+      "institution": "University of Waterloo",
+      "category": "logo_with_name",
+      "file": "028-university-of-waterloo.png",
+      "source_url": "https://uwaterloo.ca/brand/sites/ca.brand/files/universityofwaterloo_logo_horiz_rgb.png",
+      "source_page": "https://uwaterloo.ca/brand/uw-logos",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 10134,
+      "sha256": "90f3dbc0bb60d9095225534e008bbadc37604af6ad568b2cc521b21b3db96c7d",
+      "kind": "raster",
+      "dimensions": [
+        400,
+        160
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/028-university-of-waterloo.png"
+    },
+    {
+      "index": 29,
+      "institution": "Chinese Academy of Sciences",
+      "category": "logo_with_name",
+      "file": "029-chinese-academy-of-sciences.png",
+      "source_url": "https://www.cas.cn/images/z19_logo.png",
+      "source_page": "https://www.cas.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 16429,
+      "sha256": "035e49e12483847892664fcd94f0e6826f6bfb5e39fcddbc3b396095a9268148",
+      "kind": "raster",
+      "dimensions": [
+        310,
+        72
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/029-chinese-academy-of-sciences.png"
+    },
+    {
+      "index": 30,
+      "institution": "Princeton University",
+      "category": "logo_with_name",
+      "file": "030-princeton-university.png",
+      "source_url": "https://communications.princeton.edu/sites/g/files/toruqf1876/files/guidelines_apps_and_websites.pdf",
+      "source_page": "https://communications.princeton.edu/guides-tools/logo-graphic-identity",
+      "source_kind": "official_pdf_crop",
+      "note": "One-line official signature crop from Princeton guidelines PDF; removed adjacent guideline text.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 14175,
+      "sha256": "538f2ca049d013d70a68c940ddefdf4528ae15356dd80a5b1cbd5cf777b0f569",
+      "kind": "raster",
+      "dimensions": [
+        477,
+        129
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/030-princeton-university.png"
+    },
+    {
+      "index": 31,
+      "institution": "Max Planck Society",
+      "category": "logo_with_name",
+      "file": "031-max-planck-society.svg",
+      "source_url": "https://www.mpg.de/assets/responsive/logo-combined-exp-f99cfa8482bb1d0b50c6b40c9b8b21dbf1650fcf0662860a61ec8ab59793f3de.svg",
+      "source_page": "https://www.mpg.de/en",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 21624,
+      "sha256": "5530588187a3b77f79115bddf5140ae9ba22f351e82e802d1b7d77b493506a14",
+      "kind": "svg",
+      "dimensions": [
+        724.50003,
+        111.594
+      ],
+      "local_file": "logo_with_name/031-max-planck-society.svg"
+    },
+    {
+      "index": 32,
+      "institution": "Chinese University of Hong Kong",
+      "category": "logo_with_name",
+      "file": "032-chinese-university-of-hong-kong.png",
+      "source_url": "https://www.cuhk.edu.hk/english/images/cuhk_logo_2x.png?20221027",
+      "source_page": "https://www.cuhk.edu.hk/english/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 30385,
+      "sha256": "8c5631e97c7e486600369b129eaae5690cad62e3813ac4c7869a8f2599371301",
+      "kind": "raster",
+      "dimensions": [
+        556,
+        100
+      ],
+      "mode": "RGB",
+      "local_file": "logo_with_name/032-chinese-university-of-hong-kong.png"
+    },
+    {
+      "index": 33,
+      "institution": "Seoul National University",
+      "category": "logo_with_name",
+      "file": "033-seoul-national-university.png",
+      "source_url": "https://en.snu.ac.kr/webdata/uploads/eng/image/2020/02/about-symbold-logo-dynamic_lg.png",
+      "source_page": "https://en.snu.ac.kr/about/symbol/ui",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 4749,
+      "sha256": "1427f4f9a6f8ab222d714bfab7ab62073b0edc33bebf524d49a551c7789e1ed6",
+      "kind": "raster",
+      "dimensions": [
+        300,
+        170
+      ],
+      "mode": "RGB",
+      "local_file": "logo_with_name/033-seoul-national-university.png"
+    },
+    {
+      "index": 34,
+      "institution": "EPFL",
+      "category": "logo_with_name",
+      "file": "034-epfl.svg",
+      "source_url": "https://www.epfl.ch/wp-content/themes/wp-theme-2018/assets/svg/epfl-logo.svg",
+      "source_page": "https://www.epfl.ch/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1254,
+      "sha256": "7c6fbcbb18452b73f5a32b17f8abfd8cbbe8ec65912c66f109119dc989c51c3e",
+      "kind": "svg",
+      "dimensions": [
+        182.4,
+        53.0
+      ],
+      "local_file": "logo_with_name/034-epfl.svg"
+    },
+    {
+      "index": 35,
+      "institution": "University of Pennsylvania",
+      "category": "logo_with_name",
+      "file": "035-university-of-pennsylvania.svg",
+      "source_url": "https://www.upenn.edu/themes/custom/penn_starter/assets/img/UPenn-logo.svg",
+      "source_page": "https://www.upenn.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 23668,
+      "sha256": "5e308eb85b79061a9ab8a8aff977f6aa80131eb6ab95a01469444aea0f9cd9d6",
+      "kind": "svg",
+      "dimensions": [
+        562.5,
+        184.4
+      ],
+      "local_file": "logo_with_name/035-university-of-pennsylvania.svg"
+    },
+    {
+      "index": 36,
+      "institution": "University of California Los Angeles",
+      "category": "logo_with_name",
+      "file": "036-univ-of-california-los-angeles.svg",
+      "source_url": "https://www.ucla.edu/img/logo-ucla.svg",
+      "source_page": "https://www.ucla.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1015,
+      "sha256": "77ceeab0f53f457378c135dd53ab7510fd6ab574a19345fb2f4ea750266f850b",
+      "kind": "svg",
+      "dimensions": [
+        132.66,
+        43.13
+      ],
+      "local_file": "logo_with_name/036-univ-of-california-los-angeles.svg"
+    },
+    {
+      "index": 37,
+      "institution": "Columbia University",
+      "category": "logo_with_name",
+      "file": "037-columbia-university.png",
+      "source_url": "https://www.columbia.edu/cu/identityguidelines/blue290.pdf",
+      "source_page": "https://www.columbia.edu/cu/identityguidelines/",
+      "source_kind": "official_pdf_crop",
+      "note": "Official Columbia University lockup crop.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 23522,
+      "sha256": "a61574f5d72a3169dfa3bdddad8a6a80f60f829f8d3230b6a45c32682ca821c9",
+      "kind": "raster",
+      "dimensions": [
+        1034,
+        195
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/037-columbia-university.png"
+    },
+    {
+      "index": 38,
+      "institution": "University of Edinburgh",
+      "category": "logo_with_name",
+      "file": "038-university-of-edinburgh.png",
+      "source_url": "https://www.ed.ac.uk/themes/upstream/wpp_theme/images/logo.png",
+      "source_page": "https://www.ed.ac.uk/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 39266,
+      "sha256": "59829654b33a114d10a390a846fa0e9fff402f8099ae6cddd30ca78622575f63",
+      "kind": "raster",
+      "dimensions": [
+        831,
+        199
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/038-university-of-edinburgh.png"
+    },
+    {
+      "index": 39,
+      "institution": "University of Southern California",
+      "category": "logo_with_name",
+      "file": "039-university-of-southern-california.svg",
+      "source_url": "https://www.usc.edu/#inline-svg-0",
+      "source_page": "https://www.usc.edu/",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 14128,
+      "sha256": "894b268d9cac3466aa72ebb1c34892bfd494f51256ae2fc390664591c043d9fe",
+      "kind": "svg",
+      "dimensions": [
+        178.0,
+        58.0
+      ],
+      "local_file": "logo_with_name/039-university-of-southern-california.svg"
+    },
+    {
+      "index": 40,
+      "institution": "Technion Israel Institute of Technology",
+      "category": "logo_with_name",
+      "file": "040-technion.svg",
+      "source_url": "https://marketing.technion.ac.il/plugging-in/download-technion/",
+      "source_page": "https://marketing.technion.ac.il/plugging-in/download-technion/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Replaced Faculty of Computer Science PNG with school-level Technion lockup from existing official cache; direct Technion host timed out.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 21689,
+      "sha256": "2d9f0642c4b74a66b04a1814a5c9c14fc7471fea0c5418f99653635b0bbac826",
+      "kind": "svg",
+      "dimensions": [
+        449.49013,
+        202.3438
+      ],
+      "local_file": "logo_with_name/040-technion.svg"
+    },
+    {
+      "index": 41,
+      "institution": "Technical University of Munich",
+      "category": "logo_with_name",
+      "file": "041-tu-munich.svg",
+      "source_url": "https://www.tum.de/#inline-svg-0",
+      "source_page": "https://www.tum.de/",
+      "source_kind": "official_homepage_inline_svg",
+      "note": "Standalone-normalized official TUM homepage SVG: fixed viewBox case and resolved currentColor to TUM blue for renderer compatibility.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 187,
+      "sha256": "6d6f9cf990aef0de0c2c17b847647a1cbf10b999f5908beba4ffc013c29d2d9a",
+      "kind": "svg",
+      "dimensions": [
+        73.0,
+        38.0
+      ],
+      "local_file": "logo_with_name/041-tu-munich.svg"
+    },
+    {
+      "index": 42,
+      "institution": "University of California Irvine",
+      "category": "logo_with_name",
+      "file": "042-univ-of-california-irvine.svg",
+      "source_url": "https://uci.edu/#brei-icon-wordmark",
+      "source_page": "https://uci.edu/",
+      "source_kind": "official_homepage_inline_svg",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1580,
+      "sha256": "e6248e8069b4e67cc4f216136a3402f1ce65d5189bb2180de9c0325ac1a5a54d",
+      "kind": "svg",
+      "dimensions": [
+        189.0,
+        32.0
+      ],
+      "local_file": "logo_with_name/042-univ-of-california-irvine.svg"
+    },
+    {
+      "index": 43,
+      "institution": "University of Massachusetts Amherst",
+      "category": "logo_with_name",
+      "file": "043-univ-of-massachusetts-amherst.png",
+      "source_url": "https://www.umass.edu/brand/sites/default/files/styles/tile_max_250px/public/2026-02/UMassAmherst_longform-nowhitespace.png?itok=WRLFGsgx",
+      "source_page": "https://www.umass.edu/brand/visual-identity/marks-and-seal",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 10261,
+      "sha256": "598d3b4fe05d29df955a29e088c4783c32a07a95e2c04d3bf17e7750fdda3695",
+      "kind": "raster",
+      "dimensions": [
+        250,
+        100
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/043-univ-of-massachusetts-amherst.png"
+    },
+    {
+      "index": 44,
+      "institution": "Tel Aviv University",
+      "category": "logo_with_name",
+      "file": "044-tel-aviv-university.png",
+      "source_url": "https://english.tau.ac.il/sites/default/files/TAU_Logo_HomePage_Eng.png",
+      "source_page": "https://english.tau.ac.il/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 13670,
+      "sha256": "2604488c75dcc2dda600e573c6b34feccebd67a6ea773405bf58b831369f9e99",
+      "kind": "raster",
+      "dimensions": [
+        200,
+        110
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/044-tel-aviv-university.png"
+    },
+    {
+      "index": 45,
+      "institution": "Stony Brook University",
+      "category": "logo_with_name",
+      "file": "045-stony-brook-university.svg",
+      "source_url": "https://www.stonybrook.edu/_resources/images/sb-logo-desktop-12.7.25.svg",
+      "source_page": "https://www.stonybrook.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 16573,
+      "sha256": "31fe6c34552683645fd15295b4e9cdfab950e84869567bcfada756a13236f934",
+      "kind": "svg",
+      "dimensions": [
+        354.0,
+        59.0
+      ],
+      "local_file": "logo_with_name/045-stony-brook-university.svg"
+    },
+    {
+      "index": 46,
+      "institution": "University of Chicago",
+      "category": "logo_with_name",
+      "file": "046-university-of-chicago.png",
+      "source_url": "https://creative.uchicago.edu/files/2023/09/University-Logo_1Color_Maroon_RGB.png",
+      "source_page": "https://creative.uchicago.edu/logos-and-identity-elements/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 53878,
+      "sha256": "8f1d06dbb3a9b5ddc9c71fc27923db6bb988ae1391d0326e6bb7dff2ea9d2cca",
+      "kind": "raster",
+      "dimensions": [
+        1920,
+        669
+      ],
+      "mode": "P",
+      "local_file": "logo_with_name/046-university-of-chicago.png"
+    },
+    {
+      "index": 47,
+      "institution": "Northwestern University",
+      "category": "logo_with_name",
+      "file": "047-northwestern-university.svg",
+      "source_url": "https://common.northwestern.edu/v9/css/images/northwestern.svg",
+      "source_page": "https://www.northwestern.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 3977,
+      "sha256": "dec75341b7005bc8b30213ebf1ef2bf4e7a9c75f069f23f20078a3a50a34710c",
+      "kind": "svg",
+      "dimensions": [
+        262.45,
+        32.93
+      ],
+      "local_file": "logo_with_name/047-northwestern-university.svg"
+    },
+    {
+      "index": 48,
+      "institution": "University of Virginia",
+      "category": "logo_with_name",
+      "file": "048-university-of-virginia.png",
+      "source_url": "https://www.virginia.edu/assets/images/logo-horizontal-ko.png",
+      "source_page": "https://www.virginia.edu/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "White official homepage logo; visible on dark backgrounds.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 19131,
+      "sha256": "0d10a5e40c5dafa386683f75063e0911d2037c5d9ed81f2f92f8264e09546248",
+      "kind": "raster",
+      "dimensions": [
+        909,
+        100
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/048-university-of-virginia.png"
+    },
+    {
+      "index": 49,
+      "institution": "Rutgers University",
+      "category": "logo_with_name",
+      "file": "049-rutgers-university.svg",
+      "source_url": "https://communications.rutgers.edu/sites/default/files/Rutgers_Primary_Mark_Horizontal_Red_and_Black_RGB.svg",
+      "source_page": "https://communications.rutgers.edu/services-resources/logos-signatures-and-visual-identity",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 3429,
+      "sha256": "9e78652547e6dd1397e520b2cae948f588485af6f8f15bd69ec510ff01a1866b",
+      "kind": "svg",
+      "dimensions": [
+        202.38,
+        60.0
+      ],
+      "local_file": "logo_with_name/049-rutgers-university.svg"
+    },
+    {
+      "index": 50,
+      "institution": "University of California Riverside",
+      "category": "logo_with_name",
+      "file": "050-univ-of-california-riverside.png",
+      "source_url": "https://brand.ucr.edu/sites/default/files/logo%20horizontal%20over%20white-2x.png",
+      "source_page": "https://brand.ucr.edu/ucr-institutional-logo",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 15762,
+      "sha256": "7940c53c403b66f94cb574a048479b13250395dfabd6c14c17ee0a5b8ece108c",
+      "kind": "raster",
+      "dimensions": [
+        1537,
+        374
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/050-univ-of-california-riverside.png"
+    },
+    {
+      "index": 51,
+      "institution": "Duke University",
+      "category": "logo_with_name",
+      "file": "051-duke-university.svg",
+      "source_url": "https://assets.styleguide.duke.edu/cdn/images/wordmark/duke_wordmark-blue.svg",
+      "source_page": "https://brand.duke.edu/logos/",
+      "source_kind": "official_brand_asset",
+      "note": "Public official Duke wordmark from Duke brand guide CDN; replaced spacing guide artwork.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 5113,
+      "sha256": "3202261319667bb1eb5d133338fbc2af5d356cefa7c693f4a40eaadb25e5e543",
+      "kind": "svg",
+      "dimensions": [
+        140.0,
+        50.0
+      ],
+      "local_file": "logo_with_name/051-duke-university.svg"
+    },
+    {
+      "index": 52,
+      "institution": "University of Utah",
+      "category": "logo_with_name",
+      "file": "052-university-of-utah.svg",
+      "source_url": "https://templates.utah.edu/_main-v3-1/images/template/university-of-utah-logo.svg",
+      "source_page": "https://www.utah.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 19052,
+      "sha256": "6fe606e1d77548474a2a12212836ad42e9926326960d6a236e3b440705a6a766",
+      "kind": "svg",
+      "dimensions": [
+        240.742,
+        75.689
+      ],
+      "local_file": "logo_with_name/052-university-of-utah.svg"
+    },
+    {
+      "index": 53,
+      "institution": "University of Science and Technology of China",
+      "category": "logo_with_name",
+      "file": "053-ustc.svg",
+      "source_url": "https://www.ustc.edu.cn/news/images/logo.svg",
+      "source_page": "https://www.ustc.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 200991,
+      "sha256": "39d2d180e96f33160d1684665699d67fa54494f9a37fd716225767a14effc726",
+      "kind": "svg",
+      "dimensions": [
+        470.0,
+        90.0
+      ],
+      "local_file": "logo_with_name/053-ustc.svg"
+    },
+    {
+      "index": 54,
+      "institution": "George Mason University",
+      "category": "logo_with_name",
+      "file": "054-george-mason-university.png",
+      "source_url": "https://www.gmu.edu/sites/default/files/Header_logo_George-Mason-University-2024_0.png",
+      "source_page": "https://www.gmu.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 12977,
+      "sha256": "904da0ff83e115ee335a7f69eda660ee5f70ac0b8cfe653049b3ce768b316e97",
+      "kind": "raster",
+      "dimensions": [
+        1101,
+        301
+      ],
+      "mode": "P",
+      "local_file": "logo_with_name/054-george-mason-university.png"
+    },
+    {
+      "index": 55,
+      "institution": "Pennsylvania State University",
+      "category": "logo_with_name",
+      "file": "055-pennsylvania-state-university.svg",
+      "source_url": "https://images.ctfassets.net/p7x3ai5plaz1/1wVBvFkhF0ArrdaMlzLiCi/125b0659267cacef241e88b5517a51eb/logotype.svg",
+      "source_page": "https://www.psu.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 2901,
+      "sha256": "eaf3a1e8c4f1499778c0ffe06aa55276ed78403471295ab8dc6c126764af6615",
+      "kind": "svg",
+      "dimensions": [
+        115.0,
+        17.0
+      ],
+      "local_file": "logo_with_name/055-pennsylvania-state-university.svg"
+    },
+    {
+      "index": 56,
+      "institution": "University of British Columbia",
+      "category": "logo_with_name",
+      "file": "056-university-of-british-columbia.jpg",
+      "source_url": "https://assets.brand.ubc.ca/downloads/ubc_full_logo_rgb.zip",
+      "source_page": "https://brand.ubc.ca/guidelines/downloads/logos-signatures-and-visual-identity-assets/",
+      "source_kind": "official_brand_zip_extract",
+      "note": "Extracted official UBC full signature JPG from ZIP.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 23343,
+      "sha256": "de2e1985fc174c7216df2b600c8cf1b72264c2f035bc893d6869418a980a4629",
+      "kind": "raster",
+      "dimensions": [
+        565,
+        117
+      ],
+      "mode": "RGB",
+      "local_file": "logo_with_name/056-university-of-british-columbia.jpg"
+    },
+    {
+      "index": 57,
+      "institution": "Fudan University",
+      "category": "logo_with_name",
+      "file": "057-fudan-university.png",
+      "source_url": "https://www.fudan.edu.cn/_upload/site/00/02/2/logo.png",
+      "source_page": "https://www.fudan.edu.cn/bsxt/",
+      "source_kind": "official_site_asset",
+      "note": "Official Fudan site logo containing seal, Chinese university name, and English name; replaced banner/gradient image.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 23011,
+      "sha256": "6902c4ad7e173518b5d1a2b0f791587ff5a083992c5936bbee5989ab4b3fbc1f",
+      "kind": "raster",
+      "dimensions": [
+        233,
+        72
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/057-fudan-university.png"
+    },
+    {
+      "index": 58,
+      "institution": "University of California Santa Barbara",
+      "category": "logo_with_name",
+      "file": "058-univ-of-california-santa-barbara.svg",
+      "source_url": "https://www.ucsb.edu/#inline-svg-3",
+      "source_page": "https://www.ucsb.edu/",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 11590,
+      "sha256": "67db9ec105a947485f189660a094d087eb61673218f65717b1b00e0be914d28a",
+      "kind": "svg",
+      "dimensions": [
+        197.0,
+        14.0
+      ],
+      "local_file": "logo_with_name/058-univ-of-california-santa-barbara.svg"
+    },
+    {
+      "index": 59,
+      "institution": "Boston University",
+      "category": "logo_with_name",
+      "file": "059-boston-university.gif",
+      "source_url": "https://www.bu.edu/brand/files/2019/06/master_logo.gif",
+      "source_page": "https://www.bu.edu/brand/guidelines/logos/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 5053,
+      "sha256": "054e5959cfebe3b1d94e4d73fc26e666845bda62fbd7e4a395cd6150c5f1695b",
+      "kind": "raster",
+      "dimensions": [
+        158,
+        71
+      ],
+      "mode": "P",
+      "local_file": "logo_with_name/059-boston-university.gif"
+    },
+    {
+      "index": 60,
+      "institution": "Texas A&M University",
+      "category": "logo_with_name",
+      "file": "060-texas-aandm-university.png",
+      "source_url": "https://www.tamu.edu/_files/images/logos/primaryTAM.png",
+      "source_page": "https://www.tamu.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 14060,
+      "sha256": "36b101753c3128ab085b865b6b6cb3027f65b699ecb7e566f1e884f789f1fc4c",
+      "kind": "raster",
+      "dimensions": [
+        500,
+        112
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/060-texas-aandm-university.png"
+    },
+    {
+      "index": 61,
+      "institution": "Virginia Tech",
+      "category": "logo_with_name",
+      "file": "061-virginia-tech.svg",
+      "source_url": "https://www.vt.edu/#inline-svg-0",
+      "source_page": "https://www.vt.edu/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Full Virginia Tech wordmark lockup from existing official homepage cache; replaced pure VT mark.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 7275,
+      "sha256": "aed9257ccc047f11ed632818ac018d93002c87a2e3b8ff1efd96b121ca0992bf",
+      "kind": "svg",
+      "dimensions": [
+        226.0,
+        45.0
+      ],
+      "local_file": "logo_with_name/061-virginia-tech.svg"
+    },
+    {
+      "index": 62,
+      "institution": "Harvard University",
+      "category": "logo_with_name",
+      "file": "062-harvard-university.svg",
+      "source_url": "https://www.harvard.edu/wp-content/themes/core/assets/img/theme/branding-assets/footer-logo.svg",
+      "source_page": "https://www.harvard.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 27438,
+      "sha256": "35cf9b91322b7a04c9ab3d17f02958e9d5acebf89fcf89feaf7418b56d32e104",
+      "kind": "svg",
+      "dimensions": [
+        413.0,
+        268.8
+      ],
+      "local_file": "logo_with_name/062-harvard-university.svg"
+    },
+    {
+      "index": 63,
+      "institution": "North Carolina State University",
+      "category": "logo_with_name",
+      "file": "063-north-carolina-state-university.png",
+      "source_url": "https://brand.ncsu.edu/wp-content/uploads/sites/25/2025/05/ncstate-brick-4x1-red-1024x161.png",
+      "source_page": "https://brand.ncsu.edu/designing-for-nc-state/logos-and-marks/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 8587,
+      "sha256": "f5e7ddb2ad91a36115a50a8578163c6006280e010992a00f29c694664d0f36a7",
+      "kind": "raster",
+      "dimensions": [
+        1024,
+        161
+      ],
+      "mode": "P",
+      "local_file": "logo_with_name/063-north-carolina-state-university.png"
+    },
+    {
+      "index": 64,
+      "institution": "University of California Santa Cruz",
+      "category": "logo_with_name",
+      "file": "064-univ-of-california-santa-cruz.svg",
+      "source_url": "https://www.ucsc.edu/#inline-svg-0",
+      "source_page": "https://www.ucsc.edu/",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "Restored clean official homepage wordmark SVG from existing official cache.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 3146,
+      "sha256": "3514fabc1b4cc4001cb17dcbcd85f87046c8f6840998ee6149ff3d7e7427b436",
+      "kind": "svg",
+      "dimensions": [
+        250.0,
+        60.757271
+      ],
+      "local_file": "logo_with_name/064-univ-of-california-santa-cruz.svg"
+    },
+    {
+      "index": 65,
+      "institution": "Arizona State University",
+      "category": "logo_with_name",
+      "file": "065-arizona-state-university.png",
+      "source_url": "https://www.asu.edu/profiles/contrib/webspark/modules/asu_footer/img/ASU-EndorsedLogo.png",
+      "source_page": "https://www.asu.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 15314,
+      "sha256": "8fe1d6da4492767e53fe30a2d5ead1b478f8dba60fa33899b656413185fa69cb",
+      "kind": "raster",
+      "dimensions": [
+        692,
+        192
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/065-arizona-state-university.png"
+    },
+    {
+      "index": 66,
+      "institution": "Johns Hopkins University",
+      "category": "logo_with_name",
+      "file": "066-johns-hopkins-university.svg",
+      "source_url": "https://brand.jhu.edu/visual-identity/primary-logo/",
+      "source_page": "https://brand.jhu.edu/visual-identity/primary-logo/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Replaced photo with school-level Johns Hopkins University lockup from existing official cache; direct JHU brand files were Cloudflare-blocked locally.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 21701,
+      "sha256": "d9432263bdc0d4de046d580d14c7fc79e803b05e56e35b9a15cc575810a075f4",
+      "kind": "svg",
+      "dimensions": [
+        375.15161,
+        64.599998
+      ],
+      "local_file": "logo_with_name/066-johns-hopkins-university.svg"
+    },
+    {
+      "index": 67,
+      "institution": "Mohamed bin Zayed University of Artificial Intelligence",
+      "category": "logo_with_name",
+      "file": "067-mbzuai.svg",
+      "source_url": "https://mbzuai.ac.ae/wp-content/themes/mbzuai/fifth-assets/images/mbzuai-brand-logo.svg",
+      "source_page": "https://mbzuai.ac.ae/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 37173,
+      "sha256": "3c821e02f424bed1930b8012645fa559e3612d69f038cff41192b3d887f9a94e",
+      "kind": "svg",
+      "dimensions": [
+        288.0,
+        79.0
+      ],
+      "local_file": "logo_with_name/067-mbzuai.svg"
+    },
+    {
+      "index": 68,
+      "institution": "Simon Fraser University",
+      "category": "logo_with_name",
+      "file": "068-simon-fraser-university.png",
+      "source_url": "https://www.sfu.ca/content/sfu/communicators-toolkit/brand/guidelines/logos/logo-usage-guidelines/_jcr_content/main_content/image_2010703218.img.original.low.png/1685743346601.png",
+      "source_page": "https://www.sfu.ca/communicators-toolkit/brand/guidelines/logos/logo-usage-guidelines.html",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 6073,
+      "sha256": "a6dabcc733ea8fd68169acce6ab6dc2fcc8e5793ad53b23cb7edae19304a4999",
+      "kind": "raster",
+      "dimensions": [
+        589,
+        124
+      ],
+      "mode": "RGBA",
+      "transparent": false,
+      "local_file": "logo_with_name/068-simon-fraser-university.png"
+    },
+    {
+      "index": 69,
+      "institution": "TU Delft",
+      "category": "logo_with_name",
+      "file": "069-tu-delft.svg",
+      "source_url": "https://www.tudelft.nl/#logo",
+      "source_page": "https://www.tudelft.nl/",
+      "source_kind": "official_homepage_inline_svg",
+      "note": "Reconstructed standalone SVG from official homepage #logo symbol; path token spacing/implicit commands normalized for renderer compatibility.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 2187,
+      "sha256": "e9696027c0f5c93fe59869d96b1734a1e539886a05c0f9aa904450193e26cdb3",
+      "kind": "svg",
+      "dimensions": [
+        105.0,
+        41.0
+      ],
+      "local_file": "logo_with_name/069-tu-delft.svg"
+    },
+    {
+      "index": 70,
+      "institution": "University of Hong Kong",
+      "category": "logo_with_name",
+      "file": "070-university-of-hong-kong.svg",
+      "source_url": "https://www.hku.hk/#official-logo-svg-cache",
+      "source_page": "https://www.hku.hk/",
+      "source_kind": "official_site_asset_cache",
+      "note": "Official HKU horizontal logo with crest, Chinese name, and English name; replaced shield-only JPG.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 120432,
+      "sha256": "35b1e379c9c438f172f41dc2942ed91601b1212a8b4de24e6a6466680eda4e20",
+      "kind": "svg",
+      "dimensions": [
+        510.0,
+        100.0
+      ],
+      "local_file": "logo_with_name/070-university-of-hong-kong.svg"
+    },
+    {
+      "index": 71,
+      "institution": "University of Illinois Chicago",
+      "category": "logo_with_name",
+      "file": "071-university-of-illinois-at-chicago.png",
+      "source_url": "https://brand.uic.edu/wp-content/uploads/sites/1284/2025/02/Primary-logo-1090x396.png",
+      "source_page": "https://brand.uic.edu/visual-identity/logos/",
+      "source_kind": "official_brand_asset",
+      "note": "Official UIC primary university logo; replaced old Engineering/Computer Science lockup.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 45781,
+      "sha256": "d19cf3f81faf005a770476c6432787498f9adec3aae1866290c1927ba4036815",
+      "kind": "raster",
+      "dimensions": [
+        1090,
+        396
+      ],
+      "mode": "RGBA",
+      "local_file": "logo_with_name/071-university-of-illinois-at-chicago.png"
+    },
+    {
+      "index": 72,
+      "institution": "University of Sydney",
+      "category": "logo_with_name",
+      "file": "072-university-of-sydney.svg",
+      "source_url": "https://www.sydney.edu.au/content/dam/icons/logos/logo-usyd-dark.svg",
+      "source_page": "https://www.sydney.edu.au/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 21396,
+      "sha256": "09db16c0a2e810e34a6dc553aafd59070e1585704d2f859047712bbf067a6808",
+      "kind": "svg",
+      "dimensions": [
+        233.0,
+        80.0
+      ],
+      "local_file": "logo_with_name/072-university-of-sydney.svg"
+    },
+    {
+      "index": 73,
+      "institution": "Yale University",
+      "category": "logo_with_name",
+      "file": "073-yale-university.png",
+      "source_url": "https://www.yale.edu/sites/all/themes/yale_blue/images/logo-print.png",
+      "source_page": "https://www.yale.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1744,
+      "sha256": "465acdaaf3de27a0ff43c6112631c9e7022ce1bff58ec89176ded4641de354d2",
+      "kind": "raster",
+      "dimensions": [
+        169,
+        76
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/073-yale-university.png"
+    },
+    {
+      "index": 74,
+      "institution": "Rice University",
+      "category": "logo_with_name",
+      "file": "074-rice-university.svg",
+      "source_url": "https://www.rice.edu/sites/g/files/bxs2566/files/2019-08/Rice_University_Horizontal_Blue.svg",
+      "source_page": "https://www.rice.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 26403,
+      "sha256": "c6f98c6282f2cee8820e02738e76637dd249ed8f5ed70eff1024e3f8ab876e51",
+      "kind": "svg",
+      "dimensions": [
+        275.0,
+        40.0
+      ],
+      "local_file": "logo_with_name/074-rice-university.svg"
+    },
+    {
+      "index": 75,
+      "institution": "University of Cambridge",
+      "category": "logo_with_name",
+      "file": "075-university-of-cambridge.svg",
+      "source_url": "https://www.cam.ac.uk/themes/custom/fresh/images/interface/cambridge_university2.svg",
+      "source_page": "https://www.cam.ac.uk/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 57691,
+      "sha256": "27381d019c0a54c53b7b746750dc148f35dca2a6fe96b39dff5f896b0e745902",
+      "kind": "svg",
+      "dimensions": [
+        566.9,
+        117.9
+      ],
+      "local_file": "logo_with_name/075-university-of-cambridge.svg"
+    },
+    {
+      "index": 76,
+      "institution": "University of North Carolina at Chapel Hill",
+      "category": "logo_with_name",
+      "file": "076-university-of-north-carolina.png",
+      "source_url": "https://identity.unc.edu/wp-content/uploads/sites/885/2019/01/UNC_logo_webblue-e1517942350314.png",
+      "source_page": "https://identity.unc.edu/brand/logo/",
+      "source_kind": "official_site_asset",
+      "note": "Downloaded from official UNC identity URL using browser Accept headers.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 26297,
+      "sha256": "8ef028364ec7dc72639c9cd78b862d041b2bbe0424487d93518f6844d6011e1e",
+      "kind": "raster",
+      "dimensions": [
+        501,
+        138
+      ],
+      "mode": "RGBA",
+      "local_file": "logo_with_name/076-university-of-north-carolina.png"
+    },
+    {
+      "index": 77,
+      "institution": "Ohio State University",
+      "category": "logo_with_name",
+      "file": "077-ohio-state-university.svg",
+      "source_url": "https://www.osu.edu/images/osu-logo-stacked.svg",
+      "source_page": "https://www.osu.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 8004,
+      "sha256": "abc364903288ac26f1b987ba2439139b982e5b1847afe66afc4fe8a20f3770e4",
+      "kind": "svg",
+      "dimensions": [
+        232.065,
+        180.07
+      ],
+      "local_file": "logo_with_name/077-ohio-state-university.svg"
+    },
+    {
+      "index": 78,
+      "institution": "Renmin University of China",
+      "category": "logo_with_name",
+      "file": "078-renmin-university-of-china.png",
+      "source_url": "https://www.ruc.edu.cn/template/1/out/imgs/red-logo.png",
+      "source_page": "https://www.ruc.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 59151,
+      "sha256": "ba43c9ff735d2bb3780f31124c9e3ecc67a0bbf4647fe05e5f60bd01bf87c905",
+      "kind": "raster",
+      "dimensions": [
+        488,
+        105
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/078-renmin-university-of-china.png"
+    },
+    {
+      "index": 79,
+      "institution": "TU Darmstadt",
+      "category": "logo_with_name",
+      "file": "079-tu-darmstadt.svg",
+      "source_url": "https://www.tu-darmstadt.de/media/resources/images_1/tu_logo_web_h120.svg",
+      "source_page": "https://www.tu-darmstadt.de/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 38698,
+      "sha256": "6f37044933d3c4d3ee8837a48b504e03a1ccae2bca765c9de58eb3e50340e0f3",
+      "kind": "svg",
+      "dimensions": [
+        250.0,
+        120.0
+      ],
+      "local_file": "logo_with_name/079-tu-darmstadt.svg"
+    },
+    {
+      "index": 80,
+      "institution": "University at Buffalo",
+      "category": "logo_with_name",
+      "file": "080-university-at-buffalo.png",
+      "source_url": "https://www.buffalo.edu/v-e541efb31faa2518c910054a542e1234/etc.clientlibs/wci/components/block/fatfooter/clientlibs/resources/ub-logo-two-line.png",
+      "source_page": "https://www.buffalo.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 28470,
+      "sha256": "4c2f7e0c7b2154ad17a39ed5d7096126fc537eb296f4bc3107fd3c3ffc399ded",
+      "kind": "raster",
+      "dimensions": [
+        1017,
+        128
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/080-university-at-buffalo.png"
+    },
+    {
+      "index": 81,
+      "institution": "Imperial College London",
+      "category": "logo_with_name",
+      "file": "081-imperial-college-london.png",
+      "source_url": "https://www.imperial.ac.uk/staff/tools-and-reference/brand-style-guide/visual-identity/",
+      "source_page": "https://www.imperial.ac.uk/staff/tools-and-reference/brand-style-guide/visual-identity/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Official Imperial visual identity currently uses the Imperial wordmark shorthand.",
+      "quality": "official_school_level_logo_with_name",
       "bytes": 147431,
-      "note": "Imperial public site/brand hub blocks automated local fetch with WAF/SSO; local seed used for main brand logo"
+      "sha256": "f978c2305993f780ed1adaa5257161765b0eb46acfea8d98d3f22f49cc1a4c28",
+      "kind": "raster",
+      "dimensions": [
+        12900,
+        1417
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/081-imperial-college-london.png"
     },
     {
-      "label": "monash-logo-with-name",
-      "target": "assets/institution-logos/top100-logo-bank/logo_with_name/089-monash-university.svg",
-      "source_url": "https://www.monash.edu/__data/assets/git_bridge/0006/509343/deploy/mysource_files/monash-logo-mono.svg",
-      "method": "local-seed-copy-after-official-fetch-blocked",
+      "index": 82,
+      "institution": "TU Wien",
+      "category": "logo_with_name",
+      "file": "082-tu-wien.svg",
+      "source_url": "https://www.tuwien.at/en/#tuw-logo",
+      "source_page": "https://www.tuwien.at/en/",
+      "source_kind": "official_homepage_inline_svg",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1142,
+      "sha256": "eadbb1e7663dbd156cc7d98bb8593dec3cd99005412aa0243da2c248b5edc2c6",
+      "kind": "svg",
+      "dimensions": [
+        97.0,
+        97.0
+      ],
+      "local_file": "logo_with_name/082-tu-wien.svg"
+    },
+    {
+      "index": 83,
+      "institution": "University of California Davis",
+      "category": "logo_with_name",
+      "file": "083-univ-of-california-davis.svg",
+      "source_url": "https://www.ucdavis.edu/profiles/sitefarm/themes/sitefarm_one/images/uc-logo-gold.svg",
+      "source_page": "https://www.ucdavis.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1910,
+      "sha256": "9f8a08594365c02ef0ed02f3d0d0bbcd8a8d82f6949cafc96e01f5a4a8aea0a1",
+      "kind": "svg",
+      "dimensions": [
+        100.0,
+        16.157
+      ],
+      "local_file": "logo_with_name/083-univ-of-california-davis.svg"
+    },
+    {
+      "index": 84,
+      "institution": "University College London",
+      "category": "logo_with_name",
+      "file": "084-university-college-london.svg",
+      "source_url": "https://www.ucl.ac.uk/",
+      "source_page": "https://www.ucl.ac.uk/",
+      "source_kind": "official_cached_existing_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1527,
+      "sha256": "eb4e7b0044f5fa30e7d1cfb3bc1301c6f68103c1b79a916eb0d2ca9d97ec85d8",
+      "kind": "svg",
+      "dimensions": [
+        1394.0,
+        391.0
+      ],
+      "local_file": "logo_with_name/084-university-college-london.svg"
+    },
+    {
+      "index": 85,
+      "institution": "University of Colorado Boulder",
+      "category": "logo_with_name",
+      "file": "085-university-of-colorado-boulder.svg",
+      "source_url": "https://cdn.colorado.edu/static/brand-assets/live/images/cu-boulder-logo-text-black.svg",
+      "source_page": "https://www.colorado.edu/brand/how-use/text-logo",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 15328,
+      "sha256": "c3121377252e9afb656b5e8d23c619a1cead4545e31ed1fde80e9ad778391cbf",
+      "kind": "svg",
+      "dimensions": [
+        868.22,
+        79.63
+      ],
+      "local_file": "logo_with_name/085-university-of-colorado-boulder.svg"
+    },
+    {
+      "index": 86,
+      "institution": "University of Minnesota",
+      "category": "logo_with_name",
+      "file": "086-university-of-minnesota.svg",
+      "source_url": "https://twin-cities.umn.edu/#inline-svg-0",
+      "source_page": "https://twin-cities.umn.edu/",
+      "source_kind": "official_homepage_inline_svg_cache",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 10749,
+      "sha256": "10b3ab7fd1af3319144853e17ead13f2721a410220049b82ab4e9f31460cc8ce",
+      "kind": "svg",
+      "dimensions": [
+        328.38,
+        34.03
+      ],
+      "local_file": "logo_with_name/086-university-of-minnesota.svg"
+    },
+    {
+      "index": 87,
+      "institution": "Brown University",
+      "category": "logo_with_name",
+      "file": "087-brown-university.png",
+      "source_url": "https://policy.brown.edu/policy/visual-identity",
+      "source_page": "https://policy.brown.edu/policy/visual-identity",
+      "source_kind": "official_cached_existing_asset",
+      "note": "Existing Brown shield + wordmark asset is the official school-level lockup; automatic candidate was a chevron icon.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 4676,
+      "sha256": "eda21befdcea5d214ba019dca38498dd2ab30ea419d45b5af6582cf9646a2833",
+      "kind": "raster",
+      "dimensions": [
+        100,
+        50
+      ],
+      "mode": "RGBA",
+      "local_file": "logo_with_name/087-brown-university.png"
+    },
+    {
+      "index": 88,
+      "institution": "City University of Hong Kong",
+      "category": "logo_with_name",
+      "file": "088-city-university-of-hong-kong.svg",
+      "source_url": "https://template.cityu.edu.hk/template/v2/logo/CityU/CityU_Vertical_Logo_CMYK.svg",
+      "source_page": "https://www.cityu.edu.hk/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 26008,
+      "sha256": "f920296f1d7e696a4c799675bf832aefd1e21a0df4b897cb0dcc82f5181a1707",
+      "kind": "svg",
+      "dimensions": [
+        262.83,
+        147.4
+      ],
+      "local_file": "logo_with_name/088-city-university-of-hong-kong.svg"
+    },
+    {
+      "index": 89,
+      "institution": "Monash University",
+      "category": "logo_with_name",
+      "file": "089-monash-university.svg",
+      "source_url": "https://www.monash.edu/about/who/brand",
+      "source_page": "https://www.monash.edu/about/who/brand",
+      "source_kind": "official_cached_existing_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
       "bytes": 40385,
-      "note": "official Monash asset URL returns Cloudflare challenge locally; local seed used for main logo"
+      "sha256": "539d1ec2ba7d38270c76d777f0b89ed0cd3a4acf7bbb7e9617dfec175d95e20c",
+      "kind": "svg",
+      "dimensions": [
+        148.80580098,
+        45.38886398
+      ],
+      "local_file": "logo_with_name/089-monash-university.svg"
     },
     {
-      "label": "monash-pure",
-      "target": "assets/institution-logos/top100-logo-bank/pure_logo/089-monash-university.svg",
-      "source_url": "https://www.monash.edu/__data/assets/pdf_file/0010/1656523/3.-CoreElements_Our-Logo.pdf",
-      "method": "local-seed-svg-crop-after-official-fetch-blocked",
-      "bytes": 40346,
-      "note": "pure shield crop from the Monash logo because official guidelines keep shield and wordmark together except constrained profile use"
+      "index": 90,
+      "institution": "Singapore Management University",
+      "category": "logo_with_name",
+      "file": "090-singapore-management-university.svg",
+      "source_url": "https://www.smu.edu.sg/themes/smubase_5g/svg/logo-d-smu.svg",
+      "source_page": "https://www.smu.edu.sg/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 33338,
+      "sha256": "58fffe14c467c7eb1554d911ac71d187eacce8ac74530d699541379e58e224e6",
+      "kind": "svg",
+      "dimensions": [
+        153.0,
+        60.0
+      ],
+      "local_file": "logo_with_name/090-singapore-management-university.svg"
+    },
+    {
+      "index": 91,
+      "institution": "Beihang University",
+      "category": "logo_with_name",
+      "file": "091-beihang-university.png",
+      "source_url": "https://www.buaa.edu.cn/images/logo.png",
+      "source_page": "https://www.buaa.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 9816,
+      "sha256": "f25d77b0c25b9e7f25ccfaa9a1fa22123fe38172e07d866b6d897a946db11b5e",
+      "kind": "raster",
+      "dimensions": [
+        316,
+        68
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/091-beihang-university.png"
+    },
+    {
+      "index": 92,
+      "institution": "CISPA Helmholtz Center",
+      "category": "logo_with_name",
+      "file": "092-cispa-helmholtz-center.png",
+      "source_url": "https://cispa.de/medialibrary/logo/download/CISPA_Main_Logo_BLACK_EN_RGB.png",
+      "source_page": "https://cispa.de/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 22877,
+      "sha256": "256a7faf1230a6b0ae81b1cc1bc132694d222e293c5f3c9603693cdefa0b2ff7",
+      "kind": "raster",
+      "dimensions": [
+        928,
+        237
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/092-cispa-helmholtz-center.png"
+    },
+    {
+      "index": 93,
+      "institution": "University of Central Florida",
+      "category": "logo_with_name",
+      "file": "093-university-of-central-florida.png",
+      "source_url": "https://www.ucf.edu/brand/wp-content/blogs.dir/13/files/2016/07/University-Signature.png",
+      "source_page": "https://www.ucf.edu/brand/brand-assets/logo-identity-system/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 1348,
+      "sha256": "dddf199945366ab10f283f6e1f0f8d4226f625efc1a99296783baf09a863825b",
+      "kind": "raster",
+      "dimensions": [
+        600,
+        16
+      ],
+      "mode": "RGB",
+      "local_file": "logo_with_name/093-university-of-central-florida.png"
+    },
+    {
+      "index": 94,
+      "institution": "University of Oxford",
+      "category": "logo_with_name",
+      "file": "094-university-of-oxford.png",
+      "source_url": "https://www.ox.ac.uk/about/the-university/brand/guidelines",
+      "source_page": "https://www.ox.ac.uk/about/the-university/brand/guidelines",
+      "source_kind": "official_cached_existing_asset_crop",
+      "note": "Cropped to the university-level Oxford mark; removed Department of Computer Science block.",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 8906,
+      "sha256": "bc85baf398efc0a0dc1d43321047f2066227141d4766cf0c87aef207c1ab997b",
+      "kind": "raster",
+      "dimensions": [
+        158,
+        158
+      ],
+      "mode": "RGBA",
+      "local_file": "logo_with_name/094-university-of-oxford.png"
+    },
+    {
+      "index": 95,
+      "institution": "Huazhong University of Science and Technology",
+      "category": "logo_with_name",
+      "file": "095-hust.png",
+      "source_url": "https://www.hust.edu.cn/images/logo20240628.png",
+      "source_page": "https://www.hust.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 18235,
+      "sha256": "b818d74ac39eef4a0cd24720f148406736342718edbb7e9b35160611b0bb4e0f",
+      "kind": "raster",
+      "dimensions": [
+        400,
+        94
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/095-hust.png"
+    },
+    {
+      "index": 96,
+      "institution": "Oregon State University",
+      "category": "logo_with_name",
+      "file": "096-oregon-state-university.svg",
+      "source_url": "https://oregonstate.edu/themes/custom/madrone_homepage/logo.svg",
+      "source_page": "https://oregonstate.edu/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 11259,
+      "sha256": "2731e1768c9dc13ba6c52c75303954ba85ba2d4182385102a5d2f1dd461b7463",
+      "kind": "svg",
+      "dimensions": [
+        250.0,
+        80.0
+      ],
+      "local_file": "logo_with_name/096-oregon-state-university.svg"
+    },
+    {
+      "index": 97,
+      "institution": "Sun Yat-sen University",
+      "category": "logo_with_name",
+      "file": "097-sun-yat-sen-university.png",
+      "source_url": "https://www.sysu.edu.cn/images/logo1.png",
+      "source_page": "https://www.sysu.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 10775,
+      "sha256": "6725f365b51eb3427b79365af1abf3d375c442b74ec75dc6b733b79d7d47bb12",
+      "kind": "raster",
+      "dimensions": [
+        240,
+        69
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/097-sun-yat-sen-university.png"
+    },
+    {
+      "index": 98,
+      "institution": "Harbin Institute of Technology",
+      "category": "logo_with_name",
+      "file": "098-harbin-institute-of-technology.png",
+      "source_url": "https://www.hit.edu.cn/_upload/site/00/ee/238/logo.png",
+      "source_page": "https://www.hit.edu.cn/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 109992,
+      "sha256": "4c770a1cde5e40588682c590a3d79ee1a32f1ebbd5efefc315243cfb028bcd13",
+      "kind": "raster",
+      "dimensions": [
+        2914,
+        678
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/098-harbin-institute-of-technology.png"
+    },
+    {
+      "index": 99,
+      "institution": "Hebrew University of Jerusalem",
+      "category": "logo_with_name",
+      "file": "099-hebrew-university-of-jerusalem.png",
+      "source_url": "https://en.huji.ac.il/profiles/openscholar/themes/os_bootstrap/images/logo_ltr.png",
+      "source_page": "https://en.huji.ac.il/",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 15713,
+      "sha256": "8b36e87b5d0e1c726c4e6323086a9509f82288cc0e1b57698c68947788179caf",
+      "kind": "raster",
+      "dimensions": [
+        278,
+        113
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/099-hebrew-university-of-jerusalem.png"
+    },
+    {
+      "index": 100,
+      "institution": "Korea University",
+      "category": "logo_with_name",
+      "file": "100-korea-university.png",
+      "source_url": "https://www.korea.edu/sites/en/images/common/logo_c.png",
+      "source_page": "https://www.korea.edu/sites/en/index.do",
+      "source_kind": "official_site_asset",
+      "note": "",
+      "quality": "official_school_level_logo_with_name",
+      "bytes": 10665,
+      "sha256": "167cb92ba4acc05dfb9d85c4b0610f14cde59c7b0f50b30b098948ecf2965436",
+      "kind": "raster",
+      "dimensions": [
+        327,
+        108
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "local_file": "logo_with_name/100-korea-university.png"
     }
-  ]
+  ],
+  "target_root": "assets/institution-logos/top100-logo-bank",
+  "target_logo_with_name": "assets/institution-logos/top100-logo-bank/logo_with_name",
+  "sync_note": "Canonical repaired top100 logo_with_name bank."
 }
