@@ -1,55 +1,72 @@
+<div align="center">
+
 # Better Poster Skill
 
-[English](#english) | [中文](#zh-cn)
+Turn paper materials into editable Better Poster-style academic posters with a code agent.
+
+<p>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
+  <img alt="Output: LaTeX and HTML" src="https://img.shields.io/badge/output-LaTeX%20%2B%20HTML-2563eb">
+  <img alt="Poster style" src="https://img.shields.io/badge/poster-Better%20Poster-7c2d92">
+  <img alt="OpenReview QR" src="https://img.shields.io/badge/QR-OpenReview%20ready-a21d16">
+</p>
+
+<p>
+  <a href="#english">English</a> ·
+  <a href="#zh-cn">中文</a> ·
+  <a href="#preview">Preview</a> ·
+  <a href="#quick-start">Quick Start</a>
+</p>
+
+</div>
+
+<a id="preview"></a>
+
+## Preview
+
+<p align="center">
+  <img src="examples/cuhk_mock_style1/style1.png" alt="CUHK Better Poster style preview" width="920">
+</p>
 
 <a id="english"></a>
 
 ## English
 
-Better Poster Skill helps a code agent turn paper materials into an editable academic poster in a Better Poster-style layout.
+Better Poster Skill helps a code agent transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished academic poster drafts.
 
-You can use it when you have a paper PDF, LaTeX source archive, extracted paper text, figures, screenshots, project links, or an existing poster draft that needs to be redesigned.
+It is designed for researchers who want a fast, editable poster starting point instead of a blank canvas.
 
-### Preview
+### At A Glance
 
-![CUHK style1 template](examples/cuhk_mock_style1/style1.png)
+| You provide | The agent prepares |
+|---|---|
+| Paper PDF, LaTeX source, or pasted paper sections | Editable poster source files |
+| Paper, code, project, slides, or OpenReview links | QR/download area |
+| Institution or affiliation text | Institution branding when available |
+| Figures, result plots, or screenshots | Poster-ready visual evidence when useful |
+| Contact line and presentation preferences | A preview-ready poster draft |
 
 ### What This Project Provides
 
-- Reusable academic poster templates for claim-first and evidence-focused poster layouts.
-- Editable LaTeX poster output.
-- Standalone HTML poster output when requested.
-- Rendered PDF/PNG previews when local dependencies are available.
-- Automatic QR/download rows from provided paper, code, project, slide, or OpenReview links.
-- Institution and conference branding support when matching assets are available.
-- A growing `examples/` library that helps the agent reuse successful poster structures and visual patterns for new papers.
-
-### What To Prepare
-
-Provide as much of the following as available:
-
-| Item | Examples |
+| Area | What you get |
 |---|---|
-| Paper content | PDF, LaTeX source archive, Markdown/text extraction, pasted sections |
-| Output format | LaTeX, HTML, or both |
-| Links | Paper, code, project page, slides, OpenReview |
-| Affiliation | Institution name or author affiliation text |
-| Figures | Method figures, result plots, qualitative examples, screenshots |
-| Contact | Email, project page, lab page |
-| Preference | Target venue, poster size, preferred style, content emphasis |
+| Templates | Reusable Better Poster-style layouts for claim-first and evidence-focused posters |
+| Outputs | LaTeX source, optional standalone HTML, and rendered PDF/PNG previews when local tools are available |
+| Assets | QR/download rows, institution marks, conference marks, and a dedicated OpenReview QR icon |
+| Examples | A growing `examples/` library that helps the agent reuse successful structures for new papers |
 
-The paper content is the most important input. Extra links and affiliation details help the agent build the QR area and branding.
+<a id="quick-start"></a>
 
-### How To Use
+### Quick Start
 
-Install this repository as a Codex skill, then ask the code agent to generate or revise a poster from your paper materials.
+Install this repository as a Codex skill:
 
 ```bash
 mkdir -p ~/.codex/skills
 cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
-Example request:
+Then ask the code agent to generate or revise a poster:
 
 ```text
 Use $better-poster to generate an academic poster from this paper.
@@ -79,18 +96,18 @@ Depending on your request and local dependencies, the agent can return:
 - Institution and conference branding when supported.
 - A short summary of generated files, preview locations, and remaining manual checks.
 
-### User Check
+### Author Check
 
 Before submission, presentation, or distribution, manually verify:
 
-- Scientific wording and main claims.
-- Formula and theorem compression.
-- Figure cropping and captions.
-- Citation accuracy.
-- Author, affiliation, venue, and logo usage.
-- Final rendered layout.
-
-AI-assisted poster generation can speed up drafting, but the final academic judgment remains with the authors.
+| Check | Why it matters |
+|---|---|
+| Scientific wording and main claims | The poster should match the paper and author intent |
+| Formula and theorem compression | Shortened theory must remain faithful |
+| Figure cropping and captions | Visual evidence should stay accurate |
+| Citation accuracy | References and attributions should be correct |
+| Author, venue, institution, and logo usage | Branding may have venue or trademark requirements |
+| Final rendered layout | Always inspect the actual PDF/PNG preview |
 
 ### References
 
@@ -103,7 +120,7 @@ This repository remains MIT licensed. The included `templates/betterposter.cls` 
 
 Review institution logo copyright, trademark, and attribution requirements before redistributing generated logo files.
 
-[中文](#zh-cn)
+<p align="right"><a href="#better-poster-skill">Back to top</a> · <a href="#zh-cn">中文</a></p>
 
 ---
 
@@ -111,50 +128,39 @@ Review institution logo copyright, trademark, and attribution requirements befor
 
 ## 中文
 
-Better Poster Skill 用于帮助 code agent 将论文材料转换为可编辑的 Better Poster 风格学术海报。
+Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
 
-当你有论文 PDF、LaTeX 源码压缩包、论文文本摘录、图表、截图、项目链接，或者已有海报草稿需要重新设计时，可以使用这个项目。
+它适合希望快速得到高质量海报起点的研究者，而不是从空白页面开始排版。
 
-### 模板预览
+### 快速概览
 
-![CUHK style1 template](examples/cuhk_mock_style1/style1.png)
+| 你提供 | agent 生成 |
+|---|---|
+| 论文 PDF、LaTeX 源码或粘贴的论文段落 | 可编辑的海报源码 |
+| Paper、code、project、slides 或 OpenReview 链接 | QR/download 区域 |
+| 机构名称或作者 affiliation | 可匹配时加入机构标识 |
+| 图表、结果图或截图 | 适合放入海报的视觉证据 |
+| 联系方式和展示偏好 | 可预览的海报初稿 |
 
 ### 这个项目提供什么
 
-- 可复用的学术海报模板，支持主结论优先和证据展示优先两类海报结构。
-- 可编辑的 LaTeX 海报源码。
-- 按需生成的独立 HTML 海报源码。
-- 在本地依赖可用时生成 PDF/PNG 预览图。
-- 根据 paper、code、project、slides、OpenReview 等链接自动生成 QR/download 区域。
-- 在资源可匹配时自动加入机构和会议标识。
-- 持续扩充的 `examples/` 示例库，帮助 agent 为新论文参考过往成功海报的结构、信息密度和视觉组织方式。
-
-### 你需要准备什么
-
-尽量提供以下材料：
-
-| 内容 | 示例 |
+| 模块 | 内容 |
 |---|---|
-| 论文内容 | PDF、LaTeX 源码压缩包、Markdown/text 摘录、粘贴的论文段落 |
-| 输出格式 | LaTeX、HTML，或两者都要 |
-| 链接 | Paper、code、project page、slides、OpenReview |
-| 机构信息 | 机构名称或作者 affiliation 文本 |
-| 图表素材 | 方法图、结果图、定性结果、截图 |
-| 联系方式 | 邮箱、项目主页、实验室主页 |
-| 偏好说明 | 目标会议、海报尺寸、偏好的风格、希望突出的内容 |
+| 模板 | 可复用的 Better Poster 风格布局，支持主结论优先和证据展示优先两类海报 |
+| 输出 | LaTeX 源码、按需生成的独立 HTML，以及本地工具可用时的 PDF/PNG 预览 |
+| 资源 | QR/download 区域、机构标识、会议标识，以及专用 OpenReview QR 中心图标 |
+| 示例 | 持续扩充的 `examples/`，帮助 agent 为新论文参考过往成功结构 |
 
-论文内容是最重要的输入。额外的链接和机构信息可以帮助 agent 完成 QR 区域和视觉标识。
+### 快速开始
 
-### 怎么使用
-
-先把本仓库安装为 Codex skill，然后让 code agent 基于论文材料生成或修改海报。
+先把本仓库安装为 Codex skill：
 
 ```bash
 mkdir -p ~/.codex/skills
 cp -R Better-Poster-Skill ~/.codex/skills/better-poster
 ```
 
-示例请求：
+然后让 code agent 基于论文材料生成或修改海报：
 
 ```text
 Use $better-poster to generate an academic poster from this paper.
@@ -184,18 +190,18 @@ agent 会阅读论文材料，选择合适的海报结构，整合可用资源�
 - 在资源可支持时加入的机构和会议标识。
 - 简短的文件变更、预览位置和仍需人工检查内容说明。
 
-### 人工检查
+### 作者检查
 
 正式投稿、展示或分发前，请人工检查：
 
-- 科学表述和主结论。
-- 公式、定理和理论内容的压缩是否忠实。
-- 图表裁剪和 caption。
-- 引用准确性。
-- 作者、机构、会议和 logo 使用。
-- 最终渲染版面。
-
-AI 可以加速海报初稿生成，但最终学术判断仍应由作者完成。
+| 检查项 | 原因 |
+|---|---|
+| 科学表述和主结论 | 海报应忠实反映论文和作者意图 |
+| 公式、定理和理论压缩 | 压缩后的理论内容仍需准确 |
+| 图表裁剪和 caption | 视觉证据不能改变科学含义 |
+| 引用准确性 | 参考文献和署名需要正确 |
+| 作者、会议、机构和 logo 使用 | 品牌材料可能有会议或商标要求 |
+| 最终渲染版面 | 请以实际 PDF/PNG 预览为准 |
 
 ### 参考来源
 
@@ -208,4 +214,4 @@ This repository remains MIT licensed. The included `templates/betterposter.cls` 
 
 重新分发生成的 logo 文件前，请检查机构 logo 的版权、商标和署名要求。
 
-[English](#english)
+<p align="right"><a href="#better-poster-skill">Back to top</a> · <a href="#english">English</a></p>
