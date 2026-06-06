@@ -46,6 +46,7 @@
 \definecolor{aurora}{RGB}{4,78,99}
 \definecolor{sidebarcool}{RGB}{247,249,252}
 \definecolor{mutedgray}{RGB}{105,111,119}
+\definecolor{guidancenotegray}{RGB}{126,135,148}
 \definecolor{claimtiermiddle}{RGB}{184,192,202}
 \definecolor{claimtierlower}{RGB}{116,126,140}
 \definecolor{institutiondefaultprimary}{RGB}{0,82,155}
@@ -85,7 +86,7 @@
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
-\setlength{\institutionlogosize}{0.088\paperheight}
+\setlength{\institutionlogosize}{0.105\paperheight}
 \setlength{\scaniconsize}{0.078\paperheight}
 \setlength{\posterclaimleading}{244pt}
 
@@ -95,6 +96,7 @@
 \newcommand{\fontsizeauthor}{\fontsize{48.00}{68.00}\selectfont}
 \newcommand{\fontsizesection}{\fontsize{48.00}{68.00}\selectfont}
 \newcommand{\fontsizecaption}{\fontsize{24.00}{31.00}\selectfont}
+\newcommand{\fontsizetheorysummary}{\fontsize{28.00}{36.00}\selectfont}
 \newcommand{\fontsizesmall}{\fontsize{22.00}{30.00}\selectfont}
 
 \DeclareOption{a2paper}{%
@@ -106,6 +108,7 @@
   \renewcommand{\fontsizeauthor}{\fontsize{24.00}{34.00}\selectfont}%
   \renewcommand{\fontsizesection}{\fontsize{24.00}{34.00}\selectfont}%
   \renewcommand{\fontsizecaption}{\fontsize{12.00}{16.00}\selectfont}%
+  \renewcommand{\fontsizetheorysummary}{\fontsize{14.00}{18.00}\selectfont}%
   \renewcommand{\fontsizesmall}{\fontsize{11.00}{15.00}\selectfont}%
 }
 \DeclareOption{a1paper}{%
@@ -117,6 +120,7 @@
   \renewcommand{\fontsizeauthor}{\fontsize{33.94}{48.08}\selectfont}%
   \renewcommand{\fontsizesection}{\fontsize{33.94}{48.08}\selectfont}%
   \renewcommand{\fontsizecaption}{\fontsize{16.97}{24.04}\selectfont}%
+  \renewcommand{\fontsizetheorysummary}{\fontsize{19.80}{25.46}\selectfont}%
   \renewcommand{\fontsizesmall}{\fontsize{15.56}{21.21}\selectfont}%
 }
 \DeclareOption{a0paper}{\geometry{paperwidth=1682mm,paperheight=841mm,margin=0in}}
@@ -155,7 +159,7 @@
     \RaggedRight\fontsizemain\bfseries #1\vspace{1em}%
   }%
   \vfill%
-  \begin{minipage}[t][0.30\textheight][c]{\linewidth}%
+  \begin{minipage}[t][0.25\textheight][c]{\linewidth}%
     #2%
   \end{minipage}%
 }
@@ -197,6 +201,7 @@
   #1\par%
   \endgroup%
 }
+\newcommand{\claimtiervspace}{\\}
 
 \newcommand{\qrplaceholder}{%
   \begingroup\setlength{\fboxsep}{0.5em}\fcolorbox{black}{white}{%
@@ -238,28 +243,28 @@
 }
 \newcommand{\qrcode}[3]{%
   \noindent%
-  \begin{minipage}[c]{0.94\linewidth}%
-    \begin{minipage}[c]{0.27\linewidth}%
+  \begin{minipage}[c]{0.90\linewidth}%
+    \begin{minipage}[c]{0.23\linewidth}%
       \includeqr{#1}{\linewidth}%
     \end{minipage}\hfill%
-    \begin{minipage}[c]{0.14\linewidth}\centering%
+    \begin{minipage}[c]{0.12\linewidth}\centering%
       \scaniconordefault{#2}%
     \end{minipage}\hfill%
-    \begin{minipage}[c]{0.51\linewidth}%
+    \begin{minipage}[c]{0.57\linewidth}%
       \scantext{}{#3}%
     \end{minipage}%
   \end{minipage}%
 }
 \newcommand{\compactqrcode}[2]{%
   \noindent%
-  \begin{minipage}[c]{0.94\linewidth}%
-    \begin{minipage}[c]{0.27\linewidth}%
+  \begin{minipage}[c]{0.90\linewidth}%
+    \begin{minipage}[c]{0.23\linewidth}%
       \includeqr{#1}{\linewidth}%
     \end{minipage}\hfill%
-    \begin{minipage}[c]{0.14\linewidth}\centering%
+    \begin{minipage}[c]{0.12\linewidth}\centering%
       \scaniconordefault{}%
     \end{minipage}\hfill%
-    \begin{minipage}[c]{0.51\linewidth}%
+    \begin{minipage}[c]{0.57\linewidth}%
       #2%
     \end{minipage}%
   \end{minipage}%
@@ -290,41 +295,50 @@
     }%
   }{}%
 }
+\newcommand{\posterifnonempty}[3]{%
+  \begingroup%
+  \edef\posterpathtmp{#1}%
+  \ifx\posterpathtmp\empty%
+    \endgroup#3%
+  \else%
+    \endgroup#2%
+  \fi%
+}
 \newcommand{\posterlogospaced}[2]{%
-  \ifthenelse{\equal{#1}{}}{}{%
-    \IfFileExists{#1}{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=\dimexpr#2\relax,keepaspectratio]{#1}}\hspace{0.028\linewidth}\allowbreak}{}%
-  }%
+  \posterifnonempty{#1}{%
+    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,keepaspectratio]{#1}}\hspace{0.028\linewidth}\allowbreak}{}%
+  }{}%
 }
 \newcommand{\posterlogorow}[3]{%
   \noindent%
-  \ifthenelse{\equal{#1}{}}{}{%
-    \IfFileExists{#1}{\raisebox{0pt}[\dimexpr#3\relax][0pt]{\includegraphics[height=\dimexpr#3\relax,keepaspectratio]{#1}}}{}%
-  }%
-  \ifthenelse{\equal{#2}{}}{}{%
-    \ifthenelse{\equal{#1}{}}{}{\hspace{0.055\linewidth}}%
-    \IfFileExists{#2}{\raisebox{0pt}[\dimexpr#3\relax][0pt]{\includegraphics[height=\dimexpr#3\relax,keepaspectratio]{#2}}}{}%
-  }%
+  \posterifnonempty{#1}{%
+    \IfFileExists{#1}{\raisebox{0pt}[#3][0pt]{\includegraphics[height=#3,keepaspectratio]{#1}}}{}%
+  }{}%
+  \posterifnonempty{#2}{%
+    \posterifnonempty{#1}{\hspace{0.055\linewidth}}{}%
+    \IfFileExists{#2}{\raisebox{0pt}[#3][0pt]{\includegraphics[height=#3,keepaspectratio]{#2}}}{}%
+  }{}%
 }
 \newcommand{\posterlogo}[2]{%
-  \ifthenelse{\equal{#1}{}}{}{%
-    \IfFileExists{#1}{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=\dimexpr#2\relax,keepaspectratio]{#1}}\hspace{0.030\linewidth}\allowbreak}{}%
-  }%
+  \posterifnonempty{#1}{%
+    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,keepaspectratio]{#1}}\hspace{0.030\linewidth}\allowbreak}{}%
+  }{}%
 }
 \newcommand{\posterlogoslot}[3]{%
-  \ifthenelse{\equal{#1}{}}{}{%
+  \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \makebox[#3][l]{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=\dimexpr#2\relax,keepaspectratio]{#1}}}%
+      \makebox[#3][l]{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,keepaspectratio]{#1}}}%
       \allowbreak%
     }{}%
-  }%
+  }{}%
 }
 \newcommand{\posterboundedlogo}[3]{%
-  \ifthenelse{\equal{#1}{}}{}{%
+  \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \makebox[#3][l]{\raisebox{0pt}[\dimexpr#2\relax][0pt]{\includegraphics[height=#2,width=#3,keepaspectratio]{#1}}}%
+      \makebox[#3][l]{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=#3,keepaspectratio]{#1}}}%
       \allowbreak%
     }{}%
-  }%
+  }{}%
 }
 \newcommand{\posterlogostrip}[1]{%
   \noindent\RaggedRight #1\par%
@@ -332,15 +346,20 @@
 \newcommand{\institutionlogorow}[3]{\posterlogorow{#1}{#2}{#3}}
 \newcommand{\institutionlogo}[2]{\posterlogospaced{#1}{#2}}
 \newcommand{\institutionlogostrip}[1]{\posterlogostrip{#1}}
-\newcommand{\conferencelogo}[2]{\posterlogospaced{#1}{#2}}
+\newcommand{\conferencelogo}[2]{%
+  \posterifnonempty{#1}{%
+    \IfFileExists{#1}{%
+      \raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.90\linewidth,keepaspectratio]{#1}}%
+      \hspace{0.030\linewidth}\allowbreak%
+    }{}%
+  }{}%
+}
 \newcommand{\conferencelogostrip}[1]{\posterlogostrip{#1}}
 \newcommand{\posterstatementcard}[5]{%
   \begingroup\setlength{\fboxsep}{0.42em}%
   \colorbox{sidebarcool}{%
     \begin{minipage}{0.94\linewidth}%
-      {\fontsize{#1}{#2}\selectfont #3
-        \textcolor{mutedgray}{{\fontsize{30}{30}\selectfont\textbullet}}\hspace{0.30em}%
-        \textcolor{black}{#4}\par}%
+      {\fontsize{#1}{#2}\selectfont #3\textcolor{black}{#4}\par}%
       \vspace{0.14em}{\fontsize{35}{45}\selectfont\color{black}#5\par}%
     \end{minipage}}%
   \endgroup\par\vspace{0.45em}%
@@ -351,10 +370,16 @@
 \newcommand{\theoremcard}[2]{%
   \posterstatementcard{38}{47}{\bfseries}{#1}{#2}%
 }
+\newcommand{\lemmacard}[2]{%
+  \posterstatementcard{36}{45}{\bfseries}{#1}{#2}%
+}
 \newcommand{\corollarycard}[2]{%
   \posterstatementcard{36}{45}{\bfseries}{#1}{#2}%
 }
 \newcommand{\theorycard}[2]{\theoremcard{#1}{#2}}
+\newcommand{\posterstatementsummary}[1]{%
+  \vspace{-0.24em}{\color{mutedgray}\fontsizetheorysummary\bfseries #1\par}\vspace{0.18em}%
+}
 \newcommand{\metric}[2]{%
   \begin{minipage}[t]{0.46\linewidth}%
     {\fontsize{46}{54}\selectfont\bfseries\color{\posteraccentcolor}#1\par}%
@@ -372,7 +397,7 @@
 }
 \newcommand{\heroimage}[2]{%
   \begin{center}%
-  \IfFileExists{#1}{\includegraphics[width=0.96\linewidth,height=0.34\paperheight,keepaspectratio]{#1}}{\postergraphic[width=0.96\linewidth]{#1}{Hero figure placeholder}}%
+  \IfFileExists{#1}{\includegraphics[width=0.96\linewidth,height=0.34\paperheight,keepaspectratio]{#1}}{\postergraphic[width=0.96\linewidth]{#1}{Hero result panel.}}%
   \par\vspace{0.025\paperheight}{\fontsize{26}{34}\selectfont\bfseries #2\par}%
   \end{center}%
 }
@@ -380,4 +405,6 @@
 \renewcommand{\title}[1]{{\color{\postertitlecolor}\fontsizetitle\bfseries\leavevmode #1}\par\vspace{0.18em}}
 \renewcommand{\author}[1]{{\color{mutedgray}\fontsizeauthor #1}\par\vspace{0.18em}}
 \newcommand{\institution}[1]{{\color{mutedgray}#1}\par\vspace{0.45em}}
-\newcommand{\posterfootnote}[1]{{\color{mutedgray}\fontsizecaption #1}}
+\newcommand{\posterfootnote}[1]{{\color{guidancenotegray}\fontsizecaption #1}}
+\newcommand{\posterfullpapernote}[1]{{\color{guidancenotegray}\fontsizecaption\itshape #1\par}}
+\newcommand{\posterreferences}[1]{{\color{mutedgray}\fontsizecaption #1\par}}

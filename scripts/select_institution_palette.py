@@ -14,8 +14,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-DEFAULT_RANKING_PATH = Path("data/csrankings_all_world_2016_2026_may2026_top100_institutions.json")
-DEFAULT_PALETTE_PATH = Path("data/institution_palettes.json")
+DEFAULT_RANKING_PATH = Path("assets/institution-data/csrankings_all_world_2016_2026_may2026_top100_institutions.json")
+DEFAULT_PALETTE_PATH = Path("assets/institution-data/institution_palettes.json")
 
 
 def rgb_to_hex(rgb: list[int]) -> str:

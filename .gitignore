@@ -14,13 +14,12 @@ dist/
 *_preview.pdf
 
 # On-demand third-party institution logo cache
-assets/institutions/*.png
-assets/institutions/*.jpg
-assets/institutions/*.jpeg
-assets/institutions/*.webp
-assets/institutions/*.json
-assets/institutions/cache/
-assets/institutions/badges/
+assets/institution-logos/*.png
+assets/institution-logos/*.jpg
+assets/institution-logos/*.jpeg
+assets/institution-logos/*.webp
+assets/institution-logos/*.json
+assets/institution-logos/cache/
 
 # Python
 __pycache__/

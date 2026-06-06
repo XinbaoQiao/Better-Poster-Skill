@@ -27,6 +27,7 @@ PROXY_ENV_KEYS = (
 )
 
 HTML_SUFFIXES = {".html", ".htm"}
+DEFAULT_OUT_DIR = Path(tempfile.gettempdir()) / "better-poster-preview"
 
 PLACEHOLDER_PATTERNS = (
     "Main finding goes here",
@@ -247,7 +248,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", help="A .tex/.html file, project directory, or .zip archive.")
     parser.add_argument("--root", help="Root source file path relative to extracted zip or directory.")
-    parser.add_argument("--out-dir", default="build", help="Directory for PDF/HTML and PNG outputs.")
+    parser.add_argument(
+        "--out-dir",
+        default=str(DEFAULT_OUT_DIR),
+        help="Directory for PDF/HTML and PNG outputs. Defaults to the system temp directory.",
+    )
     parser.add_argument("--engine", default="pdflatex", help="LaTeX engine, default: pdflatex.")
     parser.add_argument("--passes", type=int, default=2, help="Manual engine passes when latexmk is unavailable.")
     parser.add_argument("--dpi", type=int, default=160, help="PNG preview DPI.")

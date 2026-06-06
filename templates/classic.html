@@ -7,7 +7,7 @@
 <style>
 @page { size: 1682mm 841mm; margin: 0; }
 :root {
-  --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+  --ink:#111827; --muted:#6b7280; --note:#7e8794; --line:#d1d5db;
   --institution-primary:#00529b; --institution-secondary:#ef7c00;
   --main:var(--institution-primary); --main-fg:#fff; --accent:var(--institution-primary); --title:var(--institution-primary);
   --claim-1:#ffffff; --claim-2:#b8c0ca; --claim-3:#747e8c;
@@ -28,9 +28,12 @@ h1 { margin:0 0 7mm; color:var(--title); font-size:clamp(21mm, 2.4vw, 30mm); lin
 .authors, .affiliation, .contact { color:var(--muted); font-size:11mm; line-height:1.22; }
 h2 { margin:16mm 0 5mm; color:var(--accent); font-size:15.4mm; line-height:1.08; font-weight:900; }
 p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; }
+.poster-note { color:var(--note); font-size:10.5mm; line-height:1.25; font-style:italic; }
+.references { color:var(--muted); font-size:10.5mm; line-height:1.25; }
 .figure { height:86mm; margin-top:7mm; border:1.2mm solid var(--line); background:#f8fafc; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted); font-weight:800; }
 .claim { margin:auto 0; font-family:Inter, Arial, sans-serif; font-size:76mm; line-height:86mm; font-weight:900; letter-spacing:0; overflow-wrap:normal; color:var(--claim-1); }
 .claim-group { display:block; }
+.claim-group + .claim-group { margin-top:0; }
 .claim-primary { color:var(--claim-1); }
 .claim-middle { color:var(--claim-2); }
 .claim-lower { color:var(--claim-3); }
@@ -46,16 +49,15 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; 
 .scan-caption strong { font-size:25mm; line-height:1.04; }
 .metric { display:inline-block; width:46%; vertical-align:top; margin:8mm 2% 0 0; }
 .metric strong { display:block; color:var(--accent); font-size:17mm; line-height:1; }
-.institution-brand, .conference-brand { display:none; margin-top:auto; padding-top:14mm; text-align:left; gap:8mm; align-items:flex-end; flex-wrap:wrap; }
+.institution-brand, .conference-brand { display:none; margin-top:auto; padding-top:14mm; text-align:left; gap:9mm; align-items:flex-end; flex-wrap:wrap; }
 .institution-brand[data-has-logo="true"], .conference-brand[data-has-logo="true"] { display:flex; }
-.institution-brand img, .conference-brand img { display:none; width:auto; height:74mm; max-width:none; max-height:none; object-fit:contain; margin:0; flex:0 0 auto; }
+.institution-brand img, .conference-brand img { display:none; width:auto; height:88mm; max-width:none; max-height:none; object-fit:contain; margin:0; flex:0 0 auto; }
 .institution-brand img[data-loaded="true"], .conference-brand img[data-loaded="true"] { display:block; }
 .institution-name { display:none; }
 .theory-card { background:#f7f9fc; padding:5mm; margin:0 0 5mm; }
 .theory-card strong { display:block; color:#111827; font-size:13.8mm; line-height:1.12; margin-bottom:2mm; font-weight:900; }
-.theory-card strong::before { content:"\2022"; display:inline-block; width:auto; height:auto; margin-right:.34em; color:var(--muted); background:transparent; vertical-align:.02em; }
 .theory-card.proposition strong { color:#111827; font-size:12.6mm; font-weight:800; }
-.theory-card.proposition strong::before { color:var(--muted); background:transparent; }
+.theory-summary { color:var(--muted); font-size:11.4mm; line-height:1.18; font-style:normal; font-weight:700; margin:-2mm 0 4mm; }
 .formula { font-weight:800; color:#111827; }
 @media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.24); margin-bottom:-640mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
 </style>
@@ -63,42 +65,49 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; 
 <body>
 <main class="poster theme-institution" aria-label="Better Poster Skill style1">
   <aside class="side">
-    <h1>Paper title or short research object</h1>
+    <h1>Research Title</h1>
     <p class="authors">First Author, Second Author, Senior Author</p>
-    <p class="affiliation">Department, University or Institute</p>
 
-    <h2>Theory Claims</h2>
-    <div class="theory-card proposition"><strong>Proposition: baseline law</strong><span class="formula">Replace with the key equation.</span></div>
-    <div class="theory-card"><strong>Theorem: main guarantee</strong><span class="formula">State the primary bound or convergence result.</span></div>
-    <div class="theory-card proposition"><strong>Proposition: mechanism</strong><span class="formula">Add the supporting proposition or corollary.</span></div>
+    <h2>Introduction</h2>
+    <p>Recursive training can shift the learned distribution when selection is misaligned with the target population.</p>
+    <p>Selection mismatch changes coverage and motivates formal analysis of distributional drift.</p>
+
+    <h2>Theory</h2>
+    <div class="theory-card proposition"><strong>Proposition: baseline law</strong><span class="formula">D<sub>t+1</sub> = T(D<sub>t</sub>).</span></div>
+    <p class="theory-summary">One training step updates the modeled distribution.</p>
+    <div class="theory-card"><strong>Theorem: main guarantee</strong><span class="formula">Delta(D<sub>t</sub>, D*) <= epsilon under coverage.</span></div>
+    <p class="theory-summary">Sufficient coverage keeps the target quantity reliable.</p>
+    <div class="theory-card proposition"><strong>Proposition: mechanism</strong><span class="formula">The observed statistic controls the theoretical bound.</span></div>
+    <p class="theory-summary">The observed statistic determines the theoretical bound.</p>
+
+    <p class="poster-note">For more methodology and theoretical details, please refer to the full paper.</p>
 
     <div class="institution-brand" data-has-logo="false">
-      <img src="../assets/institutions/current-logo.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
-      <img src="../assets/institutions/current-logo-2.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
-      <img src="../assets/institutions/current-logo-3.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/institution-logos/current-logo.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/institution-logos/current-logo-2.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/institution-logos/current-logo-3.png" alt="Institution logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
     </div>
   </aside>
 
   <section class="main">
     <div class="claim">
       <span class="claim-group claim-primary">
-        <span class="claim-line">Conclusion first.</span>
-        <span class="claim-line">Mechanism visible.</span>
+        <span class="claim-line">Main conclusion.</span>
       </span>
       <span class="claim-group claim-middle">
-        <span class="claim-line">Evidence path clear.</span>
+        <span class="claim-line">Evidence.</span>
       </span>
       <span class="claim-group claim-lower">
-        <span class="claim-line">Details stay scannable.</span>
+        <span class="claim-line">Practical implication.</span>
       </span>
     </div>
     <div class="scan">
       <div class="scan-list">
         <div class="scan-item">
           <div class="qr">QR</div>
-          <div class="scan-icon"><img src="../assets/icons/scan-qr-code-white.svg" alt="Scan icon"></div>
+          <div class="scan-icon"><img src="../assets/scan-icons/scan-qr-code-white.svg" alt="Scan icon"></div>
           <div class="scan-copy">
-            <div class="scan-caption"><strong>Scan</strong><br>for the full paper, code, or project page.<br><br><span class="contact">Contact: author@example.com</span></div>
+            <div class="scan-caption"><strong>Scan</strong><br>for the full paper, code, or project page.<br><br><span class="contact">Contact: contact@example.edu</span></div>
           </div>
         </div>
       </div>
@@ -106,29 +115,24 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; 
   </section>
 
   <aside class="side">
-    <h2>Evidence</h2>
-    <ul>
-      <li>Strongest result, with dataset and comparison.</li>
-      <li>One robustness, ablation, or qualitative signal.</li>
-      <li>One limitation or boundary condition.</li>
-    </ul>
+    <h2>Methodology</h2>
+    <p>The study combines a formal model, controlled evaluation, and a robustness check under the same target setting.</p>
 
-    <div class="metric"><strong>+12%</strong>primary improvement</div>
-    <div class="metric"><strong>3x</strong>lower compute or annotation cost</div>
+    <h2>Results</h2>
+    <div class="figure">Primary result panel.</div>
+    <p>The strongest result supports the central conclusion across the reported evaluation setting.</p>
 
-    <h2>Result Figure</h2>
-    <div class="figure">Replace with the single result panel that best supports the claim.</div>
+    <h2>Conclusion</h2>
+    <p>The evidence indicates that the proposed analysis explains the observed outcome and its boundary conditions.</p>
 
-    <h2>What to Notice</h2>
-    <p>Point the reader to the trend, comparison, or failure mode.</p>
-
-    <h2>More Detail</h2>
-    <p>Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.</p>
+    <h2>References</h2>
+    <p class="references">[1] Author et al. Foundational result. Venue, Year.<br>[2] Author et al. Experimental study. Venue, Year.</p>
+    <p class="poster-note">For additional experimental results, please refer to the full paper.</p>
 
     <div class="conference-brand" data-has-logo="false">
-      <img src="../assets/logos/conference-logo-1.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
-      <img src="../assets/logos/conference-logo-2.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
-      <img src="../assets/logos/conference-logo-3.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/conference-logos/conference-logo-1.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/conference-logos/conference-logo-2.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
+      <img src="../assets/conference-logos/conference-logo-3.svg" alt="Conference logo" onload="this.dataset.loaded='true'; this.parentElement.dataset.hasLogo='true'" onerror="this.remove()">
     </div>
   </aside>
 </main>

@@ -1,16 +1,15 @@
-%%%% Better Poster Skill style1 template.
-%%%% Wider theory/evidence sidebars, one narrow saturated central claim billboard, bottom QR row.
+%%%% Better Poster Skill style1 / CUHK 基础模板。
+%%%% 固定左侧理论栏 + 中间主结论看板 + 右侧证据栏 + 中间底部 QR 行。
 
 \documentclass[a0paper,fleqn]{betterposter}
 
-% Institution palette. For a single-color institution, set primary and
-% secondary to the same color. For a dual-color institution, use a strong
-% secondary accent for theorem markers and selected headings.
+% 颜色规范：institutionprimary 控制标题、section 标题和中间主色块。
+% 单色机构可让 primary/secondary 相同；双色机构用 secondary 做少量强调。
 \definecolor{institutionprimary}{RGB}{0,82,155}
 \definecolor{institutionsecondary}{RGB}{239,124,0}
 \institutionpalette{institutionprimary}{institutionsecondary}
 
-% Palette controls. Change the center colour, not the structure.
+% 全局颜色入口：只替换颜色，不改变 CUHK style1 三栏骨架。
 \renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
 \renewcommand{\maincolumnfontcolor}{white}
 \renewcommand{\columnbackgroundcolor}{white}
@@ -19,37 +18,41 @@
 \renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
 \renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
 
-% Slightly wider center field while preserving readable technical sidebars.
+% 几何参数锁定：23/54/23 左/中/右比例；side column 整体靠上。
+% columnmarginvertical 控制左右栏整体起点，不用局部压缩 author 与 Introduction 间距。
 \setlength{\leftbarwidth}{0.23\paperwidth}
 \setlength{\rightbarwidth}{0.23\paperwidth}
-\setlength{\columnmarginvertical}{0.032\paperheight}
+\setlength{\columnmarginvertical}{0.020\paperheight}
 \setlength{\columnmarginhorizontal}{0.026\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
 
-\newcommand{\PosterTitle}{Paper title or short research object}
+\newcommand{\PosterTitle}{Research Title}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliation}{Department, University or Institute}
 \newcommand{\InstitutionName}{}
 \newcommand{\PosterClaimBlock}{%
-  {\color{white}Conclusion first.\\
-  Mechanism visible.}\\
-  {\color{claimtiermiddle}Evidence path clear.}\\
-  {\color{claimtierlower}Details stay scannable.}%
+  % 中间色块物理行数约束：白色最多 3 行，中灰最多 2 行，深灰最多 1 行。
+  % 三层颜色必须出现；所有行保持同一字号、字重和行距。
+  {\color{white}Main conclusion.}%
+  \claimtiervspace
+  {\color{claimtiermiddle}Evidence.}%
+  \claimtiervspace
+  {\color{claimtierlower}Practical implication.}%
 }
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
-\newcommand{\ScanIcon}{../assets/icons/scan-qr-code-white.png}
-\newcommand{\InstitutionLogoOne}{../assets/institutions/current-logo.png}
+\newcommand{\ScanIcon}{../assets/scan-icons/scan-qr-code-white.png}
+\newcommand{\InstitutionLogoOne}{../assets/institution-logos/current-logo.png}
 \newcommand{\InstitutionLogoTwo}{}
 \newcommand{\InstitutionLogoThree}{}
 \newcommand{\ConferenceLogoOne}{}
 \newcommand{\ConferenceLogoTwo}{}
 \newcommand{\ConferenceLogoThree}{}
-\newcommand{\ContactEmail}{author@example.com}
+\newcommand{\ContactEmail}{contact@example.edu}
 
 \begin{document}
 \betterposter{
-  % MAIN COLUMN: huge billboard claim + centered bottom QR action.
+  % 中栏：只放超大主结论和底部 QR/download 行，不放方法段落或图表。
   \maincolumn{
     \posterclaimblock{\PosterClaimBlock}
   }{
@@ -64,27 +67,39 @@
     }
   }
 }{
-  % LEFT COLUMN: theory before the claim. Prefer theorem/proposition/corollary cards.
+  % 左栏：Introduction 必须在 Theory 上方；作者名下不显示 affiliation。
+  % 左栏引用格式统一为 [人名 + 会议/期刊 + 年份]，例如 (Author et al., Venue 2026)。
   \title{\PosterTitle}
   \author{\PosterAuthors}
-  \institution{\PosterAffiliation}
 
-  \section{Theory Claims}
-  \propositioncard{Proposition: name the baseline law}{%
-    State the prior result or baseline mechanism:
+  \section{Introduction}
+  Recursive training can shift the learned distribution when selection is
+  misaligned with the target population. Selection mismatch changes coverage
+  and motivates formal analysis of distributional drift.
+
+  \section{Theory}
+  \propositioncard{Proposition: baseline law}{%
+    Under the baseline model,
     \[
-      \text{replace with the key equation from the paper.}
+      \mathcal{D}_{t+1}=T(\mathcal{D}_{t}).
     \]}
+  \posterstatementsummary{One training step updates the modeled distribution.}
 
-  \theoremcard{Theorem: name the main guarantee}{%
-    Put the primary theorem, bound, or convergence statement here:
+  \theoremcard{Theorem: main guarantee}{%
+    The target quantity remains controlled whenever the coverage condition
+    holds:
     \[
-      \text{left sidebar should be theory-first, not figure-first.}
+      \Delta(\mathcal{D}_{t},\mathcal{D}^{*})\le \epsilon.
     \]}
+  \posterstatementsummary{Sufficient coverage keeps the target quantity reliable.}
 
-  \propositioncard{Proposition: name the mechanism}{%
-    Add the supporting proposition, corollary, or assumption that explains why
-    the theorem holds.}
+  \propositioncard{Proposition: mechanism}{%
+    The supporting mechanism links the observed statistic to the theoretical
+    bound.}
+  \posterstatementsummary{The observed statistic determines the theoretical bound.}
+
+  \vspace{0.2em}
+  \posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}
 
   \vfill
   \institutionlogostrip{%
@@ -93,24 +108,30 @@
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
   }
 }{
-  % RIGHT COLUMN: supplementary evidence only. Do not rebuild the whole paper.
-  \section{Evidence}
-  \begin{itemize}
-    \item Strongest result, with dataset and comparison.
-    \item One robustness, ablation, or qualitative signal.
-    \item One limitation or boundary condition.
-  \end{itemize}
+  % 右栏：证据和结果支撑；最后固定追加 References。
+  % References 可以保留编号文献表，但文字排版要比正文更淡。
+  \section{Methodology}
+  The study combines a formal model, controlled evaluation, and a robustness
+  check under the same target setting.
 
-  \section{Result Figure}
+  \section{Results}
   \begin{center}
-    \postergraphic[width=\textwidth]{../figures/result-panel.pdf}{Replace with the single result panel that best supports the claim.}
+    \postergraphic[width=\textwidth]{../figures/result-panel.pdf}{Primary result panel.}
   \end{center}
+  The strongest result supports the central conclusion across the reported
+  evaluation setting.
 
-  \section{What to Notice}
-  Point the reader to the trend, comparison, or failure mode.
+  \section{Conclusion}
+  The evidence indicates that the proposed analysis explains the observed
+  outcome and its boundary conditions.
 
-  \section{More Detail}
-  Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.
+  \section{References}
+  \posterreferences{%
+    [1] Author et al. Foundational result. Venue, Year.\\{}
+    [2] Author et al. Experimental study. Venue, Year.}
+
+  \vspace{0.2em}
+  \posterfullpapernote{For additional experimental results, please refer to the full paper.}
 
   \vfill
   \conferencelogostrip{%

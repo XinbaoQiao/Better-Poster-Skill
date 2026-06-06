@@ -52,8 +52,8 @@ def choose_icon(stems: list[str], seed: str | None) -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--icons-dir", default="assets/icons", help="Directory containing paired QR/scan SVG and PNG icons.")
-    parser.add_argument("--prefix", default="../assets/icons", help="Path prefix to print for template files.")
+    parser.add_argument("--icons-dir", default="assets/scan-icons", help="Directory containing paired QR/scan SVG and PNG icons.")
+    parser.add_argument("--prefix", default="../assets/scan-icons", help="Path prefix to print for template files.")
     parser.add_argument("--format", choices=("both", "latex", "html", "name"), default="both", help="Output format.")
     parser.add_argument("--seed", help="Optional seed for reproducible selection.")
     return parser.parse_args()

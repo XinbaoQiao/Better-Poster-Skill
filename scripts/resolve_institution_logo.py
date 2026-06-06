@@ -3,9 +3,9 @@
 
 Workflow:
 1. Infer or accept an institution name.
-2. Match only against data/csrankings_top100_institutions.json.
-3. Check assets/institutions/cache/<institution-slug>.png.
-4. If cached, copy it to assets/institutions/current-logo.png.
+2. Match only against assets/institution-data/csrankings_top100_institutions.json.
+3. Check assets/institution-logos/cache/<institution-slug>.png.
+4. If cached, copy it to assets/institution-logos/current-logo.png.
 5. If not cached and --download is enabled, try network logo sources, cache the result,
    then copy it to current-logo.png.
 6. If no top-100 institution is identified or no logo can be resolved, remove current-logo
@@ -30,8 +30,8 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 
 USER_AGENT = "Better-Poster-Skill/1.0 (+https://github.com/XinbaoQiao/Better-Poster-Skill)"
-DEFAULT_TOP100_PATH = Path("data/csrankings_top100_institutions.json")
-DEFAULT_OUT_DIR = Path("assets/institutions")
+DEFAULT_TOP100_PATH = Path("assets/institution-data/csrankings_top100_institutions.json")
+DEFAULT_OUT_DIR = Path("assets/institution-logos")
 
 
 @dataclass(frozen=True)
@@ -274,7 +274,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--institution", help="Institution name. Must match the configured CSRankings top-100 list.")
     parser.add_argument("--source", action="append", default=[], help="Text/LaTeX/HTML file or directory used for institution inference.")
-    parser.add_argument("--top100", default=str(DEFAULT_TOP100_PATH), help="Path to csrankings_top100_institutions.json.")
+    parser.add_argument("--top100", default=str(DEFAULT_TOP100_PATH), help="Path to assets/institution-data/csrankings_top100_institutions.json.")
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR), help="Logo cache output directory.")
     parser.add_argument("--download", action="store_true", help="Download logo on cache miss. Without this, cache miss leaves the logo area blank.")
     parser.add_argument("--cache-top100", action="store_true", help="Download/cache all configured top-100 institutions. Use with care.")

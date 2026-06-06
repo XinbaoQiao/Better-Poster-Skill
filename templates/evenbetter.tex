@@ -3,9 +3,8 @@
 
 \documentclass[a0paper,fleqn]{betterposter}
 
-% Institution palette. Replace both colors with the same RGB triplet for
-% single-color institutions, or use a coordinated secondary accent for
-% dual-color institutions such as NUS blue plus orange.
+% Institution palette. Use matching colors for single-color institutions, or
+% a coordinated secondary accent for dual-color institutions.
 \definecolor{institutionprimary}{RGB}{0,82,155}
 \definecolor{institutionsecondary}{RGB}{239,124,0}
 \institutionpalette{institutionprimary}{institutionsecondary}
@@ -14,19 +13,19 @@
 \renewcommand{\maincolumnfontcolor}{white}
 \renewcommand{\fontsizemain}{\fontsize{74}{88}\selectfont}
 
-\newcommand{\PosterClaimTitle}{A claim-first title states exactly what changed}
+\newcommand{\PosterClaimTitle}{Research Title}
 \newcommand{\PosterClaimLineOne}{The main result is explicit.}
 \newcommand{\PosterClaimLineTwo}{The mechanism is visible.}
 \newcommand{\PosterClaimLineThree}{The evidence is inspectable.}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliations}{Lab or Department, University or Institute}
 \newcommand{\InstitutionName}{University or Institute Name}
-\newcommand{\HeroSubclaim}{One sentence tells the audience why the result matters and what to inspect first.}
+\newcommand{\HeroSubclaim}{The result clarifies when the method should be used.}
 \newcommand{\HeroFigure}{../figures/hero-teaser.pdf}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
-\newcommand{\ScanIcon}{../assets/icons/scan-qr-code-white.png}
-\newcommand{\InstitutionLogo}{../assets/institutions/current-logo.png}
-\newcommand{\ContactLine}{author@example.com}
+\newcommand{\ScanIcon}{../assets/scan-icons/scan-qr-code-white.png}
+\newcommand{\InstitutionLogo}{../assets/institution-logos/current-logo.png}
+\newcommand{\ContactLine}{contact@example.edu}
 
 \begin{document}
 \betterposter{
@@ -42,9 +41,9 @@
   \heroimage{\HeroFigure}{The hero figure explains the mechanism and shows the strongest result.}
   \vspace{0.012\paperheight}
   \begin{center}
-    \evidencecard{What to see first}{Point to the visual pattern, comparison, or mechanism.}
+    \evidencecard{Primary pattern}{The visual trend separates the target condition from the baseline.}
     \hfill
-    \evidencecard{Why it is credible}{Name the strongest validation, uncertainty check, or ablation.}
+    \evidencecard{Validation signal}{The strongest check supports the reported improvement.}
   \end{center}
   \vfill
   \inlineqrcodewithicon{\PaperQRCode}{\ScanIcon}{\textbf{Scan for paper, code, and supplemental figures.}}
@@ -56,20 +55,20 @@
 
   \section{Why it matters}
   \begin{itemize}
-    \item The real problem in one line.
-    \item What current methods miss or cost.
-    \item Who should care about the result.
+    \item A practical gap limits current workflows.
+    \item Existing methods miss the high-cost failure mode.
+    \item The result clarifies the intended use case.
   \end{itemize}
 
   \section{Method}
   \begin{enumerate}
-    \item Input or experimental setup.
-    \item Core transformation or intervention.
-    \item Output, measurement, or decision.
+    \item Define the target population and evaluation setting.
+    \item Apply the core intervention under controlled conditions.
+    \item Measure the outcome against a baseline.
   \end{enumerate}
 
   \section{Design choices}
-  Keep only details needed to trust the central claim.
+  The analysis keeps only assumptions needed to support the central claim.
 
   \vfill
   \institutionbrand{\InstitutionLogo}{\InstitutionName}{0.62\textwidth}
@@ -78,24 +77,24 @@
   % RIGHT: technical conversation layer.
   \section{Top evidence}
   \begin{itemize}
-    \item Evidence bullet with dataset, metric, and baseline.
-    \item Qualitative example or ablation result.
-    \item Robustness, uncertainty, or transfer test.
+    \item Reported metric improves over the baseline.
+    \item Ablation confirms the core mechanism.
+    \item Robustness check preserves the trend.
   \end{itemize}
 
   \section{Limitations}
   \begin{itemize}
-    \item State the most important boundary honestly.
-    \item Name where transfer is unknown.
-    \item Point to the next critical experiment.
+    \item The boundary condition limits direct transfer.
+    \item Unseen settings require separate validation.
+    \item Future experiments test broader deployment.
   \end{itemize}
 
   \section{Extra figure}
   \begin{center}
-    \postergraphic[width=\textwidth]{../figures/extra-result.pdf}{Replace with a readable extra figure.}
+    \postergraphic[width=\textwidth]{../figures/extra-result.pdf}{Supplementary result panel.}
   \end{center}
 
   \section{Scan}
-  The QR code links to details that should not be forced into the poster.
+  The QR code links to full technical details and supplemental figures.
 }
 \end{document}

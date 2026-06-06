@@ -16,7 +16,7 @@
 
 \setlength{\leftbarwidth}{0.23\paperwidth}
 \setlength{\rightbarwidth}{0.23\paperwidth}
-\setlength{\columnmarginvertical}{0.028\paperheight}
+\setlength{\columnmarginvertical}{0.020\paperheight}
 \setlength{\columnmarginhorizontal}{0.024\paperheight}
 \setlength{\maincolumnmarginvertical}{0.068\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
@@ -24,11 +24,11 @@
 \newcommand{\PosterAuthors}{Xinbao Qiao, Xianglong Du, Wei Liu, Jingqi Zhang, Peihua Mai, Meng Zhang, Yan Pang}
 \newcommand{\PosterAffiliation}{NUS (Chongqing) Research Institute; Zhejiang University; CUHK; Changan Automobile; NUS}
 \newcommand{\PaperQRCode}{figures/qr/01-openreview.png}
-\newcommand{\ScanIcon}{../../assets/icons/scan-qr-code-white.png}
+\newcommand{\ScanIcon}{../../assets/scan-icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogoOne}{figures/institutions/02-national-university-of-singapore.png}
 \newcommand{\InstitutionLogoTwo}{figures/institutions/01-zhejiang-university.png}
 \newcommand{\InstitutionLogoThree}{figures/institutions/03-chinese-university-of-hong-kong.png}
-\newcommand{\ConferenceLogoOne}{../../assets/logos/ICML-logo-pdflatex.pdf}
+\newcommand{\ConferenceLogoOne}{../../assets/conference-logos/ICML-logo-pdflatex.pdf}
 \newcommand{\ConferenceLogoTwo}{}
 \newcommand{\ConferenceLogoThree}{}
 \newcommand{\InstitutionName}{}
@@ -38,11 +38,11 @@
 \betterposter{
   \maincolumn{
     \posterclaimblock{%
-      {\color{white}Bias prunes tails.\\
-      Silos collapse faster.}\\
-      {\color{claimtiermiddle}Wasserstein proxies\\
-      restore tail coverage.}\\
-      {\color{claimtierlower}No raw data sharing.}%
+      {\color{white}Biased selection}%
+      \claimtiervspace
+      {\color{claimtiermiddle}makes AI models}%
+      \claimtiervspace
+      {\color{claimtierlower}forget rare cases.}%
     }
   }{
     \qrcode{\PaperQRCode}{\ScanIcon}{%
@@ -55,48 +55,54 @@
   {\fontsize{66}{74}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
   \vspace{0.22em}
   {\fontsize{25}{32}\selectfont\color{mutedgray}\PosterAuthors\par}
-  \vspace{0.20em}
-  {\fontsize{24}{31}\selectfont\color{mutedgray}\PosterAffiliation\par}
 
-  \section{Theory Claims}
-  \propositioncard{Proposition 1: Replace paradigm}{%
+  \section{Introduction}
+  Recursive synthetic-data loops have two canonical baselines: the
+  \textit{Replace paradigm} (Shumailov et al., Nature 2024), which discards
+  historical data and can eliminate variance, and the
+  \textit{Accumulate paradigm} (Kazdan et al., ICML 2025), which appends
+  generations and is stable without biased filtering.
+
+  \section{Theory}
+  \propositioncard{Proposition 1: Replace paradigm (Shumailov et al., Nature 2024)}{%
     Under the \textit{Replace} paradigm, as $t\to\infty$,
     \[
       \boldsymbol{\Sigma}_{t}\xrightarrow{a.s.}\mathbf{0},
       \qquad
       \mathbb{E}\!\left[\mathbb{W}_{2}^{2}(\mathcal{N}_{t},\mathcal{N}_{0})\right]\to\infty.
     \]}
+  \posterstatementsummary{Replacing data eventually removes variance and drifts away.}
 
-  \propositioncard{Proposition 2: Accumulate paradigm}{%
+  \propositioncard{Proposition 2: Accumulate paradigm (Kazdan et al., ICML 2025)}{%
     Under unbiased accumulation,
     \[
-      \mathbb{E}[(\bar{\boldsymbol{\mu}}_{t}-\bar{\boldsymbol{\mu}}_{0})^{2}]
-      \to (1-\alpha_{n})\bar{\boldsymbol{\Sigma}}_{0},
-      \quad
       \mathbb{E}[\bar{\boldsymbol{\Sigma}}_{t}]
       \to \alpha_{n}\bar{\boldsymbol{\Sigma}}_{0}.
     \]
     Thus $\mathbb{E}[\mathbb{W}_{2}^{2}]
     \to 2(1-\sqrt{\alpha_{n}})\operatorname{Tr}(\bar{\boldsymbol{\Sigma}}_{0})$.}
+  \posterstatementsummary{Unbiased accumulation keeps diversity from fully collapsing.}
 
-  \theoremcard{Theorem 1: Selection bias precipitates collapse}{%
+  \theoremcard{Theorem 1: local selection collapses diversity}{%
     With top-$\alpha$ selection toward a local ideal $\mathbf{u}^{*}$,
     \[
       \|\bar{\boldsymbol{\mu}}_{t}-\mathbf{u}^{*}\|^{2}\!\to 0,
       \qquad
       \bar{\boldsymbol{\Sigma}}_{t}\!\to \mathbf{0}.
     \]
-    Local fidelity can erase global diversity.}
+    Local fidelity erases global coverage.}
+  \posterstatementsummary{Local selection gains fit by erasing global coverage.}
 
-  \theoremcard{Theorem 2: Collapse has an explicit rate}{%
+  \theoremcard{Theorem 2: diversity decays by power law}{%
     If the trajectory remains in the local basin,
     \[
       {\rm Tr}(\bar{\boldsymbol{\Sigma}}_{t})
       = \mathcal{O}_{a.s.}(t^{-\psi}).
     \]
-    The tail erosion follows a power-law decay.}
+    Tail erosion has an explicit rate.}
+  \posterstatementsummary{Once trapped locally, diversity shrinks at a predictable rate.}
 
-  \theoremcard{Theorem 3: Collapse costs true-manifold risk}{%
+  \theoremcard{Theorem 3: drift controls true-manifold risk}{%
     For filtered distribution $\mathcal{D}_{t}$ and true manifold
     $\mathcal{D}^{*}$,
     \[
@@ -105,15 +111,10 @@
       +\mathcal{R}_{\mathcal{D}_{t}}(h_{t};g_{t})
       +\mathcal{O}(\ell\delta).
     \]}
+  \posterstatementsummary{Distribution drift upper-bounds risk on true data.}
 
-  \section{Proxy Principle}
-  A collaborative Wasserstein barycenter broadens the verifier:
-  \[
-    \mathcal{Q}^{*}=\arg\min_{\mathcal{Q}}
-    \sum_{k=1}^{K}\lambda_{k}\mathbb{W}_{p}^{p}(\mathcal{Q},\mathcal{Q}_{k}).
-  \]
-  Selection is protective only when this proxy covers the modes the loop
-  must preserve.
+  \vspace{0.2em}
+  \posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}
 
   \vfill
   \institutionlogostrip{%
@@ -122,26 +123,42 @@
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
   }
 }{
-  \section{Experimental Takeaway}
-  \begin{itemize}
-    \item Airplane-only reference homogenizes CIFAR-10.
-    \item Scheme I improves CIFAR-10 FID: 106 to 71.
-    \item Collaborative proxies keep tail modes visible.
-  \end{itemize}
+  \section{Multivariate Gaussian Modeling}
+  \textbf{Gaussian (main text).} Biased top-$\alpha$ selection collapses
+  variance in both recursive baselines; accumulation slows collapse but follows
+  the predicted power-law decay.
+
+  \vspace{0.35em}
+  \textbf{Anisotropic Gaussian.} Direction-dependent spread still contracts
+  when the verifier favors a restricted local region.
+
+  \vspace{0.35em}
+  \textbf{Gaussian mixture.} Multimodal and imbalanced mixtures lose component
+  coverage, with minority modes eroding first.
+
+  \vspace{0.35em}
+  \textbf{Laplace.} Heavy-tailed scale contracts sharply, showing tail loss
+  beyond Gaussian variance.
 
   \section{Collapse Signal}
   \begin{center}
-    \postergraphic[width=0.76\textwidth]{figures/class_proportions_trend.png}{Class proportion trend from the paper.}
+    \postergraphic[width=0.64\textwidth]{figures/class_proportions_trend.png}{Class proportion trend from the paper.}
   \end{center}
-  One-class verification pulls the sample loop toward Airplane while the other
-  classes become tail modes.
+  Airplane-only verification drives CIFAR-10 proportions toward Airplane,
+  exposing systematic tail-mode pruning.
 
-  \section{FID Trend}
-  \begin{center}
-    \postergraphic[width=0.80\textwidth]{figures/fid_trends_combined.png}{FID trends from the paper.}
-  \end{center}
-  On non-IID references, collaborative proxy selection lowers FID relative to
-  random selection and common matching baselines.
+  \section{Experimental Synthesis}
+  Across CIFAR-10, STL-10, and CelebA, skewed local references can make
+  selection weaker than random sampling; broader distributional evidence
+  improves FID, precision, and recall.
+
+  \section{References}
+  \posterreferences{%
+    [1] Shumailov et al. AI models collapse when trained on recursively generated data. Nature, 2024.\\{}
+    [2] Kazdan et al. Collapse or Thrive: Perils and Promises of Synthetic Data in a Self-Generating World. ICML, 2025.}
+
+  \vspace{0.2em}
+  \posterfullpapernote{For additional experimental results, please refer to the full paper.}
 
   \vfill
   \conferencelogostrip{%

@@ -9,8 +9,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-DEFAULT_RANKING_PATH = Path("data/csrankings_all_world_2016_2026_may2026_top100_institutions.json")
-DEFAULT_LOGO_DIR = Path("assets/institutions/badgets/csrankings_all_world_2016_2026_may2026_top100")
+DEFAULT_RANKING_PATH = Path("assets/institution-data/csrankings_all_world_2016_2026_may2026_top100_institutions.json")
+DEFAULT_LOGO_DIR = Path("assets/institution-logos/top100-logo-bank/csrankings_all_world_2016_2026_may2026_top100")
 
 
 def slugify(text: str) -> str:

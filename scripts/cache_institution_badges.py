@@ -33,8 +33,8 @@ PROXY_ENV_KEYS = (
     "ALL_PROXY",
 )
 USER_AGENT = "Better-Poster-Skill/1.0"
-DEFAULT_TOP100_PATH = Path("data/csrankings_top100_institutions.json")
-DEFAULT_OUT_DIR = Path("assets/institutions")
+DEFAULT_TOP100_PATH = Path("assets/institution-data/csrankings_top100_institutions.json")
+DEFAULT_OUT_DIR = Path("assets/institution-logos")
 
 
 @dataclass(frozen=True)

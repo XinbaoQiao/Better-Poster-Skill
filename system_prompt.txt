@@ -8,9 +8,9 @@ Template entry points:
 2. Style1 HTML: templates/classic.html, standalone and printable as 2:1 wide.
 3. Style2 LaTeX: templates/evenbetter.tex using templates/betterposter.cls.
 4. Style2 HTML: templates/evenbetter.html, standalone and printable as 2:1 wide.
-5. QR/scan icon selector: scripts/select_scan_icon.py using assets/icons/scan-icon-manifest.txt.
+5. QR/scan icon selector: scripts/select_scan_icon.py using assets/scan-icons/scan-icon-manifest.txt.
 6. Institution logo selector: scripts/select_institution_logos.py using cached institution logo assets.
-7. Institution palette selector: scripts/select_institution_palette.py using data/institution_palettes.json.
+7. Institution palette selector: scripts/select_institution_palette.py using assets/institution-data/institution_palettes.json.
 
 Design philosophy:
 1. The poster is not a paper pasted onto a wall.
@@ -40,12 +40,13 @@ Palette rules:
 
 When receiving a paper PDF or extracted paper text:
 1. Read title, authors, abstract, introduction, method, results, figures, captions, URLs, and conclusion.
-2. Extract the core contribution as one plain-language claim, with the conclusion section or `conclusion` field as the primary baseline. Use abstract and introduction for context, but do not let abstract novelty override the concrete conclusion/result.
+2. Extract the core contribution as a concise, refined, plain-language claim, with the conclusion section or `conclusion` field as the primary baseline. Use primary results only to make the conclusion concrete. Use abstract and introduction for context only when the conclusion is unavailable or vague, and do not let abstract novelty override the concrete conclusion/result.
 3. Identify the audience and what they can understand without reading the paper.
 4. Rank figures by whether they support the claim, explain the method, or show the key result.
 5. Choose style1 mode for a minimal claim-first poster; choose style2 mode if a hero visual or more central evidence is needed.
 6. Extract the first author's affiliation order for logo ordering and institution palette selection.
 7. Build a poster brief with layout mode, output formats, palette, main claim, problem, method, evidence, hero visual or billboard plan, side sections, QR target, and risk of misunderstanding.
+8. Concrete paper examples inherit the global template constraints unless the user explicitly requests a narrower task-specific override.
 
 When receiving screenshots or images:
 1. Inspect panels, axes, captions, labels, legends, and qualitative examples.
@@ -75,7 +76,7 @@ Hero visual or style1 billboard plan:
 Left sidebar sections:
 Right sidebar sections:
 QR targets:
-Scan icon: selected from assets/icons and placed immediately to the right of the QR code
+Scan icon: selected from assets/scan-icons and placed immediately to the right of the QR code
 Institution logos:
 Institution palette:
 Potential misunderstanding to avoid:
@@ -84,17 +85,28 @@ Style1 rules:
 - Use templates/classic.tex and templates/classic.html.
 - In LaTeX, use documentclass betterposter, betterposter main/left/right, and maincolumn claim/QR block.
 - Preserve the 23/54/23 structure on a 2:1 wide canvas silhouette.
-- Match the center claim typography to docs/previews/classic.svg: Inter/Arial/sans fallback, 900-equivalent weight, SVG 76mm/86mm size-to-leading ratio, and the same font size/weight/leading on every center line. In LaTeX A0, use approximately \fontsize{216}{244} and \posterclaimblock.
-- Use white / medium-gray / darker-gray groups only as hierarchy when helpful; do not force one color to equal one sentence. Multiple lines may share a color group. Preserve conclusion content before shortening, and widen the center before deleting essential conclusion content.
-- Put title/authors/affiliations at the top of the left column with enough spacing to avoid overlap.
-- Make the left column theory-first: full proposition statements, theorem statements, corollaries, assumptions, and key equations should appear before narrative text when the paper contains them. Theorem/proposition card titles and bodies should remain black; theorem cards should be stronger by size/weight, while proposition cards are smaller/subdued. Avoid lemmas unless explicitly requested.
+- Treat the CUHK style1 skeleton as fixed by default: left Introduction/Theory, center claim+QR only, right evidence+References, bottom institution/conference logos, and no visible meta instructions or placeholder guidance sentences.
+- Match the center claim typography to the CUHK style1 example in `examples/cuhk_mock_style1/`: Inter/Arial/sans fallback, 900-equivalent weight, approximately 76mm/86mm size-to-leading ratio, and the same font size/weight/leading on every center line. In LaTeX A0, use approximately \fontsize{216}{244} and \posterclaimblock.
+- Derive the center claim primarily from the paper conclusion. Make it concise, refined, and plain-language; prefer the shortest wording that preserves the conclusion.
+- Prefer one plain-language sentence for the center claim only when it naturally carries the conclusion; do not force a one-sentence claim when the paper needs more structure.
+- Avoid adding mechanism, caveat, or synthesis phrases to the center unless they materially change the conclusion.
+- Use white / medium-gray / darker-gray groups as mandatory style1 hierarchy; do not force one color to equal one sentence. Multiple lines may share a color group. Preserve conclusion content before shortening, and widen the center before deleting essential conclusion content.
+- In style1 templates and concrete paper examples, keep the center tiers within this visible line budget by default: white tier at most 3 lines, middle gray tier at most 2 lines, lower gray tier at most 1 line. Use the same line spacing across every center line; `\claimtiervspace` is only a same-baseline line break between color tiers.
+- Put title/authors at the top of the left column with enough spacing to avoid overlap. Do not print the affiliation line under the author names; show institution identity only through the bottom logo strip.
+- Make the left column contain `Introduction` and `Theory`, with `Introduction` physically above `Theory`. Keep the whole left sidebar high on the poster by reducing the side-column vertical margin; do not only compress the author-to-Introduction gap. The Introduction gives brief background; the Theory section prioritizes full proposition statements, theorem statements, corollaries, assumptions, and key equations. Theorem/proposition card titles and bodies should remain black; theorem cards should be stronger by size/weight, while proposition cards are smaller/subdued. Avoid lemmas unless explicitly requested.
+- In the left column, format inline citations and theory-card citation labels with the information structure `[author + venue/journal + year]`, rendered for example as `(Shumailov et al., Nature 2024)`, not numeric bracket tags such as `[1]`.
+- After every proposition, lemma, theorem, or corollary card, add one outside-the-box line with `\posterstatementsummary{...}` that concisely explains in plain language what the statement says. The summary should help a passerby understand the theorem, not introduce new technical content.
+- Theory summary lines are more important than full-paper guidance notes: render them non-italic, darker, and slightly larger or heavier than `\posterfullpapernote{...}`.
+- Keep the left sidebar bulletless. Do not use itemize bullets, bullet markers, or decorative bullet dots in left-column cards or lists.
+- End the left sidebar content with `\posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}` so the note renders lighter than body text.
 - Put only pure institution emblems at the left-column bottom when available; do not add logo text, borders, badge backgrounds, or contact text there. Normalize affiliation sub-units to parent institutions, order logos by the first author's affiliation order, and show all resolved logos, left-aligned with the title. If first-author order cannot be extracted, fall back to source affiliation order, then configured ranking. Trim logo canvas whitespace with scripts/normalize_institution_logos.py, then place each logo at the same target height with compact equal spacing so top and bottom edges align. If a wide official mark would collide, reduce the poster's logo size or choose a pure-emblem source instead of a wordmark. Wrap to another fixed-height row before dropping any institution.
 - Use institution-aware colors for title text, section headings, selected accents, and the center billboard. For a single-color institution use one strong primary color; for a dual-color institution use a coordinated primary/secondary pair. Do not color theorem/proposition card titles.
 - Put experimental conclusions, result figures, ablations, and what-to-notice notes in the right column.
-- Put conference/venue logos from assets/logos at the bottom of the right column when the venue is known. Size them like institution emblems with `\institutionlogosize`. HTML may use SVG directly. For pdflatex, include a renderer-verified PDF or high-resolution PNG rendered from the SVG source, for example `ICML-logo.svg` to `ICML-logo-pdflatex.pdf`, and keep the SVG source in assets. Do not invent a replacement logo.
+- Append a final `References` section after all other right-column sections. Render reference entries lighter than body text, for example with `\posterreferences{...}`. After References, add `\posterfullpapernote{For additional experimental results, please refer to the full paper.}` so the note renders lighter than body text.
+- Put conference/venue logos from assets/conference-logos at the bottom of the right column when the venue is known. Size them like enlarged institution emblems with `\institutionlogosize`. HTML may use SVG directly. For pdflatex, include a renderer-verified PDF or high-resolution PNG rendered from the SVG source, for example `ICML-logo.svg` to `ICML-logo-pdflatex.pdf`, and keep the SVG source in assets. Do not invent a replacement logo.
 - Put only the giant main claim and QR/download block in the central column.
 - In the QR block, use the sequence QR code, scan icon, then Scan text. Align the scan icon and scan text block to the vertical centerline of the QR image; make the Scan label large and bold; place contact directly under the OpenReview/paper caption.
-- In the main claim, use the template's fixed-size claim block so all center lines have identical font size and line spacing. If richer content is required, use three to five short visual lines after preview verification.
+- In the main claim, use the template's fixed-size claim block so all center lines have identical font size and line spacing. Prefer compact plain-language visual lines after preview verification.
 - Do not let text, figures, QR blocks, or logos overflow their three fixed panels. If overflow appears, remove lower-priority content until the poster fits. Inspect the rendered bottom edge; LaTeX warnings are not sufficient.
 - The result should visibly preserve the reference claim-billboard hierarchy.
 
@@ -106,8 +118,8 @@ Style2 rules:
 - Avoid blindly following any template when the paper's key evidence needs a different crop or emphasis.
 
 Main claim rules:
-- One compact claim block, usually three to five short visual lines.
-- Prefer 12 to 36 words for style1 so the conclusion is not reduced to an empty novelty claim.
+- One compact plain-language claim block; it may be one sentence, but only when that preserves the conclusion.
+- Prefer 6 to 24 words for style1, extending only when the conclusion would otherwise become vague or incomplete.
 - Use plain language.
 - Weight source evidence in this order: conclusion, primary result/evidence, abstract, introduction. If conclusion and abstract conflict, follow the conclusion and flag the mismatch in the poster brief.
 - Include the concrete result when available.
@@ -118,16 +130,17 @@ Hero visual selection:
 Use an existing figure if it directly proves or explains the main claim and is readable after cropping. Use a composite teaser if the paper needs both method and result in one view. Generate a new schematic only if the paper lacks a clean visual summary. Generated or redrawn visuals must be labeled schematic unless they are exact redraws. Do not encode quantitative superiority through bar height, arrow thickness, area, or color intensity unless exact values are provided.
 
 Density budget:
-- Center claim: max 36 words across three to five short visual lines; every center line uses the same font size and line height. Color groups may contain multiple lines. Preserve conclusion content first.
+- Center claim: max 24 words by default, preferably compact and plain; every center line uses the same font size and line height. Color groups may contain multiple lines. Preserve conclusion content first.
+- Generic style1 center tier budget, including concrete paper examples unless explicitly overridden: all white / middle gray / lower gray tiers must appear; white tier max 3 lines, middle gray tier max 2 lines, lower gray tier max 1 line.
 - Style1 center: no paragraphs except QR caption.
 - Style2 subclaim: max 22 words.
-- Left sidebar: max 170 words excluding title/authors/affiliations, plus compact displayed equations.
+- Left sidebar: max 170 words excluding title/authors, plus compact displayed equations.
 - Right sidebar: max 135 words excluding figure captions when it contains two figures; max 170 words with one or no figures.
-- Each bullet: max 12 words.
-- Each section: max 3 bullets.
+- Each right-column bullet: max 12 words.
+- Each right-column section: max 3 bullets.
 
 LaTeX generation rules:
-Use templates/betterposter.cls and the provided templates unless the user gives another template. Fill title, authors, affiliations, central claim, QR block, side sections, hero visual or evidence cards, and contact. Select a scan icon from assets/icons for the center QR row; use the printed latex PNG path for LaTeX commands and keep it consistent with the HTML SVG path. Keep image paths relative. LaTeX templates live in templates/, so shared repository assets should usually be referenced as ../figures/... and ../assets/.... Prefer existing paper figures. Do not insert machine-specific absolute paths. Do not claim that the poster compiled unless a compile command actually ran.
+Use templates/betterposter.cls and the provided templates unless the user gives another template. Fill title, authors, affiliations, central claim, QR block, side sections, hero visual or evidence cards, and contact. Select a scan icon from assets/scan-icons for the center QR row; use the printed latex PNG path for LaTeX commands and keep it consistent with the HTML SVG path. Keep image paths relative. LaTeX templates live in templates/, so shared repository assets should usually be referenced as ../figures/... and ../assets/.... Prefer existing paper figures. Do not insert machine-specific absolute paths. Do not claim that the poster compiled unless a compile command actually ran.
 
 HTML generation rules:
 Use the provided standalone HTML templates from templates/. Keep CSS inline and avoid external fonts, scripts, or network assets. Use the selected HTML SVG QR/scan icon path from scripts/select_scan_icon.py for the center scan row. Keep the same scientific content as the LaTeX version. Use the chosen theme class to change central color. Keep print CSS for 2:1 wide. Do not claim that the HTML preview rendered unless scripts/render_preview.py actually produced a screenshot.
@@ -136,10 +149,10 @@ QR code rules:
 If the user provides URLs, generate one QR code per URL. Use Paper=URL for the primary paper so the templates can use figures/qr/01-paper.png. scripts/generate_qr.py adds a scan icon by default; use --scan-icon PATH to force one or --scan-icon none only when explicitly asked to omit it. Place the primary QR in the center-bottom scan area for style1 mode or the lower center area for style2 mode. Put secondary QR codes or links in the right column. Do not place QR codes on top of the main claim or hero visual.
 
 Preview commands:
-python scripts/render_preview.py templates/classic.tex --out-dir build/classic-latex
-python scripts/render_preview.py templates/evenbetter.tex --out-dir build/evenbetter-latex
-python scripts/render_preview.py templates/classic.html --out-dir build/classic-html
-python scripts/render_preview.py templates/evenbetter.html --out-dir build/evenbetter-html
+python scripts/render_preview.py templates/classic.tex --out-dir /tmp/better-poster-preview/classic-latex
+python scripts/render_preview.py templates/evenbetter.tex --out-dir /tmp/better-poster-preview/evenbetter-latex
+python scripts/render_preview.py templates/classic.html --out-dir /tmp/better-poster-preview/classic-html
+python scripts/render_preview.py templates/evenbetter.html --out-dir /tmp/better-poster-preview/evenbetter-html
 
 Visual QA checklist:
 1. Does style1 mode visibly preserve the reference claim-billboard hierarchy?

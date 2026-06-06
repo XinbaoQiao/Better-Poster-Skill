@@ -1,5 +1,6 @@
 \documentclass[a0paper,fleqn]{betterposter}
 
+% CUHK 示例模板：颜色只影响标题、section 与中间 billboard，不改变三栏结构。
 \definecolor{institutionprimary}{RGB}{117,15,109}
 \definecolor{institutionsecondary}{RGB}{221,163,0}
 \institutionpalette{institutionprimary}{institutionsecondary}
@@ -15,23 +16,23 @@
 \renewcommand{\fontsizesection}{\fontsize{51}{64}\selectfont}
 \renewcommand{\fontsizecaption}{\fontsize{26}{34}\selectfont}
 
+% 几何参数：左右栏 23%，中栏 54%；columnmarginvertical 控制侧栏整体上移。
 \setlength{\leftbarwidth}{0.23\paperwidth}
 \setlength{\rightbarwidth}{0.23\paperwidth}
-\setlength{\columnmarginvertical}{0.028\paperheight}
+\setlength{\columnmarginvertical}{0.020\paperheight}
 \setlength{\columnmarginhorizontal}{0.024\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
 
-\newcommand{\PosterTitle}{CUHK Mock Research Poster}
+\newcommand{\PosterTitle}{Research Title}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliation}{The Chinese University of Hong Kong}
-\newcommand{\MockConclusion}{Conclusion: a locally simple selection rule can preserve rare modes when its proxy covers the population before replacement begins.}
 \newcommand{\PaperQRCode}{figures/qr/01-paper.png}
-\newcommand{\ScanIcon}{../../assets/icons/scan-qr-code-white.png}
+\newcommand{\ScanIcon}{../../assets/scan-icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogoOne}{figures/institutions/01-cuhk.png}
 \newcommand{\InstitutionLogoTwo}{}
 \newcommand{\InstitutionLogoThree}{}
-\newcommand{\ConferenceLogoOne}{../../assets/logos/ICML-logo-pdflatex.pdf}
+\newcommand{\ConferenceLogoOne}{../../assets/conference-logos/ICML-logo-pdflatex.pdf}
 \newcommand{\ConferenceLogoTwo}{}
 \newcommand{\ConferenceLogoThree}{}
 \newcommand{\ContactEmail}{contact@example.edu}
@@ -40,11 +41,12 @@
 \betterposter{
   \maincolumn{
     \posterclaimblock{%
-      {\color{white}Coverage saves tails.\\
-      Selection remains safe.}\\
-      {\color{claimtiermiddle}Global witnesses\\
-      restore missing modes.}\\
-      {\color{claimtierlower}Before replacement.}%
+      % 中间色块行数约束：白色 <=3 行，中灰 <=2 行，深灰 <=1 行。
+      {\color{white}Main conclusion.}%
+      \claimtiervspace
+      {\color{claimtiermiddle}Evidence.}%
+      \claimtiervspace
+      {\color{claimtierlower}Practical implication.}%
     }
   }{
     \qrcode{\PaperQRCode}{\ScanIcon}{%
@@ -54,39 +56,40 @@
     }
   }
 }{
+  % 左栏全局引用格式：[人名 + 会议/期刊 + 年份]，避免在左栏使用 [1] 这类数字标签。
   {\fontsize{70}{78}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
   \vspace{0.24em}
   {\fontsize{27}{34}\selectfont\color{mutedgray}\PosterAuthors\par}
-  \vspace{0.20em}
-  {\fontsize{25}{32}\selectfont\color{mutedgray}\PosterAffiliation\par}
 
-  \section{Theory Claims}
-  \propositioncard{Proposition: proxy coverage controls drift}{%
-    If the verifier proxy covers every relevant mode, the accepted sample
-    distribution remains close to the target:
+  \section{Introduction}
+  Recursive training can shift the learned distribution when selection is
+  misaligned with the target population. Selection mismatch changes coverage
+  and motivates formal analysis of distributional drift.
+
+  \section{Theory}
+  \propositioncard{Proposition: baseline law}{%
+    Under the baseline model,
     \[
-      W_{2}(\widehat{\mathcal{D}}_{t},\mathcal{D}^{*})
-      \le \epsilon_{\rm proxy}+\epsilon_{\rm sample}.
+      \mathcal{D}_{t+1}=T(\mathcal{D}_{t}).
     \]}
+  \posterstatementsummary{One training step updates the modeled distribution.}
 
-  \theoremcard{Theorem: collapse is avoided under coverage}{%
-    Under bounded replacement and nonzero mode recall,
+  \theoremcard{Theorem: main guarantee}{%
+    The target quantity remains controlled whenever the coverage condition
+    holds:
     \[
-      \Pr[m\in{\rm supp}(\widehat{\mathcal{D}}_{t})]
-      \ge 1-\delta,\quad t\le T.
+      \Delta(\mathcal{D}_{t},\mathcal{D}^{*})\le \epsilon.
     \]
-    The conclusion drives the center claim.}
+  }
+  \posterstatementsummary{Sufficient coverage keeps the target quantity reliable.}
 
-  \propositioncard{Proposition: global witnesses are required}{%
-    A local acceptance rule becomes safe only when every tail region has at
-    least one witness in the proxy set.}
+  \propositioncard{Proposition: mechanism}{%
+    The supporting mechanism links the observed statistic to the theoretical
+    bound.}
+  \posterstatementsummary{The observed statistic determines the theoretical bound.}
 
-  \theoremcard{Theorem: rank evidence before decoration}{%
-    Keep theorem statements, assumptions, and equations visible; move backup
-    derivations behind the QR link.}
-
-  \section{Extraction Rule}
-  \MockConclusion
+  \vspace{0.2em}
+  \posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}
 
   \vfill
   \institutionlogostrip{%
@@ -95,23 +98,28 @@
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
   }
 }{
-  \section{Mock Evidence}
-  \begin{itemize}
-    \item Coverage audit flags missing tail modes.
-    \item Replacement budget stays below the risk threshold.
-    \item Proxy update recovers the omitted group.
-  \end{itemize}
+  \section{Methodology}
+  The study combines a formal model, controlled evaluation, and a robustness
+  check under the same target setting.
 
-  \section{Result Slot}
+  \section{Results}
   \begin{center}
-    \postergraphic[width=0.92\textwidth]{figures/mock-result-panel.pdf}{Mock result panel}
+    \postergraphic[width=0.92\textwidth]{figures/result-panel.pdf}{Primary result panel.}
   \end{center}
-  Use this slot for the single figure that most directly supports the
-  conclusion, not for a dense paper screenshot.
+  The strongest result supports the central conclusion across the reported
+  evaluation setting.
 
-  \section{Decision Notes}
-  The right column explains why the central claim is credible: strongest
-  evidence first, then one robustness check, then one boundary condition.
+  \section{Conclusion}
+  The evidence indicates that the proposed analysis explains the observed
+  outcome and its boundary conditions.
+
+  \section{References}
+  \posterreferences{%
+    [1] Author et al. Foundational result. Venue, Year.\\{}
+    [2] Author et al. Experimental study. Venue, Year.}
+
+  \vspace{0.2em}
+  \posterfullpapernote{For additional experimental results, please refer to the full paper.}
 
   \vfill
   \conferencelogostrip{%
