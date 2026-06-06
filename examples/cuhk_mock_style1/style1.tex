@@ -31,7 +31,8 @@
 % 在二维码中央加入 OpenReview/site 图标。
 \newcommand{\OpenReviewQRCode}{figures/qr/01-openreview.png}
 \newcommand{\ScanIcon}{../../assets/scan-icons/scan-qr-code-white.png}
-\newcommand{\InstitutionLogoOne}{figures/institutions/01-cuhk.png}
+% 单一第一作者单位时使用带校名版本，避免底部 logo strip 显得过空。
+\newcommand{\InstitutionLogoOne}{../../assets/institution-logos/top100-logo-bank/logo_with_name/032-chinese-university-of-hong-kong.png}
 \newcommand{\InstitutionLogoTwo}{}
 \newcommand{\InstitutionLogoThree}{}
 \newcommand{\ConferenceLogoOne}{../../assets/conference-logos/ICML-logo-pdflatex.pdf}
@@ -95,7 +96,7 @@
 
   \vfill
   \institutionlogostrip{%
-    \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
+    \institutionwordmarklogo{\InstitutionLogoOne}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%
   }

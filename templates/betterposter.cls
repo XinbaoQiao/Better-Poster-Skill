@@ -345,6 +345,7 @@
 }
 \newcommand{\institutionlogorow}[3]{\posterlogorow{#1}{#2}{#3}}
 \newcommand{\institutionlogo}[2]{\posterlogospaced{#1}{#2}}
+\newcommand{\institutionwordmarklogo}[2]{\posterboundedlogo{#1}{#2}{0.96\linewidth}}
 \newcommand{\institutionlogostrip}[1]{\posterlogostrip{#1}}
 \newcommand{\conferencelogo}[2]{%
   \posterifnonempty{#1}{%

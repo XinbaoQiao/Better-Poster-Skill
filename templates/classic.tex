@@ -46,6 +46,7 @@
 \newcommand{\OpenReviewQRCode}{../figures/qr/01-openreview.png}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
 \newcommand{\ScanIcon}{../assets/scan-icons/scan-qr-code-white.png}
+% 单一第一作者单位可使用带学校名字的 current-logo；多单位时仍优先使用纯校徽。
 \newcommand{\InstitutionLogoOne}{../assets/institution-logos/current-logo.png}
 \newcommand{\InstitutionLogoTwo}{}
 \newcommand{\InstitutionLogoThree}{}
@@ -115,6 +116,7 @@
 
   \vfill
   \institutionlogostrip{%
+    % 单一宽 logo-with-name 可改用 \institutionwordmarklogo{\InstitutionLogoOne}{\institutionlogosize}。
     \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoThree}{\institutionlogosize}%

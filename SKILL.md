@@ -164,9 +164,11 @@ Institution logos:
 - Normalize sub-units to parent institutions.
 - Prefer cached/configured institution logos.
 - Order logos by first-author affiliation order when available.
-- Show all resolved pure emblems unless the user asks for a cap.
+- If the first author resolves to exactly one institution, prefer a logo-with-name/wordmark asset when available so the bottom strip feels intentionally filled.
+- If multiple institutions resolve, show all resolved pure emblems unless the user asks for a cap.
 - Normalize raster logo whitespace before placing multiple logos.
 - Place logos with `\institutionlogostrip{...}` and `\institutionlogo{path}{\institutionlogosize}`.
+- For one wide wordmark, place it with `\institutionwordmarklogo{path}{\institutionlogosize}` to cap width while preserving aspect ratio.
 
 Conference logos:
 

@@ -10,7 +10,11 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_RANKING_PATH = Path("assets/institution-data/csrankings_all_world_2016_2026_may2026_top100_institutions.json")
-DEFAULT_LOGO_DIR = Path("assets/institution-logos/top100-logo-bank/csrankings_all_world_2016_2026_may2026_top100")
+DEFAULT_LOGO_DIR = Path("assets/institution-logos/top100-logo-bank")
+LOGO_STYLE_DIRS = {
+    "pure": "pure_logo",
+    "with-name": "logo_with_name",
+}
 
 
 def slugify(text: str) -> str:
@@ -90,21 +94,38 @@ def find_matches(text: str, ranking: list[dict[str, Any]], limit: int) -> list[d
     return selected[:limit]
 
 
-def logo_for_institution(item: dict[str, Any], logo_dir: Path) -> Path | None:
+def logo_search_dirs(logo_dir: Path, style: str) -> list[Path]:
+    styled = logo_dir / LOGO_STYLE_DIRS[style]
+    if styled.exists():
+        return [styled]
+    return [logo_dir]
+
+
+def logo_for_institution(item: dict[str, Any], logo_dir: Path, style_order: list[str]) -> tuple[Path | None, str | None]:
     slugs = [slugify(item["name"]), *(slugify(alias) for alias in item.get("aliases", []))]
-    matches = []
-    paths = logo_dir.iterdir() if logo_dir.exists() else []
-    for path in paths:
-        if not path.is_file():
-            continue
-        stem = re.sub(r"^\d+-", "", path.stem.lower())
-        if stem in slugs:
-            matches.append(path)
-    if not matches:
-        return None
     preferred = {".png": 0, ".jpg": 1, ".jpeg": 1, ".webp": 2, ".svg": 3}
-    matches.sort(key=lambda path: preferred.get(path.suffix.lower(), 9))
-    return matches[0]
+    for style in style_order:
+        matches = []
+        for search_dir in logo_search_dirs(logo_dir, style):
+            paths = search_dir.iterdir() if search_dir.exists() else []
+            for path in paths:
+                if not path.is_file():
+                    continue
+                stem = re.sub(r"^\d+-", "", path.stem.lower())
+                if stem in slugs:
+                    matches.append(path)
+        if matches:
+            matches.sort(key=lambda path: preferred.get(path.suffix.lower(), 9))
+            return matches[0], style
+    return None, None
+
+
+def logo_style_order(requested: str, institution_count: int) -> list[str]:
+    if requested == "auto":
+        # 单一第一作者单位优先使用带学校名字的横向 logo，避免底部校徽区显得过空。
+        # 多单位场景保留纯校徽，保证多个 logo 高度和间距更整齐。
+        return ["with-name", "pure"] if institution_count == 1 else ["pure", "with-name"]
+    return [requested]
 
 
 def main() -> int:
@@ -114,19 +135,22 @@ def main() -> int:
     parser.add_argument("--source", action="append", help="Source file or directory to scan. Can repeat.")
     parser.add_argument("--ranking", type=Path, default=DEFAULT_RANKING_PATH)
     parser.add_argument("--logo-dir", type=Path, default=DEFAULT_LOGO_DIR)
+    parser.add_argument("--logo-style", choices=("auto", "pure", "with-name"), default="auto")
     parser.add_argument("--max-institutions", type=int, default=0, help="Maximum matched institutions to return; 0 means all.")
     parser.add_argument("--format", choices=("text", "json"), default="text")
     args = parser.parse_args()
 
     selected = find_matches(collect_text(args), load_ranking(args.ranking), args.max_institutions)
+    style_order = logo_style_order(args.logo_style, len(selected))
     rows = []
     for item in selected:
-        logo = logo_for_institution(item, args.logo_dir)
+        logo, logo_style = logo_for_institution(item, args.logo_dir, style_order)
         rows.append(
             {
                 "name": item["name"],
                 "rank": item["rank"],
                 "logo": str(logo) if logo else None,
+                "logo_style": logo_style,
                 "note": "Convert SVG/WebP to PNG before pdflatex if needed." if logo and logo.suffix.lower() in {".svg", ".webp"} else "",
             }
         )
@@ -138,7 +162,8 @@ def main() -> int:
             print("No configured institution logos matched.")
         for index, row in enumerate(rows, start=1):
             logo = row["logo"] or "missing cached logo"
-            print(f"{index}. rank {row['rank']}: {row['name']} -> {logo}")
+            style = f" ({row['logo_style']})" if row["logo_style"] else ""
+            print(f"{index}. rank {row['rank']}: {row['name']} -> {logo}{style}")
             if row["note"]:
                 print(f"   {row['note']}")
     return 0
