@@ -4,6 +4,11 @@
 The script uses local LaTeX `qrcode` as the QR encoder so it does not require a
 Python QR package. It rasterizes SVG logos only at generation time, then uses
 Pillow to paste a centered logo tile.
+
+With `--icon auto`, recognizable paper URLs such as OpenReview, ICML, ICLR, and
+NeurIPS are rendered with a centered site icon. OpenReview uses the project
+asset under `assets/site-icons/openreview.png` by default; missing known-site
+icons are treated as asset errors instead of silently producing bare QR codes.
 """
 
 from __future__ import annotations
@@ -32,11 +37,11 @@ PROXY_ENV_KEYS = (
     "ALL_PROXY",
 )
 
-SITE_LOGOS = {
-    "openreview": "openreview.png",
-    "icml": "icml.svg",
-    "iclr": "iclr.svg",
-    "neurips": "neurips.svg",
+SITE_LOGO_CANDIDATES = {
+    "openreview": ("openreview.png", "OpenReview.png", "review.png", "Review.png"),
+    "icml": ("ICML-logo.svg", "ICML.svg", "icml.svg"),
+    "iclr": ("iclr.svg", "ICLR.svg"),
+    "neurips": ("NeurIPS.svg", "neurips.svg"),
 }
 
 SCAN_ICON_MANIFEST = "scan-icon-manifest.txt"
@@ -130,7 +135,7 @@ def parse_item(raw: str, explicit_icon: str | None) -> QRItem:
         label = label.strip()
         url = url.strip()
     icon_key = explicit_icon if explicit_icon != "auto" else detect_icon_key(url, label)
-    if icon_key and icon_key not in SITE_LOGOS:
+    if icon_key and icon_key not in SITE_LOGO_CANDIDATES:
         icon_key = None
     return QRItem(label=label or default_label(url, icon_key), url=url, icon_key=icon_key)
 
@@ -241,6 +246,23 @@ def load_logo_image(logo_path: Path, env: dict[str, str]) -> Image.Image:
     return Image.open(logo_path).convert("RGBA")
 
 
+def logo_candidate_paths(icon_key: str, logos_dir: Path, site_icons_dir: Path) -> list[Path]:
+    candidates = [site_icons_dir / name for name in SITE_LOGO_CANDIDATES[icon_key]]
+    candidates.extend(logos_dir / name for name in SITE_LOGO_CANDIDATES[icon_key])
+    return candidates
+
+
+def resolve_site_icon(item: QRItem, logos_dir: Path, site_icons_dir: Path, env: dict[str, str]) -> Image.Image | None:
+    if not item.icon_key:
+        return None
+    candidates = logo_candidate_paths(item.icon_key, logos_dir, site_icons_dir)
+    for logo_path in candidates:
+        if logo_path.exists():
+            return load_logo_image(logo_path, env)
+    checked = ", ".join(str(path) for path in candidates)
+    raise FileNotFoundError(f"Missing center icon asset for {item.icon_key}; checked: {checked}")
+
+
 def paste_logo(qr_path: Path, logo_image: Image.Image, icon_scale: float) -> None:
     qr = Image.open(qr_path).convert("RGBA")
     icon = logo_image.convert("RGBA")
@@ -318,7 +340,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", action="append", required=True, help="URL or Label=URL. Repeat for multiple QR codes.")
     parser.add_argument("--out-dir", default="figures/qr", help="Output directory for PNGs and qr-snippet.tex.")
-    parser.add_argument("--logos-dir", default="assets/conference-logos", help="Directory containing OpenReview PNG plus ICML/ICLR/NeurIPS SVG logos.")
+    parser.add_argument("--logos-dir", default="assets/conference-logos", help="Directory containing venue logo assets such as ICML/ICLR/NeurIPS SVG logos.")
+    parser.add_argument("--site-icons-dir", default="assets/site-icons", help="Directory containing URL-site center icons such as openreview.png.")
     parser.add_argument("--icon", default="auto", help="auto, none, or one of: openreview, icml, iclr, neurips.")
     parser.add_argument("--size", type=int, default=1200, help="Output QR image size in pixels.")
     parser.add_argument("--icon-scale", type=float, default=0.18, help="Center icon size as fraction of QR width.")
@@ -332,13 +355,14 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    if args.icon not in {"auto", "none", *SITE_LOGOS.keys()}:
+    if args.icon not in {"auto", "none", *SITE_LOGO_CANDIDATES.keys()}:
         print(f"Unsupported --icon value: {args.icon}", file=sys.stderr)
         return 2
 
     env = clean_env()
     out_dir = Path(args.out_dir)
     logos_dir = Path(args.logos_dir)
+    site_icons_dir = Path(args.site_icons_dir)
     phone_icon = resolve_phone_icon(
         args.phone_icon,
         Path(args.phone_icons_dir),
@@ -354,12 +378,9 @@ def main() -> int:
             filename = f"{index:02d}-{slugify(item.label)}.png"
             qr_path = out_dir / filename
             render_base_qr(item.url, qr_path, args.size, env)
-            if item.icon_key:
-                logo_path = logos_dir / SITE_LOGOS[item.icon_key]
-                if logo_path.exists():
-                    paste_logo(qr_path, load_logo_image(logo_path, env), args.icon_scale)
-                else:
-                    print(f"Warning: logo not found, QR generated without logo: {logo_path}", file=sys.stderr)
+            logo_image = resolve_site_icon(item, logos_dir, site_icons_dir, env)
+            if logo_image:
+                paste_logo(qr_path, logo_image, args.icon_scale)
             items.append((item, qr_path))
         write_snippet(items, out_dir / "qr-snippet.tex", args.tex_prefix, phone_icon)
     except Exception as exc:

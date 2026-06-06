@@ -40,6 +40,10 @@
   \claimtiervspace
   {\color{claimtierlower}Practical implication.}%
 }
+% QR 规则：有 OpenReview URL 时优先生成 figures/qr/01-openreview.png，
+% 并由 scripts/generate_qr.py --icon auto 使用 assets/site-icons/openreview.png
+% 在二维码中央加入 OpenReview/site 图标。
+\newcommand{\OpenReviewQRCode}{../figures/qr/01-openreview.png}
 \newcommand{\PaperQRCode}{../figures/qr/01-paper.png}
 \newcommand{\ScanIcon}{../assets/scan-icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogoOne}{../assets/institution-logos/current-logo.png}
@@ -59,10 +63,18 @@
     \IfFileExists{../figures/qr/qr-snippet.tex}{%
       \input{../figures/qr/qr-snippet.tex}%
     }{%
-      \qrcode{\PaperQRCode}{\ScanIcon}{%
-        {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
-        {\fontsize{46}{58}\selectfont\bfseries Full paper, code,\\or project page.}\\[0.34em]
-        {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
+      \IfFileExists{\OpenReviewQRCode}{%
+        \qrcode{\OpenReviewQRCode}{\ScanIcon}{%
+          {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
+          {\fontsize{46}{58}\selectfont\bfseries OpenReview paper,\\code, or project page.}\\[0.34em]
+          {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
+        }%
+      }{%
+        \qrcode{\PaperQRCode}{\ScanIcon}{%
+          {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
+          {\fontsize{46}{58}\selectfont\bfseries Full paper, code,\\or project page.}\\[0.34em]
+          {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
+        }%
       }%
     }
   }

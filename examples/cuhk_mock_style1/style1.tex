@@ -27,7 +27,9 @@
 \newcommand{\PosterTitle}{Research Title}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
 \newcommand{\PosterAffiliation}{The Chinese University of Hong Kong}
-\newcommand{\PaperQRCode}{figures/qr/01-paper.png}
+% OpenReview URL 是默认主 QR；生成脚本使用 assets/site-icons/openreview.png
+% 在二维码中央加入 OpenReview/site 图标。
+\newcommand{\OpenReviewQRCode}{figures/qr/01-openreview.png}
 \newcommand{\ScanIcon}{../../assets/scan-icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogoOne}{figures/institutions/01-cuhk.png}
 \newcommand{\InstitutionLogoTwo}{}
@@ -49,9 +51,9 @@
       {\color{claimtierlower}Practical implication.}%
     }
   }{
-    \qrcode{\PaperQRCode}{\ScanIcon}{%
+    \qrcode{\OpenReviewQRCode}{\ScanIcon}{%
       {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
-      {\fontsize{46}{58}\selectfont\bfseries Paper, code,\\and project notes.}\\[0.34em]
+      {\fontsize{46}{58}\selectfont\bfseries OpenReview paper,\\code, and project notes.}\\[0.34em]
       {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
     }
   }

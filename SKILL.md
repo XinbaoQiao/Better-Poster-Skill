@@ -101,6 +101,9 @@ QR row:
 - Sequence is QR code, scan icon, then scan text.
 - Contact belongs inside the scan text, directly below the primary caption.
 - Select paired PNG/SVG scan icons with `scripts/select_scan_icon.py`.
+- If an OpenReview URL is available, make it the primary QR target and label it `OpenReview=...`; the QR image must include the OpenReview/site icon in the center.
+- Generate QR images with `scripts/generate_qr.py --icon auto`; do not manually replace an OpenReview QR with a plain QR that lacks a center icon.
+- OpenReview center icons come from `assets/site-icons/openreview.png`. If the asset is missing, add or restore that icon before regenerating QR images.
 
 ## Style2 Rules
 
@@ -181,12 +184,12 @@ QR:
 
 ```bash
 python scripts/generate_qr.py \
-  --url Paper=https://example.com/paper \
+  --url OpenReview=https://openreview.net/forum?id=example \
   --url Code=https://github.com/user/repo \
   --out-dir figures/qr
 ```
 
-Use `Paper=...` for the primary QR so templates can reference `figures/qr/01-paper.png`.
+Use `OpenReview=...` for the primary QR whenever the paper has an OpenReview page; templates can then reference `figures/qr/01-openreview.png`. Use `Paper=...` only when no OpenReview page is available. The script auto-detects known site URLs and pastes a center icon from `assets/site-icons/` or venue logo assets; known-site icon assets must exist before generation.
 
 ## Preview And QA
 

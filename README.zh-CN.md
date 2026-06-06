@@ -1,6 +1,6 @@
 # Better Poster Skill
 
-[English](README.md)
+[仓库首页中文版](https://github.com/XinbaoQiao/Better-Poster-Skill#zh-cn) | [English](https://github.com/XinbaoQiao/Better-Poster-Skill#english)
 
 Better Poster Skill 用于帮助 code agent 将论文材料转换为可编辑的 Better Poster 风格学术海报。
 
@@ -56,6 +56,7 @@ Paper source:
 Preferences:
 - Output: both LaTeX and HTML
 - Paper URL: [optional]
+- OpenReview URL: [optional]
 - Code URL: [optional]
 - Institution / affiliation: [optional]
 - Contact line: [optional]
@@ -98,4 +99,4 @@ This repository remains MIT licensed. The included `templates/betterposter.cls` 
 
 重新分发生成的 logo 文件前，请检查机构 logo 的版权、商标和署名要求。
 
-[English](README.md)
+[仓库首页中文版](https://github.com/XinbaoQiao/Better-Poster-Skill#zh-cn) | [English](https://github.com/XinbaoQiao/Better-Poster-Skill#english)
