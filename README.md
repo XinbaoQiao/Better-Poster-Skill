@@ -36,6 +36,16 @@ Better Poster Skill helps a code agent transform paper PDFs, LaTeX source archiv
 
 It is designed for researchers who want a fast, editable poster starting point instead of a blank canvas.
 
+### Highlights
+
+| Feature | Why it helps |
+|---|---|
+| Branded QR generation | Provide paper, code, project, slides, or OpenReview URLs; the agent creates poster-ready QR codes and places the matching site icon in the center when supported. |
+| First-author institution branding | The agent reads affiliation text, prioritizes the first author's institution, and places matching university emblems when available. |
+| Paper-aware poster drafting | The agent works from the paper itself, so the poster starts from the actual title, authors, claims, figures, and links instead of generic filler. |
+| Example-guided design reuse | New posters can borrow layout patterns from successful examples in `examples/`, helping future papers start from proven visual structures. |
+| Editable by default | Outputs stay in LaTeX and/or HTML, so authors can keep refining the poster after the first draft. |
+
 ### At A Glance
 
 | You provide | The agent prepares |
@@ -131,6 +141,16 @@ Review institution logo copyright, trademark, and attribution requirements befor
 Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
 
 它适合希望快速得到高质量海报起点的研究者，而不是从空白页面开始排版。
+
+### 核心特点
+
+| 特点 | 价值 |
+|---|---|
+| 自动生成带图标的 QR code | 你提供 paper、code、project、slides 或 OpenReview 网址后，agent 会生成适合海报使用的 QR，并在支持时把对应站点图标放到 QR 中央。 |
+| 自动匹配第一作者单位校徽 | agent 会从论文或 affiliation 文本中优先识别第一作者单位，并在资源可用时直接放入对应校徽。 |
+| 基于论文内容生成海报 | 海报初稿会从论文标题、作者、核心结论、图表和链接出发，而不是套用空泛占位内容。 |
+| 参考过往成功示例 | 新论文可以从 `examples/` 中复用已经验证过的布局思路、信息密度和视觉组织方式。 |
+| 默认保持可编辑 | 输出保留 LaTeX 和/或 HTML 源码，方便作者继续精修、替换内容和适配会议要求。 |
 
 ### 快速概览
 
