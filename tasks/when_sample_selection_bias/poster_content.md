@@ -1,10 +1,7 @@
 # Poster Content
 
-## Center Section
+Use the section files in this directory as the task source:
 
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-Line 6
+- `center.md`: six-line center section.
+- `left.md`: introduction, paradigms, theorem analysis, and references.
+- `right.md`: multivariate Gaussian modeling and signal summary.
