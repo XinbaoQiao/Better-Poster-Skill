@@ -6,95 +6,99 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 3 0 obj
-<< /Length 8078 >>
+<< /Length 6653 >>
 stream
-q 1.000 1.000 1.000 rg 0.00 0.00 4767.87 2383.94 re f Q
-q 0.000 0.322 0.608 rg 1096.61 0.00 2574.65 2383.94 re f Q
-BT /F2 62.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 70.00 2268.94 Tm (When Sample Selection Bias) Tj ET
-BT /F2 62.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 70.00 2196.94 Tm (Precipitates Model Collapse) Tj ET
-BT /F1 25.00 Tf 0.420 0.450 0.500 rg 1 0 0 1 70.00 2134.94 Tm (Xinbao Qiao, Xianglong Du, Wei Liu, Jingqi Zhang, Peihua Mai, Meng) Tj ET
-BT /F1 25.00 Tf 0.420 0.450 0.500 rg 1 0 0 1 70.00 2103.69 Tm (Zhang, Yan Pang) Tj ET
-BT /F2 40.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 70.00 2074.94 Tm (Introduction) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 70.00 2020.94 Tm (Recursive training on generated data can narrow) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 70.00 1988.44 Tm (distributional support when later generations are selected) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 70.00 1955.94 Tm (by biased local references. The key question is when) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 70.00 1923.44 Tm (accumulation preserves diversity, and when selection bias) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 70.00 1890.94 Tm (overrides it.) Tj ET
-BT /F2 40.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 70.00 1838.44 Tm (Theory) Tj ET
-q 0.965 0.976 0.992 rg 70.00 1666.44 956.61 118.00 re f Q
-BT /F2 24.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 88.00 1750.44 Tm (Replace paradigm [R1]) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1714.44 Tm (Replacing data by the latest generated round drives covariance loss) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1688.19 Tm (and tail erosion.) Tj ET
-q 0.965 0.976 0.992 rg 70.00 1528.44 956.61 118.00 re f Q
-BT /F2 24.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 88.00 1612.44 Tm (Accumulate paradigm [R2]) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1576.44 Tm (Pooling generations can stabilize unbiased recursion, but biased) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1550.19 Tm (selection changes the limit.) Tj ET
-q 0.965 0.976 0.992 rg 70.00 1383.44 956.61 125.00 re f Q
-BT /F2 24.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 88.00 1474.44 Tm (Theorem 1) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1438.44 Tm (Under top-alpha selection toward a local target, the mean approaches) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1412.19 Tm (that target while covariance contracts.) Tj ET
-q 0.965 0.976 0.992 rg 70.00 1238.44 956.61 125.00 re f Q
-BT /F2 24.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 88.00 1329.44 Tm (Theorem 2) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1293.44 Tm (Within the local basin, the covariance trace follows a power-law) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1267.19 Tm (decay, giving an explicit collapse rate.) Tj ET
-q 0.965 0.976 0.992 rg 70.00 1100.44 956.61 118.00 re f Q
-BT /F2 24.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 88.00 1184.44 Tm (Theorem 3) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1148.44 Tm (After fitting error is small, target-domain risk is governed by) Tj ET
-BT /F1 21.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 88.00 1122.19 Tm (distributional mismatch.) Tj ET
-BT /F2 34.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 70.00 255.00 Tm (References) Tj ET
-BT /F1 20.00 Tf 0.250 0.280 0.320 rg 1 0 0 1 70.00 213.00 Tm ([R1] Replace-paradigm model-collapse analysis. [R2] Accumulate-paradigm) Tj ET
-BT /F1 20.00 Tf 0.250 0.280 0.320 rg 1 0 0 1 70.00 188.00 Tm (recursive training analysis.) Tj ET
-BT /F1 20.00 Tf 0.420 0.450 0.500 rg 1 0 0 1 70.00 145.00 Tm (For more methodology and theoretical details, please refer to the full) Tj ET
-BT /F1 20.00 Tf 0.420 0.450 0.500 rg 1 0 0 1 70.00 120.00 Tm (paper.) Tj ET
-q 2.00 w 0.720 0.750 0.800 RG 70.00 50.00 145.00 70.00 re S Q
-BT /F2 28.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 98.00 74.00 Tm (NUS) Tj ET
-q 2.00 w 0.720 0.750 0.800 RG 255.00 50.00 145.00 70.00 re S Q
-BT /F2 28.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 283.00 74.00 Tm (ZJU) Tj ET
-q 2.00 w 0.720 0.750 0.800 RG 440.00 50.00 145.00 70.00 re S Q
-BT /F2 28.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 468.00 74.00 Tm (CUHK) Tj ET
-BT /F2 138.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 1241.61 1863.94 Tm (Selection bias) Tj ET
-BT /F2 138.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 1241.61 1705.94 Tm (accelerates collapse.) Tj ET
-BT /F2 138.00 Tf 0.720 0.750 0.800 rg 1 0 0 1 1241.61 1547.94 Tm (Accumulation slows) Tj ET
-BT /F2 138.00 Tf 0.720 0.750 0.800 rg 1 0 0 1 1241.61 1389.94 Tm (but does not prevent it.) Tj ET
-BT /F2 138.00 Tf 0.450 0.490 0.550 rg 1 0 0 1 1241.61 1231.94 Tm (Scaling sample count) Tj ET
-BT /F2 138.00 Tf 0.450 0.490 0.550 rg 1 0 0 1 1241.61 1073.94 Tm (does not restore diversity.) Tj ET
-q 1.000 1.000 1.000 rg 1241.61 185.00 250.00 250.00 re f Q
-BT /F2 42.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 1329.61 297.00 Tm (QR) Tj ET
-q 4.00 w 1.000 1.000 1.000 RG 1546.61 265.00 105.00 105.00 re S Q
-BT /F2 22.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 1563.61 304.00 Tm (SCAN) Tj ET
-BT /F2 56.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 1696.61 339.00 Tm (Scan) Tj ET
-BT /F2 32.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 1696.61 287.00 Tm (OpenReview paper and supplement.) Tj ET
-BT /F1 24.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 1696.61 243.00 Tm (Contact: xinbaoqiao@cuhk.edu.hk) Tj ET
-BT /F2 40.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 3741.26 2268.94 Tm (Multivariate Gaussian Modeling) Tj ET
-q 0.965 0.976 0.992 rg 3741.26 2082.94 956.61 132.00 re f Q
-BT /F2 25.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 3759.26 2180.94 Tm (Gaussian) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 2144.94 Tm (Selection contracts covariance under both replacement and) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 2117.44 Tm (accumulation.) Tj ET
-q 0.965 0.976 0.992 rg 3741.26 1930.94 956.61 132.00 re f Q
-BT /F2 25.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 3759.26 2028.94 Tm (Anisotropic Gaussian) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1992.94 Tm (Directional variance changes the path, not the final loss of) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1965.44 Tm (dispersion.) Tj ET
-q 0.965 0.976 0.992 rg 3741.26 1778.94 956.61 132.00 re f Q
-BT /F2 25.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 3759.26 1876.94 Tm (Gaussian mixture) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1840.94 Tm (Biased filtering reduces mode coverage and tail mass across) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1813.44 Tm (generations.) Tj ET
-q 0.965 0.976 0.992 rg 3741.26 1626.94 956.61 132.00 re f Q
-BT /F2 25.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 3759.26 1724.94 Tm (Laplace) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1688.94 Tm (Heavy-tailed initialization still loses dispersion under biased) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1661.44 Tm (filtering.) Tj ET
-BT /F2 40.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 3741.26 1591.94 Tm (Collapse Signal) Tj ET
-q 0.965 0.976 0.992 rg 3741.26 1382.94 956.61 155.00 re f Q
-BT /F2 24.00 Tf 0.070 0.080 0.100 rg 1 0 0 1 3759.26 1503.94 Tm (Trace ratio) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1467.94 Tm (Tr\(Sigma_t\)/Tr\(Sigma_0\) summarizes diversity contraction. Replace) Tj ET
-BT /F1 22.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3759.26 1440.44 Tm (collapses fastest; Accumulate decays more slowly.) Tj ET
-BT /F2 40.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 3741.26 1357.94 Tm (Empirical Summary) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3741.26 1303.94 Tm (Across Gaussian and non-Gaussian families,) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3741.26 1271.44 Tm (biased selection is the dominant driver of) Tj ET
-BT /F1 26.00 Tf 0.050 0.060 0.080 rg 1 0 0 1 3741.26 1238.94 Tm (diversity loss and tail-coverage erosion.) Tj ET
-BT /F1 20.00 Tf 0.420 0.450 0.500 rg 1 0 0 1 3741.26 145.00 Tm (For additional experimental results, please refer to) Tj ET
-BT /F1 20.00 Tf 0.420 0.450 0.500 rg 1 0 0 1 3741.26 120.00 Tm (the full paper.) Tj ET
-q 2.00 w 0.720 0.750 0.800 RG 3741.26 50.00 180.00 70.00 re S Q
-BT /F2 30.00 Tf 0.000 0.320 0.610 rg 1 0 0 1 3783.26 74.00 Tm (ICML) Tj ET
+q 1 1 1 rg 0 0 4767.87 2383.94 re f Q
+q 0 0.322 0.608 rg 1096.61 0 2574.65 2383.94 re f Q
+BT /F2 54 Tf 0 0.322 0.608 rg 1 0 0 1 70 2295 Tm (When Sample Selection Bias) Tj ET
+BT /F2 54 Tf 0 0.322 0.608 rg 1 0 0 1 70 2238 Tm (Precipitates Model Collapse) Tj ET
+BT /F1 18 Tf 0.42 0.45 0.5 rg 1 0 0 1 70 2188 Tm (Xinbao Qiao, Xianglong Du, Wei Liu, Jingqi Zhang, Peihua Mai, Meng Zhang, Yan Pang) Tj ET
+BT /F2 34 Tf 0 0.322 0.608 rg 1 0 0 1 70 2070 Tm (Introduction) Tj ET
+BT /F1 20 Tf 0.05 0.06 0.08 rg 1 0 0 1 70 2022 Tm (Recursive synthetic-data training can narrow distributional support when later generations are) Tj ET
+BT /F1 20 Tf 0.05 0.06 0.08 rg 1 0 0 1 70 1996 Tm (selected by biased local references. The question is when accumulation preserves diversity.) Tj ET
+BT /F2 34 Tf 0 0.322 0.608 rg 1 0 0 1 70 1905 Tm (Theory) Tj ET
+q 0.965 0.976 0.992 rg 70 1750 956 108 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1823 Tm (Replace paradigm [R1]) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1788 Tm (Latest-generation replacement drives covariance loss and mode narrowing.) Tj ET
+q 0.965 0.976 0.992 rg 70 1627 956 108 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1700 Tm (Accumulate paradigm [R2]) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1665 Tm (Pooling generations can stabilize unbiased recursion, but biased selection changes the limit.) Tj ET
+q 0.965 0.976 0.992 rg 70 1504 956 108 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1577 Tm (Theorem 1) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1542 Tm (Top-alpha selection moves the mean toward the local reference while covariance contracts.) Tj ET
+q 0.965 0.976 0.992 rg 70 1381 956 108 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1454 Tm (Theorem 2) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1419 Tm (Covariance trace follows a power-law decay in the local basin.) Tj ET
+q 0.965 0.976 0.992 rg 70 1258 956 108 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1331 Tm (Theorem 3) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 88 1296 Tm (After fitting error is small, target performance is governed by distribution mismatch.) Tj ET
+BT /F2 30 Tf 0 0.322 0.608 rg 1 0 0 1 70 260 Tm (References) Tj ET
+BT /F1 16 Tf 0.42 0.45 0.5 rg 1 0 0 1 70 220 Tm ([R1] Replace-paradigm collapse analysis. [R2] Accumulate-paradigm recursive training analysis.) Tj ET
+BT /F1 16 Tf 0.42 0.45 0.5 rg 1 0 0 1 70 168 Tm (For more methodology and theoretical details, please refer to the full paper.) Tj ET
+q 1 1 1 rg 70 55 210 78 re f Q
+q 2 w 0.7 0.72 0.75 RG 70 55 210 78 re S Q
+q 0 0.322 0.608 rg 82 68 52 52 re f Q
+BT /F2 23 Tf 1 1 1 rg 1 0 0 1 98 87 Tm (N) Tj ET
+BT /F2 29 Tf 0 0.322 0.608 rg 1 0 0 1 148 97 Tm (NUS) Tj ET
+q 1 1 1 rg 305 55 210 78 re f Q
+q 2 w 0.7 0.72 0.75 RG 305 55 210 78 re S Q
+q 0.1 0.28 0.62 rg 317 68 52 52 re f Q
+BT /F2 23 Tf 1 1 1 rg 1 0 0 1 333 87 Tm (Z) Tj ET
+BT /F2 29 Tf 0.1 0.28 0.62 rg 1 0 0 1 383 97 Tm (ZJU) Tj ET
+q 1 1 1 rg 540 55 210 78 re f Q
+q 2 w 0.7 0.72 0.75 RG 540 55 210 78 re S Q
+q 0.46 0.06 0.43 rg 552 68 52 52 re f Q
+BT /F2 23 Tf 1 1 1 rg 1 0 0 1 568 87 Tm (C) Tj ET
+BT /F2 29 Tf 0.46 0.06 0.43 rg 1 0 0 1 618 97 Tm (CUHK) Tj ET
+BT /F2 128 Tf 1 1 1 rg 1 0 0 1 1245 1815 Tm (Selection bias) Tj ET
+BT /F2 128 Tf 1 1 1 rg 1 0 0 1 1245 1660 Tm (accelerates collapse.) Tj ET
+BT /F2 128 Tf 0.72 0.75 0.8 rg 1 0 0 1 1245 1505 Tm (Accumulation slows) Tj ET
+BT /F2 128 Tf 0.72 0.75 0.8 rg 1 0 0 1 1245 1350 Tm (but does not prevent it.) Tj ET
+BT /F2 128 Tf 0.45 0.49 0.55 rg 1 0 0 1 1245 1195 Tm (Scaling sample count) Tj ET
+BT /F2 128 Tf 0.45 0.49 0.55 rg 1 0 0 1 1245 1040 Tm (does not restore diversity.) Tj ET
+q 1 1 1 rg 1245 195 250 250 re f Q
+BT /F2 38 Tf 0.05 0.06 0.08 rg 1 0 0 1 1334 308 Tm (QR) Tj ET
+q 2 w 0.7 0.72 0.75 RG 1560 270 105 105 re S Q
+BT /F2 18 Tf 1 1 1 rg 1 0 0 1 1576 310 Tm (SCAN) Tj ET
+BT /F2 56 Tf 1 1 1 rg 1 0 0 1 1720 350 Tm (Scan) Tj ET
+BT /F2 31 Tf 1 1 1 rg 1 0 0 1 1720 300 Tm (OpenReview paper and supplement.) Tj ET
+BT /F1 22 Tf 1 1 1 rg 1 0 0 1 1720 258 Tm (Contact: xinbaoqiao@cuhk.edu.hk) Tj ET
+BT /F2 34 Tf 0 0.322 0.608 rg 1 0 0 1 3740 2260 Tm (Multivariate Gaussian Modeling) Tj ET
+q 0.965 0.976 0.992 rg 3740 2085 956 118 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 2165 Tm (Gaussian) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 2129 Tm (Selection contracts covariance under replacement and accumulation.) Tj ET
+q 0.965 0.976 0.992 rg 3740 1945 956 118 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 2025 Tm (Anisotropic Gaussian) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 1989 Tm (Directional variance changes the path but not dispersion loss.) Tj ET
+q 0.965 0.976 0.992 rg 3740 1805 956 118 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 1885 Tm (Gaussian mixture) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 1849 Tm (Biased filtering reduces mode and tail coverage.) Tj ET
+q 0.965 0.976 0.992 rg 3740 1665 956 118 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 1745 Tm (Laplace) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 3758 1709 Tm (Heavy-tailed initialization still loses dispersion.) Tj ET
+BT /F2 34 Tf 0 0.322 0.608 rg 1 0 0 1 3740 1480 Tm (Collapse Signal) Tj ET
+q 0.965 0.976 0.992 rg 3740 1120 956 300 re f Q
+BT /F2 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3760 1380 Tm (Trace-ratio diagnostic) Tj ET
+q 2 w 0.5 0.52 0.55 RG 3810 1195 m 4540 1195 l S Q
+q 2 w 0.5 0.52 0.55 RG 3810 1195 m 3810 1340 l S Q
+q 4 w 0.8 0.1 0.1 RG 3810 1335 m 3970 1260 l S Q
+q 4 w 0.8 0.1 0.1 RG 3970 1260 m 4240 1215 l S Q
+q 4 w 0.8 0.1 0.1 RG 4240 1215 m 4560 1202 l S Q
+q 4 w 0 0.322 0.608 RG 3810 1337 m 3970 1290 l S Q
+q 4 w 0 0.322 0.608 RG 3970 1290 m 4240 1255 l S Q
+q 4 w 0 0.322 0.608 RG 4240 1255 m 4560 1230 l S Q
+BT /F1 14 Tf 0.8 0.1 0.1 rg 1 0 0 1 4565 1230 Tm (Replace) Tj ET
+BT /F1 14 Tf 0 0.322 0.608 rg 1 0 0 1 4565 1270 Tm (Accumulate) Tj ET
+BT /F1 17 Tf 0.05 0.06 0.08 rg 1 0 0 1 3760 1160 Tm (Trace ratio summarizes diversity contraction; replacement changes fastest.) Tj ET
+BT /F2 34 Tf 0 0.322 0.608 rg 1 0 0 1 3740 1050 Tm (Empirical Summary) Tj ET
+BT /F1 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3740 998 Tm (Across Gaussian and non-Gaussian families, biased selection is the dominant) Tj ET
+BT /F1 22 Tf 0.05 0.06 0.08 rg 1 0 0 1 3740 968 Tm (driver of diversity loss and reduced coverage.) Tj ET
+BT /F1 16 Tf 0.42 0.45 0.5 rg 1 0 0 1 3740 168 Tm (For additional experimental results, please refer to the full paper.) Tj ET
+q 1 1 1 rg 3740 55 210 78 re f Q
+q 2 w 0.7 0.72 0.75 RG 3740 55 210 78 re S Q
+q 0 0.322 0.608 rg 3752 68 52 52 re f Q
+BT /F2 23 Tf 1 1 1 rg 1 0 0 1 3768 87 Tm (I) Tj ET
+BT /F2 29 Tf 0 0.322 0.608 rg 1 0 0 1 3818 97 Tm (ICML) Tj ET
 endstream
 endobj
 4 0 obj
@@ -112,11 +116,11 @@ xref
 0000000009 00000 n 
 0000000079 00000 n 
 0000000154 00000 n 
-0000008284 00000 n 
-0000008341 00000 n 
-0000008485 00000 n 
+0000006858 00000 n 
+0000006915 00000 n 
+0000007059 00000 n 
 trailer
 << /Size 7 /Root 6 0 R >>
 startxref
-8534
+7108
 %%EOF
