@@ -13,6 +13,9 @@ dist/
 *_preview.png
 *_preview.pdf
 
+# Deprecated duplicate conference-logo drop folder
+assets/logos/
+
 # On-demand third-party institution logo cache
 assets/institution-logos/*.png
 assets/institution-logos/*.jpg
