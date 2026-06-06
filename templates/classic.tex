@@ -18,6 +18,7 @@
 \renewcommand{\fontsizestandard}{\fontsize{37}{49}\selectfont}
 \renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
 \renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
+\setlength{\institutionlogosize}{0.108\paperheight}
 
 % Slightly wider center field while preserving readable technical sidebars.
 \setlength{\leftbarwidth}{0.23\paperwidth}
@@ -27,9 +28,18 @@
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
 
+\renewcommand{\posterstatementcard}[5]{%
+  \begingroup\setlength{\fboxsep}{0.42em}%
+  \colorbox{sidebarcool}{%
+    \begin{minipage}{0.94\linewidth}%
+      {\fontsize{#1}{#2}\selectfont #3\textcolor{black}{#4}\par}%
+      \vspace{0.14em}{\fontsize{35}{45}\selectfont\color{black}#5\par}%
+    \end{minipage}}%
+  \endgroup\par\vspace{0.45em}%
+}
+
 \newcommand{\PosterTitle}{Paper title or short research object}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
-\newcommand{\PosterAffiliation}{Department, University or Institute}
 \newcommand{\InstitutionName}{}
 \newcommand{\PosterClaimBlock}{%
   {\color{white}Conclusion first.\\
@@ -46,6 +56,8 @@
 \newcommand{\ConferenceLogoTwo}{}
 \newcommand{\ConferenceLogoThree}{}
 \newcommand{\ContactEmail}{author@example.com}
+\newcommand{\LeftFooterNote}{\emph{For more methodology and theoretical details, please refer to the full paper.}}
+\newcommand{\RightFooterNote}{\emph{For additional experimental results, please refer to the full paper.}}
 
 \begin{document}
 \betterposter{
@@ -64,12 +76,14 @@
     }
   }
 }{
-  % LEFT COLUMN: theory before the claim. Prefer theorem/proposition/corollary cards.
+  % LEFT COLUMN: introduction before theory; no affiliation line under names.
   \title{\PosterTitle}
   \author{\PosterAuthors}
-  \institution{\PosterAffiliation}
 
-  \section{Theory Claims}
+  \section{Introduction}
+  Background, problem setting, and research question.
+
+  \section{Theory}
   \propositioncard{Proposition: name the baseline law}{%
     State the prior result or baseline mechanism:
     \[
@@ -79,7 +93,7 @@
   \theoremcard{Theorem: name the main guarantee}{%
     Put the primary theorem, bound, or convergence statement here:
     \[
-      \text{left sidebar should be theory-first, not figure-first.}
+      \text{left sidebar should introduce context before theory.}
     \]}
 
   \propositioncard{Proposition: name the mechanism}{%
@@ -87,6 +101,8 @@
     the theorem holds.}
 
   \vfill
+  \posterfootnote{\LeftFooterNote}
+  \vspace{0.8em}
   \institutionlogostrip{%
     \institutionlogo{\InstitutionLogoOne}{\institutionlogosize}%
     \institutionlogo{\InstitutionLogoTwo}{\institutionlogosize}%
@@ -113,6 +129,8 @@
   Put backup material behind the QR code instead of shrinking unreadable paragraphs into this sidebar.
 
   \vfill
+  \posterfootnote{\RightFooterNote}
+  \vspace{0.8em}
   \conferencelogostrip{%
     \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
     \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
