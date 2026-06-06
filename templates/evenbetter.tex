@@ -13,13 +13,13 @@
 \renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
 \renewcommand{\maincolumnfontcolor}{white}
 \renewcommand{\fontsizemain}{\fontsize{74}{88}\selectfont}
+\setlength{\institutionlogosize}{0.108\paperheight}
 
 \newcommand{\PosterClaimTitle}{A claim-first title states exactly what changed}
 \newcommand{\PosterClaimLineOne}{The main result is explicit.}
 \newcommand{\PosterClaimLineTwo}{The mechanism is visible.}
 \newcommand{\PosterClaimLineThree}{The evidence is inspectable.}
 \newcommand{\PosterAuthors}{First Author, Second Author, Senior Author}
-\newcommand{\PosterAffiliations}{Lab or Department, University or Institute}
 \newcommand{\InstitutionName}{University or Institute Name}
 \newcommand{\HeroSubclaim}{One sentence tells the audience why the result matters and what to inspect first.}
 \newcommand{\HeroFigure}{../figures/hero-teaser.pdf}
@@ -27,6 +27,8 @@
 \newcommand{\ScanIcon}{../assets/icons/scan-qr-code-white.png}
 \newcommand{\InstitutionLogo}{../assets/institutions/current-logo.png}
 \newcommand{\ContactLine}{author@example.com}
+\newcommand{\LeftFooterNote}{\emph{For more methodology and theoretical details, please refer to the full paper.}}
+\newcommand{\RightFooterNote}{\emph{For additional experimental results, please refer to the full paper.}}
 
 \begin{document}
 \betterposter{
@@ -49,30 +51,27 @@
   \vfill
   \inlineqrcodewithicon{\PaperQRCode}{\ScanIcon}{\textbf{Scan for paper, code, and supplemental figures.}}
 }{
-  % LEFT: context before the claim.
+  % LEFT: context before the claim; no affiliation line under names.
   \title{\PosterClaimTitle}
   \author{\PosterAuthors}
-  \institution{\PosterAffiliations}
 
-  \section{Why it matters}
-  \begin{itemize}
-    \item The real problem in one line.
-    \item What current methods miss or cost.
-    \item Who should care about the result.
-  \end{itemize}
+  \section{Introduction}
+  Background, problem setting, and research question.
 
   \section{Method}
-  \begin{enumerate}
+  \begin{itemize}[label={},leftmargin=0pt]
     \item Input or experimental setup.
     \item Core transformation or intervention.
     \item Output, measurement, or decision.
-  \end{enumerate}
+  \end{itemize}
 
   \section{Design choices}
   Keep only details needed to trust the central claim.
 
   \vfill
-  \institutionbrand{\InstitutionLogo}{\InstitutionName}{0.62\textwidth}
+  \posterfootnote{\LeftFooterNote}
+  \vspace{0.7em}
+  \institutionbrand{\InstitutionLogo}{}{0.70\textwidth}
   \posterfootnote{Contact: \ContactLine}
 }{
   % RIGHT: technical conversation layer.
@@ -97,5 +96,8 @@
 
   \section{Scan}
   The QR code links to details that should not be forced into the poster.
+
+  \vfill
+  \posterfootnote{\RightFooterNote}
 }
 \end{document}
