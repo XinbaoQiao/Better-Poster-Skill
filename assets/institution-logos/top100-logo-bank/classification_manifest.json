@@ -7,11 +7,11 @@
   "scope": {
     "updated": [
       "logo_with_name",
+      "pure_logo/032-chinese-university-of-hong-kong.png",
       "classification_manifest.json"
     ],
     "unchanged": [
-      "pure_logo",
-      "csrankings_all_world_2016_2026_may2026_top100",
+      "pure_logo except 032-chinese-university-of-hong-kong.png",
       "original root badge/logo files outside these subfolders"
     ]
   },
@@ -19,6 +19,27 @@
     "Use official institution websites, official brand/identity pages, official PDFs, or existing official cache copies only.",
     "Reject campus photos, search/social icons, favicon-only assets, department/college/program lockups, spacing-guide artwork, and banner/background images.",
     "For SVGs, perform only standalone compatibility normalization such as viewBox case, currentColor resolution, and path-token spacing without changing logo geometry."
+  ],
+  "asset_repairs": [
+    {
+      "index": 32,
+      "institution": "Chinese University of Hong Kong",
+      "category": "pure_logo",
+      "file": "032-chinese-university-of-hong-kong.png",
+      "source_url": "https://www.iso.cuhk.edu.hk/english/documents/resource/cuhk-emblem/emblem-guideline.pdf",
+      "source_page": "https://cuhk.edu.hk/english/aboutus/mission.html",
+      "source_kind": "official_basic_emblem_pdf_crop",
+      "note": "Replaced department/faculty mark with the official CUHK Basic Emblem without university name.",
+      "quality": "official_school_level_pure_emblem",
+      "bytes": 277087,
+      "sha256": "a3b2aa5f99587640c571f1b102b9584307ad721aee7506fbc0c514dab9b14ff3",
+      "kind": "png",
+      "dimensions": [
+        1890,
+        1494
+      ],
+      "local_file": "pure_logo/032-chinese-university-of-hong-kong.png"
+    }
   ],
   "summary": {
     "logo_with_name_count": 100,

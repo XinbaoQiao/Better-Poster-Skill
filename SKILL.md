@@ -162,6 +162,8 @@ Potential misunderstanding to avoid:
 Institution logos:
 
 - Normalize sub-units to parent institutions.
+- Reject department, faculty, lab, program, and school-within-university lockups when the poster identity is the parent institution.
+- For CUHK, use The Chinese University of Hong Kong university-level emblem or wordmark only; do not use Department of Computer Science and Engineering marks.
 - Prefer curated logos from `assets/institution-logos/top100-logo-bank/` over runtime cache files.
 - Order logos by first-author affiliation order when available.
 - If the first author resolves to exactly one institution, prefer a logo-with-name/wordmark asset when available so the bottom strip feels intentionally filled.
