@@ -5,6 +5,14 @@
 Turn paper materials into editable Better Poster-style academic posters with a code agent.
 
 <p>
+  Distills public Better Poster guidance from
+  <a href="https://github.com/rafaelbailo/betterposter-latex-template">Rafael Bailo's Better Poster LaTeX template</a>
+  and
+  <a href="https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/">MIT Communication Lab's Toward an Even Better Poster</a>
+  into a practical code-agent skill.
+</p>
+
+<p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
   <img alt="Output: LaTeX and HTML" src="https://img.shields.io/badge/output-LaTeX%20%2B%20HTML-2563eb">
   <img alt="Poster style" src="https://img.shields.io/badge/poster-Better%20Poster-7c2d92">
@@ -32,7 +40,11 @@ Turn paper materials into editable Better Poster-style academic posters with a c
 
 ## English
 
+This skill distills public Better Poster guidance from Rafael Bailo's [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) and MIT Communication Lab's [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/) into a code-agent workflow for academic poster drafting.
+
 Better Poster Skill helps a code agent transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished academic poster drafts.
+
+It also adapts the core poster theme from the institution emblem, aligning title, key text, and accent colors with the selected branding.
 
 It is designed for researchers who want a fast, editable poster starting point instead of a blank canvas.
 
@@ -42,6 +54,7 @@ It is designed for researchers who want a fast, editable poster starting point i
 |---|---|
 | Branded QR generation | Provide paper, code, project, slides, or OpenReview URLs; the agent creates poster-ready QR codes and places the matching site icon in the center when supported. |
 | First-author institution branding | The agent reads affiliation text, prioritizes the first author's institution, and places matching university emblems when available. |
+| Adaptive theme colors | The agent derives the core text and accent color theme from the institution emblem, keeping the poster visually aligned with the selected branding. |
 | Fresh conference logo library | Conference logo assets refresh monthly from `CS-Conference-Logo-Maintainer`, reducing manual logo searching and replacement. |
 | Paper-aware poster drafting | The agent works from the paper itself, so the poster starts from the actual title, authors, claims, figures, and links instead of generic filler. |
 | Example-guided design reuse | New posters can borrow layout patterns from successful examples in `examples/`, helping future papers start from proven visual structures. |
@@ -139,7 +152,11 @@ Review institution logo copyright, trademark, and attribution requirements befor
 
 ## 中文
 
+这个 skill 基于 Rafael Bailo 的 [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) 和 MIT Communication Lab 的 [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/) 等公开 Better Poster 资料，蒸馏成面向 code agent 的学术海报生成流程。
+
 Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
+
+它也会根据校徽自适应核心主题色，让标题、重点文字和强调色与机构视觉标识保持统一。
 
 它适合希望快速得到高质量海报起点的研究者，而不是从空白页面开始排版。
 
@@ -149,6 +166,7 @@ Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论�
 |---|---|
 | 自动生成带图标的 QR code | 你提供 paper、code、project、slides 或 OpenReview 网址后，agent 会生成适合海报使用的 QR，并在支持时把对应站点图标放到 QR 中央。 |
 | 自动匹配第一作者单位校徽 | agent 会从论文或 affiliation 文本中优先识别第一作者单位，并在资源可用时直接放入对应校徽。 |
+| 核心自适应主题色 | agent 会根据校徽自动适配文字主题色和强调色，让海报主标题、重点文字与机构视觉标识保持统一。 |
 | 每月自动更新会议 Logo | 会议 Logo 资源会从 `CS-Conference-Logo-Maintainer` 定期刷新，减少手动查找和替换成本。 |
 | 基于论文内容生成海报 | 海报初稿会从论文标题、作者、核心结论、图表和链接出发，而不是套用空泛占位内容。 |
 | 参考过往成功示例 | 新论文可以从 `examples/` 中复用已经验证过的布局思路、信息密度和视觉组织方式。 |

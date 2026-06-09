@@ -2,7 +2,11 @@
 
 [仓库首页中文版](https://github.com/XinbaoQiao/Better-Poster-Skill#zh-cn) | [English](https://github.com/XinbaoQiao/Better-Poster-Skill#english)
 
+这个 skill 基于 Rafael Bailo 的 [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) 和 MIT Communication Lab 的 [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/) 等公开 Better Poster 资料，蒸馏成面向 code agent 的学术海报生成流程。
+
 Better Poster Skill 用于帮助 code agent 将论文材料转换为可编辑的 Better Poster 风格学术海报。
+
+它也会根据校徽自适应核心主题色，让标题、重点文字和强调色与机构视觉标识保持统一。
 
 当你有论文 PDF、LaTeX 源码压缩包、论文文本摘录、图表、截图、项目链接，或者已有海报草稿需要重新设计时，可以使用这个项目。
 
@@ -18,6 +22,7 @@ Better Poster Skill 用于帮助 code agent 将论文材料转换为可编辑的
 - 在本地依赖可用时生成 PDF/PNG 预览图。
 - 根据 paper、code、project、slides 等链接自动生成 QR/download 区域。
 - 在资源可匹配时自动加入机构和会议标识。
+- 根据校徽自动适配文字主题色和强调色，让海报主标题、重点文字与机构视觉标识保持统一。
 - 会议 Logo 资源库每月 10 号从 `CS-Conference-Logo-Maintainer` 自动更新，减少手动查找和替换成本。
 - 持续扩充的 `examples/` 示例库，帮助 agent 为新论文参考过往成功海报的结构、信息密度和视觉组织方式。
 
