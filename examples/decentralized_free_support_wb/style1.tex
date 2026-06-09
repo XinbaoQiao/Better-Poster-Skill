@@ -1,0 +1,156 @@
+\documentclass[a0paper,fleqn]{betterposter}
+
+\definecolor{institutionprimary}{RGB}{117,15,109}
+\definecolor{institutionsecondary}{RGB}{221,163,0}
+\institutionpalette{institutionprimary}{institutionsecondary}
+\renewcommand{\maincolumnbackgroundcolor}{institutionprimary}
+\renewcommand{\maincolumnfontcolor}{white}
+\renewcommand{\columnbackgroundcolor}{white}
+\renewcommand{\columnfontcolor}{black}
+\renewcommand{\fontsizetitle}{\fontsize{63}{71}\selectfont}
+\renewcommand{\fontsizeauthor}{\fontsize{30}{38}\selectfont}
+\renewcommand{\fontsizestandard}{\fontsize{35}{46}\selectfont}
+\renewcommand{\fontsizemain}{\fontsize{205}{232}\selectfont}
+\renewcommand{\fontsizesection}{\fontsize{47}{59}\selectfont}
+\renewcommand{\fontsizecaption}{\fontsize{24}{31}\selectfont}
+\renewcommand{\fontsizetheorysummary}{\fontsize{27}{35}\selectfont}
+
+\setlength{\leftbarwidth}{0.25\paperwidth}
+\setlength{\rightbarwidth}{0.21\paperwidth}
+\setlength{\columnmarginvertical}{0.020\paperheight}
+\setlength{\columnmarginhorizontal}{0.024\paperheight}
+\setlength{\maincolumnmarginvertical}{0.068\paperheight}
+\setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
+\setlength{\conferencelogosize}{0.070\paperheight}
+
+\newcommand{\PosterTitle}{Decentralized Free-Support Wasserstein Barycenter}
+\newcommand{\PosterAuthors}{Xinbao Qiao}
+\newcommand{\ContactEmail}{xinbaoqiao@cuhk.edu.hk}
+\newcommand{\PaperQRCode}{figures/qr/01-openreview.png}
+\newcommand{\ScanIcon}{../../assets/scan-icons/scan-white.png}
+\newcommand{\InstitutionLogoOne}{figures/logos/cuhk-wordmark.png}
+\newcommand{\ConferenceLogoOne}{../../assets/conference-logos/iclr-pdflatex.png}
+\newcommand{\ConferenceLogoTwo}{}
+\newcommand{\ConferenceLogoThree}{}
+
+\begin{document}
+\betterposter{
+  \maincolumn{
+    \posterclaimblock{%
+      {\color{white}Decentralized}%
+      \claimtiervspace
+      {\color{white}WB can learn}%
+      \claimtiervspace
+      {\color{white}free supports}%
+      \claimtiervspace
+      {\color{claimtiermiddle}by aligning moving}%
+      \claimtiervspace
+      {\color{claimtiermiddle}atom trajectories,}%
+      \claimtiervspace
+      {\color{claimtierlower}not fixed grids.}%
+    }
+  }{
+    \qrcode{\PaperQRCode}{\ScanIcon}{%
+      {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
+      {\fontsize{46}{58}\selectfont\bfseries OpenReview profile\\and contact.}\\[0.34em]
+      {\fontsize{36}{44}\selectfont Contact: \ContactEmail}%
+    }
+  }
+}{
+  {\fontsize{63}{71}\selectfont\bfseries\color{\postertitlecolor}\PosterTitle\par}
+  \vspace{0.20em}
+  {\fontsize{29}{37}\selectfont\color{mutedgray}\PosterAuthors\par}
+
+  \vspace{-0.70em}
+  \section{Introduction}
+  Wasserstein barycenters average probability measures while preserving the
+  geometry of mass. In decentralized settings, each node sees only a local
+  measure and communicates with neighbors.
+
+  Existing decentralized WB methods usually fix a common support grid, reducing
+  the task to consensus over weights (Dvurechensky et al., NeurIPS 2018;
+  Kroshnin et al., ICML 2019). Free support removes that common coordinate
+  system: atom locations move, atom identities become ambiguous, and the
+  optimization is nonconvex.
+
+  \section{Theory}
+  \theoremcard{Theorem: exact aggregation descends}{%
+    In a fully connected network,
+    \[
+      F(\mathbf B^{(r+1)})\le F(\mathbf B^{(r)})
+      -\eta(2-\eta)\Delta^{(r)}.
+    \]
+    Hence
+    \[
+      \min_{r<R}\Delta^{(r)}
+      \le \frac{F(\mathbf B^{(0)})-F_m^{\inf}}{R\eta(2-\eta)}.
+    \]}
+  \posterstatementsummary{The interpolation step is a relaxed MM update with an $\mathcal O(1/R)$ stationarity rate.}
+
+  \corollarycard{Corollary: Sinkhorn variant descends}{%
+    The entropy-regularized objective obeys the same descent form,
+    \[
+      F_\tau(\mathbf B^{(r+1)})
+      \le F_\tau(\mathbf B^{(r)})-\eta(2-\eta)\Delta_\tau^{(r)}.
+    \]}
+  \posterstatementsummary{Regularized local OT keeps the same convergence logic.}
+
+  \theoremcard{Theorem: topology adds a floor}{%
+    Over arbitrary connected graphs,
+    \[
+      \min_{r<R}\Delta_\tau^{(r)}
+      \le \mathcal O(1/R)
+      +C\sum_{s<R}\delta_s^2/R.
+    \]
+    Gossip mixing gives $\delta_{r+1}\le\rho^L(L_\tau\delta_r+\zeta_\tau)$.}
+  \posterstatementsummary{Finite-step gossip turns exact descent into inexact descent controlled by consensus error.}
+
+  \vspace{0.2em}
+  \posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}
+
+  \vfill
+  \institutionlogostrip{%
+    \institutionwordmarklogo{\InstitutionLogoOne}{\institutionlogosize}%
+  }
+}{
+  \section{Method}
+  Each agent computes an OT plan from its current barycenter estimate to its
+  local measure, moves atoms along McCann interpolation, and then gossips only
+  the $d\times m$ support matrix. Atom identities are inherited along
+  continuous support trajectories, making averaging of moving supports
+  well-defined.
+
+  \vspace{-0.55em}
+  \section{Primary Evidence}
+  \posterlabeledgraphic[width=\linewidth]{MNIST digit-2 barycenter}{figures/fixed_vs_free_round_snapshots.pdf}{MNIST fixed-vs-free support comparison.}
+  \vspace{-0.35em}
+  Free support reaches lower evaluated WB objective after 5 rounds while the
+  fixed-support baseline uses 5000 rounds on the 784-pixel grid.
+
+  \vspace{-0.55em}
+  \posterlabeledgraphic[width=\linewidth]{Objective convergence}{figures/decentralized_baseline_wb_objective_curves.pdf}{Decentralized baseline WB objective curves.}
+
+  \vspace{-0.65em}
+  \section{Experimental Takeaway}
+  \begin{postertakeaways}
+    \item MNIST: objective drops from 0.00825 to 0.00682, a 17.34\% reduction.
+    \item Resource use falls to 0.00995\% compute and 0.0199\% communication.
+    \item Truncated Gaussians: objective 0.0886 versus 0.1371--0.1392 for fixed-support decentralized baselines.
+  \end{postertakeaways}
+
+  \vspace{-0.65em}
+  \section{References}
+  \posterreferences{%
+    Agueh and Carlier, SIAM J. Math. Anal. 2011; Cuturi and Doucet, ICML 2014; Dvurechenskii et al., NeurIPS 2018; Kroshnin et al., ICML 2019.}
+
+  \vspace{0.1em}
+  \posterfullpapernote{For additional experimental results, please refer to the full paper.}
+
+  \vfill
+  \conferencelogostrip{%
+    \conferencelogo{\ConferenceLogoOne}{\conferencelogosize}%
+    \conferencelogo{\ConferenceLogoTwo}{\conferencelogosize}%
+    \conferencelogo{\ConferenceLogoThree}{\conferencelogosize}%
+  }
+}
+\end{document}
