@@ -44,9 +44,10 @@ This skill distills public Better Poster guidance from Rafael Bailo's [Better Po
 
 Better Poster Skill helps a code agent transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished academic poster drafts.
 
-It also adapts the core poster theme from the institution emblem, aligning title, key text, and accent colors with the selected branding.
+In short, the Better Poster experience is built around two reading distances:
 
-It is designed for researchers who want a fast, editable poster starting point instead of a blank canvas.
+1. From far away: can the audience grasp the poster's core theme and main contribution at a glance?
+2. Up close: can the audience quickly read the method logic, key experiments, and details supporting the conclusion?
 
 ### Highlights
 
@@ -158,9 +159,10 @@ Review institution logo copyright, trademark, and attribution requirements befor
 
 Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
 
-它也会根据校徽自适应核心主题色，让标题、重点文字和强调色与机构视觉标识保持统一。
+简单来说 Better Poster 经验旨在：
 
-它适合希望快速得到高质量海报起点的研究者，而不是从空白页面开始排版。
+1. 远处：观众能否一眼抓住 Poster 的核心主题与主要贡献。
+2. 近处：观众能否快速读到方法逻辑、关键实验和支撑结论的细节。
 
 ### 核心特点
 
