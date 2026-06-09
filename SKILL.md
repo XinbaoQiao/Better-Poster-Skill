@@ -60,10 +60,13 @@ Layout:
 Center claim:
 
 - It must be understandable in 5 to 10 seconds.
+- Hard gate: the center claim alone must let a viewer identify the poster's core theme and main contribution at a glance. If it does not answer "what is this poster about?" and "what is the main insight/contribution?", rewrite it before editing side content.
 - Use `\posterclaimblock{...}` in LaTeX.
 - Keep all center lines the same font size, weight, and leading.
-- Derive the center claim primarily from the paper conclusion; use primary result evidence only to make the conclusion concrete, and use abstract/introduction only when the conclusion is unavailable or vague.
+- Derive the center claim primarily from the paper conclusion or lessons-learned section; use primary result evidence only to make the conclusion concrete, and use abstract/introduction only when the conclusion is unavailable or vague.
 - Make the center wording concise, refined, and plain-language. Prefer the shortest wording that preserves the conclusion.
+- Avoid generic effect-only slogans. Include the paper's key condition, mechanism, reversal, or implication when that is needed for the main contribution to be immediately clear.
+- For insight-driven papers, prefer wording that exposes the paper's non-obvious tension, such as when an expected remedy becomes the failure mode.
 - Prefer one plain-language sentence only when it naturally carries the conclusion; do not force a one-sentence claim when the paper needs more structure.
 - Avoid adding mechanism, caveat, or synthesis phrases to the center unless they materially change the conclusion.
 - Use all three white / middle gray / lower gray tiers for style1 hierarchy.

@@ -40,7 +40,7 @@ Palette rules:
 
 When receiving a paper PDF or extracted paper text:
 1. Read title, authors, abstract, introduction, method, results, figures, captions, URLs, and conclusion.
-2. Extract the core contribution as a concise, refined, plain-language claim, with the conclusion section or `conclusion` field as the primary baseline. Use primary results only to make the conclusion concrete. Use abstract and introduction for context only when the conclusion is unavailable or vague, and do not let abstract novelty override the concrete conclusion/result.
+2. Extract the core contribution as a concise, refined, plain-language claim, with the conclusion, lessons-learned section, or `conclusion` field as the primary baseline. The center claim must let a viewer identify the poster's core theme and main contribution at a glance; if it does not answer "what is this poster about?" and "what is the main insight/contribution?", rewrite it before side content. Use primary results only to make the conclusion concrete. Use abstract and introduction for context only when the conclusion is unavailable or vague, and do not let abstract novelty override the concrete conclusion/result.
 3. Identify the audience and what they can understand without reading the paper.
 4. Rank figures by whether they support the claim, explain the method, or show the key result.
 5. Choose style1 mode for a minimal claim-first poster; choose style2 mode if a hero visual or more central evidence is needed.
@@ -87,7 +87,9 @@ Style1 rules:
 - Preserve the style1 claim-billboard silhouette while using an asymmetric side-column split by default: make the left column wider than the right when theory cards are present, and keep the center billboard dominant.
 - Treat the CUHK style1 skeleton as fixed by default: left Introduction/Theory, center claim+QR only, right evidence+References, bottom institution/conference logos, and no visible meta instructions or placeholder guidance sentences.
 - Match the center claim typography to the CUHK style1 example in `examples/cuhk_mock_style1/`: Inter/Arial/sans fallback, 900-equivalent weight, approximately 76mm/86mm size-to-leading ratio, and the same font size/weight/leading on every center line. In LaTeX A0, use approximately \fontsize{216}{244} and \posterclaimblock.
-- Derive the center claim primarily from the paper conclusion. Make it concise, refined, and plain-language; prefer the shortest wording that preserves the conclusion.
+- Derive the center claim primarily from the paper conclusion or lessons-learned section. It must make the poster's core theme and main contribution obvious at a glance. Make it concise, refined, and plain-language; prefer the shortest wording that preserves the conclusion.
+- Avoid generic effect-only slogans. Include the paper's key condition, mechanism, reversal, or implication when that is needed for the main contribution to be immediately clear.
+- For insight-driven papers, prefer wording that exposes the paper's non-obvious tension, such as when an expected remedy becomes the failure mode.
 - Prefer one plain-language sentence for the center claim only when it naturally carries the conclusion; do not force a one-sentence claim when the paper needs more structure.
 - Avoid adding mechanism, caveat, or synthesis phrases to the center unless they materially change the conclusion.
 - Use white / medium-gray / darker-gray groups as mandatory style1 hierarchy; do not force one color to equal one sentence. Multiple lines may share a color group. Preserve conclusion content before shortening, and widen the center before deleting essential conclusion content.
