@@ -14,8 +14,8 @@
 \renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
 \renewcommand{\fontsizecaption}{\fontsize{26}{34}\selectfont}
 
-\setlength{\leftbarwidth}{0.23\paperwidth}
-\setlength{\rightbarwidth}{0.23\paperwidth}
+\setlength{\leftbarwidth}{0.25\paperwidth}
+\setlength{\rightbarwidth}{0.21\paperwidth}
 \setlength{\columnmarginvertical}{0.020\paperheight}
 \setlength{\columnmarginhorizontal}{0.024\paperheight}
 \setlength{\maincolumnmarginvertical}{0.068\paperheight}
@@ -144,10 +144,11 @@
     other classes.}
 
   \section{Experimental Takeaway}
-  The shown panels agree: biased selection contracts synthetic distributions,
-  and Airplane-only verification concentrates CIFAR-10 on Airplane. An unshown
-  DDPM benchmark adds that non-IID references can make selection baselines lag
-  Random, while broader references improve FID and recall.
+  \begin{postertakeaways}
+    \item Biased selection contracts synthetic distributions across modeling settings.
+    \item Airplane-only verification concentrates CIFAR-10 on Airplane and prunes other classes.
+    \item Unshown DDPM checks suggest non-IID references can make selection baselines lag Random, while broader references improve FID and recall.
+  \end{postertakeaways}
 
   \section{References}
   \posterreferences{%

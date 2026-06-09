@@ -16,9 +16,9 @@
 \renewcommand{\fontsizesection}{\fontsize{51}{64}\selectfont}
 \renewcommand{\fontsizecaption}{\fontsize{26}{34}\selectfont}
 
-% 几何参数：左右栏 23%，中栏 54%；columnmarginvertical 控制侧栏整体上移。
-\setlength{\leftbarwidth}{0.23\paperwidth}
-\setlength{\rightbarwidth}{0.23\paperwidth}
+% 几何参数：左/中/右为 25%/54%/21%；左栏略宽以容纳 Theory 标题。
+\setlength{\leftbarwidth}{0.25\paperwidth}
+\setlength{\rightbarwidth}{0.21\paperwidth}
 \setlength{\columnmarginvertical}{0.020\paperheight}
 \setlength{\columnmarginhorizontal}{0.024\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
@@ -111,9 +111,11 @@
     The strongest result supports the central conclusion across the reported
     evaluation setting.}
 
-  \section{Conclusion}
-  The evidence indicates that the proposed analysis explains the observed
-  outcome and its boundary conditions.
+  \section{Takeaway}
+  \begin{postertakeaways}
+    \item The analysis explains the observed outcome.
+    \item Boundary conditions indicate where the conclusion should be checked.
+  \end{postertakeaways}
 
   \section{References}
   \posterreferences{%

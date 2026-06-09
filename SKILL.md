@@ -40,7 +40,7 @@ Core entry points:
 
 Use this as the default reusable foundation unless the user explicitly asks for another style:
 
-- Keep the CUHK-style 2:1 wide canvas with a fixed 23/54/23 left/center/right structure.
+- Keep the CUHK-style 2:1 wide canvas with a fixed asymmetric 25/54/21 left/center/right structure.
 - Keep the whole side-column content high by using a compact side-column vertical margin; do not solve vertical placement by only compressing the author-to-Introduction gap.
 - Keep visible template text generic and academic. Do not insert meta instructions such as "fill this section", "replace this text", or "method goes here".
 - Keep all source paths relative and reusable across `templates/`, `examples/`, and new paper folders.
@@ -52,7 +52,7 @@ Use `templates/classic.tex` and/or `templates/classic.html`.
 
 Layout:
 
-- Preserve the 23/54/23 left/center/right structure on a 2:1 wide canvas.
+- Preserve the 25/54/21 left/center/right structure on a 2:1 wide canvas.
 - Center column contains only the huge claim block and bottom QR/download row.
 - Left column contains `Introduction` followed by `Theory`.
 - Right column contains method/results/evidence sections and ends with `References`.
@@ -83,7 +83,8 @@ Left column:
 - Format left-column citation labels with the information structure `[author + venue/journal + year]`, rendered for example as `(Shumailov et al., Nature 2024)`, not numeric tags such as `[1]`.
 - `Theory` prioritizes propositions, theorems, assumptions, corollaries, and key equations.
 - Use `\theoremcard{...}{...}` for strongest theory and `\propositioncard{...}{...}` for supporting statements.
-- Keep proposition, theorem, lemma, and corollary card titles on one physical line; if a citation makes the title long, scale the title line down instead of allowing a wrap.
+- Use the asymmetric style1 width split with a wider left column when theory is present; theorem/proposition title legibility takes priority over matching left and right widths.
+- Keep proposition, theorem, lemma, and corollary card titles on one physical line at a consistent title font size. Shorten labels or use the wider left column before relying on per-title scaling.
 - After every proposition, lemma, theorem, or corollary card, add one outside-the-box plain-language line with `\posterstatementsummary{...}` explaining what the statement says.
 - Keep each theory summary line concise, refined, and easy to understand; it should explain the statement, not add new technical content.
 - Style theory summary lines as more important than full-paper guidance notes: non-italic, darker, and slightly larger or heavier than `\posterfullpapernote{...}`.
@@ -92,6 +93,7 @@ Left column:
 Right column:
 
 - Put experimental conclusions, result figures, ablations, and what-to-notice notes here.
+- Use bullet lists for `Takeaway` or `Experimental Takeaway` sections; keep each bullet concise and directly tied to the shown evidence or one explicitly named additional result.
 - Append final section `References` after all other right-column sections.
 - Render reference entries lighter than body text, for example with `\posterreferences{...}`.
 - After references, add `\posterfullpapernote{For additional experimental results, please refer to the full paper.}`.
@@ -221,7 +223,7 @@ python scripts/render_preview.py templates/evenbetter.html --out-dir /tmp/better
 QA checklist:
 
 - Main finding is clear at thumbnail scale.
-- 23/54/23 hierarchy is obvious for style1.
+- 25/54/21 claim-billboard hierarchy is obvious for style1.
 - Center lines use consistent size/weight/leading.
 - Every visible result is supported by source material.
 - Source figures are shown complete unless the user explicitly requested a crop.

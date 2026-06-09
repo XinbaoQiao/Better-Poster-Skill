@@ -18,10 +18,10 @@
 \renewcommand{\fontsizemain}{\fontsize{216}{244}\selectfont}
 \renewcommand{\fontsizesection}{\fontsize{50}{63}\selectfont}
 
-% 几何参数锁定：23/54/23 左/中/右比例；side column 整体靠上。
+% 几何参数锁定：25/54/21 左/中/右比例；左栏略宽以容纳 Theory 标题。
 % columnmarginvertical 控制左右栏整体起点，不用局部压缩 author 与 Introduction 间距。
-\setlength{\leftbarwidth}{0.23\paperwidth}
-\setlength{\rightbarwidth}{0.23\paperwidth}
+\setlength{\leftbarwidth}{0.25\paperwidth}
+\setlength{\rightbarwidth}{0.21\paperwidth}
 \setlength{\columnmarginvertical}{0.020\paperheight}
 \setlength{\columnmarginhorizontal}{0.026\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
@@ -134,9 +134,11 @@
     The strongest result supports the central conclusion across the reported
     evaluation setting.}
 
-  \section{Conclusion}
-  The evidence indicates that the proposed analysis explains the observed
-  outcome and its boundary conditions.
+  \section{Takeaway}
+  \begin{postertakeaways}
+    \item The analysis explains the observed outcome.
+    \item Boundary conditions indicate where the conclusion should be checked.
+  \end{postertakeaways}
 
   \section{References}
   \posterreferences{%

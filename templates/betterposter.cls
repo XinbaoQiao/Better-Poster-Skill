@@ -82,8 +82,10 @@
 \newsavebox{\posterclaimbox}
 \newsavebox{\posterstatementtitlebox}
 
-\setlength{\leftbarwidth}{0.23\paperwidth}
-\setlength{\rightbarwidth}{0.23\paperwidth}
+% Style1 采用非对称侧栏：左栏略宽以容纳 Theory 标题，右栏略窄，
+% 中栏仍保留 54% 的主结论 billboard 宽度。
+\setlength{\leftbarwidth}{0.25\paperwidth}
+\setlength{\rightbarwidth}{0.21\paperwidth}
 \setlength{\columnmarginvertical}{0.025\paperheight}
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
@@ -404,8 +406,8 @@
   \begingroup\setlength{\fboxsep}{0.42em}%
   \colorbox{sidebarcool}{%
     \begin{minipage}{0.94\linewidth}%
-      % 命题/定理标题必须保持单行；过长时自动等比缩小而不换行。
-      {\fontsize{#1}{#2}\selectfont #3\color{black}\posterfitoneline{#4}\par}%
+      % 命题/定理标题保持单行且统一字号；通过左栏宽度和标题精简保证不换行。
+      {\fontsize{#1}{#2}\selectfont #3\color{black}\mbox{#4}\par}%
       \vspace{0.14em}{\fontsize{35}{45}\selectfont\color{black}#5\par}%
     \end{minipage}}%
   \endgroup\par\vspace{0.45em}%
@@ -414,17 +416,22 @@
   \posterstatementcard{34}{43}{\bfseries}{#1}{#2}%
 }
 \newcommand{\theoremcard}[2]{%
-  \posterstatementcard{38}{47}{\bfseries}{#1}{#2}%
+  \posterstatementcard{34}{43}{\bfseries}{#1}{#2}%
 }
 \newcommand{\lemmacard}[2]{%
-  \posterstatementcard{36}{45}{\bfseries}{#1}{#2}%
+  \posterstatementcard{34}{43}{\bfseries}{#1}{#2}%
 }
 \newcommand{\corollarycard}[2]{%
-  \posterstatementcard{36}{45}{\bfseries}{#1}{#2}%
+  \posterstatementcard{34}{43}{\bfseries}{#1}{#2}%
 }
 \newcommand{\theorycard}[2]{\theoremcard{#1}{#2}}
 \newcommand{\posterstatementsummary}[1]{%
   \vspace{-0.24em}{\color{mutedgray}\fontsizetheorysummary\bfseries #1\par}\vspace{0.18em}%
+}
+\newenvironment{postertakeaways}{%
+  \begin{itemize}[leftmargin=1.25em,labelsep=0.36em,itemsep=0.18em,topsep=0.08em,parsep=0pt]%
+}{%
+  \end{itemize}%
 }
 \newcommand{\metric}[2]{%
   \begin{minipage}[t]{0.46\linewidth}%

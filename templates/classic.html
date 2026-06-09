@@ -21,7 +21,7 @@
 .theme-amber { --main:#f4b400; --main-fg:#111827; --accent:#946200; }
 * { box-sizing: border-box; }
 html, body { margin:0; background:#e5e7eb; color:var(--ink); font-family: Inter, Avenir, Helvetica, Arial, sans-serif; }
-.poster { width:1682mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:23% 54% 23%; overflow:hidden; background:#fff; }
+.poster { width:1682mm; height:841mm; margin:0 auto; display:grid; grid-template-columns:25% 54% 21%; overflow:hidden; background:#fff; }
 .side { padding:27mm 23mm; font-size:12.4mm; line-height:1.22; display:flex; flex-direction:column; overflow:hidden; }
 .main { padding:70mm 56mm 38mm; background:var(--main); color:var(--main-fg); display:flex; flex-direction:column; overflow:hidden; }
 h1 { margin:0 0 7mm; color:var(--title); font-size:clamp(21mm, 2.4vw, 30mm); line-height:1.04; font-weight:900; max-width:100%; }
@@ -55,8 +55,8 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; 
 .institution-brand img[data-loaded="true"], .conference-brand img[data-loaded="true"] { display:block; }
 .institution-name { display:none; }
 .theory-card { background:#f7f9fc; padding:5mm; margin:0 0 5mm; }
-.theory-card strong { display:block; color:#111827; font-size:13.8mm; line-height:1.12; margin-bottom:2mm; font-weight:900; }
-.theory-card.proposition strong { color:#111827; font-size:12.6mm; font-weight:800; }
+.theory-card strong { display:block; color:#111827; font-size:12.6mm; line-height:1.12; margin-bottom:2mm; font-weight:900; white-space:nowrap; }
+.theory-card.proposition strong { color:#111827; font-size:12.6mm; font-weight:900; }
 .theory-summary { color:var(--muted); font-size:11.4mm; line-height:1.18; font-style:normal; font-weight:700; margin:-2mm 0 4mm; }
 .formula { font-weight:800; color:#111827; }
 @media screen { body { padding:20px; } .poster { transform-origin:top center; transform:scale(.24); margin-bottom:-640mm; box-shadow:0 20px 70px rgba(15,23,42,.18); } }
@@ -122,8 +122,11 @@ p { margin:0 0 5mm; } ul { margin:0; padding-left:1.1em; } li { margin:1.5mm 0; 
     <div class="figure">Primary result panel.</div>
     <p>The strongest result supports the central conclusion across the reported evaluation setting.</p>
 
-    <h2>Conclusion</h2>
-    <p>The evidence indicates that the proposed analysis explains the observed outcome and its boundary conditions.</p>
+    <h2>Takeaway</h2>
+    <ul>
+      <li>The analysis explains the observed outcome.</li>
+      <li>Boundary conditions indicate where the conclusion should be checked.</li>
+    </ul>
 
     <h2>References</h2>
     <p class="references">[1] Author et al. Foundational result. Venue, Year.<br>[2] Author et al. Experimental study. Venue, Year.</p>
