@@ -289,6 +289,16 @@
         \centering\color{mutedgray}{\fontsize{24}{30}\selectfont #3}%
       \end{minipage}}}%
 }
+% 带标题图片：标题和图片共用同一个居中轴，避免标题偏离对应图片。
+\newcommand{\posterlabeledgraphic}[4][]{%
+  \begingroup%
+  \centering%
+  {\fontsizecaption\bfseries #2\par}%
+  \vspace{0.08em}%
+  \postergraphic[#1]{#3}{#4}%
+  \par%
+  \endgroup%
+}
 % 单图行横排格式：默认左图右文；可选参数 [right] 表示右图左文。
 % 该格式用于一行只有一张图时保留完整图片，并给右/左侧留出解释文字空间。
 \newcommand{\posterimagetextrow}[4][left]{%
