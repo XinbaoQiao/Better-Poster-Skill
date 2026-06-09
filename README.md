@@ -56,6 +56,8 @@ It is designed for researchers who want a fast, editable poster starting point i
 | First-author institution branding | The agent reads affiliation text, prioritizes the first author's institution, and places matching university emblems when available. |
 | Adaptive theme colors | The agent derives the core text and accent color theme from the institution emblem, keeping the poster visually aligned with the selected branding. |
 | Fresh conference logo library | Conference logo assets refresh monthly from `CS-Conference-Logo-Maintainer`, reducing manual logo searching and replacement. |
+| Theory-friendly poster layout | The claim-first template gives the theory sidebar more room, keeping theorem and proposition titles readable while preserving the dominant center claim. |
+| Scan-friendly takeaways | Experimental or practical takeaways are summarized as concise bullets, making the right column easier to read during a poster conversation. |
 | Paper-aware poster drafting | The agent works from the paper itself, so the poster starts from the actual title, authors, claims, figures, and links instead of generic filler. |
 | Example-guided design reuse | New posters can borrow layout patterns from successful examples in `examples/`, helping future papers start from proven visual structures. |
 | Editable by default | Outputs stay in LaTeX and/or HTML, so authors can keep refining the poster after the first draft. |
@@ -74,7 +76,7 @@ It is designed for researchers who want a fast, editable poster starting point i
 
 | Area | What you get |
 |---|---|
-| Templates | Reusable Better Poster-style layouts for claim-first and evidence-focused posters |
+| Templates | Reusable Better Poster-style layouts for claim-first, theory-aware, and evidence-focused posters |
 | Outputs | LaTeX source, optional standalone HTML, and rendered PDF/PNG previews when local tools are available |
 | Assets | QR/download rows, institution marks, auto-refreshed conference marks, and a dedicated OpenReview QR icon |
 | Examples | A growing `examples/` library that helps the agent reuse successful structures for new papers |
@@ -168,6 +170,8 @@ Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论�
 | 自动匹配第一作者单位校徽 | agent 会从论文或 affiliation 文本中优先识别第一作者单位，并在资源可用时直接放入对应校徽。 |
 | 核心自适应主题色 | agent 会根据校徽自动适配文字主题色和强调色，让海报主标题、重点文字与机构视觉标识保持统一。 |
 | 每月自动更新会议 Logo | 会议 Logo 资源会从 `CS-Conference-Logo-Maintainer` 定期刷新，减少手动查找和替换成本。 |
+| 更适合理论内容的版面 | 主结论模板会给左侧理论栏更多空间，让定理、命题等标题更容易保持清晰可读，同时保留中间主结论的视觉主导地位。 |
+| 更易扫读的 takeaway | 实验或实践 takeaway 会整理成简洁要点列表，方便在海报交流时快速定位重点。 |
 | 基于论文内容生成海报 | 海报初稿会从论文标题、作者、核心结论、图表和链接出发，而不是套用空泛占位内容。 |
 | 参考过往成功示例 | 新论文可以从 `examples/` 中复用已经验证过的布局思路、信息密度和视觉组织方式。 |
 | 默认保持可编辑 | 输出保留 LaTeX 和/或 HTML 源码，方便作者继续精修、替换内容和适配会议要求。 |
@@ -186,7 +190,7 @@ Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论�
 
 | 模块 | 内容 |
 |---|---|
-| 模板 | 可复用的 Better Poster 风格布局，支持主结论优先和证据展示优先两类海报 |
+| 模板 | 可复用的 Better Poster 风格布局，支持主结论优先、理论友好和证据展示优先的海报 |
 | 输出 | LaTeX 源码、按需生成的独立 HTML，以及本地工具可用时的 PDF/PNG 预览 |
 | 资源 | QR/download 区域、机构标识、自动刷新的会议标识，以及专用 OpenReview QR 中心图标 |
 | 示例 | 持续扩充的 `examples/`，帮助 agent 为新论文参考过往成功结构 |
