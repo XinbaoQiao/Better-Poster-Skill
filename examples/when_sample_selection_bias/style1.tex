@@ -79,7 +79,7 @@
       \qquad
       \mathbb{E}\!\left[\mathbb{W}_{2}^{2}(\mathcal{N}_{t},\mathcal{N}_{0})\right]\to\infty.
     \]}
-  \posterstatementsummary{Replacing data eventually removes variance and drifts away.}
+  \posterstatementsummary{Synthetic-data replacement loops lose variance and drift from reality.}
 
   \propositioncard{Proposition 2: Accumulate paradigm (Kazdan et al., ICML 2025)}{%
     Under unbiased accumulation,
@@ -89,7 +89,7 @@
     \]
     Thus $\mathbb{E}[\mathbb{W}_{2}^{2}]
     \to 2(1-\sqrt{\alpha_{n}})\operatorname{Tr}(\bar{\boldsymbol{\Sigma}}_{0})$.}
-  \posterstatementsummary{Unbiased accumulation keeps diversity from fully collapsing.}
+  \posterstatementsummary{Unbiased accumulation can preserve diversity and slow collapse.}
 
   \theoremcard{Theorem 1: local selection collapses diversity}{%
     With top-$\alpha$ selection toward a local ideal $\mathbf{u}^{*}$,
@@ -99,7 +99,7 @@
       \bar{\boldsymbol{\Sigma}}_{t}\!\to \mathbf{0}.
     \]
     Local fidelity erases global coverage.}
-  \posterstatementsummary{Local selection gains fit by erasing global coverage.}
+  \posterstatementsummary{Local selection keeps familiar samples but erases global modes.}
 
   \theoremcard{Theorem 2: diversity decays by power law}{%
     If the trajectory remains in the local basin,
@@ -108,7 +108,7 @@
       = \mathcal{O}_{a.s.}(t^{-\psi}).
     \]
     Tail erosion has an explicit rate.}
-  \posterstatementsummary{Once trapped locally, diversity shrinks at a predictable rate.}
+  \posterstatementsummary{Once loops lock onto a local view, tail diversity decays predictably.}
 
   \theoremcard{Theorem 3: drift controls true-manifold risk}{%
     For filtered distribution $\mathcal{D}_{t}$ and true manifold
@@ -119,7 +119,7 @@
       +\mathcal{R}_{\mathcal{D}_{t}}(h_{t};g_{t})
       +\mathcal{O}(\ell\delta).
     \]}
-  \posterstatementsummary{Distribution drift upper-bounds risk on true data.}
+  \posterstatementsummary{Drift from the true manifold controls downstream risk.}
 
   \vspace{0.2em}
   \posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}
