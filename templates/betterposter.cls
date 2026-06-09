@@ -288,6 +288,28 @@
         \centering\color{mutedgray}{\fontsize{24}{30}\selectfont #3}%
       \end{minipage}}}%
 }
+% 单图行横排格式：默认左图右文；可选参数 [right] 表示右图左文。
+% 该格式用于一行只有一张图时保留完整图片，并给右/左侧留出解释文字空间。
+\newcommand{\posterimagetextrow}[4][left]{%
+  \begingroup%
+  \ifthenelse{\equal{#1}{right}}{%
+    \begin{minipage}[t]{0.42\linewidth}%
+      \RaggedRight #4\par%
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{0.52\linewidth}%
+      \postergraphic[width=\linewidth]{#2}{#3}%
+    \end{minipage}%
+  }{%
+    \begin{minipage}[t]{0.52\linewidth}%
+      \postergraphic[width=\linewidth]{#2}{#3}%
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{0.42\linewidth}%
+      \RaggedRight #4\par%
+    \end{minipage}%
+  }%
+  \par%
+  \endgroup%
+}
 \newcommand{\institutionbrand}[3]{%
   \IfFileExists{#1}{%
     \noindent\includegraphics[width=#3,height=0.120\paperheight,keepaspectratio]{#1}%

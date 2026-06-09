@@ -186,6 +186,7 @@ Figures:
 - Do not crop source figures by default.
 - If a paper figure is dense, first scale the full figure, choose fewer figures, or use a different complete source figure.
 - Crop a source figure only when the user explicitly requests it, and never crop in a way that changes axes, legends, labels, or scientific meaning.
+- If a row contains exactly one figure, use a side-by-side image-text row when it improves scanability: left image/right text by default, or right image/left text when that fits the surrounding flow better.
 
 Palette:
 
