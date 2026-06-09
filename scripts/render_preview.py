@@ -28,6 +28,7 @@ PROXY_ENV_KEYS = (
 
 HTML_SUFFIXES = {".html", ".htm"}
 DEFAULT_OUT_DIR = Path(tempfile.gettempdir()) / "better-poster-preview"
+DEFAULT_HTML_TIMEOUT_SECONDS = 45
 
 PLACEHOLDER_PATTERNS = (
     "Main finding goes here",
@@ -66,17 +67,29 @@ def latex_search_env(cwd: Path, env: dict[str, str]) -> dict[str, str]:
     return latex_env
 
 
-def run(cmd: list[str], cwd: Path, env: dict[str, str]) -> subprocess.CompletedProcess[str]:
+def run(
+    cmd: list[str],
+    cwd: Path,
+    env: dict[str, str],
+    timeout: int | None = None,
+) -> subprocess.CompletedProcess[str]:
     print("$ " + " ".join(cmd))
-    return subprocess.run(
-        cmd,
-        cwd=str(cwd),
-        env=env,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
+    try:
+        return subprocess.run(
+            cmd,
+            cwd=str(cwd),
+            env=env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        output = exc.stdout or ""
+        if isinstance(output, bytes):
+            output = output.decode("utf-8", errors="ignore")
+        raise RuntimeError(f"command timed out after {timeout}s: {' '.join(cmd)}\n{output}") from exc
 
 
 def warn_placeholders(path: Path) -> None:
@@ -228,7 +241,92 @@ def copy_file(source: Path, out_dir: Path) -> Path:
     return target
 
 
-def render_html(html_path: Path, out_dir: Path, dpi: int, env: dict[str, str]) -> tuple[Path, Path | None, Path | None]:
+def browser_screenshot_commands(browser: str, screenshot: Path, window_size: str, file_url: str) -> list[list[str]]:
+    name = Path(browser).name.lower()
+    if "firefox" in name:
+        return [
+            [
+                browser,
+                "--headless",
+                f"--window-size={window_size}",
+                "--screenshot",
+                str(screenshot),
+                file_url,
+            ]
+        ]
+    return [
+        [
+            browser,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-sandbox",
+            "--disable-dev-shm-usage",
+            f"--window-size={window_size}",
+            f"--screenshot={screenshot}",
+            file_url,
+        ],
+        [
+            browser,
+            "--headless",
+            "--disable-gpu",
+            "--no-sandbox",
+            "--disable-dev-shm-usage",
+            f"--window-size={window_size}",
+            f"--screenshot={screenshot}",
+            file_url,
+        ],
+    ]
+
+
+def render_html_browser_screenshot(
+    html_path: Path,
+    out_dir: Path,
+    env: dict[str, str],
+    timeout: int,
+    window_size: str,
+) -> Path | None:
+    browsers = [
+        shutil.which(name)
+        for name in (
+            "chromium",
+            "chromium-browser",
+            "google-chrome",
+            "google-chrome-stable",
+            "firefox",
+        )
+    ]
+    screenshot = out_dir / f"{html_path.stem}.browser.png"
+    file_url = html_path.resolve().as_uri()
+
+    for browser in [path for path in browsers if path]:
+        for cmd in browser_screenshot_commands(browser, screenshot, window_size, file_url):
+            try:
+                if screenshot.exists():
+                    screenshot.unlink()
+                result = run(cmd, html_path.parent, env, timeout=timeout)
+            except RuntimeError as exc:
+                print(f"Warning: browser screenshot failed: {exc}", file=sys.stderr)
+                continue
+            print(result.stdout[-2000:])
+            if result.returncode == 0 and screenshot.exists() and screenshot.stat().st_size > 0:
+                return screenshot
+            print(f"Warning: browser screenshot command failed with exit {result.returncode}", file=sys.stderr)
+
+    print(
+        "Warning: no HTML render preview was produced; install WeasyPrint or a headless browser.",
+        file=sys.stderr,
+    )
+    return None
+
+
+def render_html(
+    html_path: Path,
+    out_dir: Path,
+    dpi: int,
+    env: dict[str, str],
+    html_timeout: int,
+    html_window_size: str,
+) -> tuple[Path, Path | None, Path | None]:
     warn_placeholders(html_path)
     copied_html = copy_file(html_path, out_dir)
     pdf_path = out_dir / f"{html_path.stem}.pdf"
@@ -236,11 +334,22 @@ def render_html(html_path: Path, out_dir: Path, dpi: int, env: dict[str, str]) -
     try:
         from weasyprint import HTML  # type: ignore
     except Exception:
-        print("Warning: WeasyPrint is not installed; HTML copied but not rendered.", file=sys.stderr)
-        return copied_html, None, None
+        print("Warning: WeasyPrint is not installed; trying a headless browser screenshot.", file=sys.stderr)
+        preview = render_html_browser_screenshot(html_path, out_dir, env, html_timeout, html_window_size)
+        return copied_html, None, preview
 
-    HTML(filename=str(html_path), base_url=str(html_path.parent)).write_pdf(str(pdf_path))
-    preview = render_pdf(pdf_path, out_dir, dpi, env)
+    try:
+        HTML(filename=str(html_path), base_url=str(html_path.parent)).write_pdf(str(pdf_path))
+    except Exception as exc:
+        print(f"Warning: WeasyPrint failed ({exc}); trying a headless browser screenshot.", file=sys.stderr)
+        preview = render_html_browser_screenshot(html_path, out_dir, env, html_timeout, html_window_size)
+        return copied_html, None, preview
+
+    try:
+        preview = render_pdf(pdf_path, out_dir, dpi, env)
+    except Exception as exc:
+        print(f"Warning: PDF-to-PNG preview failed ({exc}); trying a headless browser screenshot.", file=sys.stderr)
+        preview = render_html_browser_screenshot(html_path, out_dir, env, html_timeout, html_window_size)
     return copied_html, pdf_path, preview
 
 
@@ -257,6 +366,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--passes", type=int, default=2, help="Manual engine passes when latexmk is unavailable.")
     parser.add_argument("--dpi", type=int, default=160, help="PNG preview DPI.")
     parser.add_argument("--no-render", action="store_true", help="Compile/copy only; do not render PNG preview.")
+    parser.add_argument(
+        "--html-timeout",
+        type=int,
+        default=DEFAULT_HTML_TIMEOUT_SECONDS,
+        help="Seconds before a headless browser HTML preview attempt is stopped.",
+    )
+    parser.add_argument(
+        "--html-window-size",
+        default="2200,1200",
+        help="Browser screenshot viewport as WIDTH,HEIGHT.",
+    )
     return parser.parse_args()
 
 
@@ -278,7 +398,14 @@ def main() -> int:
                     copied_html = copy_file(source_root, out_dir)
                     print(f"HTML: {copied_html}")
                 else:
-                    html_out, pdf_out, preview = render_html(source_root, out_dir, args.dpi, env)
+                    html_out, pdf_out, preview = render_html(
+                        source_root,
+                        out_dir,
+                        args.dpi,
+                        env,
+                        args.html_timeout,
+                        args.html_window_size,
+                    )
                     print(f"HTML: {html_out}")
                     if pdf_out:
                         print(f"PDF: {pdf_out}")

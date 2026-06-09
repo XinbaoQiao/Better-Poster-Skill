@@ -22,6 +22,9 @@ Core entry points:
 - `templates/evenbetter.tex` and `templates/evenbetter.html`: style2 evidence canvas.
 - `templates/betterposter.cls`: shared LaTeX layout commands.
 - `scripts/render_preview.py`: compile/render local previews.
+- `scripts/audit_poster_package.py`: final package audit for portability, broken assets, stale artifacts, and direct SVG use.
+- `scripts/prepare_poster_logo.py`: convert SVG/raster logos to pdflatex-safe PNG and theme-tint marks that would disappear on the target background.
+- `requirements.txt`: minimal Python runtime dependency list for helper scripts; install it before QR/logo/institution-logo workflows when the environment is fresh.
 
 ## Operating Rules
 
@@ -35,6 +38,11 @@ Core entry points:
 8. Keep paths relative. Do not write machine-specific absolute paths into generated poster files.
 9. Never claim compilation/rendering succeeded unless the command actually ran.
 10. If content clips or overflows, remove lower-priority content before shrinking text below readability.
+11. Package LaTeX outputs as portable folders: if a poster uses `\documentclass{betterposter}`, include a local `betterposter.cls` by running `scripts/audit_poster_package.py --fix-portable` before delivery.
+12. Treat raw SVG references in LaTeX as a failure for pdflatex portability; convert logos/icons to renderer-verified PNG or PDF first.
+13. Run final package cleanup with `scripts/audit_poster_package.py --clean`; do not leave TeX aux files or unreferenced figure assets in the delivered poster folder.
+14. HTML output must be preview-rendered when possible, not only syntax-copied. If local renderers are unavailable or time out, report that exact limitation in the final response.
+15. Do not infer the conference venue from bibliography entries, baseline citations, or related-work venues. Use only the paper metadata, user instruction, submission link, accepted-venue text, or an explicit project context.
 
 ## CUHK Style1 Contract
 
@@ -101,6 +109,9 @@ Right column:
 - Render reference entries lighter than body text, for example with `\posterreferences{...}`.
 - After references, add `\posterfullpapernote{For additional experimental results, please refer to the full paper.}`.
 - Put conference/venue logos at the bottom when known.
+- Treat the right column as clipped if `References`, the final full-paper note, or a known conference logo is not visible above the bottom edge in the rendered preview.
+- Resolve right-column overflow by removing or merging lower-priority material before shrinking body text: first remove secondary figures, then optional method equations, then extra takeaway bullets, then compress reference wording.
+- Do not use bottom `\vfill` spacing or a logo strip placement that pushes references or guidance text out of the panel.
 
 QR row:
 
@@ -185,7 +196,31 @@ Conference logos:
 - Treat `assets/conference-logos/` as the only canonical in-repo conference logo directory; it is refreshed by `.github/workflows/sync-conference-logos.yml` from `CS-Conference-Logo-Maintainer` on the 10th day of each month.
 - In style1, conference/venue logos are hard identity information: put them at the bottom of the right sidebar when the venue is known, and reduce lower-priority text rather than dropping the logo.
 - For pdflatex, use renderer-verified PDF/PNG conversions of SVG sources.
+- Do not place a raw `.svg` conference logo in LaTeX. Prepare a PNG/PDF first, then reference the converted asset.
+- Do not trust file extensions alone: run `file <logo>` or equivalent before using a raster-looking asset. If a `.png` is actually SVG/XML content, reject it for pdflatex and generate a true PNG/PDF.
+- Prefer checked-in `*-pdflatex.png` or `*-pdflatex.pdf` assets for known SVG logos. For ICLR, use `assets/conference-logos/iclr-pdflatex.png`, not raw `iclr.svg`.
+- White or near-white logos on white sidebars should be tinted to the poster's primary theme color; dark marks on dark backgrounds should be converted to white. Use `scripts/prepare_poster_logo.py` for this adaptive conversion.
+- If the venue is uncertain, omit the conference logo instead of implying a venue that is not supported by the source.
 - Use `\conferencelogostrip{...}` and `\conferencelogo{path}{\conferencelogosize}` so the general width/height caps apply.
+- Do not locally shrink `\conferencelogosize` below `0.070\paperheight` for a style1 poster unless the user explicitly accepts a smaller identity mark. If the logo collides with content, compress or remove lower-priority right-column text first.
+- After adding or changing a conference logo, compile the LaTeX poster and render the PDF to PNG. The stop condition is visual evidence that the correct venue logo is visible, readable, inside the right panel, and not overlapping References or the final guidance note.
+
+Example:
+
+```bash
+python scripts/prepare_poster_logo.py \
+  assets/conference-logos/iclr.svg \
+  --out assets/conference-logos/iclr-pdflatex.png \
+  --theme '#750f6d' \
+  --target-background '#ffffff' \
+  --width 1600
+```
+
+Logo renderer fallback order:
+
+- `scripts/prepare_poster_logo.py` tries `rsvg-convert`, CairoSVG, Python GI/librsvg+cairo, then ImageMagick. Do not assume a user has CairoSVG or system librsvg; prefer committed pdflatex-safe assets when they exist.
+- Treat ImageMagick SVG output as a last-resort fallback and visually inspect it before use; some environments silently render incomplete SVGs.
+- If no reliable SVG renderer is available and no committed pdflatex-safe asset exists, stop and report the missing renderer instead of fabricating or substituting a different conference logo.
 
 Figures:
 
@@ -221,7 +256,17 @@ python scripts/render_preview.py templates/classic.tex --out-dir /tmp/better-pos
 python scripts/render_preview.py templates/evenbetter.tex --out-dir /tmp/better-poster-preview/evenbetter-latex
 python scripts/render_preview.py templates/classic.html --out-dir /tmp/better-poster-preview/classic-html
 python scripts/render_preview.py templates/evenbetter.html --out-dir /tmp/better-poster-preview/evenbetter-html
+python scripts/audit_poster_package.py examples/my_poster --fix-portable --clean --strict
 ```
+
+For delivered LaTeX examples, also compile once from the poster directory itself after `betterposter.cls` has been copied there:
+
+```bash
+cd examples/my_poster
+pdflatex -interaction=nonstopmode -halt-on-error style1.tex
+```
+
+For HTML, run `render_preview.py` without `--no-render`. The script uses WeasyPrint when installed and otherwise attempts a timed headless-browser screenshot. A timeout or missing renderer is a reportable preview limitation, not a successful visual QA pass.
 
 QA checklist:
 
@@ -234,6 +279,9 @@ QA checklist:
 - Left bottom institution logos and right bottom conference logos are visible when provided.
 - Last right-column section and guidance line are visible above the bottom edge.
 - LaTeX/HTML match when both are requested.
+- LaTeX packages include local `betterposter.cls` and no direct SVG references.
+- Final poster folders contain no TeX build aux files or unreferenced `figures/` assets.
+- HTML has either a rendered PDF/PNG/browser screenshot preview or an explicitly reported renderer limitation.
 
 ## Final Response
 

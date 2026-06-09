@@ -25,12 +25,27 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Install logo conversion dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+          python -m pip install --upgrade pip Pillow
+
       - name: Sync conference logos
         run: |
           python scripts/sync_conference_logos.py \
             --source-repo https://github.com/XinbaoQiao/CS-Conference-Logo-Maintainer.git \
             --source-subdir assets/logos \
             --target-dir assets/conference-logos
+
+      - name: Refresh pdflatex-safe logo assets
+        run: |
+          python scripts/prepare_poster_logo.py \
+            assets/conference-logos/iclr.svg \
+            --out assets/conference-logos/iclr-pdflatex.png \
+            --theme '#750f6d' \
+            --target-background '#ffffff' \
+            --width 1600
 
       - name: Commit logo updates
         run: |

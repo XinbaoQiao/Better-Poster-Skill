@@ -27,6 +27,8 @@ from urllib.parse import urlparse
 
 from PIL import Image
 
+from prepare_poster_logo import prepare_logo
+
 
 PROXY_ENV_KEYS = (
     "http_proxy",
@@ -214,34 +216,20 @@ def crop_white(image: Image.Image) -> Image.Image:
 def load_logo_image(logo_path: Path, env: dict[str, str]) -> Image.Image:
     logo_path = logo_path.resolve()
     if logo_path.suffix.lower() == ".svg":
-        convert = shutil.which("convert")
-        if not convert:
-            raise RuntimeError(f"ImageMagick convert is required to rasterize SVG logos: {logo_path}")
+        prepared = logo_path.with_name(f"{logo_path.stem}-pdflatex.png")
+        if prepared.exists():
+            return Image.open(prepared).convert("RGBA")
         with tempfile.TemporaryDirectory(prefix="better-poster-logo-") as tmp:
             out_png = Path(tmp) / "logo.png"
-            result = run(
-                [
-                    convert,
-                    "-background",
-                    "none",
-                    "-density",
-                    "600",
-                    str(logo_path),
-                    "-trim",
-                    "+repage",
-                    "-resize",
-                    "430x430",
-                    "-gravity",
-                    "center",
-                    "-extent",
-                    "512x512",
-                    f"PNG32:{out_png}",
-                ],
-                logo_path.parent,
-                env,
+            prepare_logo(
+                logo_path,
+                out_png,
+                theme=(117, 15, 109),
+                target_background=(255, 255, 255),
+                width=900,
+                padding=8,
+                force_tint=False,
             )
-            if result.returncode != 0:
-                raise RuntimeError(f"Failed to rasterize SVG logo {logo_path}:\n{result.stdout[-2000:]}")
             return Image.open(out_png).convert("RGBA")
     return Image.open(logo_path).convert("RGBA")
 
