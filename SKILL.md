@@ -171,6 +171,7 @@ Institution logos:
 - Normalize raster logo whitespace before placing multiple logos.
 - Place logos with `\institutionlogostrip{...}` and `\institutionlogo{path}{\institutionlogosize}`.
 - For one wide wordmark, place it with `\institutionwordmarklogo{path}{\institutionlogosize}` to cap width while preserving aspect ratio.
+- Use the template logo helpers instead of manual `includegraphics` sizing; bottom logos must remain fully inside the left/right panel bounds.
 
 Conference logos:
 
@@ -178,6 +179,13 @@ Conference logos:
 - Treat `assets/conference-logos/` as the only canonical in-repo conference logo directory; it is refreshed by `.github/workflows/sync-conference-logos.yml` from `CS-Conference-Logo-Maintainer` on the 10th day of each month.
 - In style1, put them at the bottom of the right sidebar.
 - For pdflatex, use renderer-verified PDF/PNG conversions of SVG sources.
+- Use `\conferencelogostrip{...}` and `\conferencelogo{path}{\institutionlogosize}` so the general width/height caps apply.
+
+Figures:
+
+- Do not crop source figures by default.
+- If a paper figure is dense, first scale the full figure, choose fewer figures, or use a different complete source figure.
+- Crop a source figure only when the user explicitly requests it, and never crop in a way that changes axes, legends, labels, or scientific meaning.
 
 Palette:
 
@@ -213,6 +221,7 @@ QA checklist:
 - 23/54/23 hierarchy is obvious for style1.
 - Center lines use consistent size/weight/leading.
 - Every visible result is supported by source material.
+- Source figures are shown complete unless the user explicitly requested a crop.
 - QR and logos stay inside their panels.
 - Left bottom institution logos and right bottom conference logos are visible when provided.
 - Last right-column section and guidance line are visible above the bottom edge.

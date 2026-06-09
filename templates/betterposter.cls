@@ -86,7 +86,8 @@
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
-\setlength{\institutionlogosize}{0.105\paperheight}
+% 底部 logo 的默认上限必须保守：左右栏内容偏满时，logo 仍需留在栏内。
+\setlength{\institutionlogosize}{0.068\paperheight}
 \setlength{\scaniconsize}{0.078\paperheight}
 \setlength{\posterclaimleading}{244pt}
 
@@ -306,7 +307,7 @@
 }
 \newcommand{\posterlogospaced}[2]{%
   \posterifnonempty{#1}{%
-    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,keepaspectratio]{#1}}\hspace{0.028\linewidth}\allowbreak}{}%
+    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.26\linewidth,keepaspectratio]{#1}}\hspace{0.028\linewidth}\allowbreak}{}%
   }{}%
 }
 \newcommand{\posterlogorow}[3]{%
@@ -321,7 +322,7 @@
 }
 \newcommand{\posterlogo}[2]{%
   \posterifnonempty{#1}{%
-    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,keepaspectratio]{#1}}\hspace{0.030\linewidth}\allowbreak}{}%
+    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.26\linewidth,keepaspectratio]{#1}}\hspace{0.030\linewidth}\allowbreak}{}%
   }{}%
 }
 \newcommand{\posterlogoslot}[3]{%
@@ -350,7 +351,7 @@
 \newcommand{\conferencelogo}[2]{%
   \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.90\linewidth,keepaspectratio]{#1}}%
+      \raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.66\linewidth,keepaspectratio]{#1}}%
       \hspace{0.030\linewidth}\allowbreak%
     }{}%
   }{}%

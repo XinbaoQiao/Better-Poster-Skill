@@ -23,13 +23,14 @@ Design requirements:
 - Keep the left column bulletless, including theorem/proposition cards and any compact lists.
 - End the left sidebar content with `\posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}`.
 - The left column bottom contains institution branding only; no badge border, no separate institution-name text, and no contact line. Normalize affiliation sub-units to parent institutions, order logos by the first author's affiliation order, show all resolved logos, and left-align the strip with the title.
-- If the first author has exactly one resolved institution, prefer a logo-with-name/wordmark asset and place it with `\institutionwordmarklogo{...}{...}`. Before rendering multiple logos, trim transparent or near-background whitespace with `scripts/normalize_institution_logos.py`; place pure emblems with fixed target height and compact equal spacing so their top and bottom edges align.
+- If the first author has exactly one resolved institution, prefer a logo-with-name/wordmark asset and place it with `\institutionwordmarklogo{...}{...}`. Before rendering multiple logos, trim transparent or near-background whitespace with `scripts/normalize_institution_logos.py`; place pure emblems through the bounded logo helpers so their top and bottom edges align and the strip stays inside the panel.
 - The center claim should use `\posterclaimblock{...}` by default. Keep all center lines at the same size and line spacing.
 - The right column ends with a `References` section. Render reference entries lighter than body text, for example with `\posterreferences{...}`, then add `\posterfullpapernote{For additional experimental results, please refer to the full paper.}`.
-- Conference/venue logos from `assets/conference-logos` belong at the bottom of the right column and should use the same enlarged target height as institution emblems. HTML may use SVG directly, while pdflatex should include renderer-verified PDF or high-resolution PNG conversions of SVG sources, for example `ICML-logo-pdflatex.pdf`, after previewing for crop or incomplete-render issues.
+- Conference/venue logos from `assets/conference-logos` belong at the bottom of the right column and should use the bounded `\conferencelogostrip{...}` / `\conferencelogo{...}{\institutionlogosize}` helpers. HTML may use SVG directly, while pdflatex should include renderer-verified PDF or high-resolution PNG conversions of SVG sources, for example `ICML-logo-pdflatex.pdf`, after previewing for incomplete-render issues.
 - Title text, section headings, central billboard, and selected accents should use the selected institution palette. Use one strong primary color for single-color institutions; use a coordinated primary/secondary pair for dual-color institutions. Do not color theorem/proposition card titles.
 - If a logo file is unavailable, the institution area stays blank.
 - Text, figures, QR blocks, and logos must stay inside their own panel. If content overflows, remove lower-priority details rather than letting panels collide. Always inspect the rendered bottom edge; LaTeX may not warn when later content is clipped.
+- Source figures should remain complete by default. Scale them, select fewer figures, or choose another complete figure before considering any crop.
 
 ## 风格 2：证据画布
 

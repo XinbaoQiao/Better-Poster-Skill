@@ -51,7 +51,7 @@ When receiving a paper PDF or extracted paper text:
 When receiving screenshots or images:
 1. Inspect panels, axes, captions, labels, legends, and qualitative examples.
 2. Decide whether the image is suitable for the central billboard/hero, side evidence, or QR-linked supplement.
-3. If too dense, propose a crop, relabeling plan, simplification, or schematic.
+3. Do not crop source figures by default. If a figure is too dense, first scale the full figure, choose fewer complete figures, or use a different source figure. Crop only when the user explicitly requests it.
 4. Preserve scientific meaning. Never invent values, dataset names, rankings, labels, axes, or evidence.
 
 When receiving a LaTeX zip:
@@ -99,11 +99,11 @@ Style1 rules:
 - Theory summary lines are more important than full-paper guidance notes: render them non-italic, darker, and slightly larger or heavier than `\posterfullpapernote{...}`.
 - Keep the left sidebar bulletless. Do not use itemize bullets, bullet markers, or decorative bullet dots in left-column cards or lists.
 - End the left sidebar content with `\posterfullpapernote{For more methodology and theoretical details, please refer to the full paper.}` so the note renders lighter than body text.
-- Put only pure institution emblems at the left-column bottom when available; do not add logo text, borders, badge backgrounds, or contact text there. Normalize affiliation sub-units to parent institutions, order logos by the first author's affiliation order, and show all resolved logos, left-aligned with the title. If first-author order cannot be extracted, fall back to source affiliation order, then configured ranking. Trim logo canvas whitespace with scripts/normalize_institution_logos.py, then place each logo at the same target height with compact equal spacing so top and bottom edges align. If a wide official mark would collide, reduce the poster's logo size or choose a pure-emblem source instead of a wordmark. Wrap to another fixed-height row before dropping any institution.
+- Put only pure institution emblems at the left-column bottom when available; do not add logo text, borders, badge backgrounds, or contact text there. Normalize affiliation sub-units to parent institutions, order logos by the first author's affiliation order, and show all resolved logos, left-aligned with the title. If first-author order cannot be extracted, fall back to source affiliation order, then configured ranking. Trim logo canvas whitespace with scripts/normalize_institution_logos.py, then place each logo through the bounded template helpers so top and bottom edges align and the strip stays inside the panel. If a wide official mark would collide, use the wordmark helper or reduce lower-priority content before dropping any institution.
 - Use institution-aware colors for title text, section headings, selected accents, and the center billboard. For a single-color institution use one strong primary color; for a dual-color institution use a coordinated primary/secondary pair. Do not color theorem/proposition card titles.
 - Put experimental conclusions, result figures, ablations, and what-to-notice notes in the right column.
 - Append a final `References` section after all other right-column sections. Render reference entries lighter than body text, for example with `\posterreferences{...}`. After References, add `\posterfullpapernote{For additional experimental results, please refer to the full paper.}` so the note renders lighter than body text.
-- Put conference/venue logos from assets/conference-logos at the bottom of the right column when the venue is known. Size them like enlarged institution emblems with `\institutionlogosize`. HTML may use SVG directly. For pdflatex, include a renderer-verified PDF or high-resolution PNG rendered from the SVG source, for example `ICML-logo.svg` to `ICML-logo-pdflatex.pdf`, and keep the SVG source in assets. Do not invent a replacement logo.
+- Put conference/venue logos from assets/conference-logos at the bottom of the right column when the venue is known. Size them with `\conferencelogostrip{...}` and `\conferencelogo{...}{\institutionlogosize}` so the general logo bounds apply. HTML may use SVG directly. For pdflatex, include a renderer-verified PDF or high-resolution PNG rendered from the SVG source, for example `ICML-logo.svg` to `ICML-logo-pdflatex.pdf`, and keep the SVG source in assets. Do not invent a replacement logo.
 - Put only the giant main claim and QR/download block in the central column.
 - In the QR block, use the sequence QR code, scan icon, then Scan text. Align the scan icon and scan text block to the vertical centerline of the QR image; make the Scan label large and bold; place contact directly under the OpenReview/paper caption.
 - In the main claim, use the template's fixed-size claim block so all center lines have identical font size and line spacing. Prefer compact plain-language visual lines after preview verification.
@@ -115,7 +115,7 @@ Style2 rules:
 - Use a 2:1 wide canvas; widen the center only when the hero visual needs central evidence space.
 - Put method/context in the left column and evidence/limitations in the right column.
 - Do not reduce a technical poster to one oversized sentence when the evidence needs central space.
-- Avoid blindly following any template when the paper's key evidence needs a different crop or emphasis.
+- Avoid blindly following any template when the paper's key evidence needs different sizing, selection, or emphasis.
 
 Main claim rules:
 - One compact plain-language claim block; it may be one sentence, but only when that preserves the conclusion.
@@ -127,7 +127,7 @@ Main claim rules:
 - Make the claim large enough to dominate the poster.
 
 Hero visual selection:
-Use an existing figure if it directly proves or explains the main claim and is readable after cropping. Use a composite teaser if the paper needs both method and result in one view. Generate a new schematic only if the paper lacks a clean visual summary. Generated or redrawn visuals must be labeled schematic unless they are exact redraws. Do not encode quantitative superiority through bar height, arrow thickness, area, or color intensity unless exact values are provided.
+Use an existing complete figure if it directly proves or explains the main claim and is readable after scaling. Use a composite teaser if the paper needs both method and result in one view. Generate a new schematic only if the paper lacks a clean visual summary. Generated or redrawn visuals must be labeled schematic unless they are exact redraws. Do not encode quantitative superiority through bar height, arrow thickness, area, or color intensity unless exact values are provided.
 
 Density budget:
 - Center claim: max 24 words by default, preferably compact and plain; every center line uses the same font size and line height. Color groups may contain multiple lines. Preserve conclusion content first.

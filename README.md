@@ -128,7 +128,7 @@ Before submission, presentation, or distribution, manually verify:
 |---|---|
 | Scientific wording and main claims | The poster should match the paper and author intent |
 | Formula and theorem compression | Shortened theory must remain faithful |
-| Figure cropping and captions | Visual evidence should stay accurate |
+| Figure scaling and captions | Visual evidence should stay accurate |
 | Citation accuracy | References and attributions should be correct |
 | Author, venue, institution, and logo usage | Branding may have venue or trademark requirements |
 | Final rendered layout | Always inspect the actual PDF/PNG preview |
@@ -238,7 +238,7 @@ agent 会阅读论文材料，选择合适的海报结构，整合可用资源�
 |---|---|
 | 科学表述和主结论 | 海报应忠实反映论文和作者意图 |
 | 公式、定理和理论压缩 | 压缩后的理论内容仍需准确 |
-| 图表裁剪和 caption | 视觉证据不能改变科学含义 |
+| 图表缩放和 caption | 视觉证据不能改变科学含义 |
 | 引用准确性 | 参考文献和署名需要正确 |
 | 作者、会议、机构和 logo 使用 | 品牌材料可能有会议或商标要求 |
 | 最终渲染版面 | 请以实际 PDF/PNG 预览为准 |
