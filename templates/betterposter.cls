@@ -79,6 +79,7 @@
 \newlength{\scaniconsize}
 \newlength{\posterclaimleading}
 \newsavebox{\posterclaimbox}
+\newsavebox{\posterstatementtitlebox}
 
 \setlength{\leftbarwidth}{0.23\paperwidth}
 \setlength{\rightbarwidth}{0.23\paperwidth}
@@ -310,6 +311,14 @@
   \par%
   \endgroup%
 }
+\newcommand{\posterfitoneline}[1]{%
+  \sbox{\posterstatementtitlebox}{\mbox{#1}}%
+  \ifdim\wd\posterstatementtitlebox>\linewidth%
+    \resizebox{\linewidth}{!}{\usebox{\posterstatementtitlebox}}%
+  \else%
+    \usebox{\posterstatementtitlebox}%
+  \fi%
+}
 \newcommand{\institutionbrand}[3]{%
   \IfFileExists{#1}{%
     \noindent\includegraphics[width=#3,height=0.120\paperheight,keepaspectratio]{#1}%
@@ -383,7 +392,8 @@
   \begingroup\setlength{\fboxsep}{0.42em}%
   \colorbox{sidebarcool}{%
     \begin{minipage}{0.94\linewidth}%
-      {\fontsize{#1}{#2}\selectfont #3\textcolor{black}{#4}\par}%
+      % 命题/定理标题必须保持单行；过长时自动等比缩小而不换行。
+      {\fontsize{#1}{#2}\selectfont #3\color{black}\posterfitoneline{#4}\par}%
       \vspace{0.14em}{\fontsize{35}{45}\selectfont\color{black}#5\par}%
     \end{minipage}}%
   \endgroup\par\vspace{0.45em}%

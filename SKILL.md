@@ -83,6 +83,7 @@ Left column:
 - Format left-column citation labels with the information structure `[author + venue/journal + year]`, rendered for example as `(Shumailov et al., Nature 2024)`, not numeric tags such as `[1]`.
 - `Theory` prioritizes propositions, theorems, assumptions, corollaries, and key equations.
 - Use `\theoremcard{...}{...}` for strongest theory and `\propositioncard{...}{...}` for supporting statements.
+- Keep proposition, theorem, lemma, and corollary card titles on one physical line; if a citation makes the title long, scale the title line down instead of allowing a wrap.
 - After every proposition, lemma, theorem, or corollary card, add one outside-the-box plain-language line with `\posterstatementsummary{...}` explaining what the statement says.
 - Keep each theory summary line concise, refined, and easy to understand; it should explain the statement, not add new technical content.
 - Style theory summary lines as more important than full-paper guidance notes: non-italic, darker, and slightly larger or heavier than `\posterfullpapernote{...}`.

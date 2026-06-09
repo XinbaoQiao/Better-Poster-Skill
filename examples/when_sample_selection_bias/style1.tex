@@ -37,13 +37,7 @@
 \begin{document}
 \betterposter{
   \maincolumn{
-    \posterclaimblock{%
-      {\color{white}Synthetic data loops}%
-      \claimtiervspace
-      {\color{claimtiermiddle}can fail when filters\\favor one region}%
-      \claimtiervspace
-      {\color{claimtierlower}rare cases disappear.}%
-    }
+    \posterclaim{Synthetic-data filters}{may clean data}{by deleting rare modes.}
   }{
     \qrcode{\PaperQRCode}{\ScanIcon}{%
       {\fontsize{96}{108}\selectfont\bfseries Scan}\\[0.16em]
@@ -58,11 +52,12 @@
 
   \vspace{-0.85em}
   \section{Introduction}
-  Web-scale corpora increasingly mix human data with model-generated content.
-  Recursive training on synthetic data can narrow coverage and trigger model
-  collapse (Shumailov et al., Nature 2024). Verification and sample selection
-  are natural safeguards, but local validation may turn filtering into
-  selection bias.
+  Synthetic data now flows back into future training sets, so recursive
+  training can amplify small distributional errors into model collapse
+  (Shumailov et al., Nature 2024). Verification and sample selection are meant
+  to stop this loop by keeping samples that match a trusted reference. In
+  low-resource silos, however, that reference is local and incomplete: valid
+  rare modes can look like bad samples and be filtered away.
 
   \section{Theory}
   \propositioncard{Proposition 1: Replace paradigm (Shumailov et al., Nature 2024)}{%
@@ -154,10 +149,12 @@
   Airplane-only verification drives CIFAR-10 proportions toward Airplane,
   exposing systematic tail-mode pruning.
 
-  \section{Experimental Synthesis}
-  Across CIFAR-10, STL-10, and CelebA, skewed local references can make
-  selection weaker than random sampling; broader distributional evidence
-  improves FID, precision, and recall.
+  \section{Experimental Takeaway}
+  The shown experiments agree: biased selection contracts synthetic
+  distributions, and Airplane-only verification makes CIFAR-10 concentrate
+  on Airplane. An unshown DDPM benchmark adds the practical check: under
+  non-IID references, common selection baselines can lag Random, while
+  broader references improve FID and recall.
 
   \section{References}
   \posterreferences{%
