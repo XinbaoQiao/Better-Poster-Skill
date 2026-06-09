@@ -55,7 +55,7 @@ It is designed for researchers who want a fast, editable poster starting point i
 | Branded QR generation | Provide paper, code, project, slides, or OpenReview URLs; the agent creates poster-ready QR codes and places the matching site icon in the center when supported. |
 | First-author institution branding | The agent reads affiliation text, prioritizes the first author's institution, and places matching university emblems when available. |
 | Adaptive theme colors | The agent derives the core text and accent color theme from the institution emblem, keeping the poster visually aligned with the selected branding. |
-| Fresh conference logo library | Conference logo assets refresh monthly from `CS-Conference-Logo-Maintainer`, reducing manual logo searching and replacement. |
+| Fresh conference logo library | Conference logo assets refresh monthly from [`CS-Conference-Logo-Maintainer`](https://github.com/XinbaoQiao/CS-Conference-Logo-Maintainer), reducing manual logo searching and replacement. |
 | Theory-friendly poster layout | The claim-first template gives the theory sidebar more room, keeping theorem and proposition titles readable while preserving the dominant center claim. |
 | Scan-friendly takeaways | Experimental or practical takeaways are summarized as concise bullets, making the right column easier to read during a poster conversation. |
 | Paper-aware poster drafting | The agent works from the paper itself, so the poster starts from the actual title, authors, claims, figures, and links instead of generic filler. |
@@ -169,7 +169,7 @@ Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论�
 | 自动生成带图标的 QR code | 你提供 paper、code、project、slides 或 OpenReview 网址后，agent 会生成适合海报使用的 QR，并在支持时把对应站点图标放到 QR 中央。 |
 | 自动匹配第一作者单位校徽 | agent 会从论文或 affiliation 文本中优先识别第一作者单位，并在资源可用时直接放入对应校徽。 |
 | 核心自适应主题色 | agent 会根据校徽自动适配文字主题色和强调色，让海报主标题、重点文字与机构视觉标识保持统一。 |
-| 每月自动更新会议 Logo | 会议 Logo 资源会从 `CS-Conference-Logo-Maintainer` 定期刷新，减少手动查找和替换成本。 |
+| 每月自动更新会议 Logo | 会议 Logo 资源会从 [`CS-Conference-Logo-Maintainer`](https://github.com/XinbaoQiao/CS-Conference-Logo-Maintainer) 定期刷新，减少手动查找和替换成本。 |
 | 更适合理论内容的版面 | 主结论模板会给左侧理论栏更多空间，让定理、命题等标题更容易保持清晰可读，同时保留中间主结论的视觉主导地位。 |
 | 更易扫读的 takeaway | 实验或实践 takeaway 会整理成简洁要点列表，方便在海报交流时快速定位重点。 |
 | 基于论文内容生成海报 | 海报初稿会从论文标题、作者、核心结论、图表和链接出发，而不是套用空泛占位内容。 |
