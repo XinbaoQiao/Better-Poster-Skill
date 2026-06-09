@@ -76,6 +76,7 @@
 \newlength{\posterpanelinnerheight}
 \newlength{\posterheight}
 \newlength{\institutionlogosize}
+\newlength{\conferencelogosize}
 \newlength{\scaniconsize}
 \newlength{\posterclaimleading}
 \newsavebox{\posterclaimbox}
@@ -87,8 +88,9 @@
 \setlength{\columnmarginhorizontal}{0.025\paperheight}
 \setlength{\maincolumnmarginvertical}{0.070\paperheight}
 \setlength{\maincolumnmarginhorizontal}{0.052\paperheight}
-% 底部 logo 的默认上限必须保守：左右栏内容偏满时，logo 仍需留在栏内。
-\setlength{\institutionlogosize}{0.068\paperheight}
+% 底部 logo 是固定身份信息：默认放大，但仍由 helper 约束在左右栏内。
+\setlength{\institutionlogosize}{0.080\paperheight}
+\setlength{\conferencelogosize}{0.088\paperheight}
 \setlength{\scaniconsize}{0.078\paperheight}
 \setlength{\posterclaimleading}{244pt}
 
@@ -300,21 +302,21 @@
   \endgroup%
 }
 % 单图行横排格式：默认左图右文；可选参数 [right] 表示右图左文。
-% 该格式用于一行只有一张图时保留完整图片，并给右/左侧留出解释文字空间。
+% 图片列和文字列垂直居中，让文字对齐图片中线。
 \newcommand{\posterimagetextrow}[4][left]{%
   \begingroup%
   \ifthenelse{\equal{#1}{right}}{%
-    \begin{minipage}[t]{0.42\linewidth}%
+    \begin{minipage}[c]{0.42\linewidth}%
       \RaggedRight #4\par%
     \end{minipage}\hfill%
-    \begin{minipage}[t]{0.52\linewidth}%
+    \begin{minipage}[c]{0.52\linewidth}%
       \postergraphic[width=\linewidth]{#2}{#3}%
     \end{minipage}%
   }{%
-    \begin{minipage}[t]{0.52\linewidth}%
+    \begin{minipage}[c]{0.52\linewidth}%
       \postergraphic[width=\linewidth]{#2}{#3}%
     \end{minipage}\hfill%
-    \begin{minipage}[t]{0.42\linewidth}%
+    \begin{minipage}[c]{0.42\linewidth}%
       \RaggedRight #4\par%
     \end{minipage}%
   }%
@@ -383,7 +385,7 @@
   }{}%
 }
 \newcommand{\posterlogostrip}[1]{%
-  \noindent\RaggedRight #1\par%
+  \noindent\RaggedRight #1\par\vspace{0.010\paperheight}%
 }
 \newcommand{\institutionlogorow}[3]{\posterlogorow{#1}{#2}{#3}}
 \newcommand{\institutionlogo}[2]{\posterlogospaced{#1}{#2}}
@@ -392,7 +394,7 @@
 \newcommand{\conferencelogo}[2]{%
   \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.66\linewidth,keepaspectratio]{#1}}%
+      \raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.92\linewidth,keepaspectratio]{#1}}%
       \hspace{0.030\linewidth}\allowbreak%
     }{}%
   }{}%

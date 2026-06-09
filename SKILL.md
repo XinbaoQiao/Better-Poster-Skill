@@ -178,16 +178,16 @@ Conference logos:
 
 - Resolve from `assets/conference-logos/` when possible.
 - Treat `assets/conference-logos/` as the only canonical in-repo conference logo directory; it is refreshed by `.github/workflows/sync-conference-logos.yml` from `CS-Conference-Logo-Maintainer` on the 10th day of each month.
-- In style1, put them at the bottom of the right sidebar.
+- In style1, conference/venue logos are hard identity information: put them at the bottom of the right sidebar when the venue is known, and reduce lower-priority text rather than dropping the logo.
 - For pdflatex, use renderer-verified PDF/PNG conversions of SVG sources.
-- Use `\conferencelogostrip{...}` and `\conferencelogo{path}{\institutionlogosize}` so the general width/height caps apply.
+- Use `\conferencelogostrip{...}` and `\conferencelogo{path}{\conferencelogosize}` so the general width/height caps apply.
 
 Figures:
 
 - Do not crop source figures by default.
 - If a paper figure is dense, first scale the full figure, choose fewer figures, or use a different complete source figure.
 - Crop a source figure only when the user explicitly requests it, and never crop in a way that changes axes, legends, labels, or scientific meaning.
-- If a row contains exactly one figure, use a side-by-side image-text row when it improves scanability: left image/right text by default, or right image/left text when that fits the surrounding flow better. In LaTeX, prefer `\posterimagetextrow{...}{...}{...}` for this layout.
+- If a row contains exactly one figure, use a side-by-side image-text row when it improves scanability: left image/right text by default, or right image/left text when that fits the surrounding flow better. The same-row text must be vertically centered on the image's horizontal midline. In LaTeX, prefer `\posterimagetextrow{...}{...}{...}` for this layout.
 - Center every visible figure title on its corresponding image. In LaTeX, prefer `\posterlabeledgraphic[...]{Title}{path}{fallback}` so the title and image share the same center axis.
 
 Palette:

@@ -121,34 +121,33 @@
   }
 }{
   \section{Multivariate Gaussian Modeling}
-  \begin{center}
+  \begingroup\centering
     \begin{minipage}[t]{0.44\textwidth}
-      \posterlabeledgraphic[width=0.90\linewidth]{Gaussian}{figures/modeling_panels/gaussian_variance_collapse.png}{Gaussian setting.}
+      \posterlabeledgraphic[width=0.82\linewidth]{Gaussian}{figures/modeling_panels/gaussian_variance_collapse.png}{Gaussian setting.}
     \end{minipage}\hfill
     \begin{minipage}[t]{0.44\textwidth}
-      \posterlabeledgraphic[width=0.90\linewidth]{Anisotropic Gaussian}{figures/modeling_panels/anisotropic_dispersion_collapse.png}{Anisotropic Gaussian setting.}
+      \posterlabeledgraphic[width=0.82\linewidth]{Anisotropic Gaussian}{figures/modeling_panels/anisotropic_dispersion_collapse.png}{Anisotropic Gaussian setting.}
     \end{minipage}
 
-    \vspace{0.12em}
+    \vspace{0.04em}
     \begin{minipage}[t]{0.44\textwidth}
-      \posterlabeledgraphic[width=0.90\linewidth]{Gaussian mixture}{figures/modeling_panels/gaussian_mixture_dispersion_collapse.png}{Gaussian mixture setting.}
+      \posterlabeledgraphic[width=0.82\linewidth]{Gaussian mixture}{figures/modeling_panels/gaussian_mixture_dispersion_collapse.png}{Gaussian mixture setting.}
     \end{minipage}\hfill
     \begin{minipage}[t]{0.44\textwidth}
-      \posterlabeledgraphic[width=0.90\linewidth]{Laplace}{figures/modeling_panels/laplace_dispersion_collapse.png}{Laplace setting.}
+      \posterlabeledgraphic[width=0.82\linewidth]{Laplace}{figures/modeling_panels/laplace_dispersion_collapse.png}{Laplace setting.}
     \end{minipage}
-  \end{center}
+  \par\endgroup
 
   \section{Collapse Signal}
   \posterimagetextrow{figures/class_proportions_trend.png}{Class proportion trend from the paper.}{%
-    Airplane-only verification pushes CIFAR-10 toward Airplane and prunes
+    Airplane-only verification moves CIFAR-10 toward Airplane and prunes
     other classes.}
 
   \section{Experimental Takeaway}
-  The shown experiments agree: biased selection contracts synthetic
-  distributions, and Airplane-only verification makes CIFAR-10 concentrate
-  on Airplane. An unshown DDPM benchmark adds the practical check: under
-  non-IID references, common selection baselines can lag Random, while
-  broader references improve FID and recall.
+  The shown panels agree: biased selection contracts synthetic distributions,
+  and Airplane-only verification concentrates CIFAR-10 on Airplane. An unshown
+  DDPM benchmark adds that non-IID references can make selection baselines lag
+  Random, while broader references improve FID and recall.
 
   \section{References}
   \posterreferences{%
@@ -157,13 +156,12 @@
 
   \vspace{0.2em}
   \posterfullpapernote{For additional experimental results, please refer to the full paper.}
-  \vspace{1.8em}
 
   \vfill
   \conferencelogostrip{%
-    \conferencelogo{\ConferenceLogoOne}{\institutionlogosize}%
-    \conferencelogo{\ConferenceLogoTwo}{\institutionlogosize}%
-    \conferencelogo{\ConferenceLogoThree}{\institutionlogosize}%
+    \conferencelogo{\ConferenceLogoOne}{\conferencelogosize}%
+    \conferencelogo{\ConferenceLogoTwo}{\conferencelogosize}%
+    \conferencelogo{\ConferenceLogoThree}{\conferencelogosize}%
   }
 }
 \end{document}
