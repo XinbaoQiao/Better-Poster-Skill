@@ -40,9 +40,9 @@
     \posterclaimblock{%
       {\color{white}Synthetic data loops}%
       \claimtiervspace
-      {\color{claimtiermiddle}collapse when bias\\favors local fit}%
+      {\color{claimtiermiddle}can fail when filters\\favor one region}%
       \claimtiervspace
-      {\color{claimtierlower}rare modes vanish.}%
+      {\color{claimtierlower}rare cases disappear.}%
     }
   }{
     \qrcode{\PaperQRCode}{\ScanIcon}{%
@@ -58,11 +58,11 @@
 
   \vspace{-0.85em}
   \section{Introduction}
-  Recursive synthetic-data loops have two canonical baselines: the
-  \textit{Replace paradigm} (Shumailov et al., Nature 2024), which discards
-  historical data and can eliminate variance, and the
-  \textit{Accumulate paradigm} (Kazdan et al., ICML 2025), which appends
-  generations and is stable without biased filtering.
+  Web-scale corpora increasingly mix human data with model-generated content.
+  Recursive training on synthetic data can narrow coverage and trigger model
+  collapse (Shumailov et al., Nature 2024). Verification and sample selection
+  are natural safeguards, but local validation may turn filtering into
+  selection bias.
 
   \section{Theory}
   \propositioncard{Proposition 1: Replace paradigm (Shumailov et al., Nature 2024)}{%
@@ -126,25 +126,30 @@
   }
 }{
   \section{Multivariate Gaussian Modeling}
-  \textbf{Gaussian (main text).} Biased top-$\alpha$ selection collapses
-  variance in both recursive baselines; accumulation slows collapse but follows
-  the predicted power-law decay.
+  \begin{center}
+    \begin{minipage}[t]{0.48\textwidth}
+      {\fontsizecaption\bfseries Gaussian\par}
+      \postergraphic[width=\linewidth]{figures/modeling_panels/gaussian_variance_collapse.png}{Gaussian setting.}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.48\textwidth}
+      {\fontsizecaption\bfseries Anisotropic Gaussian\par}
+      \postergraphic[width=\linewidth]{figures/modeling_panels/anisotropic_dispersion_collapse.png}{Anisotropic Gaussian setting.}
+    \end{minipage}
 
-  \vspace{0.35em}
-  \textbf{Anisotropic Gaussian.} Direction-dependent spread still contracts
-  when the verifier favors a restricted local region.
-
-  \vspace{0.35em}
-  \textbf{Gaussian mixture.} Multimodal and imbalanced mixtures lose component
-  coverage, with minority modes eroding first.
-
-  \vspace{0.35em}
-  \textbf{Laplace.} Heavy-tailed scale contracts sharply, showing tail loss
-  beyond Gaussian variance.
+    \vspace{0.30em}
+    \begin{minipage}[t]{0.48\textwidth}
+      {\fontsizecaption\bfseries Gaussian mixture\par}
+      \postergraphic[width=\linewidth]{figures/modeling_panels/gaussian_mixture_dispersion_collapse.png}{Gaussian mixture setting.}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.48\textwidth}
+      {\fontsizecaption\bfseries Laplace\par}
+      \postergraphic[width=\linewidth]{figures/modeling_panels/laplace_dispersion_collapse.png}{Laplace setting.}
+    \end{minipage}
+  \end{center}
 
   \section{Collapse Signal}
   \begin{center}
-    \postergraphic[width=0.64\textwidth]{figures/class_proportions_trend.png}{Class proportion trend from the paper.}
+    \postergraphic[width=0.50\textwidth]{figures/class_proportions_trend.png}{Class proportion trend from the paper.}
   \end{center}
   Airplane-only verification drives CIFAR-10 proportions toward Airplane,
   exposing systematic tail-mode pruning.
