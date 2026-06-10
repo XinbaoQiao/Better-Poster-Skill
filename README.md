@@ -15,6 +15,7 @@ Turn paper materials into editable Better Poster-style academic posters with a c
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0f766e"></a>
   <img alt="Output: LaTeX and HTML" src="https://img.shields.io/badge/output-LaTeX%20%2B%20HTML-2563eb">
+  <img alt="PDF size: 1682 x 841 mm" src="https://img.shields.io/badge/PDF-1682%20x%20841%20mm-334155">
   <img alt="Poster style" src="https://img.shields.io/badge/poster-Better%20Poster-7c2d92">
   <img alt="OpenReview QR" src="https://img.shields.io/badge/QR-OpenReview%20ready-a21d16">
 </p>
@@ -122,6 +123,16 @@ Depending on your request and local dependencies, the agent can return:
 - QR/download area connected to your supplied links.
 - Institution and conference branding when supported.
 - A short summary of generated files, preview locations, and remaining manual checks.
+
+### Print Size
+
+The default LaTeX PDF is a single-page 2:1 landscape poster:
+
+- Width x height: `1682 mm x 841 mm` (`168.2 cm x 84.1 cm`).
+- Inches: `66.22 in x 33.11 in`.
+- PDF page box: `4767.87 pt x 2383.94 pt`.
+
+When sending the poster to a print shop or conference printing system, choose a custom 2:1 landscape size rather than standard A0. Smaller prints should be scaled proportionally.
 
 ### Author Check
 
@@ -235,6 +246,16 @@ agent 会阅读论文材料，选择合适的海报结构，整合可用资源�
 - 连接到你提供链接的 QR/download 区域。
 - 在资源可支持时加入的机构和会议标识。
 - 简短的文件变更、预览位置和仍需人工检查内容说明。
+
+### 打印尺寸
+
+默认 LaTeX PDF 是单页 2:1 横向海报：
+
+- 宽 x 高：`1682 mm x 841 mm`（`168.2 cm x 84.1 cm`）。
+- 英寸：`66.22 in x 33.11 in`。
+- PDF 页面框：`4767.87 pt x 2383.94 pt`。
+
+提交给打印店或会议打印系统时，请选择自定义 2:1 横向尺寸，而不是标准 A0。需要打印成更小版本时，按比例缩放即可。
 
 ### 作者检查
 
