@@ -77,6 +77,7 @@
 \newlength{\posterheight}
 \newlength{\institutionlogosize}
 \newlength{\conferencelogosize}
+\newlength{\posterlogostripheight}
 \newlength{\scaniconsize}
 \newlength{\posterclaimleading}
 \newsavebox{\posterclaimbox}
@@ -93,6 +94,9 @@
 % 底部 logo 是固定身份信息：默认放大，但仍由 helper 约束在左右栏内。
 \setlength{\institutionlogosize}{0.080\paperheight}
 \setlength{\conferencelogosize}{0.088\paperheight}
+% 左右侧栏底部 logo 必须进入同高 footer band，并在 band 内垂直居中。
+% 这样校徽与会议标的视觉中心线保持在同一水平线上，不随图片高宽比漂移。
+\setlength{\posterlogostripheight}{0.092\paperheight}
 \setlength{\scaniconsize}{0.078\paperheight}
 \setlength{\posterclaimleading}{244pt}
 
@@ -387,7 +391,11 @@
   }{}%
 }
 \newcommand{\posterlogostrip}[1]{%
-  \noindent\RaggedRight #1\par\vspace{0.010\paperheight}%
+  \noindent%
+  \begin{minipage}[c][\posterlogostripheight][c]{\linewidth}%
+    \RaggedRight #1\par%
+  \end{minipage}%
+  \par\vspace{0.010\paperheight}%
 }
 \newcommand{\institutionlogorow}[3]{\posterlogorow{#1}{#2}{#3}}
 \newcommand{\institutionlogo}[2]{\posterlogospaced{#1}{#2}}

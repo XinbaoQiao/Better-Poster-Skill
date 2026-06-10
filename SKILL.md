@@ -189,6 +189,7 @@ Institution logos:
 - Place logos with `\institutionlogostrip{...}` and `\institutionlogo{path}{\institutionlogosize}`.
 - For one wide wordmark, place it with `\institutionwordmarklogo{path}{\institutionlogosize}` to cap width while preserving aspect ratio.
 - Use the template logo helpers instead of manual `includegraphics` sizing; bottom logos must remain fully inside the left/right panel bounds.
+- Keep left institution logos and right conference logos in the shared footer logo band so their visual centerlines align horizontally across the poster. Do not add local `\vspace`, `\raisebox`, or manual `includegraphics` tweaks that break this alignment; adjust content above the footer instead.
 
 Conference logos:
 
