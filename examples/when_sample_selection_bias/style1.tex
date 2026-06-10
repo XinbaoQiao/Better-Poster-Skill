@@ -85,12 +85,12 @@
   \propositioncard{Proposition 2: Accumulate paradigm (Kazdan et al., ICML 2025)}{%
     Under unbiased accumulation,
     \[
+      \mathbb{E}[(\bar{\boldsymbol{\mu}}_{t}-\bar{\boldsymbol{\mu}}_{0})^{2}]
+      \to (1-\alpha_{n})\bar{\boldsymbol{\Sigma}}_{0},\quad
       \mathbb{E}[\bar{\boldsymbol{\Sigma}}_{t}]
       \to \alpha_{n}\bar{\boldsymbol{\Sigma}}_{0}.
     \]
-    Thus $\mathbb{E}[(\bar{\boldsymbol{\mu}}_{t}-\bar{\boldsymbol{\mu}}_{0})^{2}]
-    \to (1-\alpha_{n})\bar{\boldsymbol{\Sigma}}_{0}$ and
-    $\mathbb{E}[\mathbb{W}_{2}^{2}]
+    Thus $\mathbb{E}[\mathbb{W}_{2}^{2}]
     \to 2(1-\sqrt{\alpha_{n}})\operatorname{Tr}(\bar{\boldsymbol{\Sigma}}_{0})$.}
   \posterstatementsummary{Unbiased accumulation can preserve diversity and slow collapse.}
 
