@@ -67,10 +67,10 @@
   Synthetic data now flows back into future training sets, so recursive
   training can amplify small distributional errors into model collapse
   (Shumailov et al., Nature 2024). Verification and sample selection are meant
-  to stop this loop by keeping samples that match a trusted reference. In
-  low-resource communities, for instance, data silos often make that reference
-  local and incomplete. However, valid rare modes can look like bad samples and
-  be filtered away.
+  to stop this loop and avoid model collapse by keeping samples that match a
+  trusted reference (Fu et al., NeurIPS 2026). However, in low-resource
+  communities, for instance, data silos can make trusted references local and
+  incomplete, so valid rare modes may look like bad samples and be filtered away.
 
   \section{Theory}
   \propositioncard{Proposition 1: Replace paradigm (Shumailov et al., Nature 2024)}{%
@@ -175,7 +175,8 @@
   \section{References}
   \posterreferences{%
     [1] Shumailov et al. AI models collapse when trained on recursively generated data. Nature, 2024.\\{}
-    [2] Kazdan et al. Collapse or Thrive: Perils and Promises of Synthetic Data in a Self-Generating World. ICML, 2025.}
+    [2] Kazdan et al. Collapse or Thrive: Perils and Promises of Synthetic Data in a Self-Generating World. ICML, 2025.\\{}
+    [3] Fu et al. Self-Verification Provably Prevents Model Collapse in Recursive Synthetic Training. NeurIPS, 2026.}
 
   \vspace{0.2em}
   \posterfullpapernote{For additional experimental results, please refer to the full paper.}
