@@ -190,6 +190,9 @@ Institution logos:
 - For one wide wordmark, place it with `\institutionwordmarklogo{path}{\institutionlogosize}` to cap width while preserving aspect ratio.
 - Use the template logo helpers instead of manual `includegraphics` sizing; bottom logos must remain fully inside the left/right panel bounds.
 - Keep left institution logos and right conference logos in the shared footer logo band so their visual centerlines align horizontally across the poster. Do not add local `\vspace`, `\raisebox`, or manual `includegraphics` tweaks that break this alignment; adjust content above the footer instead.
+- Do not insert fixed `\vspace` between the final guidance note and the footer logo strip. Use the standard `\vfill` plus `\institutionlogostrip{...}` or `\conferencelogostrip{...}` sequence; if the strip is pushed down, remove lower-priority content above it.
+- Treat the `betterposter` footer-logo-band height warning as a layout failure: reduce the requested logo size, increase the shared footer band, or remove lower-priority content above the footer before accepting the render.
+- Render previews with `scripts/render_preview.py` and treat footer visual-audit warnings as failures. Use `--strict-visual-audit` when validating deliverable posters so centerline mismatch and page-edge contact cannot pass silently.
 
 Conference logos:
 

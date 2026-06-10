@@ -233,6 +233,120 @@ def render_pdf(pdf_path: Path, out_dir: Path, dpi: int, env: dict[str, str]) -> 
     return preview
 
 
+def footer_ink_pixel(rgb: tuple[int, int, int]) -> bool:
+    r, g, b = rgb
+    if r > 242 and g > 242 and b > 242:
+        return False
+    if max(rgb) - min(rgb) < 12 and r > 155:
+        return False
+    return r < 235 or g < 235 or b < 235
+
+
+def footer_logo_bbox(image: object, x0: int, x1: int, y0: int) -> tuple[int, int, int, int] | None:
+    crop = image.crop((x0, y0, x1, image.height))
+    width, height = crop.size
+    pixels = crop.load()
+    mask = bytearray(width * height)
+
+    for y in range(height):
+        row = y * width
+        for x in range(width):
+            if footer_ink_pixel(pixels[x, y]):
+                mask[row + x] = 1
+
+    seen = bytearray(width * height)
+    components: list[tuple[int, int, int, int, int]] = []
+    min_area = max(32, int(width * height * 0.00035))
+
+    for index, value in enumerate(mask):
+        if not value or seen[index]:
+            continue
+        stack = [index]
+        seen[index] = 1
+        area = 0
+        min_x = width
+        min_y = height
+        max_x = 0
+        max_y = 0
+        while stack:
+            item = stack.pop()
+            y, x = divmod(item, width)
+            area += 1
+            min_x = min(min_x, x)
+            min_y = min(min_y, y)
+            max_x = max(max_x, x)
+            max_y = max(max_y, y)
+            for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if 0 <= nx < width and 0 <= ny < height:
+                    neighbor = ny * width + nx
+                    if mask[neighbor] and not seen[neighbor]:
+                        seen[neighbor] = 1
+                        stack.append(neighbor)
+        if area >= min_area:
+            components.append((area, min_x + x0, min_y + y0, max_x + x0, max_y + y0))
+
+    if not components:
+        return None
+
+    max_area = max(component[0] for component in components)
+    keep = [component for component in components if component[0] >= max(min_area, int(max_area * 0.08))]
+    return (
+        min(component[1] for component in keep),
+        min(component[2] for component in keep),
+        max(component[3] for component in keep),
+        max(component[4] for component in keep),
+    )
+
+
+def audit_footer_logo_alignment(preview: Path) -> list[str]:
+    try:
+        from PIL import Image  # type: ignore
+    except Exception as exc:
+        return [f"footer logo visual audit skipped because Pillow is unavailable: {exc}"]
+
+    image = Image.open(preview).convert("RGB")
+    if image.width > 2400:
+        scale = 2400 / image.width
+        image = image.resize((2400, max(1, int(image.height * scale))))
+
+    width, height = image.size
+    footer_y = int(height * 0.80)
+    left_bbox = footer_logo_bbox(image, 0, int(width * 0.245), footer_y)
+    right_bbox = footer_logo_bbox(image, int(width * 0.795), width, footer_y)
+    warnings: list[str] = []
+    edge_margin = max(6, int(height * 0.006))
+
+    for label, bbox in (("left", left_bbox), ("right", right_bbox)):
+        if bbox is None:
+            continue
+        bottom_margin = height - bbox[3] - 1
+        if bottom_margin < edge_margin:
+            warnings.append(
+                f"{label} footer logo is too close to the page bottom "
+                f"(margin {bottom_margin}px; expected at least {edge_margin}px)."
+            )
+
+    if left_bbox and right_bbox:
+        left_center = (left_bbox[1] + left_bbox[3]) / 2
+        right_center = (right_bbox[1] + right_bbox[3]) / 2
+        tolerance = max(4, int(height * 0.005))
+        difference = abs(left_center - right_center)
+        if difference > tolerance:
+            warnings.append(
+                "left institution logos and right conference logo are not center-aligned "
+                f"(visible center difference {difference:.1f}px; tolerance {tolerance}px)."
+            )
+
+    return warnings
+
+
+def report_visual_audit(preview: Path) -> list[str]:
+    warnings = audit_footer_logo_alignment(preview)
+    for warning in warnings:
+        print(f"Warning: {warning}", file=sys.stderr)
+    return warnings
+
+
 def copy_file(source: Path, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     target = out_dir / source.name
@@ -377,6 +491,8 @@ def parse_args() -> argparse.Namespace:
         default="2200,1200",
         help="Browser screenshot viewport as WIDTH,HEIGHT.",
     )
+    parser.add_argument("--skip-visual-audit", action="store_true", help="Do not run footer logo visual checks on PNG previews.")
+    parser.add_argument("--strict-visual-audit", action="store_true", help="Exit nonzero when footer logo visual checks warn.")
     return parser.parse_args()
 
 
@@ -390,6 +506,7 @@ def main() -> int:
         print(f"Input not found: {input_path}", file=sys.stderr)
         return 2
 
+    visual_warnings: list[str] = []
     with tempfile.TemporaryDirectory(prefix="better-poster-") as tmp:
         try:
             source_root = prepare_input(input_path, Path(tmp), args.root)
@@ -411,6 +528,8 @@ def main() -> int:
                         print(f"PDF: {pdf_out}")
                     if preview:
                         print(f"Preview: {preview}")
+                        if not args.skip_visual_audit:
+                            visual_warnings.extend(report_visual_audit(preview))
             else:
                 pdf_path = compile_latex(source_root, args.engine, args.passes, env)
                 copied_pdf = copy_file(pdf_path, out_dir)
@@ -418,9 +537,13 @@ def main() -> int:
                 if not args.no_render:
                     preview = render_pdf(pdf_path, out_dir, args.dpi, env)
                     print(f"Preview: {preview}")
+                    if not args.skip_visual_audit:
+                        visual_warnings.extend(report_visual_audit(preview))
         except Exception as exc:
             print(f"Error: {exc}", file=sys.stderr)
             return 1
+    if args.strict_visual_audit and visual_warnings:
+        return 1
     return 0
 
 

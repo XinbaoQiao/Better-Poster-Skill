@@ -94,9 +94,9 @@
 % 底部 logo 是固定身份信息：默认放大，但仍由 helper 约束在左右栏内。
 \setlength{\institutionlogosize}{0.080\paperheight}
 \setlength{\conferencelogosize}{0.088\paperheight}
-% 左右侧栏底部 logo 必须进入同高 footer band，并在 band 内垂直居中。
-% 这样校徽与会议标的视觉中心线保持在同一水平线上，不随图片高宽比漂移。
-\setlength{\posterlogostripheight}{0.092\paperheight}
+% 左右侧栏底部 logo 必须进入同高 footer band，并在 band 内按“可见图像中心线”居中。
+% strip 自身不再追加底部固定空白，避免正文过满时把 logo 推出页面边界。
+\setlength{\posterlogostripheight}{0.096\paperheight}
 \setlength{\scaniconsize}{0.078\paperheight}
 \setlength{\posterclaimleading}{244pt}
 
@@ -354,30 +354,50 @@
     \endgroup#2%
   \fi%
 }
+\newcommand{\posterlogocheckheight}[1]{%
+  \ifdim#1>\posterlogostripheight%
+    \ClassWarning{betterposter}{Requested logo height exceeds the footer logo band; reduce the logo size or increase \string\posterlogostripheight}%
+  \fi%
+}
 \newcommand{\posterlogospaced}[2]{%
   \posterifnonempty{#1}{%
-    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.26\linewidth,keepaspectratio]{#1}}\hspace{0.028\linewidth}\allowbreak}{}%
+    \IfFileExists{#1}{%
+      \posterlogocheckheight{#2}%
+      \raisebox{-.5\height}{\includegraphics[height=#2,width=0.26\linewidth,keepaspectratio]{#1}}%
+      \hspace{0.028\linewidth}\allowbreak%
+    }{}%
   }{}%
 }
 \newcommand{\posterlogorow}[3]{%
   \noindent%
   \posterifnonempty{#1}{%
-    \IfFileExists{#1}{\raisebox{0pt}[#3][0pt]{\includegraphics[height=#3,keepaspectratio]{#1}}}{}%
+    \IfFileExists{#1}{%
+      \posterlogocheckheight{#3}%
+      \raisebox{-.5\height}{\includegraphics[height=#3,keepaspectratio]{#1}}%
+    }{}%
   }{}%
   \posterifnonempty{#2}{%
     \posterifnonempty{#1}{\hspace{0.055\linewidth}}{}%
-    \IfFileExists{#2}{\raisebox{0pt}[#3][0pt]{\includegraphics[height=#3,keepaspectratio]{#2}}}{}%
+    \IfFileExists{#2}{%
+      \posterlogocheckheight{#3}%
+      \raisebox{-.5\height}{\includegraphics[height=#3,keepaspectratio]{#2}}%
+    }{}%
   }{}%
 }
 \newcommand{\posterlogo}[2]{%
   \posterifnonempty{#1}{%
-    \IfFileExists{#1}{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.26\linewidth,keepaspectratio]{#1}}\hspace{0.030\linewidth}\allowbreak}{}%
+    \IfFileExists{#1}{%
+      \posterlogocheckheight{#2}%
+      \raisebox{-.5\height}{\includegraphics[height=#2,width=0.26\linewidth,keepaspectratio]{#1}}%
+      \hspace{0.030\linewidth}\allowbreak%
+    }{}%
   }{}%
 }
 \newcommand{\posterlogoslot}[3]{%
   \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \makebox[#3][l]{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,keepaspectratio]{#1}}}%
+      \posterlogocheckheight{#2}%
+      \makebox[#3][l]{\raisebox{-.5\height}{\includegraphics[height=#2,keepaspectratio]{#1}}}%
       \allowbreak%
     }{}%
   }{}%
@@ -385,17 +405,20 @@
 \newcommand{\posterboundedlogo}[3]{%
   \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \makebox[#3][l]{\raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=#3,keepaspectratio]{#1}}}%
+      \posterlogocheckheight{#2}%
+      \makebox[#3][l]{\raisebox{-.5\height}{\includegraphics[height=#2,width=#3,keepaspectratio]{#1}}}%
       \allowbreak%
     }{}%
   }{}%
 }
 \newcommand{\posterlogostrip}[1]{%
   \noindent%
-  \begin{minipage}[c][\posterlogostripheight][c]{\linewidth}%
-    \RaggedRight #1\par%
-  \end{minipage}%
-  \par\vspace{0.010\paperheight}%
+  \vbox to \posterlogostripheight{%
+    \vfil%
+    \hbox to \linewidth{#1\hfil}%
+    \vfil%
+  }%
+  \par%
 }
 \newcommand{\institutionlogorow}[3]{\posterlogorow{#1}{#2}{#3}}
 \newcommand{\institutionlogo}[2]{\posterlogospaced{#1}{#2}}
@@ -404,7 +427,8 @@
 \newcommand{\conferencelogo}[2]{%
   \posterifnonempty{#1}{%
     \IfFileExists{#1}{%
-      \raisebox{0pt}[#2][0pt]{\includegraphics[height=#2,width=0.92\linewidth,keepaspectratio]{#1}}%
+      \posterlogocheckheight{#2}%
+      \raisebox{-.5\height}{\includegraphics[height=#2,width=0.92\linewidth,keepaspectratio]{#1}}%
       \hspace{0.030\linewidth}\allowbreak%
     }{}%
   }{}%
