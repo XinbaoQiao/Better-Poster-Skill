@@ -2,7 +2,9 @@
 
 # Better Poster Skill
 
-Turn paper materials into editable Better Poster-style academic posters with a code agent.
+**Every poster is an interview. Make yours an invitation, not a wall of text.**
+
+Turn paper materials into editable, claim-first academic posters with a code agent.
 
 <p>
   Distills public Better Poster guidance from
@@ -41,11 +43,21 @@ Turn paper materials into editable Better Poster-style academic posters with a c
 
 ## English
 
-This skill distills public Better Poster guidance from Rafael Bailo's [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) and MIT Communication Lab's [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/) into a code-agent workflow for academic poster drafting.
+A poster is not a compressed paper. It is a research trailer.
 
-Better Poster Skill helps a code agent transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished academic poster drafts.
+At a crowded conference, nobody begins by reading every paragraph, formula, and experiment. People first decide whether to stop. A successful poster earns that attention by answering three questions in seconds:
 
-In short, the Better Poster experience is built around two reading distances:
+1. What problem did you solve?
+2. What is the most interesting idea or design?
+3. Why is the result worth learning more about?
+
+Its job is not to reproduce the entire paper. Its job is to make the right reader ask: **“Where can I read the paper?”**
+
+A poster also introduces the researcher behind the work. Every choice—what you emphasize, what you remove, and how clearly you explain the difficult part—signals how well you understand and communicate your research. In that sense, every poster session is also a quiet interview for future collaborators, colleagues, and opportunities.
+
+Better Poster Skill turns this principle into a practical code-agent workflow. It distills public guidance from Rafael Bailo's [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) and MIT Communication Lab's [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/), then helps transform paper PDFs, LaTeX source archives, extracted text, figures, screenshots, and project links into polished, editable poster drafts.
+
+The resulting poster is designed for two reading distances:
 
 1. From far away: can the audience grasp the poster's core theme and main contribution at a glance?
 2. Up close: can the audience quickly read the method logic, key experiments, and details supporting the conclusion?
@@ -166,11 +178,21 @@ Review institution logo copyright, trademark, and attribution requirements befor
 
 ## 中文
 
-这个 skill 基于 Rafael Bailo 的 [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) 和 MIT Communication Lab 的 [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/) 等公开 Better Poster 资料，蒸馏成面向 code agent 的学术海报生成流程。
+Poster 不是论文的压缩包，而是科研预告片。
 
-Better Poster Skill 用于帮助 code agent 将论文 PDF、LaTeX 源码、论文文本摘录、图表、截图和项目链接转换为可编辑的学术海报初稿。
+在拥挤的学术会议上，没有人会先读完你的每一段 Introduction、每一个公式和每一组实验。观众做出的第一个决定永远是：**我要不要停下来？** 一张有效的 Poster，应该让人几秒内看懂三件事：
 
-简单来说 Better Poster 经验旨在：
+1. 你解决了什么问题？
+2. 最妙的想法或设计是什么？
+3. 这个结果为什么值得继续了解？
+
+它的任务不是复述整篇论文，而是让真正感兴趣的人主动问：**“Paper 在哪？”**
+
+Poster 也在为研究者本人引流。你突出什么、删掉什么、能否把复杂问题讲清楚，都在展示你对研究的理解与判断。每次 Poster 展示，都是一次安静的面试：未来的合作者、同事和机会，可能就在面前经过。
+
+Better Poster Skill 把这套原则变成可执行的 code-agent 工作流。它基于 Rafael Bailo 的 [Better Poster LaTeX template](https://github.com/rafaelbailo/betterposter-latex-template) 和 MIT Communication Lab 的 [Toward an Even Better Poster](https://mitcommlab.mit.edu/be/2023/09/27/toward-an-evenbetterposter-improving-the-betterposter-template/) 等公开资料，帮助 code agent 将论文 PDF、LaTeX 源码、文本摘录、图表、截图和项目链接转换为精炼、可编辑的学术海报初稿。
+
+最终的 Poster 面向两个阅读距离设计：
 
 1. 远处：观众能否一眼抓住 Poster 的核心主题与主要贡献。
 2. 近处：观众能否快速读到方法逻辑、关键实验和支撑结论的细节。
